@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import HomePage from '../home/HomePage.vue';
 import NavBar from '../includes/NavBar.vue';
+import RegisterUser from '../user/RegisterUser.vue';
 
 Vue.use(Router);
 
@@ -11,6 +12,14 @@ export default new Router({
     name: 'Home',
     components: {
       default: HomePage,
+      navbar: NavBar,
+    },
+  },
+  {
+    path: '/registro',
+    name: 'RegisterUser',
+    components: {
+      default: RegisterUser,
       navbar: NavBar,
     },
   }],

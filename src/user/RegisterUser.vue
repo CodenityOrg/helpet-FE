@@ -1,21 +1,6 @@
 <template>
     <div class="register">
         <!-- INICIO del menu -->
-        <nav class="navbar">
-            <div class="navbar__logo">
-                <a href="/">
-                    <img src="../assets/ico-logo.png" alt="logo helpet">
-                </a>
-            </div>
-            <ul class="navbar__menu">
-                <li>
-                    <button type="button" id="start-login">Inicia</button>
-                </li>
-                <li>
-                    <a href="/registro">Regístrate</a>
-                </li>
-            </ul>
-        </nav>
         <!-- FIN del menu -->
         <!-- INICIO cuerpo -->
         <section class="cont cont--register">

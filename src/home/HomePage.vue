@@ -10,7 +10,8 @@
                     </h3>
                     <span class="slogan__subtitle">Porque las mascotas son los mejores amigos</span>
 
-                    <a href="/registro">Regístrate</a>
+                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+
                 </div>
                 <div class="logo">
                     <img src="../assets/img/img-A.png" alt="logo helpet">

@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-      <div>
-          <div id="snackbar"></div>
-          <router-view name="navbar"></router-view>
-          <router-view></router-view>
-      </div>
+      <div id="snackbar"></div>
+      <router-view name="navbar"></router-view>
+      <router-view></router-view>
   </div>
 </template>
 

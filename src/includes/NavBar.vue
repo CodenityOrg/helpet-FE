@@ -8,7 +8,8 @@
             <button type="button">Inicia</button>
         </li>
         <li>
-            <a href="/registro">Regístrate</a>
+            <!--<a href="/registro">Regístrate</a>-->
+            <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
         </li>
     </ul>
     </nav>
