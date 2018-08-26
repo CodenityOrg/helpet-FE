@@ -4,7 +4,7 @@
         <nav class="navbar">
             <div class="navbar__logo">
                 <a href="/">
-                    <img src="img/ico-logo.png" alt="logo helpet">
+                    <img src="../assets/ico-logo.png" alt="logo helpet">
                 </a>
             </div>
             <ul class="navbar__menu">
