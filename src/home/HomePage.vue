@@ -13,7 +13,7 @@
                     <a href="/registro">Regístrate</a>
                 </div>
                 <div class="logo">
-                    <img src="img/img-A.png" alt="logo helpet">
+                    <img src="../assets/img/img-A.png" alt="logo helpet">
                 </div>
             </ul>
         </section>

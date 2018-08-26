@@ -1,8 +1,7 @@
 <template>
     <nav class="navbar">
     <div class="navbar__logo">
-        <a href="/"><img src="img/ico-logo.png" alt="logo helpet"></a>
-        <a href="/"><img src="img/ico-logov.png" alt="logo helpet"></a>
+        <a href="/"><img src="../assets/img/ico-logo.png" alt="logo helpet"></a>
     </div>
     <ul class="navbar__menu">
         <li>
