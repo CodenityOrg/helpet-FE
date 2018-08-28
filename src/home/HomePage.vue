@@ -1,5 +1,6 @@
 <template>
     <div class="filtro cont">
+        <router-link :to="{name : 'Home'}">
         <section class="cont--slogan">
             <ul class="slogan__elemt">
                 <div class="slogan">
@@ -18,6 +19,8 @@
                 </div>
             </ul>
         </section>
+        </router-link>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -29,5 +32,7 @@ export default {
 </script>
 
 <style scoped>
-
+    .router-link-active {
+        text-decoration: none;
+    }
 </style>

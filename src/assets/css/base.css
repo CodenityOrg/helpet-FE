@@ -14,22 +14,10 @@ button {
     cursor: pointer;
 }
 
-/**
- * variables
- */
-
 body {
     --bg-color-transparente: rgba(33, 177, 106, .53);
     --color-logo-verde: rgba(33, 177, 106, 1);
     --color-gris: #f2f2f2;
-}
-
-
-/**
- * estilos generales
- */
-
-body {
     min-height: 100vh;
     position: relative;
 }
