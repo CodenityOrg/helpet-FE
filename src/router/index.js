@@ -15,16 +15,21 @@ export default new Router({
       default: HomePage,
       navbar: NavBar,
     },
-    children: [
-      {
-        path: 'registro',
-        name: 'RegisterUser',
-        component: RegisterUser,
-      }, {
-        path: 'ingresar',
-        name: 'LoginUser',
-        component: LoginUser,
-      },
-    ],
+  },
+  {
+    path: '/registro',
+    name: 'RegisterUser',
+    components: {
+      default: RegisterUser,
+      navbar: NavBar,
+    },
+  },
+  {
+    path: '/ingresar',
+    name: 'LoginUser',
+    components: {
+      default: LoginUser,
+      navbar: NavBar,
+    },
   }],
 });
