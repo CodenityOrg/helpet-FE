@@ -174,7 +174,12 @@
 /**
  * navbar modificado para la pagina de inicio
  */
-
+.navbar--inicio {
+    background: white;
+    color: var(--color-logo-verde);
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
 
 /**
  * estilos slogan principal
@@ -268,11 +273,9 @@
     padding-top:2em;
 }
 .cont--inicio .cont--mapa #map {
-    width: 65%;
     min-height: 100vh;
     position: fixed;
 }
-
 
 /**
  * modal de inicio de sesion

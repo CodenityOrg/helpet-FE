@@ -45,12 +45,12 @@ export default new Router({
     children: [
       {
         name: 'ListFound',
-        path: 'encontrado',
+        path: 'encontrados',
         component: AnimalFound,
       },
       {
         name: 'ListLost',
-        path: 'perdido',
+        path: 'perdidos',
         component: AnimalLost,
       },
     ],

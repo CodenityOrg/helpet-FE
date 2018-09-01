@@ -3,12 +3,12 @@
         <div class="cont--tarjetas">
             <div class="content">
                 <div class="tab-links">
-                    <router-link :to="{name : 'ListLost'}">
-                        <button type="button" class="tab-link active posts-tab">
+                    <router-link :to="{name : 'ListLost'}" exact>
+                        <button type="button" class="tab-link posts-tab">
                             Perdidos
                         </button>
                     </router-link>
-                    <router-link :to="{name : 'ListFound'}">
+                    <router-link :to="{name : 'ListFound'}" exact>
                         <button type="button" class="tab-link posts-tab">Encontrados</button>
                     </router-link>
                 </div>
@@ -22,17 +22,24 @@
 </template>
 
 <script>
-export default {
+/* eslint-disable */
+
+  export default {
   name: 'Map',
+  mounted() {
+    const element = document.getElementById('map');
+    const options = {
+      zoom: 14,
+      center: new google.maps.LatLng(51.501527, -0.1921837),
+    };
+    const map = new google.maps.Map(element, options);
+  },
 };
 </script>
 
-<style scoped>
-    .navbar--inicio {
-        background: white;
-        color: var(--color-logo-verde);
-        padding-top: 1.5em;
-        padding-bottom: 1.5em;
-    }
+<style>
     @import "../assets/css/perdidos.css";
+    .router-link-active button{
+        border-bottom-color:green
+    }
 </style>
