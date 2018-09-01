@@ -10,6 +10,9 @@
         <li>
             <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
         </li>
+        <li>
+            <router-link :to="{name : 'ListLost'}">Mapa</router-link>
+        </li>
     </ul>
     </nav>
 </template>
