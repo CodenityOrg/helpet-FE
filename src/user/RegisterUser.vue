@@ -1,8 +1,5 @@
 <template>
     <div class="register">
-        <!-- INICIO del menu -->
-        <!-- FIN del menu -->
-        <!-- INICIO cuerpo -->
         <section class="cont cont--register">
             <ul class="register">
                 <h3>REGISTRATE</h3>
@@ -40,7 +37,6 @@
                 </div>
             </div>
         </section>
-        <!-- FIN del cuerpo -->
     </div>
 </template>
 
