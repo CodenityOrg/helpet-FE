@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import HomePage from '../home/HomePage.vue';
-import NavBar from '../includes/NavBar.vue';
 import RegisterUser from '../user/RegisterUser.vue';
 import LoginUser from '../user/LoginUser.vue';
 import MapAnimal from '../animal/MapAnimal.vue';
@@ -16,7 +15,6 @@ export default new Router({
     name: 'Home',
     components: {
       default: HomePage,
-      navbar: NavBar,
     },
   },
   {
@@ -24,7 +22,6 @@ export default new Router({
     name: 'RegisterUser',
     components: {
       default: RegisterUser,
-      navbar: NavBar,
     },
   },
   {
@@ -32,7 +29,6 @@ export default new Router({
     name: 'LoginUser',
     components: {
       default: LoginUser,
-      navbar: NavBar,
     },
   },
   {
@@ -40,7 +36,6 @@ export default new Router({
     name: 'Map',
     components: {
       default: MapAnimal,
-      navbar: NavBar,
     },
     children: [
       {
