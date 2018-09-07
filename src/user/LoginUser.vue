@@ -1,8 +1,5 @@
 <template>
     <div class="register">
-        <!-- INICIO del menu -->
-        <!-- FIN del menu -->
-        <!-- INICIO cuerpo -->
         <section class="cont cont--register">
             <ul class="register">
                 <h3>Ingresar</h3>
@@ -14,12 +11,10 @@
                         <div class="form-input">
                             <input type="password" name="password" placeholder="Contraseña">
                         </div>
-
                     </form>
                 </div>
             </ul>
         </section>
-        <!-- FIN del cuerpo -->
     </div>
 </template>
 
