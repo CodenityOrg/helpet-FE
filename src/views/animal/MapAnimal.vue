@@ -38,7 +38,7 @@
 </script>
 
 <style>
-    @import "../assets/css/perdidos.css";
+    @import "../../assets/css/perdidos.css";
     .router-link-active button{
         border-bottom-color:green
     }

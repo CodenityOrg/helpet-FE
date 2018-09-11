@@ -1,53 +1,48 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HomePage from '../home/HomePage.vue';
-import RegisterUser from '../user/RegisterUser.vue';
-import LoginUser from '../user/LoginUser.vue';
-import MapAnimal from '../animal/MapAnimal.vue';
-import AnimalFound from '../animal/AnimalFound.vue';
-import AnimalLost from '../animal/AnimalLost.vue';
+import HomePage from '../views/home/HomePage.vue';
+import RegisterUser from '../views/user/RegisterUser.vue';
+import LoginUser from '../views/user/LoginUser.vue';
+import MapAnimal from '../views/animal/MapAnimal.vue';
+import AnimalFound from '../views/animal/AnimalFound.vue';
+import AnimalLost from '../views/animal/AnimalLost.vue';
 
 Vue.use(Router);
 
 export default new Router({
-  routes: [{
-    path: '/',
-    name: 'Home',
-    components: {
-      default: HomePage,
+  mode: "history",
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: HomePage
     },
-  },
-  {
-    path: '/registro',
-    name: 'RegisterUser',
-    components: {
-      default: RegisterUser,
+    {
+      path: '/registro',
+      name: 'RegisterUser',
+      component: RegisterUser
     },
-  },
-  {
-    path: '/ingresar',
-    name: 'LoginUser',
-    components: {
-      default: LoginUser,
+    {
+      path: '/ingresar',
+      name: 'LoginUser',
+      component: LoginUser
     },
-  },
-  {
-    path: '/mapa',
-    name: 'Map',
-    components: {
-      default: MapAnimal,
-    },
-    children: [
-      {
-        name: 'ListFound',
-        path: 'encontrados',
-        component: AnimalFound,
-      },
-      {
-        name: 'ListLost',
-        path: 'perdidos',
-        component: AnimalLost,
-      },
-    ],
-  }],
+    {
+      path: '/mapa',
+      name: 'Map',
+      component: MapAnimal,
+      children: [
+        {
+          name: 'ListFound',
+          path: 'encontrados',
+          component: AnimalFound,
+        },
+        {
+          name: 'ListLost',
+          path: 'perdidos',
+          component: AnimalLost,
+        },
+      ],
+    }
+  ],
 });
