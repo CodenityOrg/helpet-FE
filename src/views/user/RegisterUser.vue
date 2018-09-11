@@ -56,8 +56,6 @@
                 registerUser: "registerUser"
             }),
             async register() {
-                debugger
-
                 event.preventDefault();
                 event.stopPropagation();
                 const user = this.user;
