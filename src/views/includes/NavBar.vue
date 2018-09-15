@@ -14,7 +14,7 @@
             <router-link :to="{name : 'ListLost'}">Mapa</router-link>
         </li>
         <li>
-            <router-link :to="{name : 'RegisterPost'}">Nuevo post</router-link>
+            <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
         </li>
     </ul>
     </nav>
