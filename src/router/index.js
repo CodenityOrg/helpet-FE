@@ -3,10 +3,10 @@ import Router from 'vue-router';
 import HomePage from '../views/home/HomePage.vue';
 import RegisterUser from '../views/user/RegisterUser.vue';
 import LoginUser from '../views/user/LoginUser.vue';
-import MapAnimal from '../views/animal/MapAnimal.vue';
-import AnimalFound from '../views/animal/AnimalFound.vue';
-import AnimalLost from '../views/animal/AnimalLost.vue';
-
+import MapPet from '../views/pet/map/Map.vue';
+import FoundPet from '../views/pet/list/Found.vue';
+import LostPet from '../views/pet/list/Lost.vue';
+import PostPet from '../views/pet/publication/Post.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -28,19 +28,24 @@ export default new Router({
       component: LoginUser
     },
     {
+      path: '/publicacion',
+      name: 'RegisterPostPet',
+      component: PostPet
+    },
+    {
       path: '/mapa',
       name: 'Map',
-      component: MapAnimal,
+      component: MapPet,
       children: [
         {
           name: 'ListFound',
           path: 'encontrados',
-          component: AnimalFound,
+          component: FoundPet,
         },
         {
           name: 'ListLost',
           path: 'perdidos',
-          component: AnimalLost,
+          component: LostPet,
         },
       ],
     }
