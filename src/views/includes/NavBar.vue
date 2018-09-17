@@ -17,6 +17,8 @@
         </li>
         <li v-if="isAuthenticated">
             <button @click="doLogout">Cerrar sesión</button>
+        <li>
+            <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
         </li>
     </ul>
     </nav>

@@ -2,7 +2,8 @@ import postAPI from "../../api/post";
 
 const state = {
     lostPosts: [],
-    foundPosts: []
+    foundPosts: [],
+    currentType: ""
 }
 
 const mutations = {
@@ -11,6 +12,9 @@ const mutations = {
     },
     SET_LOST_POSTS(state, lostPosts) {
         state.lostPosts = lostPosts;
+    },
+    SET_CURRENT_TYPE(state, type) {
+        state.currentType = type;
     }
 }
 
@@ -27,8 +31,21 @@ const actions = {
     }
 }
 
+const getCoordinates = (post) => {
+    return {
+        latitude: post.latitude,
+        longitude: post.longitude
+    }
+}
+
 const getters = {
-    getPosts: state => state.foundPosts
+    getPosts: state => state.foundPosts,
+    getFoundPositions: state => {
+        return state.foundPosts.map(getCoordinates);
+    },
+    getLostPositions: state => {
+        return state.lostPosts.map(getCoordinates);
+    }
 }
 
 export default {

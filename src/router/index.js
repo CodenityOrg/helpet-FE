@@ -3,9 +3,10 @@ import Router from 'vue-router';
 import HomePage from '../views/home/HomePage.vue';
 import RegisterUser from '../views/user/RegisterUser.vue';
 import LoginUser from '../views/user/LoginUser.vue';
-import MapAnimal from '../views/pet/MapAnimal.vue';
+import MapPet from '../views/pet/map/Map.vue';
 import PetFound from '../views/pet/PetFound.vue';
 import PetLost from '../views/pet/PetLost.vue';
+import PostPet from '../views/pet/publication/Post.vue'
 
 Vue.use(Router);
 
@@ -29,9 +30,14 @@ const router = new Router({
       component: LoginUser
     },
     {
+      path: '/publicacion',
+      name: 'RegisterPostPet',
+      component: PostPet
+    },
+    {
       path: '/mapa',
       name: 'Map',
-      component: MapAnimal,
+      component: MapPet,
       children: [
         {
           name: 'ListFound',
