@@ -3,13 +3,14 @@ import Router from 'vue-router';
 import HomePage from '../views/home/HomePage.vue';
 import RegisterUser from '../views/user/RegisterUser.vue';
 import LoginUser from '../views/user/LoginUser.vue';
-import MapAnimal from '../views/animal/MapAnimal.vue';
-import AnimalFound from '../views/animal/AnimalFound.vue';
-import AnimalLost from '../views/animal/AnimalLost.vue';
+import MapAnimal from '../views/pet/MapAnimal.vue';
+import PetFound from '../views/pet/PetFound.vue';
+import PetLost from '../views/pet/PetLost.vue';
 
 Vue.use(Router);
 
-export default new Router({
+
+const router = new Router({
   mode: "history",
   routes: [
     {
@@ -35,14 +36,16 @@ export default new Router({
         {
           name: 'ListFound',
           path: 'encontrados',
-          component: AnimalFound,
+          component: PetFound,
         },
         {
           name: 'ListLost',
           path: 'perdidos',
-          component: AnimalLost,
+          component: PetLost,
         },
       ],
     }
   ],
 });
+
+export default router;

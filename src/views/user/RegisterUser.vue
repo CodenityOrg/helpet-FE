@@ -6,10 +6,10 @@
                 <div>
                     <form class="form" id="register-form">
                         <div class="form-input">
-                            <input type="text" v-model="user.name" name="name" placeholder="Nombres" >
+                            <input type="text" v-model="user.firstName" name="name" placeholder="Nombres" >
                         </div>
                         <div class="form-input">
-                            <input type="text" v-model="user.lastname" name="lastname"  placeholder="Apellidos" >
+                            <input type="text" v-model="user.lastName" name="lastname"  placeholder="Apellidos" >
                         </div>
                         <div class="form-input">
                             <input type="phone" v-model="user.phone" name="phone" placeholder="Telefono (Opcional)">
@@ -60,6 +60,7 @@
                 event.stopPropagation();
                 const user = this.user;
                 await this.registerUser(user);
+                this.$router.push({ name: "LoginUser" })
             }
         }
     };

@@ -4,23 +4,45 @@
         <a href="/"><img src="../../assets/img/ico-logov.png" alt="logo helpet"></a>
     </div>
     <ul class="navbar__menu">
-        <li>
-            <router-link :to="{name : 'LoginUser'}">Inicia</router-link>
-        </li>
-        <li>
-            <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
-        </li>
+        <template v-if="!isAuthenticated">
+            <li>
+                <router-link :to="{name : 'LoginUser'}">Inicia</router-link>
+            </li>
+            <li >
+                <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+            </li>
+        </template>
         <li>
             <router-link :to="{name : 'ListLost'}">Mapa</router-link>
+        </li>
+        <li v-if="isAuthenticated">
+            <button @click="doLogout">Cerrar sesión</button>
         </li>
     </ul>
     </nav>
 </template>
 
 <script>
-export default {
-  name: 'NavBar',
-};
+    import {mapState, mapActions} from "vuex";
+    import VueCookie from "vue-cookie";
+    export default {
+        name: 'NavBar',
+        computed: {
+            ...mapState({
+                isAuthenticated: state => state.auth.authenticated
+            })
+        },
+        methods: {
+            ...mapActions({
+                logout: "logout"
+            }),
+            doLogout() {
+                this.logout();
+                this.$router.go();
+            }
+        }
+        
+    };
 </script>
 
 <style scoped>
