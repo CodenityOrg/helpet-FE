@@ -23,18 +23,39 @@
 
 <script>
 /* eslint-disable */
+    import { mapGetters } from 'vuex';
 
-  export default {
-  name: 'Map',
-  mounted() {
-    const element = document.getElementById('map');
-    const options = {
-      zoom: 14,
-      center: new google.maps.LatLng(-18.013611, -70.252769),
+    export default {
+        name: 'Map',
+        mounted() {
+            const element = document.getElementById('map');
+            const options = {
+                zoom: 14,
+                center: new google.maps.LatLng(-18.013611, -70.252769),
+            };
+            this.map = new google.maps.Map(element, options);
+        },
+        data() {
+            return {
+                map: {}
+            }
+        },
+        computed: {
+            ...mapGetters({
+                positions: "getCurrentPositions"
+            }),
+            markers() {
+                return positions.map((position) => {
+                    const latLng = new google.maps.LatLng(position.latitude, position.longitude);
+                    const marker = new google.maps.Marker({
+                        position: latLng,
+                        title:"Hello World!"
+                    });
+                    marker.setMap(this.map);
+                });
+            }
+        }
     };
-    const map = new google.maps.Map(element, options);
-  },
-};
 </script>
 
 <style>
