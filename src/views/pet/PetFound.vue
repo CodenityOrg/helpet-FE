@@ -1,6 +1,6 @@
 <template>
     <div id="tab-encontrados" 
-        style="height: 450px; overflow-y: auto;"
+        style="height: 100vh; overflow-y: auto;"
         class="tab-content"
     >
         <ItemFound

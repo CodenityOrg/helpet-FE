@@ -1,6 +1,6 @@
 <template>
     <div id="tab-perdidos" 
-        style="height: 450px; overflow-y: auto;"
+        style="height: 70vh; overflow-y: auto;"
         class="tab-content">
         <ItemFound
           :key="index"
