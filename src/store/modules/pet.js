@@ -33,6 +33,7 @@ const actions = {
 
 const getCoordinates = (post) => {
     return {
+        id: post._id,
         latitude: post.latitude,
         longitude: post.longitude
     }

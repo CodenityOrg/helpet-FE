@@ -206,7 +206,8 @@
 }
 
 
-.cont--mapa .map-view {
+.cont--mapa .map-view, 
+.vue-google-map {
     height: 100%;
 }
 

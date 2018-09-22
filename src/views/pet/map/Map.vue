@@ -21,12 +21,11 @@
                 :zoom="mapOptions.zoom"
                 :options="mapOptions">
                 <googlemaps-marker
-                    v-for="(marker, index) of markers"
-                    :key="index"
+                    v-for="marker of markers"
+                    :key="marker.id"
                     :label="{
                         fontFamily: 'Material Icons',
                         fontSize: '20px',
-                        text: 'star_rate',
                     }"
                     :position="marker.position"
                 />
@@ -57,7 +56,7 @@
             markers() {
                 return this.positions.map(position => {
                     return {
-                        _id: random(),
+                        id: position.id,
                         position: new google.maps.LatLng(position.latitude, position.longitude)
                     }
                 })
