@@ -1,29 +1,30 @@
 <template>
     <nav class="navbar navbar--inicio">
-    <div class="navbar__logo">
-        <a href="/"><img src="../../assets/img/ico-logov.png" alt="logo helpet"></a>
-    </div>
-    <ul class="navbar__menu">
-        <template v-if="!isAuthenticated">
+        <div class="navbar__logo">
+            <a href="/"><img src="../../assets/img/ico-logov.png" alt="logo helpet"></a>
+        </div>
+        <ul class="navbar__menu">
+            <template v-if="!isAuthenticated">
+                <li>
+                    <router-link :to="{name : 'LoginUser'}">Inicia</router-link>
+                </li>
+                <li >
+                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                </li>
+            </template> 
+            <template v-else>
+                
+                <li>
+                    <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
+                </li>
+            </template>
             <li>
-                <router-link :to="{name : 'LoginUser'}">Inicia</router-link>
+                <router-link :to="{name : 'ListLost'}">Mapa</router-link>
             </li>
-            <li >
-                <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+            <li v-if="isAuthenticated">
+                <button @click="doLogout">Cerrar sesión</button>
             </li>
-        </template>
-        <template v-else>
-            <li>
-                <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
-            </li>
-        </template>
-        <li>
-            <router-link :to="{name : 'ListLost'}">Mapa</router-link>
-        </li>
-        <li v-if="isAuthenticated">
-            <button @click="doLogout">Cerrar sesión</button>
-        </li>
-    </ul>
+        </ul>
     </nav>
 </template>
 

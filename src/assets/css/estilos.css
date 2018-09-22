@@ -124,7 +124,6 @@
     padding-bottom: 0;
     padding-left: 4.5em;
     padding-right: 4.5em;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 500;
@@ -185,9 +184,13 @@
  * estilos slogan principal
  */
 
+.tab-content {
+    overflow-y: auto;
+}
+
 .cont {
     width: 100%;
-    min-height: 100vh;
+    position: absolute;
 }
 .slogan__elemt{
     display: flex;
@@ -199,6 +202,11 @@
     align-items: center;
     justify-content: center;
     background: var(--bg-color-transparente);
+    height: 100%;
+}
+
+
+.cont--mapa .map-view {
     height: 100%;
 }
 
@@ -256,7 +264,9 @@
     padding-top: 0;
     display: flex;
     background-color: var(--color-gris);
-    padding-top: 4.5em;
+    position: absolute;
+    bottom: 0;
+    top: 90px;
 }
 
 .cont--inicio .cont--tarjetas {
@@ -265,12 +275,17 @@
     padding-left: 2em;
     padding-right: 2em;
     flex: 0 0 35%;
+    display: flex;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .cont--inicio .cont--mapa {
-    min-height: 100vh;
     flex: 0 0 65%;
-    padding-top:2em;
 }
 .cont--inicio .cont--mapa #map {
     min-height: 100vh;
@@ -429,4 +444,8 @@
     .cont--slogan .logo{
         display: none;
     }
+}
+
+.router-link-active button{
+    border-bottom-color:green
 }

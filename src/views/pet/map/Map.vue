@@ -16,30 +16,53 @@
             </div>
         </div>
         <div class="cont--mapa">
-            <div id='map'></div>
+           <googlemaps-map
+                :center="mapOptions.center"
+                :zoom="mapOptions.zoom"
+                :options="mapOptions">
+                <googlemaps-marker
+                    v-for="(marker, index) of markers"
+                    :key="index"
+                    :label="{
+                        fontFamily: 'Material Icons',
+                        fontSize: '20px',
+                        text: 'star_rate',
+                    }"
+                    :position="marker.position"
+                />
+            </googlemaps-map>
         </div>
     </div>
 </template>
 
 <script>
 /* eslint-disable */
+    import { mapGetters, mapState } from 'vuex';
+    import {random} from "lodash";
 
-  export default {
-  name: 'Map',
-  mounted() {
-    const element = document.getElementById('map');
-    const options = {
-      zoom: 14,
-      center: new google.maps.LatLng(-18.013611, -70.252769),
+    export default {
+        name: 'Map',
+        data() {
+            return {
+                mapOptions: {
+                    zoom: 14,
+                    center: new google.maps.LatLng(-18.013611, -70.252769),
+                }
+            }
+        },
+        computed: {
+            ...mapState({
+                positions: state => state.pet.foundPosts
+            }),
+            markers() {
+                return this.positions.map(position => {
+                    return {
+                        _id: random(),
+                        position: new google.maps.LatLng(position.latitude, position.longitude)
+                    }
+                })
+            }
+        }
     };
-    const map = new google.maps.Map(element, options);
-  },
-};
 </script>
 
-<style>
-    @import "../../../assets/css/perdidos.css";
-    .router-link-active button{
-        border-bottom-color:green
-    }
-</style>
