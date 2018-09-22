@@ -52,7 +52,6 @@
                 event.stopPropagation();
                 const credentials = this.credentials;
                 await this.login(credentials);
-                debugger
                 this.$router.push("/mapa/encontrados")
             }
         }

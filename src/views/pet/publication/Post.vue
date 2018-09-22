@@ -11,25 +11,25 @@
                             <img id="preview" src="img/perro1.jpg" alt="">
                             <input type="file" name="photo" placeholder="Foto de la mascota">
                         </div>
-
+                        <div class="form-input">
+                            <h4>Descripcion</h4>
+                            <div class="form-input">
+                                <textarea v-model="post.description" name="description" id="" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-input">
+                            <h4>Direccion</h4>
+                            <div class="form-input">
+                                <input v-model="post.address" type="text" name="address" placeholder="caracteristicas">
+                            </div>
+                        </div>
                         <div class="form-input">
                             <h4>Caracteristicas</h4>
                             <div class="form-input">
-                                <input type="text" name="feature" placeholder="caracteristicas">
-
-                            </div>
-                            <div class="form-input">
-                                <input type="text" name="latitude" placeholder="latitude">
-                            </div>
-                            <div class="form-input">
-                                <input type="text" name="longitude" placeholder="longitude">
-
-                            </div>
-                            <div class="form-input">
-                                <input type="text" name="distance" placeholder="distancia">
+                                <v-selectize v-model="selected" :options="['neat','awesome']"/>
+                                <input type="text" name="features" placeholder="caracteristicas">
                             </div>
                         </div>
-
                         <div class="form-submit">
                             <button class="btn btn-regular">Aceptar</button>
                         </div>
@@ -42,11 +42,31 @@
 </template>
 
 <script>
-  export default {
-    name: 'Post',
-  };
+    import Selectize from 'vue2-selectize'
+    import Vue from 'vue'
+    import VSelectize from '@isneezy/vue-selectize'
+    Vue.component('v-selectize', VSelectize)
+
+    export default {
+        name: 'Post',
+        components: {
+            VSelectize
+        },
+        data() {
+            return {
+                post: {
+                    description: "",
+                    address: "",
+                },
+
+                options:["dasdsa", "asdaads"],
+                selected: []
+            }
+        }
+    };
 </script>
 
 <style scoped>
+@import "~selectize/dist/css/selectize.bootstrap3.css";
 
 </style>
