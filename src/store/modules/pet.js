@@ -1,9 +1,11 @@
 import postAPI from "../../api/post";
 
 const state = {
+    post: {},
     lostPosts: [],
     foundPosts: [],
-    currentType: "found"
+    currentType: "found",
+    features: []
 }
 
 const mutations = {
@@ -15,6 +17,9 @@ const mutations = {
     },
     SET_CURRENT_TYPE(state, type) {
         state.currentType = type;
+    },
+    SET_FEATURES(state, features) {
+        state.features = features;
     }
 }
 
@@ -28,6 +33,9 @@ const actions = {
     },
     createPost({ commit }, payload) {
         return postAPI.create(payload);
+    },
+    getFeatures(q) {
+        return postAPI.getFeatures(q);
     }
 }
 
