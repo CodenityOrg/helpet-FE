@@ -26,7 +26,16 @@
                         <div class="form-input">
                             <h4>Caracteristicas</h4>
                             <div class="form-input">
-                                <v-selectize v-model="selected" :options="['neat','awesome']"/>
+                                <selectize 
+                                    v-model="post.features" 
+                                    :settings="settings">
+                                    <option 
+                                        :key="feature._id"
+                                        v-for="feature in features" 
+                                        :value="1">
+                                        {{feature.value}}
+                                    </option>
+                                </selectize>
                                 <input type="text" name="features" placeholder="caracteristicas">
                             </div>
                         </div>
@@ -43,23 +52,39 @@
 
 <script>
     import Vue from 'vue'
-    import VSelectize from '@isneezy/vue-selectize'
-    Vue.component('v-selectize', VSelectize)
+    import Selectize from 'vue2-selectize'
+import { mapActions, mapState } from 'vuex';
+
 
     export default {
         name: 'Post',
         components: {
-            VSelectize
+            Selectize
+        },
+        computed: {
+            ...mapState({
+                features: state => state.pet.features
+            })
+        },
+        created() {
+            this.getFeatures();
+        },
+        methods: {
+            ...mapActions({
+                getFeatures: "getFeatures"
+            })
         },
         data() {
             return {
                 post: {
                     description: "",
                     address: "",
+                    features: []
                 },
-
-                options:["dasdsa", "asdaads"],
-                selected: []
+                settings: {
+                    mode: "multi",
+                    maxItems: 5
+                }
             }
         }, 
         mounted() {
@@ -69,6 +94,7 @@
 </script>
 
 <style scoped>
+@import "~selectize/dist/css/selectize.default.css";
 @import "~selectize/dist/css/selectize.bootstrap3.css";
 
 </style>
