@@ -9,7 +9,7 @@
                         <div class="form-input">
                             <h3>Foto de la mascota</h3>
                             <img id="preview" src="img/perro1.jpg" alt="">
-                            <input type="file" name="photo" placeholder="Foto de la mascota">
+                            <input id="files" type="file" name="photo" placeholder="Foto de la mascota">
                         </div>
                         <div class="form-input">
                             <h4>Descripcion</h4>
@@ -42,7 +42,6 @@
 </template>
 
 <script>
-    import Selectize from 'vue2-selectize'
     import Vue from 'vue'
     import VSelectize from '@isneezy/vue-selectize'
     Vue.component('v-selectize', VSelectize)
@@ -62,6 +61,9 @@
                 options:["dasdsa", "asdaads"],
                 selected: []
             }
+        }, 
+        mounted() {
+            $("#files").on("")
         }
     };
 </script>
