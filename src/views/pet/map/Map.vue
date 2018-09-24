@@ -33,6 +33,7 @@
       center: new google.maps.LatLng(-18.013611, -70.252769),
     };
     const map = new google.maps.Map(element, options);
+
   },
 };
 </script>
