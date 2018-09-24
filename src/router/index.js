@@ -4,12 +4,14 @@ import HomePage from '../views/home/HomePage.vue';
 import RegisterUser from '../views/user/RegisterUser.vue';
 import LoginUser from '../views/user/LoginUser.vue';
 import MapPet from '../views/pet/map/Map.vue';
-import FoundPet from '../views/pet/list/Found.vue';
-import LostPet from '../views/pet/list/Lost.vue';
+import PetFound from '../views/pet/PetFound.vue';
+import PetLost from '../views/pet/PetLost.vue';
 import PostPet from '../views/pet/publication/Post.vue'
+
 Vue.use(Router);
 
-export default new Router({
+
+const router = new Router({
   mode: "history",
   routes: [
     {
@@ -40,14 +42,16 @@ export default new Router({
         {
           name: 'ListFound',
           path: 'encontrados',
-          component: FoundPet,
+          component: PetFound,
         },
         {
           name: 'ListLost',
           path: 'perdidos',
-          component: LostPet,
+          component: PetLost,
         },
       ],
     }
   ],
 });
+
+export default router;

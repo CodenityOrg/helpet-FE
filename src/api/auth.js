@@ -8,5 +8,13 @@ export default {
     },
     logout() {
         return axios.post(`${HOST}/logout`);
+    },
+    validToken(token) {
+        return axios.post(`${HOST}/users/valid-token`, {token})
+                .catch((e) => {
+                    if (e.toString().includes("401")) {
+                        return {status: 401} 
+                    }   
+                });
     }
 };

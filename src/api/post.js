@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-const HOST = process.env.ROOT_HOST || 'http://locahost:3000';
+const HOST = process.env.ROOT_HOST || 'http://localhost:3000/api';
 
 export default {
     list() {
         return axios.get(`${HOST}/posts`);
     },
     create(payload) {
-        return axios.post(`${HOST}/posts`, { body: payload });
+        return axios.post(`${HOST}/posts`, payload);
     },
     profile(id) {
-        return axios.post(`${HOST}/posts/${id}`, { body: payload });
+        return axios.post(`${HOST}/posts/${id}`, payload);
     }
 };
