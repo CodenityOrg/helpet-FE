@@ -1,5 +1,7 @@
 <template>
     <div class="register">
+        <loading :active.sync="isLoading"
+                 :is-full-page="fullPage"></loading>
         <section class="cont cont--register">
             <ul class="register">
                 <h3>Ingresar</h3>
@@ -51,7 +53,9 @@
                 event.preventDefault();
                 event.stopPropagation();
                 const credentials = this.credentials;
+                this.isLoading = true;
                 await this.login(credentials);
+                this.isLoading = false;
                 debugger
                 this.$router.push("/mapa/encontrados")
             }
