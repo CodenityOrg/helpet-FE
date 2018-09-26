@@ -1,5 +1,7 @@
 <template>
     <div class="register">
+        <loading :active.sync="isLoading"
+                 :is-full-page="fullPage"></loading>
         <section class="cont cont--register">
             <ul class="register">
                 <h3>REGISTRATE</h3>
@@ -59,7 +61,9 @@
                 event.preventDefault();
                 event.stopPropagation();
                 const user = this.user;
+                this.isLoading = true;
                 await this.registerUser(user);
+                this.isLoading = false;
                 this.$router.push({ name: "LoginUser" })
             }
         }

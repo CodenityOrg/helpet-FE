@@ -3,7 +3,8 @@ import App from './App.vue';
 import router from './router';
 import store from "./store/index";
 import VueCookie from "vue-cookie";
-import VueGoogleMaps from 'vue-googlemaps'
+import VueGoogleMaps from 'vue-googlemaps';
+import loadingMixin from './views/includes/loading-mixin';
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -15,7 +16,7 @@ Vue.use(VueGoogleMaps, {
     useBetaRenderer: false,
   },
 })
-
+Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 

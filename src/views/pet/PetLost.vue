@@ -1,6 +1,8 @@
 <template>
     <div id="tab-perdidos" 
         class="tab-content">
+        <loading :active.sync="isLoading"
+                 :is-full-page="fullPage"></loading>
         <ItemFound
           :key="index"
           v-for="(foundPost, index) in foundPosts"
@@ -16,7 +18,9 @@
     export default {
         name: 'AnimalLost',
         created() {
-            this.getFoundPosts();
+            this.getFoundPosts().then(() => {
+                this.isLoading = false;
+            });
         },
         components: {
             ItemFound
