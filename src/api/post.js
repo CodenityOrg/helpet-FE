@@ -13,6 +13,6 @@ export default {
         return axios.post(`${HOST}/posts/${id}`, payload);
     },
     getFeatures(query) {
-        return axios.get(`${HOST}/features?q=${query}`);
+        return axios.get(`${HOST}/posts/features?q=${query}`);
     }
 };

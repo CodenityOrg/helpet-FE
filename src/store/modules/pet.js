@@ -34,8 +34,9 @@ const actions = {
     createPost({ commit }, payload) {
         return postAPI.create(payload);
     },
-    getFeatures(q) {
-        return postAPI.getFeatures(q);
+    async getFeatures({commit}, q) {
+        const {data: features} = await postAPI.getFeatures(q);
+        commit("SET_FEATURES", features);
     }
 }
 

@@ -264,7 +264,6 @@
 .cont--inicio {
     padding-top: 0;
     display: flex;
-    background-color: var(--color-gris);
     position: absolute;
     bottom: 0;
     top: 90px;

@@ -7,21 +7,41 @@
             <span>{{fullName}}</span>
         </div>
         <div class="tarjeta__imagen">
-            <img :src="item.photos[0].thumbnailPath" alt="perrito encontrado">
+            <carousel
+                :perPageCustom="[[1024, 1]]"
+            >
+                <slide
+                    :key="photo._id"
+                    v-for="photo in item.photos"
+                >
+                    <img :src="photo.thumbnailPath" alt="perrito encontrado">
+                </slide>
+            </carousel>
         </div>
         <div class="tarjeta__descripcion">
             <p class="descripcion"> {{item.description}} </p>
             <p class="direccion"> {{item.address}} </p>
             <div class="caracteristicas">
                 <p><b> Características </b> </p>
-                <span class="caracteristica"></span>
+                <span 
+                    :key="feature._id"
+                    v-for="feature in item.features"
+                    class="caracteristica">
+                    {{feature.value}}
+                </span>
             </div>
         </div>
     </div>
 </template>
 <script>
+import { Carousel, Slide } from 'vue-carousel';
+
 export default {
     name: "ItemFound",
+    components: {
+         Carousel,
+        Slide
+    },
     props: {
         item: {
             type: Object

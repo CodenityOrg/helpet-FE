@@ -4,6 +4,9 @@ import router from './router';
 import store from "./store/index";
 import VueCookie from "vue-cookie";
 import VueGoogleMaps from 'vue-googlemaps'
+import axios from "axios";
+
+axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
 
 Vue.use(VueGoogleMaps, {
   load: {
