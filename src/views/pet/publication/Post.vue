@@ -51,9 +51,9 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import Selectize from 'vue2-selectize'
-import { mapActions, mapState } from 'vuex';
+    import Vue from 'vue';
+    import Selectize from 'vue2-selectize';
+    import { mapActions, mapState } from 'vuex';
 
 
     export default {
