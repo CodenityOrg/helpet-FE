@@ -115,7 +115,6 @@
             },
             async newPost(e) {
                 e.preventDefault();
-                
                 const post = {
                     ...this.post,
                     photos: this.$refs.myVueDropzone.getAcceptedFiles(),
