@@ -56,7 +56,6 @@
                 this.isLoading = true;
                 await this.login(credentials);
                 this.isLoading = false;
-                debugger
                 this.$router.push("/mapa/encontrados")
             }
         }

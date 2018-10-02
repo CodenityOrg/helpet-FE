@@ -2,11 +2,11 @@
     <div id="tab-perdidos" 
         class="tab-content">
         <loading :active.sync="isLoading"
-                 :is-full-page="fullPage"></loading>
+                 :is-full-page="fullPage" />
         <ItemFound
           :key="index"
-          v-for="(foundPost, index) in foundPosts"
-          :item="foundPost"
+          v-for="(lostPost, index) in lostPosts"
+          :item="lostPost"
         />
     </div>
 </template>
@@ -17,22 +17,22 @@
 
     export default {
         name: 'AnimalLost',
-        created() {
-            this.getFoundPosts().then(() => {
-                this.isLoading = false;
-            });
+        async created() {
+            this.$store.commit("SET_CURRENT_TYPE", "lost");
+            await this.getLostPosts();
+            this.isLoading = false;
+        },
+        computed: {
+            ...mapState({
+                lostPosts: state => state.pet.lostPosts
+            })
         },
         components: {
             ItemFound
         },
-        computed: {
-            ...mapState({
-                foundPosts: state => state.pet.foundPosts
-            })
-        },  
         methods: {
             ...mapActions({
-                getFoundPosts:"getFoundPosts"
+                getLostPosts:"getLostPosts"
             })
         }
     };

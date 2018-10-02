@@ -50,8 +50,8 @@
             }
         },
         computed: {
-            ...mapState({
-                positions: state => state.pet.foundPosts
+            ...mapGetters({
+                positions: "getCurrentPositions"
             }),
             markers() {
                 return this.positions.map(position => {

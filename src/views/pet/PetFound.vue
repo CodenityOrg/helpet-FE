@@ -2,6 +2,8 @@
     <div id="tab-encontrados" 
         class="tab-content"
     >
+        <loading :active.sync="isLoading"
+            :is-full-page="fullPage" />
         <ItemFound
           :key="index"
           v-for="(foundPost, index) in foundPosts"
@@ -13,11 +15,9 @@
 <script>
   import ItemFound from "./Item";
   import { mapActions, mapState, mapGetters } from "vuex";
+ 
   export default {
     name: "PetsFound",
-    created() {
-      this.getFoundPosts();
-    },
     components: {
       ItemFound
     },
@@ -25,11 +25,16 @@
       ...mapState({
         foundPosts: state => state.pet.foundPosts
       })
-    },  
+    },
     methods: {
       ...mapActions({
-        getFoundPosts:"getFoundPosts"
+        getFoundPosts: "getFoundPosts"
       })
+    },
+    async created() {
+      this.$store.commit("SET_CURRENT_TYPE", "found");
+      await this.getFoundPosts();
+      this.isLoading = false;
     }
   };
 </script>

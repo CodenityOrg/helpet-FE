@@ -3,8 +3,8 @@ import axios from 'axios';
 const HOST = process.env.ROOT_HOST || 'http://localhost:3000/api';
 
 export default {
-    list() {
-        return axios.get(`${HOST}/posts`);
+    list(type) {
+        return axios.get(`${HOST}/posts?type=${type}`).then(res => res.data);
     },
     create(payload) {
         return axios.post(`${HOST}/posts`, payload);

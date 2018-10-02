@@ -23,8 +23,14 @@ const actions = {
         const {data: foundPosts} = await postAPI.list();
         commit("SET_FOUND_POSTS", foundPosts);
     },
-    getLostPosts({ commit }) {
-        return postAPI.list();
+    async getLostPosts({ commit }) {
+        const lostPosts = await postAPI.list(0);
+        debugger
+        commit("SET_LOST_POSTS", lostPosts);
+    },
+    async getFoundPosts({ commit }) {
+        const foundPosts = await postAPI.list(1);
+        commit("SET_FOUND_POSTS", foundPosts);
     },
     createPost({ commit }, payload) {
         return postAPI.create(payload);
