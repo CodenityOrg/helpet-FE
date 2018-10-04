@@ -24,12 +24,12 @@ const actions = {
         commit("SET_FOUND_POSTS", foundPosts);
     },
     async getLostPosts({ commit }) {
-        const lostPosts = await postAPI.list(0);
+        const lostPosts = await postAPI.list({ type: 0 });
         debugger
         commit("SET_LOST_POSTS", lostPosts);
     },
     async getFoundPosts({ commit }) {
-        const foundPosts = await postAPI.list(1);
+        const foundPosts = await postAPI.list({ type: 1 });
         commit("SET_FOUND_POSTS", foundPosts);
     },
     createPost({ commit }, payload) {

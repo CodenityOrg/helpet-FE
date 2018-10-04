@@ -17,6 +17,12 @@
 
     export default {
         name: 'AnimalLost',
+        data() {
+            return {
+                skip: 0,
+                limit: 5
+            }
+        },
         async created() {
             this.$store.commit("SET_CURRENT_TYPE", "lost");
             await this.getLostPosts();

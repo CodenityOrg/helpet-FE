@@ -49,6 +49,18 @@
                 }
             }
         },
+        watch: {
+            positions() {
+                this.setMapOnAll(null);
+            }
+        },
+        methods: {
+            setMapOnAll(map) {
+                for (const marker of this.markers) {
+                    marker.setMap(map);
+                }
+            }
+        },
         computed: {
             ...mapGetters({
                 positions: "getCurrentPositions"
