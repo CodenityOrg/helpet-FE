@@ -57,7 +57,9 @@
         methods: {
             setMapOnAll(map) {
                 for (const marker of this.markers) {
-                    marker.setMap(map);
+                    if (marker.setMap) {
+                        marker.setMap(map);
+                    }
                 }
             }
         },

@@ -15,6 +15,12 @@ const mutations = {
     },
     SET_CURRENT_TYPE(state, type) {
         state.currentType = type;
+    },
+    ADD_FOUND_POSTS(state, foundPosts) {
+        //state.foundPosts.push(...foundPosts);
+    },
+    ADD_LOST_POSTS(state, lostPosts) {
+        //state.lostPosts.push(...lostPosts);
     }
 }
 
@@ -23,13 +29,12 @@ const actions = {
         const {data: foundPosts} = await postAPI.list();
         commit("SET_FOUND_POSTS", foundPosts);
     },
-    async getLostPosts({ commit }) {
-        const lostPosts = await postAPI.list({ type: 0 });
-        debugger
+    async getLostPosts({ commit }, { ...searchParams }) {
+        const lostPosts = await postAPI.list({ type: 0, ...searchParams });
         commit("SET_LOST_POSTS", lostPosts);
     },
-    async getFoundPosts({ commit }) {
-        const foundPosts = await postAPI.list({ type: 1 });
+    async getFoundPosts({ commit }, { ...searchParams }) {
+        const foundPosts = await postAPI.list({ type: 1, ...searchParams });
         commit("SET_FOUND_POSTS", foundPosts);
     },
     createPost({ commit }, payload) {

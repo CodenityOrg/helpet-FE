@@ -1,12 +1,14 @@
 <template>
-    <div id="tab-perdidos" 
+    <div
+        ref="list" 
+        id="tab-perdidos" 
         class="tab-content">
         <loading :active.sync="isLoading"
                  :is-full-page="fullPage" />
         <ItemFound
-          :key="index"
-          v-for="(lostPost, index) in lostPosts"
-          :item="lostPost"
+            :key="index"
+            v-for="(lostPost, index) in lostPosts"
+            :item="lostPost"
         />
     </div>
 </template>
@@ -16,7 +18,7 @@
     import { mapActions, mapState, mapGetters } from "vuex";
 
     export default {
-        name: 'AnimalLost',
+        name: "AnimalLost",
         data() {
             return {
                 skip: 0,
@@ -39,7 +41,10 @@
         methods: {
             ...mapActions({
                 getLostPosts:"getLostPosts"
-            })
+            }),
+            checkIfBottomList() {
+
+            }
         }
     };
 </script>
