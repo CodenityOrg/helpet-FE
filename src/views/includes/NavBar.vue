@@ -6,7 +6,7 @@
         <ul class="navbar__menu">
             <template v-if="!isAuthenticated">
                 <li>
-                    <router-link :to="{name : 'LoginUser'}">Inicia</router-link>
+                    <a @click="$emit('onShowLogin')">Inicia</a>
                 </li>
                 <li >
                     <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
