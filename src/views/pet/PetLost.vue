@@ -5,8 +5,8 @@
         <loading :active.sync="isLoading"
                  :is-full-page="fullPage" />
         <infinite-list
-            style="height: 500px;"
-            :loading="isListLoading"
+            style="height: 700px;"
+            :loading="isLoading"
             @scrollEnd="scrollEnd"
         >
             <ItemFound
@@ -33,6 +33,7 @@
             InfiniteList
         },
         async created() {
+            this.isLoading = true;
             this.$store.commit("SET_CURRENT_TYPE", "lost");
             await this.getItems();
             this.skip = this.skip + this.limit;
@@ -43,11 +44,13 @@
                 lostPosts: state => state.pet.lostPosts
             })
         },
-        
         methods: {
             ...mapActions({
                 getItems: "getLostPosts"
             })
+        },
+        beforeDestroy() {
+            this.$store.commit("RESET_LOST_POSTS");
         }
     };
 </script>

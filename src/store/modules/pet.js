@@ -11,12 +11,20 @@ const mutations = {
         state.currentType = type;
     },
     ADD_FOUND_POSTS(state, foundPosts) {
-        state.foundPosts.push(...foundPosts);
+        if (foundPosts) {
+            state.foundPosts.push(...foundPosts);
+        }
     },
     ADD_LOST_POSTS(state, lostPosts) {
         if (lostPosts) {
             state.lostPosts.push(...lostPosts);
         }
+    },
+    RESET_FOUND_POSTS(state) {
+        state.foundPosts = [];
+    },
+    RESET_LOST_POSTS(state) {
+        state.lostPosts = [];
     }
 }
 

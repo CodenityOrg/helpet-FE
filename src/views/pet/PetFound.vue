@@ -6,7 +6,7 @@
         <loading :active.sync="isLoading"
             :is-full-page="fullPage" />
         <infinite-list
-          style="height: 500px;"
+          style="height: 700px;"
           :isLoading="isListLoading"
           @scrollEnd="scrollEnd"
         >
@@ -33,6 +33,7 @@
     },
     mixins: [listMixin],
     async created() {
+      this.isLoading = true;
       this.$store.commit("SET_CURRENT_TYPE", "found");
       await this.getItems();
       this.skip = this.skip + this.limit;
@@ -47,6 +48,9 @@
       ...mapActions({
         getItems: "getFoundPosts"
       })
+    },
+    beforeDestroy() {
+      this.$store.commit("RESET_FOUND_POSTS");
     }
   };
 </script>

@@ -4,17 +4,11 @@
     style="overflow-y: scroll;"
     @scroll="scrollHandler"
   >
-    <loading 
-        :active.sync="loading"
-        :is-full-page="false" 
-    />
     <slot/>
   </div>
 </template>
 
 <script>
-  import axios from "axios";
-
   export default {
     name: "InfiniteList",
     methods: {
@@ -24,8 +18,8 @@
         }
       },
       isAtTheBottom() {
-        const container = this.$refs.container;
-        return (container.scrollHeight - container.scrollTop ) === (container.clientHeight );
+            const container = this.$refs.container;
+            return (container.scrollHeight - container.scrollTop ) === (container.clientHeight );
       }
     },
     props: {

@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import HomePage from '../views/home/HomePage.vue';
 import RegisterUser from '../views/user/RegisterUser.vue';
 import LoginUser from '../views/user/LoginUser.vue';
-import MapPet from '../views/pet/map/Map.vue';
+import MapView from '../views/MapView';
 import PetFound from '../views/pet/PetFound.vue';
 import PetLost from '../views/pet/PetLost.vue';
 import PostPet from '../views/pet/publication/Post.vue'
@@ -37,7 +37,7 @@ const router = new Router({
     {
       path: '/mapa',
       name: 'Map',
-      component: MapPet,
+      component: MapView,
       children: [
         {
           name: 'ListFound',

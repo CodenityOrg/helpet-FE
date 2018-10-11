@@ -32,12 +32,12 @@
 </template>
 
 <script>
-/* eslint-disable */
-    import { mapGetters, mapState } from 'vuex';
+    /* eslint-disable */
+    import { mapGetters, mapState } from "vuex";
     import {random} from "lodash";
 
     export default {
-        name: 'Map',
+        name: "Map",
         data() {
             return {
                 mapOptions: {
@@ -72,14 +72,13 @@
                         label: {
                             fontFamily: 'Material Icons',
                             fontSize: '20px',
-                            text: "dadsda"
+                            text: "marker"
                         }
                     }
                 })
             }
         }
     };
-
 
 </script>
 
