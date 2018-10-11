@@ -1,10 +1,13 @@
 <template>
-    <div id="tab-encontrados" 
-        class="tab-content"
+    <div 
+      id="tab-encontrados" 
+      class="tab-content"
     >
         <loading :active.sync="isLoading"
             :is-full-page="fullPage" />
         <infinite-list
+          style="height: 500px;"
+          :isLoading="isListLoading"
           @scrollEnd="scrollEnd"
         >
           <ItemFound
@@ -20,6 +23,7 @@
   import ItemFound from "./Item";
   import { mapActions, mapState, mapGetters } from "vuex";
   import InfiniteList from "../../components/InfiniteList";
+  import listMixin from "./mixins/list";
 
   export default {
     name: "PetsFound",
@@ -27,36 +31,22 @@
       ItemFound,
       InfiniteList
     },
+    mixins: [listMixin],
+    async created() {
+      this.$store.commit("SET_CURRENT_TYPE", "found");
+      await this.getItems();
+      this.skip = this.skip + this.limit;
+      this.isLoading = false;
+    },
     computed: {
       ...mapState({
         foundPosts: state => state.pet.foundPosts
       })
     },
-    data() {
-      return {
-        limit: 5,
-        skip: 0,
-        items: []
-      }
-    },
     methods: {
       ...mapActions({
-        getFoundPosts: "getFoundPosts"
-      }),
-      async scrollEnd() {
-        const items = await this.getFoundPosts({ limit: this.limit, skip: this.skip });
-        this.$store.commit("ADD_FOUND_POSTS", items);
-        this.skip += this.limit;
-      }
-    },
-    async created() {
-      this.$store.commit("SET_CURRENT_TYPE", "found");
-      await this.getFoundPosts();
-      this.isLoading = false;
+        getItems: "getFoundPosts"
+      })
     }
   };
 </script>
-
-<style scoped>
-
-</style>

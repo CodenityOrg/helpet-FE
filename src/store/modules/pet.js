@@ -7,35 +7,29 @@ const state = {
 }
 
 const mutations = {
-    SET_FOUND_POSTS(state, foundPosts) {
-        state.foundPosts = foundPosts;
-    },
-    SET_LOST_POSTS(state, lostPosts) {
-        state.lostPosts = lostPosts;
-    },
     SET_CURRENT_TYPE(state, type) {
         state.currentType = type;
     },
     ADD_FOUND_POSTS(state, foundPosts) {
-        //state.foundPosts.push(...foundPosts);
+        state.foundPosts.push(...foundPosts);
     },
     ADD_LOST_POSTS(state, lostPosts) {
-        //state.lostPosts.push(...lostPosts);
+        if (lostPosts) {
+            state.lostPosts.push(...lostPosts);
+        }
     }
 }
 
 const actions = {
-    async getFoundPosts({ commit }) {
-        const {data: foundPosts} = await postAPI.list();
-        commit("SET_FOUND_POSTS", foundPosts);
-    },
     async getLostPosts({ commit }, { ...searchParams }) {
         const lostPosts = await postAPI.list({ type: 0, ...searchParams });
-        commit("SET_LOST_POSTS", lostPosts);
+        commit("ADD_LOST_POSTS", lostPosts);
     },
     async getFoundPosts({ commit }, { ...searchParams }) {
         const foundPosts = await postAPI.list({ type: 1, ...searchParams });
-        commit("SET_FOUND_POSTS", foundPosts);
+        if (foundPosts) {
+            commit("ADD_FOUND_POSTS", foundPosts);
+        }
     },
     createPost({ commit }, payload) {
         return postAPI.create(payload);

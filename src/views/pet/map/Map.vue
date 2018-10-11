@@ -23,10 +23,7 @@
                 <googlemaps-marker
                     v-for="marker of markers"
                     :key="marker.id"
-                    :label="{
-                        fontFamily: 'Material Icons',
-                        fontSize: '20px',
-                    }"
+                    :label="marker.label"
                     :position="marker.position"
                 />
             </googlemaps-map>
@@ -71,7 +68,12 @@
                 return this.positions.map(position => {
                     return {
                         id: position.id,
-                        position: new google.maps.LatLng(position.latitude, position.longitude)
+                        position: new google.maps.LatLng(position.latitude, position.longitude),
+                        label: {
+                            fontFamily: 'Material Icons',
+                            fontSize: '20px',
+                            text: "dadsda"
+                        }
                     }
                 })
             }
