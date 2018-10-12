@@ -8,7 +8,7 @@
         </div>
         <div class="tarjeta__imagen">
             <carousel
-                v-if="item.photos.length"
+                v-if="item.photos && item.photos.length"
                 :perPageCustom="[[1024, 1]]"
             >
                 <slide
@@ -20,7 +20,7 @@
             </carousel>
             <img 
                 v-else
-                :src="photo.thumbnailPath" 
+                src="https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg" 
                 alt="perrito encontrado">
         </div>
         <div class="tarjeta__descripcion">

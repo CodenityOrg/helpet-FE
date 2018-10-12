@@ -6,7 +6,9 @@ import VueCookie from "vue-cookie";
 import VueGoogleMaps from 'vue-googlemaps'
 import axios from "axios";
 
+console.log(VueCookie.get("helpet_auth"))
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
+import loadingMixin from './views/includes/loading-mixin';
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -18,7 +20,7 @@ Vue.use(VueGoogleMaps, {
     useBetaRenderer: false,
   },
 })
-
+Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 

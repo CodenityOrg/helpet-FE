@@ -45,20 +45,24 @@
                                 <div class="cleck--flex">
                                     <label class="cleck--flex">
                                         <div class="field--input">
-                                            <input checked name="type" type="radio" value="0">
+                                            <input v-model="post.type" checked name="type" type="radio" value="0">
                                         </div>
                                             <span>Perdido</span>
                                     </label>
                                     <label class="cleck--flex">
                                         <div class="field--input">
-                                            <input name="type" type="radio" value="1">
+                                            <input v-model="post.type" name="type" type="radio" value="1">
                                         </div>
                                             <span>Encontrado</span>
                                     </label>
                                 </div>
                             </div>
                             <div class="form-submit">
-                                <button @click="newPost" class="btn btn-regular">Aceptar</button>
+                                <button 
+                                    @click="newPost" 
+                                    class="btn btn-regular">
+                                    Aceptar
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -121,13 +125,19 @@
             },
             async newPost(e) {
                 e.preventDefault();
-                const post = {
-                    ...this.post,
-                    photos: this.$refs.myVueDropzone.getAcceptedFiles(),
-                    latitude: this.marker.position.lat(),
-                    longitude: this.marker.position.lng()
+
+                if (this.marker && this.marker.position) {
+                    const post = {
+                        ...this.post,
+                        photos: this.$refs.myVueDropzone.getAcceptedFiles(),
+                        latitude: this.marker.position.lat(),
+                        longitude: this.marker.position.lng()
+                    }
+                    await this.createPost(post);
+                    this.$router.push("/mapa/perdidos");
+                } else {
+                    alert("Necesitas seleccionar una posicion en el mapa");
                 }
-                await this.createPost(post);
             },
             mapClicked(e) {
                 const lat = e.latLng.lat();
@@ -143,7 +153,8 @@
                 post: {
                     description: "",
                     address: "",
-                    features: []
+                    features: [],
+                    type: ""
                 },
                 settings: {
                     mode: "multi",
