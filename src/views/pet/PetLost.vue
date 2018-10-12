@@ -1,39 +1,54 @@
 <template>
-    <div id="tab-perdidos" 
+    <div
+        id="tab-perdidos" 
         class="tab-content">
         <loading :active.sync="isLoading"
-                 :is-full-page="fullPage"></loading>
-        <ItemFound
-          :key="index"
-          v-for="(foundPost, index) in foundPosts"
-          :item="foundPost"
-        />
+                 :is-full-page="fullPage" />
+        <infinite-list
+            @scrollEnd="scrollEnd"
+        >
+            <ItemFound
+                :key="index"
+                v-for="(lostPost, index) in lostPosts"
+                :item="lostPost"
+            />
+        </infinite-list>
+
     </div>
 </template>
 
 <script>
     import ItemFound from "./Item";
     import { mapActions, mapState, mapGetters } from "vuex";
+    import InfiniteList from "../../components/InfiniteList";
+    import listMixin from "./mixins/list";
 
     export default {
-        name: 'AnimalLost',
-        created() {
-            this.getFoundPosts().then(() => {
-                this.isLoading = false;
-            });
-        },
+        name: "AnimalLost",
+        mixins: [listMixin],
         components: {
-            ItemFound
+            ItemFound,
+            InfiniteList
+        },
+        async created() {
+            this.isLoading = true;
+            this.$store.commit("SET_CURRENT_TYPE", "lost");
+            await this.getItems();
+            this.skip = this.skip + this.limit;
+            this.isLoading = false;
         },
         computed: {
             ...mapState({
-                foundPosts: state => state.pet.foundPosts
+                lostPosts: state => state.pet.lostPosts
             })
-        },  
+        },
         methods: {
             ...mapActions({
-                getFoundPosts:"getFoundPosts"
+                getItems: "getLostPosts"
             })
+        },
+        beforeDestroy() {
+            this.$store.commit("RESET_LOST_POSTS");
         }
     };
 </script>

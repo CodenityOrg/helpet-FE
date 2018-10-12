@@ -1,5 +1,6 @@
 <template>
     <div>
+        <loading :active.sync="isLoading" />
         <section class="cont cont--inicio">
         <!-- inicio de formulario -->
             <div class="cont--formulario">
@@ -45,7 +46,7 @@
                                 <div class="cleck--flex">
                                     <label class="cleck--flex">
                                         <div class="field--input">
-                                            <input v-model="post.type" checked name="type" type="radio" value="0">
+                                            <input v-model="post.type" checked="checked" name="type" type="radio" value="0">
                                         </div>
                                             <span>Perdido</span>
                                     </label>
@@ -81,6 +82,7 @@
                         :label="{
                             fontFamily: 'Material Icons',
                             fontSize: '20px',
+                            text: ' '
                         }"
                         :position="marker.position"
                     />
@@ -125,7 +127,7 @@
             },
             async newPost(e) {
                 e.preventDefault();
-
+                this.isLoading = true;
                 if (this.marker && this.marker.position) {
                     const post = {
                         ...this.post,
@@ -138,6 +140,7 @@
                 } else {
                     alert("Necesitas seleccionar una posicion en el mapa");
                 }
+                this.isLoading = false;
             },
             mapClicked(e) {
                 const lat = e.latLng.lat();
@@ -150,11 +153,12 @@
         },
         data() {
             return {
+                isLoading: false,
                 post: {
                     description: "",
                     address: "",
                     features: [],
-                    type: ""
+                    type: "0"
                 },
                 settings: {
                     mode: "multi",
