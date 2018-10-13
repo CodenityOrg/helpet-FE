@@ -1,0 +1,61 @@
+.cont--formulario{
+    padding-top: 5em;
+    padding-bottom: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+.formulario--img{
+
+    display: flex;
+    margin: 10px;
+}
+.imgcuadro{
+    background: #E6E4E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgcuadro i{
+    font-size: 2.5em;
+}
+.cuadro--px{
+    width: 100%;
+    height: 15em;
+}
+.imgcuadro img{
+    width: 100%;
+    margin: 10px;
+}
+
+.frm--btm{
+    border-radius: 5px;
+    background: #005522;
+    border: none;
+    color: white;
+    width: 15em;
+    height: 3em;
+}
+.fromneet{
+    margin: 1em 0;
+}
+.input--register{
+    display: flex;
+}
+.fromneet  .input--register input{
+    width: 100%;
+    margin: 0.2em;
+}
+
+.form-submit{
+    display: flex;
+    align-content: flex-end;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.cleck--flex{
+    display: flex;
+    margin: 1em 0.5em;
+}
+.field--input{
+    margin: 0 0.3em;
+}

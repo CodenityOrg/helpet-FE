@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+*::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    --bg-color-transparente: rgba(33, 177, 106, .53);
+    --color-logo-verde: rgba(33, 177, 106, 1);
+    --color-gris: #f2f2f2;
+    min-height: 100vh;
+    position: relative;
+}
