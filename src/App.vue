@@ -1,9 +1,9 @@
 <template>
   <div id="app">
       <div id="snackbar"></div>
-      <app-nav-bar
+      <nav-bar
         @onShowLogin="flagLogin=true"
-      ></app-nav-bar>
+      ></nav-bar>
       <login-user
         v-if="flagLogin"
         @onCloseLogin="flagLogin=false"
@@ -18,8 +18,8 @@ import LoginUser from './views/user/LoginUser.vue';
 
 export default {
   components: {
-    'app-nav-bar': NavBar,
-    'login-user': LoginUser,
+    NavBar,
+    LoginUser
   },
   name: 'app',
   data() {
