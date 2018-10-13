@@ -2,7 +2,7 @@
  * modal
  */
 
-.modal {
+ .modal {
     background: rgba(0, 0, 0, .7);
     width: 100%;
     height: 100vh;
@@ -43,10 +43,14 @@
     cursor: pointer;
 }
 
-.modal-header .btnCerrarModal i:before {
+/* .modal-header .btnCerrarModal i:before {
     font-size: 25px;
-}
+} */
 
+.modal-header .btnCerrarModal {
+    font-size: 23px;
+    font-weight: bold;
+}
 
 /**
  * clases para cerrar el modal && para mostrar el modal
