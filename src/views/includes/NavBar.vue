@@ -6,7 +6,7 @@
         <ul class="navbar__menu">
             <template v-if="!isAuthenticated">
                 <li>
-                    <router-link :to="{name : 'LoginUser'}">Inicia</router-link>
+                    <a href="" @click="clickLogin()">Inicia</a>
                 </li>
                 <li >
                     <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
@@ -45,6 +45,10 @@
             doLogout() {
                 this.logout();
                 this.$router.go();
+            },
+            clickLogin() {
+                event.preventDefault();
+                this.$emit('onShowLogin');
             }
         }
         

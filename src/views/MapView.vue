@@ -23,10 +23,7 @@
                 <googlemaps-marker
                     v-for="marker of markers"
                     :key="marker.id"
-                    :label="{
-                        fontFamily: 'Material Icons',
-                        fontSize: '20px',
-                    }"
+                    :label="marker.label"
                     :position="marker.position"
                 />
             </googlemaps-map>
@@ -35,12 +32,12 @@
 </template>
 
 <script>
-/* eslint-disable */
-    import { mapGetters, mapState } from 'vuex';
+    /* eslint-disable */
+    import { mapGetters, mapState } from "vuex";
     import {random} from "lodash";
 
     export default {
-        name: 'Map',
+        name: "Map",
         data() {
             return {
                 mapOptions: {
@@ -49,21 +46,39 @@
                 }
             }
         },
+        watch: {
+            positions() {
+                this.setMapOnAll(null);
+            }
+        },
+        methods: {
+            setMapOnAll(map) {
+                for (const marker of this.markers) {
+                    if (marker.setMap) {
+                        marker.setMap(map);
+                    }
+                }
+            }
+        },
         computed: {
-            ...mapState({
-                positions: state => state.pet.foundPosts
+            ...mapGetters({
+                positions: "getCurrentPositions"
             }),
             markers() {
                 return this.positions.map(position => {
                     return {
                         id: position.id,
-                        position: new google.maps.LatLng(position.latitude, position.longitude)
+                        position: new google.maps.LatLng(position.latitude, position.longitude),
+                        label: {
+                            fontFamily: 'Material Icons',
+                            fontSize: '20px',
+                            text: "marker"
+                        }
                     }
                 })
             }
         }
     };
-
 
 </script>
 
