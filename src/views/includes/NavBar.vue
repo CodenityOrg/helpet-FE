@@ -1,7 +1,7 @@
 <template>
-    <nav class="navbar navbar--inicio">
+    <nav class="navbar">
         <div class="navbar__logo">
-            <a href="/"><img src="../../assets/img/ico-logov.png" alt="logo helpet"></a>
+            <a href="/"><img src="../../assets/img/ico-logo.png" alt="logo helpet"></a>
         </div>
         <ul class="navbar__menu">
             <template v-if="!isAuthenticated">

@@ -115,12 +115,13 @@
  */
 
 .navbar {
+    position: fixed;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
-    padding-top: 4em;
+    padding-top: 2em;
     padding-bottom: 0;
     padding-left: 4.5em;
     padding-right: 4.5em;
