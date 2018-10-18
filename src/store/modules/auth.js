@@ -33,7 +33,6 @@ const actions = {
     async validateAuthorization({commit}) {
         const authorization = VueCookie.get("helpet_auth");
         const { status, data: user } = await authAPI.validToken(authorization);
-        debugger
 
         if (status === 200) {
             commit("SET_AUTHENTICATED", true);

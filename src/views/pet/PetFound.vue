@@ -1,39 +1,56 @@
 <template>
-    <div id="tab-encontrados" 
-        class="tab-content"
+    <div 
+      id="tab-encontrados" 
+      class="tab-content"
     >
-        <ItemFound
-          :key="index"
-          v-for="(foundPost, index) in foundPosts"
-          :item="foundPost"
-        />
+        <loading :active.sync="isLoading"
+            :is-full-page="fullPage" />
+        <infinite-list
+          style="height: 700px;"
+          :isLoading="isListLoading"
+          @scrollEnd="scrollEnd"
+        >
+          <ItemFound
+            :key="index"
+            v-for="(foundPost, index) in foundPosts"
+            :item="foundPost"
+          />
+        </infinite-list>
     </div>
 </template>
 
 <script>
   import ItemFound from "./Item";
   import { mapActions, mapState, mapGetters } from "vuex";
+  import InfiniteList from "../../components/InfiniteList";
+  import listMixin from "./mixins/list";
+
   export default {
     name: "PetsFound",
-    created() {
-      this.getFoundPosts();
-    },
     components: {
-      ItemFound
+      ItemFound,
+      InfiniteList
+    },
+    mixins: [listMixin],
+    async created() {
+      this.isLoading = true;
+      this.$store.commit("SET_CURRENT_TYPE", "found");
+      await this.getItems();
+      this.skip = this.skip + this.limit;
+      this.isLoading = false;
     },
     computed: {
       ...mapState({
         foundPosts: state => state.pet.foundPosts
       })
-    },  
+    },
     methods: {
       ...mapActions({
-        getFoundPosts:"getFoundPosts"
+        getItems: "getFoundPosts"
       })
+    },
+    beforeDestroy() {
+      this.$store.commit("RESET_FOUND_POSTS");
     }
   };
 </script>
-
-<style scoped>
-
-</style>
