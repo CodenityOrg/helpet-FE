@@ -1,20 +1,17 @@
 <template>
-    <div 
-      id="tab-encontrados" 
-      class="tab-content"
-    >
-        <loading :active.sync="isLoading"
-            :is-full-page="fullPage" />
-        <infinite-list
-          @scrollEnd="scrollEnd"
-        >
-          <ItemFound
-            :key="index"
-            v-for="(foundPost, index) in foundPosts"
-            :item="foundPost"
-          />
-        </infinite-list>
-    </div>
+  <infinite-list
+    id="tab-encontrados" 
+    class="tab-content"
+    @scrollEnd="scrollEnd"
+  >
+    <loading :active.sync="isLoading"
+      :is-full-page="fullPage" />
+    <ItemFound
+      :key="index"
+      v-for="(foundPost, index) in foundPosts"
+      :item="foundPost"
+    />
+  </infinite-list>
 </template>
 
 <script>

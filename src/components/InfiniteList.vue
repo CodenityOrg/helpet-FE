@@ -1,7 +1,6 @@
 <template>
   <div
     ref="container"
-    style="overflow-y: scroll;"
     @scroll="scrollHandler"
   >
     <slot/>
@@ -14,6 +13,7 @@
     methods: {
       async scrollHandler() {
         if (this.isAtTheBottom()) {
+          console.log("scroll reached")
             this.$emit("scrollEnd");
         }
       },
