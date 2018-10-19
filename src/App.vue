@@ -1,19 +1,32 @@
 <template>
   <div id="app">
       <div id="snackbar"></div>
-      <app-nav-bar></app-nav-bar>
+      <nav-bar
+        @onShowLogin="flagLogin=true"
+      ></nav-bar>
+      <login-user
+        v-if="flagLogin"
+        @onCloseLogin="flagLogin=false"
+      ></login-user>
       <router-view />
   </div>
 </template>
 
 <script>
 import NavBar from './views/includes/NavBar.vue';
+import LoginUser from './views/user/LoginUser.vue';
 
 export default {
   components: {
-    'app-nav-bar': NavBar,
+    NavBar,
+    LoginUser
   },
   name: 'app',
+  data() {
+    return {
+      flagLogin: false,
+    };
+  }
 };
 </script>
 
