@@ -3,7 +3,11 @@ import App from './App.vue';
 import router from './router';
 import store from "./store/index";
 import VueCookie from "vue-cookie";
-import VueGoogleMaps from 'vue-googlemaps';
+import VueGoogleMaps from 'vue-googlemaps'
+import axios from "axios";
+
+console.log(VueCookie.get("helpet_auth"))
+axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
 import loadingMixin from './views/includes/loading-mixin';
 
 Vue.use(VueGoogleMaps, {

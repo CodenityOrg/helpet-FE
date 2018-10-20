@@ -1,14 +1,19 @@
 import postAPI from "../../api/post";
 
 const state = {
+    post: {},
     lostPosts: [],
     foundPosts: [],
-    currentType: "found"
+    currentType: "found",
+    features: []
 }
 
 const mutations = {
     SET_CURRENT_TYPE(state, type) {
         state.currentType = type;
+    },
+    SET_FEATURES(state, features) {
+        state.features = features;
     },
     ADD_FOUND_POSTS(state, foundPosts) {
         if (foundPosts) {
@@ -41,6 +46,10 @@ const actions = {
     },
     createPost({ commit }, payload) {
         return postAPI.create(payload);
+    },
+    async getFeatures({commit}, q) {
+        const {data: features} = await postAPI.getFeatures(q);
+        commit("SET_FEATURES", features);
     }
 }
 
