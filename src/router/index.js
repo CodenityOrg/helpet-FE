@@ -21,17 +21,25 @@ const router = new Router({
     {
       path: '/registro',
       name: 'RegisterUser',
-      component: RegisterUser
+      component: RegisterUser,
+      meta: {
+        user: true
+      }
     },
     {
       path: '/publicacion',
       name: 'RegisterPostPet',
-      component: PostPet
+      auth: true,
+      component: PostPet,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/mapa',
       name: 'Map',
       component: MapView,
+      
       children: [
         {
           name: 'ListFound',

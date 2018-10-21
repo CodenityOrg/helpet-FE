@@ -32,6 +32,9 @@ const actions = {
     },
     async validateAuthorization({commit}) {
         const authorization = VueCookie.get("helpet_auth");
+        if (!authorization) {
+            return false;
+        }
         const { status, data: user } = await authAPI.validToken(authorization);
 
         if (status === 200) {
