@@ -6,7 +6,6 @@ import VueCookie from "vue-cookie";
 import VueGoogleMaps from 'vue-googlemaps'
 import axios from "axios";
 
-console.log(VueCookie.get("helpet_auth"))
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
 import loadingMixin from './views/includes/loading-mixin';
 
@@ -24,29 +23,31 @@ Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
-const authRoutes = ["PostCreate", "Profile"];
-const userRoutes = ["LoginUser", "RegisterUser"];
+const redirectToMap = next => {
+  next({
+    path: "/mapa/perdidos"
+  });
+}
 
-router.beforeEach(async ({name}, from, next) => {
-  const authorization = VueCookie.get("helpet_auth");
-  if (authorization) {
-    const hasAuthorization = await store.dispatch("validateAuthorization");
-
-    if (userRoutes.includes(name)) {
-      next({
-        path: "/mapa/perdidos"
-      });
-      return;
-    }
-
-    if (authRoutes.includes(name)) {
-      if (!hasAuthorization) {
-        next({
-          path: "/"
-        });
-      }
-    }
+router.beforeEach(async ({meta, path}, from, next) => {
+  const hasAuth = await store.dispatch("validateAuthorization");
+  if (path === "/mapa") {
+    return redirectToMap(next);
   }
+
+  if (hasAuth) {
+    if (meta.user) {
+      return redirectToMap(next);
+    }
+    return next();
+  } 
+
+  if (meta.auth) {
+    return next({
+      path: "/"
+    });
+  }
+
   next();
 })
 
