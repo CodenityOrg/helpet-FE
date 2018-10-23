@@ -1,52 +1,188 @@
 <template>
-    <div class="register">
-        <section class="cont cont--register">
-            <ul class="register">
-                <h2>Informacion de la mascota</h2>
-                <div>
-                    <form class="form" id="register-form">
-
-                        <div class="form-input">
-                            <h3>Foto de la mascota</h3>
-                            <img id="preview" src="img/perro1.jpg" alt="">
-                            <input type="file" name="photo" placeholder="Foto de la mascota">
-                        </div>
-
-                        <div class="form-input">
-                            <h4>Caracteristicas</h4>
+    <div>
+        <loading :active.sync="isLoading" />
+        <section class="cont cont--inicio">
+        <!-- inicio de formulario -->
+            <div class="cont--formulario">
+                <form id="post-form">
+                    <h3 align="center">Informacion de la mascota</h3>
+                    <div>
+                        <form class="form" id="register-form">
                             <div class="form-input">
-                                <input type="text" name="feature" placeholder="caracteristicas">
-
+                                <vue-dropzone 
+                                    ref="myVueDropzone" 
+                                    id="dropzone" 
+                                    @vdropzone-file-added="fileAdded"
+                                    :options="dropzoneOptions">
+                                </vue-dropzone>
                             </div>
                             <div class="form-input">
-                                <input type="text" name="latitude" placeholder="latitude">
+                                <textarea
+                                    placeholder="Descripcion"
+                                    style="height: 100px;"
+                                    v-model="post.description" 
+                                    name="description" 
+                                    id="" 
+                                    cols="30" 
+                                    rows="100"
+                                    />
                             </div>
                             <div class="form-input">
-                                <input type="text" name="longitude" placeholder="longitude">
-
+                                <input v-model="post.address" type="text" name="address" placeholder="Direccion">
                             </div>
                             <div class="form-input">
-                                <input type="text" name="distance" placeholder="distancia">
+                                <selectize 
+                                    v-model="post.features" 
+                                    :settings="settings">
+                                    <option 
+                                        :key="feature._id"
+                                        v-for="feature in features" 
+                                        :value="feature.value">
+                                        {{feature.value}}
+                                    </option>
+                                </selectize>
                             </div>
-                        </div>
+                            <div class="form-input">
+                                <div class="cleck--flex">
+                                    <label class="cleck--flex">
+                                        <div class="field--input">
+                                            <input v-model="post.type" checked="checked" name="type" type="radio" value="0">
+                                        </div>
+                                            <span>Perdido</span>
+                                    </label>
+                                    <label class="cleck--flex">
+                                        <div class="field--input">
+                                            <input v-model="post.type" name="type" type="radio" value="1">
+                                        </div>
+                                            <span>Encontrado</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-submit">
+                                <button 
+                                    @click="newPost" 
+                                    class="btn btn-regular">
+                                    Aceptar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        <!-- Final de formulario -->
+        <!-- Inicio del mapa -->
+            <div class="cont--mapa">
+                <googlemaps-map
+                    :center="mapOptions.center"
+                    :zoom="mapOptions.zoom"
+                    @click="mapClicked"
+                    :options="mapOptions" >
 
-                        <div class="form-submit">
-                            <button class="btn btn-regular">Aceptar</button>
-                        </div>
-                    </form>
-                </div>
-            </ul>
+                    <googlemaps-marker
+                        :label="{
+                            fontFamily: 'Material Icons',
+                            fontSize: '20px',
+                            text: ' '
+                        }"
+                        :position="marker.position"
+                    />
+                </googlemaps-map>
 
+            </div>
+        <!-- Final del mapa -->
         </section>
+
     </div>
 </template>
 
 <script>
-  export default {
-    name: 'Post',
-  };
+    import Vue from 'vue'
+    import Selectize from 'vue2-selectize'
+    import { mapActions, mapState } from 'vuex';
+    import vue2Dropzone from 'vue2-dropzone'
+    import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+    import _ from "lodash";
+
+    export default {
+        name: 'PostForm',
+        components: {
+            Selectize,
+            vueDropzone: vue2Dropzone
+        },
+        computed: {
+            ...mapState({
+                features: state => state.pet.features
+            })
+        },
+        created() {
+            this.getFeatures();    
+        },
+        methods: {
+            ...mapActions({
+                getFeatures: "getFeatures",
+                createPost: "createPost"
+            }),
+            fileAdded(file) {
+                console.log(this.$refs.myVueDropzone)
+            },
+            async newPost(e) {
+                e.preventDefault();
+                this.isLoading = true;
+                if (this.marker && this.marker.position) {
+                    const post = {
+                        ...this.post,
+                        photos: this.$refs.myVueDropzone.getAcceptedFiles(),
+                        latitude: this.marker.position.lat(),
+                        longitude: this.marker.position.lng()
+                    }
+                    await this.createPost(post);
+                    this.$router.push("/mapa/perdidos");
+                } else {
+                    alert("Necesitas seleccionar una posicion en el mapa");
+                }
+                this.isLoading = false;
+            },
+            mapClicked(e) {
+                const lat = e.latLng.lat();
+                const lng = e.latLng.lng();
+
+                this.marker = {
+                    position: new google.maps.LatLng(lat, lng)
+                };
+            }
+        },
+        data() {
+            return {
+                isLoading: false,
+                post: {
+                    description: "",
+                    address: "",
+                    features: [],
+                    type: "0"
+                },
+                settings: {
+                    mode: "multi",
+                    maxItems: 5
+                },
+                dropzoneOptions: {
+                    url: 'https://httpbin.org/post',
+                    thumbnailWidth: 150,
+                    maxFilesize: 0.5,
+                    dictDefaultMessage: "Haga click aqui or arrastre un archivo",
+                    dictFileTooBig: "La imagen es demasiado grande ({{filesize}}MiB). Tamaño de la imagen maxima: {{maxFilesize}}MiB."
+                },
+                mapOptions: {
+                    zoom: 14,
+                    center: new google.maps.LatLng(-18.013611, -70.252769),
+                },
+                marker: {}
+            }
+        }
+    };
 </script>
 
 <style scoped>
+@import "~selectize/dist/css/selectize.default.css";
+@import "~selectize/dist/css/selectize.bootstrap3.css";
 
 </style>

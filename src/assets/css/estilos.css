@@ -115,12 +115,13 @@
  */
 
 .navbar {
+    position: fixed;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
-    padding-top: 4em;
+    padding-top: 2em;
     padding-bottom: 0;
     padding-left: 4.5em;
     padding-right: 4.5em;
@@ -184,6 +185,9 @@
  * estilos slogan principal
  */
 
+ .tab-content {
+    overflow-y: auto;
+}
 
 .cont {
     width: 100%;
@@ -258,6 +262,14 @@
  * seccion de las tarjetas de perritos perdidos
  * y del mapa
  */
+
+ .cont--formulario {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
 .cont--inicio {
     padding-top: 0;
     display: flex;
@@ -446,4 +458,12 @@
 
 .router-link-active button{
     border-bottom-color:green
+}
+
+.cleck--flex{
+    display: flex;
+    margin: 1em 0.5em;
+}
+.field--input{
+    margin: 0 0.3em;
 }

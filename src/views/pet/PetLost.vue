@@ -1,22 +1,17 @@
 <template>
-    <div
+    <infinite-list
         id="tab-perdidos" 
-        class="tab-content">
+        class="tab-content"
+        @scrollEnd="scrollEnd"
+    >
         <loading :active.sync="isLoading"
-                 :is-full-page="fullPage" />
-        <infinite-list
-            style="height: 700px;"
-            :loading="isLoading"
-            @scrollEnd="scrollEnd"
-        >
-            <ItemFound
-                :key="index"
-                v-for="(lostPost, index) in lostPosts"
-                :item="lostPost"
-            />
-        </infinite-list>
-
-    </div>
+                :is-full-page="fullPage" />
+        <ItemFound
+            :key="index"
+            v-for="(lostPost, index) in lostPosts"
+            :item="lostPost"
+        />
+    </infinite-list>
 </template>
 
 <script>
