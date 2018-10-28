@@ -10,6 +10,7 @@
             :key="index"
             v-for="(lostPost, index) in lostPosts"
             :item="lostPost"
+            @onShowInfo="$emit('onShowInfoUser')"
         />
     </infinite-list>
 </template>

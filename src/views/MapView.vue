@@ -12,7 +12,11 @@
                         <button type="button" class="tab-link posts-tab">Encontrados</button>
                     </router-link>
                 </div>
-                <router-view></router-view>
+                <info-user
+                    v-if="flagInfoUser"
+                    @onCloseInfoUser="flagInfoUser=false"
+                ></info-user>
+                <router-view @onShowInfoUser="flagInfoUser=true"></router-view>
             </div>
         </div>
         <div class="cont--mapa">
@@ -32,18 +36,23 @@
 </template>
 
 <script>
+    import InfoUser from './user/InfoUser.vue';
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
     import {random} from "lodash";
 
     export default {
+        components: {
+            InfoUser,
+        },
         name: "Map",
         data() {
             return {
                 mapOptions: {
                     zoom: 14,
                     center: new google.maps.LatLng(-18.013611, -70.252769),
-                }
+                },
+                flagInfoUser: false,
             }
         },
         watch: {
@@ -82,3 +91,6 @@
 
 </script>
 
+<style>
+    @import "../assets/css/componentes.css";
+</style>
