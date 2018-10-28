@@ -14,9 +14,10 @@
                 </div>
                 <info-user
                     v-if="flagInfoUser"
+                    :currentUser="crntUser"
                     @onCloseInfoUser="flagInfoUser=false"
                 ></info-user>
-                <router-view @onShowInfoUser="flagInfoUser=true"></router-view>
+                <router-view @onShowInfoUser="showUser"></router-view>
             </div>
         </div>
         <div class="cont--mapa">
@@ -53,6 +54,7 @@
                     center: new google.maps.LatLng(-18.013611, -70.252769),
                 },
                 flagInfoUser: false,
+                crntUser: {},
             }
         },
         watch: {
@@ -67,6 +69,11 @@
                         marker.setMap(map);
                     }
                 }
+            },
+            showUser(user) {
+                console.log(user);
+                this.crntUser = user;
+                this.flagInfoUser = true;
             }
         },
         computed: {

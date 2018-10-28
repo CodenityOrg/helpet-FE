@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal user info</p>
+                <p>{{ currentUser.user.firstName }} {{ currentUser.user.lastName }}</p>
             </div>
         </div>
     </div>
@@ -18,12 +18,13 @@
     import {mapActions} from "vuex";
     export default {
         name: 'InfoUser',
+        props: ['currentUser'],
         data() {
             return {
                 credentials: {
                     email: "",
                     password: ""
-                }
+                },
             }
         },
     };

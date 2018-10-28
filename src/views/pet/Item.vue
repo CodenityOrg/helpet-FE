@@ -4,7 +4,7 @@
         :id="item.id">
         <div class="tarjeta__titulo">
             <img :src="item.user.profile" alt="foto de perfil">
-            <span @click="$emit('onShowInfo')">{{fullName}}</span>
+            <span @click="showInfo">{{fullName}}</span>
         </div>
         <div class="tarjeta__imagen">
             <carousel
@@ -51,6 +51,12 @@ export default {
         item: {
             type: Object
         }
+    },
+    methods: {
+        showInfo() {
+            console.log('on show info');
+            this.$emit('onShowInfo', this.item);
+        },
     },
     computed: {
         fullName() {

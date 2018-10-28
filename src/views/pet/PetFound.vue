@@ -10,7 +10,7 @@
       :key="index"
       v-for="(foundPost, index) in foundPosts"
       :item="foundPost"
-      @onShowInfo="$emit('onShowInfoUser')"
+      @onShowInfo="showUser"
     />
   </infinite-list>
 </template>
@@ -43,7 +43,10 @@
     methods: {
       ...mapActions({
         getItems: "getFoundPosts"
-      })
+      }),
+      showUser(user) {
+        this.$emit('onShowInfoUser', user);
+      },
     },
     beforeDestroy() {
       this.$store.commit("RESET_FOUND_POSTS");
