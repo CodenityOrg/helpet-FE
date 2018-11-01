@@ -6,9 +6,9 @@ import MapView from '../views/MapView';
 import PetFound from '../views/pet/PetFound.vue';
 import PetLost from '../views/pet/PetLost.vue';
 import PostPet from '../views/pet/publication/Post.vue'
+import Profile from "../views/user/Profile";
 
 Vue.use(Router);
-
 
 const router = new Router({
   mode: "history",
@@ -24,6 +24,14 @@ const router = new Router({
       component: RegisterUser,
       meta: {
         user: true
+      }
+    },
+    {
+      path: '/perfil',
+      name: 'Profile',
+      component: Profile,
+      meta: {
+        auth: true
       }
     },
     {

@@ -13,6 +13,13 @@ const mutations = {
 const actions = {
     registerUser({commit}, data) {
         return userAPI.create(data);
+    },
+    async getProfile({commit}) {
+        const user = await userAPI.profile();
+        commit("SET_USER", user);
+    },
+    updateUser({commit}, data) {
+        return userAPI.update(data);
     }
 };
 
