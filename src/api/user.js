@@ -10,9 +10,9 @@ export default {
         return axios.post(`${HOST}/login`, credentials);
     },
     profile() {
-        return axios.get(`${HOST}/profile`);
+        return axios.get(`${HOST}/users/profile`);
     },
     update(payload) {
-        return axios.put(`${HOST}/profile`, payload);
+        return axios.put(`${HOST}/users/profile`, payload);
     }
 };

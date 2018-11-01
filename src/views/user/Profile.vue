@@ -1,36 +1,34 @@
 <template>
-    <div>
+    <div class="register">
         <loading :active.sync="isLoading"
             :is-full-page="true" />
-        <form action="">
-            <div>
-                <label for="">Nombres</label>
-                <input v-model="user.firstName" type="text">
-            </div>
-            <div>
-                <label for="">Apellidos</label>
-                <input v-model="user.lastName" type="text">
-            </div>
-            <div>
-                <label for="">Email</label>
-                <input v-model="user.email" type="email">
-            </div>
-            <div>
-                <label for="">Telefono</label>
-                <input v-model="user.phone" type="phone">
-            </div>
-            <div>
-                <label for="">Facebook</label>
-                <input v-model="user.facebook" type="text">
-            </div>
-            <div>
-                <button
-                    @click.prevent="updateProfile" 
-                    type="submit">
-                    Aceptar
-                </button>
-            </div>
-        </form>
+        <div class="cont cont--register">
+            <form action="">
+                <div class="form-input">
+                    <input placeholder="Nombres" v-model="user.firstName" type="text">
+                </div>
+                <div class="form-input">
+                    <input placeholder="Apellidos" v-model="user.lastName" type="text">
+                </div>
+                <div class="form-input">
+                    <input placeholder="Email" v-model="user.email" type="email">
+                </div>
+                <div class="form-input">
+                    <input placeholder="Telefono" v-model="user.phone" type="phone">
+                </div>
+                <div class="form-input">
+                    <input placeholder="Facebook" v-model="user.facebook" type="text">
+                </div>
+                <div>
+                    <button
+                        class="btn btn-regular"
+                        @click.prevent="updateProfile" 
+                        type="submit">
+                        Aceptar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 <script>
@@ -60,6 +58,7 @@
         async created() {
             this.isLoading = true;
             this.user = await this.getProfile();
+            debugger
             this.isLoading = false;
         }
     }
