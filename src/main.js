@@ -7,7 +7,6 @@ import VueGoogleMaps from 'vue-googlemaps'
 import axios from "axios";
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
-console.log(VueCookie.get("helpet_auth"))
 import loadingMixin from './views/includes/loading-mixin';
 
 Vue.use(VueGoogleMaps, {
