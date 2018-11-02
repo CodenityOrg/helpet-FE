@@ -60,7 +60,6 @@
         async created() {
             this.isLoading = true;
             this.user = await this.getProfile();
-            debugger
             this.isLoading = false;
         }
     }
