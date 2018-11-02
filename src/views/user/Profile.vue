@@ -46,13 +46,15 @@
         methods: {
             ...mapActions({
                 getProfile: "getProfile",
-                updateUser: "updateUser"
+                updateUser: "updateUser",
+                validateAuthorization: "validateAuthorization"
             }),
             async updateProfile() {
                 this.isLoading = true;
                 const user = this.user;
                 await this.updateUser(user);
                 this.isLoading = false;
+                this.validateAuthorization();
             }
         },
         async created() {

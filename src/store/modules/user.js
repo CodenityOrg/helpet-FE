@@ -15,7 +15,7 @@ const actions = {
         return userAPI.create(data);
     },
     getProfile({commit}) {
-        return userAPI.profile().then(res=> res.data);
+        return userAPI.profile().then(res => res.data);
     },
     updateUser({commit}, data) {
         return userAPI.update(data);
