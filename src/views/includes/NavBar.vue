@@ -13,7 +13,9 @@
                 </li>
             </template> 
             <template v-else>
-                
+                <li>
+                    <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
+                </li>
                 <li>
                     <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
                 </li>
@@ -35,8 +37,12 @@
         name: 'NavBar',
         computed: {
             ...mapState({
+                user: state => state.auth.user,
                 isAuthenticated: state => state.auth.authenticated
-            })
+            }),
+            fullName() {
+                return this.user.firstName + " " + this.user.lastName;
+            }
         },
         methods: {
             ...mapActions({
