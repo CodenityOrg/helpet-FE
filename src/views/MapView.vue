@@ -27,8 +27,8 @@
                     show: true,
                     position: 'top-left'
                 }"
-                :scale-control="{
-                    show: true,
+                :nav-control="{
+                    show: true, 
                     position: 'top-left'
                 }"
                 @map-init="mapInitialized"
@@ -74,15 +74,6 @@
                 }
             },
             mapInitialized(map) {
-
-                map.addControl(new mapboxgl.GeolocateControl({
-                    positionOptions: {
-                        enableHighAccuracy: true
-                    },
-                    trackUserLocation: true
-                }));
-
-                map.addControl(new mapboxgl.NavigationControl());
 
                 for (const markers of this.markers) {
                     let marker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
