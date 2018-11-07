@@ -207,10 +207,12 @@
 }
 
 
-.cont--mapa .map-view, 
+.cont--mapa .mapboxgl-map, 
 .vue-google-map {
     height: 100%;
 }
+
+
 
 .cont--slogan .slogan, .cont--slogan .logo {
     flex-basis: 50%;
@@ -300,6 +302,7 @@
 .cont--inicio .cont--mapa #map {
     min-height: 100vh;
     position: fixed;
+    width: 100%;
 }
 
 /**
