@@ -23,7 +23,13 @@ const actions = {
             commit("SET_USER", user);
             VueCookie.set("helpet_auth", user.token);
         }
-        return
+        return user;
+    },
+    getProfile({commit}) {
+        return userAPI.profile().then(res => res.data);
+    },
+    updateUser({commit}, data) {
+        return userAPI.update(data);
     }
 };
 
