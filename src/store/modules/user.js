@@ -1,4 +1,8 @@
 import userAPI from "../../api/user";
+import Vue from "vue";
+import VueCookie from "vue-cookie";
+
+Vue.use(VueCookie);
 
 const state = {
     user: {}
@@ -11,8 +15,15 @@ const mutations = {
 };
 
 const actions = {
-    registerUser({commit}, data) {
-        return userAPI.create(data);
+    async registerUser({commit}, data) {
+        //return userAPI.create(data);
+        const {status, data: user} = await userAPI.create(data);
+        if (status === 200) {
+            commit("SET_AUTHENTICATED", true);
+            commit("SET_USER", user);
+            VueCookie.set("helpet_auth", user.token);
+        }
+        return user;
     },
     getProfile({commit}) {
         return userAPI.profile().then(res => res.data);
