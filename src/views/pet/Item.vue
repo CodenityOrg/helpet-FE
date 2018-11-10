@@ -3,8 +3,11 @@
         class="tarjeta tarjeta--perrrito-perdido" 
         :id="item.id">
         <div class="tarjeta__titulo">
-            <img :src="item.user.profile" alt="foto de perfil">
-            <span @click="showInfo">{{fullName}}</span>
+            <div class="image__name">
+                <img :src="item.user.profile" alt="foto de perfil">
+                <span>{{fullName}}</span>
+            </div>
+            <button @click="showInfo">Info</button>
         </div>
         <div class="tarjeta__imagen">
             <carousel
