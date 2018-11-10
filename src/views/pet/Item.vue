@@ -32,10 +32,10 @@
             <div class="caracteristicas">
                 <p><b> Características </b> </p>
                 <span 
-                    :key="feature._id"
-                    v-for="feature in item.features"
+                    :key="tag._id"
+                    v-for="tag in item.tags"
                     class="caracteristica">
-                    {{feature.value}}
+                    {{tag.value}}
                 </span>
             </div>
         </div>
