@@ -21,6 +21,7 @@
     "vue-cookie": "^1.1.4",
     "vue-googlemaps": "^0.1.1",
     "vue-loading-overlay": "2.2.2",
+    "vue-recaptcha": "^1.1.1",
     "vue-router": "^3.0.1",
     "vue2-dropzone": "^3.5.2",
     "vue2-selectize": "^1.1.7",
