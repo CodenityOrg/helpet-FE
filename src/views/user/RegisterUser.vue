@@ -64,7 +64,8 @@
                 this.isLoading = true;
                 await this.registerUser(user);
                 this.isLoading = false;
-                this.$router.push({ name: "LoginUser" })
+                this.$router.push("/mapa/encontrados")
+                //this.$router.push({ name: "LoginUser" })
             }
         }
     };

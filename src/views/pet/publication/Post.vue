@@ -32,13 +32,13 @@
                             </div>
                             <div class="form-input">
                                 <selectize 
-                                    v-model="post.features" 
+                                    v-model="post.tags" 
                                     :settings="settings">
                                     <option 
-                                        :key="feature._id"
-                                        v-for="feature in features" 
-                                        :value="feature.value">
-                                        {{feature.value}}
+                                        :key="tag._id"
+                                        v-for="tag in tags" 
+                                        :value="tag.value">
+                                        {{tag.value}}
                                     </option>
                                 </selectize>
                             </div>
@@ -119,15 +119,15 @@
         },
         computed: {
             ...mapState({
-                features: state => state.pet.features
+                tags: state => state.pet.tags
             })
         },
         created() {
-            this.getFeatures();    
+            this.getTags();    
         },
         methods: {
             ...mapActions({
-                getFeatures: "getFeatures",
+                getTags: "getTags",
                 createPost: "createPost"
             }),
             fileAdded(file) {
@@ -180,12 +180,12 @@
                 post: {
                     description: "",
                     address: "",
-                    features: [],
+                    tags: [],
                     type: "0"
                 },
                 settings: {
                     mode: "multi",
-                    maxItems: 5
+                    maxItems: 20
                 },
                 dropzoneOptions: {
                     url: 'https://httpbin.org/post',
