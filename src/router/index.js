@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import HomePage from '../views/home/HomePage.vue';
 import RegisterUser from '../views/user/RegisterUser.vue';
-import LoginUser from '../views/user/LoginUser.vue';
 import MapView from '../views/MapView';
 import PetFound from '../views/pet/PetFound.vue';
 import PetLost from '../views/pet/PetLost.vue';
@@ -17,13 +16,17 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      component: HomePage
+      component: HomePage,
+      meta: {
+        title: "Helpet - Ayuda a las mascotas a encontrar su hogar"
+      }
     },
     {
       path: '/registro',
       name: 'RegisterUser',
       component: RegisterUser,
       meta: {
+        title: "Registro de usuario",
         user: true
       }
     },
@@ -32,6 +35,7 @@ const router = new Router({
       name: 'Profile',
       component: Profile,
       meta: {
+        title: "Perfil del usuario",
         auth: true
       }
     },
@@ -41,6 +45,7 @@ const router = new Router({
       auth: true,
       component: PostPet,
       meta: {
+        title: "Nueva publicacion",
         auth: true
       }
     },
@@ -54,13 +59,20 @@ const router = new Router({
           name: 'ListFound',
           path: 'encontrados',
           component: PetFound,
+          meta: {
+            title: "Mascotas encontradas"
+          }
         },
         {
           name: 'ListLost',
           path: 'perdidos',
           component: PetLost,
+          meta: {
+            title: "Mascotas perdidas"
+          }
         },
       ],
+      
     }
   ],
 });
