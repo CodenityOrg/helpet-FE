@@ -30,6 +30,8 @@ const redirectToMap = next => {
 }
 
 router.beforeEach(async ({meta, path}, from, next) => {
+
+  document.title = meta.title;
   const hasAuth = await store.dispatch("validateAuthorization");
   if (path === "/mapa") {
     return redirectToMap(next);
