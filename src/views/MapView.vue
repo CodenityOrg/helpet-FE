@@ -63,29 +63,49 @@
         watch: {
             positions() {
                 this.setMapOnAll(null);
+            },
+            markers() {
+             this.mapMarker(null)
             }
         },
         methods: {
             setMapOnAll(map) {
                 for (const marker of this.markers) {
                     if (marker.setMap) {
+                      console.log('ASD ASD ASDAS')
                         marker.setMap(map);
+                    }else{
+                      console.log('zzzzzz')
                     }
                 }
             },
             mapInitialized(map) {
-
+                // const mark = new mapboxgl;
                 for (const markers of this.markers) {
-                    let marker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
-                        offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
+
+                  console.log('xd dx ',this.markers);
+                  let marker = new mapboxgl.Marker(this.genLayoutMarker(markers), {
+                        offset: [-markers.properties.iconSize[0] / 2, -markers.properties.iconSize[1] / 2]
                     })
-                    .setLngLat(marker.geometry.coordinates)
+                    .setLngLat(markers.geometry.coordinates)
                     .addTo(map);
                 }
-    
-                
+
+            },
+            mapMarker(markersData) {
+            // const mark = new mapboxgl;
+                for (const markers of this.markers) {
+                  console.log('xd dx ',markers);
+                  // if(markers.)
+                  let marker = new mapboxgl.Marker(this.genLayoutMarker(markers), {
+                    offset: [-markers.properties.iconSize[0] / 2, -markers.properties.iconSize[1] / 2]
+                  })
+                  .setLngLat(markers.geometry.coordinates)
+                  .addTo(Mapbox);
+                }
             },
             genLayoutMarker(data) {
+              console.log(' Here DATA',data);
                 const el = document.createElement("div");
                 el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
                 if (data.photo) {
@@ -102,6 +122,7 @@
             }),
             markers() {
                 return this.positions.map(position => {
+                  console.log('POSITION ',position)
                     return {
                         id: position.id,
                         photo: position.photo,
