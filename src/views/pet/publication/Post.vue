@@ -7,7 +7,7 @@
                 <form id="post-form">
                     <h3 align="center">Informacion de la mascota</h3>
                     <div>
-                        <form class="form" id="register-form" action="http://localhost:8080/api/posts/s3" method="POST">
+                        <form class="form" id="register-form">
                             <div class="form-input">
                                 <vue-dropzone 
                                     ref="myVueDropzone" 
@@ -210,7 +210,7 @@
                     photo: "",
                     type: 0
                 },
-                preview: 'https://st3.depositphotos.com/5266903/12981/v/950/depositphotos_129812138-stock-illustration-management-office-flat-vector-icon.jpg',
+                preview: 'https://st2.depositphotos.com/1798678/5498/v/950/depositphotos_54982011-stock-illustration-dog-silhouette-vector.jpg',
                 settings: {
                     mode: "multi",
                     maxItems: 20
