@@ -7,7 +7,7 @@
                 <form id="post-form">
                     <h3 align="center">Informacion de la mascota</h3>
                     <div>
-                        <form class="form" id="register-form">
+                        <form class="form" id="register-form" action="http://localhost:8080/api/posts/s3" method="POST">
                             <div class="form-input">
                                 <vue-dropzone 
                                     ref="myVueDropzone" 
@@ -15,6 +15,23 @@
                                     @vdropzone-file-added="fileAdded"
                                     :options="dropzoneOptions">
                                 </vue-dropzone>
+                                <input type="file" name="photo">
+                                <figure class="avatar">
+                                    <img height="128" width="128" :src='preview'>
+                                    <div class="file is-centered">
+                                        <label class="file-label">
+                                        <input class="file-input" type="file" name="photo" @change="processFile($event)">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                            <i class="fas fa-upload"></i>
+                                            </span>
+                                            <span class="file-label">
+                                            Choose a file…
+                                            </span>
+                                        </span>
+                                        </label>
+                                    </div>
+                                </figure>
                             </div>
                             <div class="form-input">
                                 <textarea
@@ -46,13 +63,13 @@
                                 <div class="cleck--flex">
                                     <label class="cleck--flex">
                                         <div class="field--input">
-                                            <input v-model="post.type" checked="checked" name="type" type="radio" value="0">
+                                            <input v-model.number="post.type" checked="checked" name="type" type="radio" value=0>
                                         </div>
                                             <span>Perdido</span>
                                     </label>
                                     <label class="cleck--flex">
                                         <div class="field--input">
-                                            <input v-model="post.type" name="type" type="radio" value="1">
+                                            <input v-model.number="post.type" name="type" type="radio" value=1>
                                         </div>
                                             <span>Encontrado</span>
                                     </label>
@@ -125,6 +142,10 @@
             fileAdded(file) {
                 console.log(this.$refs.myVueDropzone)
             },
+            processFile (e) {
+                this.post.photo = e.target.files[0];
+                this.preview = URL.createObjectURL(e.target.files[0]);
+            },
             async newPost(e) {
                 e.preventDefault();
                 this.isLoading = true;
@@ -135,7 +156,12 @@
                         latitude: this.marker.position.lat(),
                         longitude: this.marker.position.lng()
                     }
-                    await this.createPost(post);
+                    post.tags = JSON.stringify(post.tags);
+                    const formData = new FormData();
+                    for (const prop in post) {
+                        formData.append(prop, post[prop]);
+                    }
+                    await this.createPost(formData);
                     this.$router.push("/mapa/perdidos");
                 } else {
                     alert("Necesitas seleccionar una posicion en el mapa");
@@ -158,8 +184,10 @@
                     description: "",
                     address: "",
                     tags: [],
-                    type: "0"
+                    photo: "",
+                    type: 0
                 },
+                preview: 'https://st3.depositphotos.com/5266903/12981/v/950/depositphotos_129812138-stock-illustration-management-office-flat-vector-icon.jpg',
                 settings: {
                     mode: "multi",
                     maxItems: 20

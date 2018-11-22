@@ -7,7 +7,11 @@ export default {
         return axios.get(`${HOST}/posts?type=${type}&limit=${limit}&skip=${skip}`).then(res => res.data);
     },
     create(payload) {
-        return axios.post(`${HOST}/posts`, payload);
+        return axios.post(`${HOST}/posts/s3`, payload, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        });
     },
     profile(id) {
         return axios.post(`${HOST}/posts/${id}`, payload);
