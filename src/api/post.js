@@ -12,7 +12,7 @@ export default {
     profile(id) {
         return axios.post(`${HOST}/posts/${id}`, payload);
     },
-    getFeatures(query) {
-        return axios.get(`${HOST}/posts/features?q=${query}`);
+    getTags(query) {
+        return axios.get(`${HOST}/posts/tags?q=${query}`);
     }
 };

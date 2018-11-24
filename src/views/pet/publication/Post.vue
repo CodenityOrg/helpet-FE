@@ -32,13 +32,13 @@
                             </div>
                             <div class="form-input">
                                 <selectize 
-                                    v-model="post.features" 
+                                    v-model="post.tags" 
                                     :settings="settings">
                                     <option 
-                                        :key="feature._id"
-                                        v-for="feature in features" 
-                                        :value="feature.value">
-                                        {{feature.value}}
+                                        :key="tag._id"
+                                        v-for="tag in tags" 
+                                        :value="tag.value">
+                                        {{tag.value}}
                                     </option>
                                 </selectize>
                             </div>
@@ -72,22 +72,28 @@
         <!-- Final de formulario -->
         <!-- Inicio del mapa -->
             <div class="cont--mapa">
-                <googlemaps-map
-                    :center="mapOptions.center"
-                    :zoom="mapOptions.zoom"
-                    @click="mapClicked"
-                    :options="mapOptions" >
-
-                    <googlemaps-marker
-                        :label="{
-                            fontFamily: 'Material Icons',
-                            fontSize: '20px',
-                            text: ' '
-                        }"
-                        :position="marker.position"
-                    />
-                </googlemaps-map>
-
+                <mapbox 
+                    access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+                    :map-options="{
+                        style: 'mapbox://styles/mapbox/streets-v9',
+                        center: [-70.221799, -18.0031498],
+                        zoom: 15
+                    }"
+                    :geolocate-control="{
+                        show: true,
+                        position: 'top-left'
+                    }"
+                    :nav-control="{
+                        show: true, 
+                        position: 'top-left'
+                    }"
+                    @map-init="mapInitialized"
+                    :fullscreen-control="{
+                        show: true,
+                        position: 'top-left'
+                    }"
+                    @map-click="mapClicked"
+                />
             </div>
         <!-- Final del mapa -->
         </section>
@@ -102,24 +108,26 @@
     import vue2Dropzone from 'vue2-dropzone'
     import 'vue2-dropzone/dist/vue2Dropzone.min.css'
     import _ from "lodash";
+    import Mapbox from 'mapbox-gl-vue';
 
     export default {
         name: 'PostForm',
         components: {
             Selectize,
-            vueDropzone: vue2Dropzone
+            vueDropzone: vue2Dropzone,
+            Mapbox
         },
         computed: {
             ...mapState({
-                features: state => state.pet.features
+                tags: state => state.pet.tags
             })
         },
         created() {
-            this.getFeatures();    
+            this.getTags();    
         },
         methods: {
             ...mapActions({
-                getFeatures: "getFeatures",
+                getTags: "getTags",
                 createPost: "createPost"
             }),
             fileAdded(file) {
@@ -128,12 +136,12 @@
             async newPost(e) {
                 e.preventDefault();
                 this.isLoading = true;
-                if (this.marker && this.marker.position) {
+                if (this.marker && this.marker._lngLat) {
                     const post = {
                         ...this.post,
                         photos: this.$refs.myVueDropzone.getAcceptedFiles(),
-                        latitude: this.marker.position.lat(),
-                        longitude: this.marker.position.lng()
+                        latitude: this.marker._lngLat.lat,
+                        longitude: this.marker._lngLat.lng
                     }
                     await this.createPost(post);
                     this.$router.push("/mapa/perdidos");
@@ -142,13 +150,28 @@
                 }
                 this.isLoading = false;
             },
-            mapClicked(e) {
-                const lat = e.latLng.lat();
-                const lng = e.latLng.lng();
-
-                this.marker = {
-                    position: new google.maps.LatLng(lat, lng)
-                };
+            mapClicked(map, {lngLat: {lng, lat}}) {
+                if (this.marker && this.marker.remove) {
+                    this.marker.remove();
+                    this.marker = null;
+                } 
+                this.marker = new mapboxgl.Marker(this.genLayoutMarker(), {
+                    offset: [-24, -24]
+                })
+                .setLngLat(
+                    [
+                        lng,
+                        lat
+                    ]
+                )
+                .addTo(map);
+            },
+            genLayoutMarker(){
+                let el = document.createElement("div");
+                el.className = "marker marker--encontrado";
+                el.style.width = '48px';
+                el.style.height = '48px';
+                return el;
             }
         },
         data() {
@@ -157,12 +180,12 @@
                 post: {
                     description: "",
                     address: "",
-                    features: [],
+                    tags: [],
                     type: "0"
                 },
                 settings: {
                     mode: "multi",
-                    maxItems: 5
+                    maxItems: 20
                 },
                 dropzoneOptions: {
                     url: 'https://httpbin.org/post',
