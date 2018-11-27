@@ -54,7 +54,8 @@
                 mapOptions: {
                     zoom: 14,
                     center: new google.maps.LatLng(-18.013611, -70.252769),
-                }
+                },
+                map: {}
             }
         },
         components: {
@@ -65,6 +66,9 @@
                 this.setMapOnAll(null);
             }
         },
+        beforeDestroy() {
+            this.map.remove();
+        },
         methods: {
             setMapOnAll(map) {
                 for (const marker of this.markers) {
@@ -74,7 +78,7 @@
                 }
             },
             mapInitialized(map) {
-
+                this.map = map;
                 for (const markers of this.markers) {
                     let marker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
                         offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
