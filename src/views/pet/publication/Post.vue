@@ -176,6 +176,9 @@
                 }
                 this.isLoading = false;
             },
+            mapInitialized() {
+
+            },
             mapClicked(map, {lngLat: {lng, lat}}) {
                 if (this.marker && this.marker.remove) {
                     this.marker.remove();
