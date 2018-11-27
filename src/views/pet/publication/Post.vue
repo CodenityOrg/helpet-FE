@@ -142,6 +142,9 @@
         created() {
             this.getTags();    
         },
+        beforeDestroy() {
+            this.map.remove();
+        },
         methods: {
             ...mapActions({
                 getTags: "getTags",
@@ -176,8 +179,8 @@
                 }
                 this.isLoading = false;
             },
-            mapInitialized() {
-
+            mapInitialized(map) {
+                this.map = map;
             },
             mapClicked(map, {lngLat: {lng, lat}}) {
                 if (this.marker && this.marker.remove) {
@@ -229,7 +232,8 @@
                     zoom: 14,
                     center: new google.maps.LatLng(-18.013611, -70.252769),
                 },
-                marker: {}
+                marker: {},
+                map: {}
             }
         }
     };
