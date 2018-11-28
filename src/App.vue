@@ -34,4 +34,5 @@ export default {
     @import "assets/css/base.css";
     @import "assets/css/componentes.css";
     @import "assets/css/estilos.css";
+    @import url("https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css");
 </style>

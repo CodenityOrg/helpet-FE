@@ -21,17 +21,28 @@
             </div>
         </div>
         <div class="cont--mapa">
-           <googlemaps-map
-                :center="mapOptions.center"
-                :zoom="mapOptions.zoom"
-                :options="mapOptions">
-                <googlemaps-marker
-                    v-for="marker of markers"
-                    :key="marker.id"
-                    :label="marker.label"
-                    :position="marker.position"
-                />
-            </googlemaps-map>
+            <mapbox 
+                access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+                :map-options="{
+                    style: 'mapbox://styles/mapbox/streets-v9',
+                    center: [-70.221799, -18.0031498],
+                    zoom: 15
+                }"
+                :geolocate-control="{
+                    show: true,
+                    position: 'top-left'
+                }"
+                :nav-control="{
+                    show: true, 
+                    position: 'top-left'
+                }"
+                @map-init="mapInitialized"
+                :fullscreen-control="{
+                    show: true,
+                    position: 'top-left'
+                }"
+            />
+           
         </div>
     </div>
 </template>
@@ -41,7 +52,7 @@
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
     import {random} from "lodash";
-
+    import Mapbox from 'mapbox-gl-vue';
     export default {
         components: {
             InfoUser,
@@ -56,6 +67,9 @@
                 flagInfoUser: false,
                 crntUser: {},
             }
+        },
+        components: {
+            Mapbox
         },
         watch: {
             positions() {
@@ -74,6 +88,28 @@
                 console.log(user);
                 this.crntUser = user;
                 this.flagInfoUser = true;
+            },
+            mapInitialized(map) {
+
+                for (const markers of this.markers) {
+                    let marker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
+                        offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
+                    })
+                    .setLngLat(marker.geometry.coordinates)
+                    .addTo(map);
+                }
+    
+                
+            },
+            genLayoutMarker(data) {
+                const el = document.createElement("div");
+                el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
+                if (data.photo) {
+                    el.style.backgroundImage = `url(${data.photo})`;
+                }
+                el.style.width = data.properties.iconSize[0] ? (data.properties.iconSize[0] + 'px') : '48px';
+                el.style.height = data.properties.iconSize[1] ? (data.properties.iconSize[1] + 'px') : '48px';
+                return el;
             }
         },
         computed: {
@@ -84,11 +120,14 @@
                 return this.positions.map(position => {
                     return {
                         id: position.id,
-                        position: new google.maps.LatLng(position.latitude, position.longitude),
-                        label: {
-                            fontFamily: 'Material Icons',
-                            fontSize: '20px',
-                            text: "marker"
+                        photo: position.photo,
+                        properties: {
+                            iconSize: [48, 48]
+                        },
+                        type: position.type,
+                        geometry: {
+                            type: "Point",
+                            coordinates: [position.longitude, position.latitude]
                         }
                     }
                 })

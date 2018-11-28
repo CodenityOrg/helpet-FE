@@ -21,11 +21,21 @@
         props: ['currentUser'],
         data() {
             return {
-                credentials: {
-                    email: "",
-                    password: ""
-                },
+                user: {},
             }
         },
+        // methods: {
+        //     ...mapActions({
+        //         getProfile: "getProfile",
+        //         updateUser: "updateUser",
+        //         validateAuthorization: "validateAuthorization"
+        //     })
+        // },
+        // async created() {
+        //     // this.isLoading = true;
+        //     this.user = await this.getProfile();
+        //     console.log('user', this.user);
+        //     // this.isLoading = false;
+        // }
     };
 </script>
