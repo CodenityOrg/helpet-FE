@@ -66,6 +66,7 @@
                 },
                 flagInfoUser: false,
                 crntUser: {},
+                map: {}
             }
         },
         components: {
@@ -75,6 +76,9 @@
             positions() {
                 this.setMapOnAll(null);
             }
+        },
+        beforeDestroy() {
+            this.map.remove();
         },
         methods: {
             setMapOnAll(map) {
@@ -90,7 +94,7 @@
                 this.flagInfoUser = true;
             },
             mapInitialized(map) {
-
+                this.map = map;
                 for (const markers of this.markers) {
                     let marker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
                         offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
