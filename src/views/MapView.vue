@@ -78,13 +78,10 @@
         },
         methods: {
             mapInitialized(map) {
-                // const mark = new mapboxgl;
                 this.map = map;
             },
             mapMarker() {
-            // const mark = new mapboxgl;
                 for (const marker of this.markers) {
-                  // if(markers.)
                   new mapboxgl.Marker(this.genLayoutMarker(marker), {
                     offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
                   })
@@ -93,7 +90,6 @@
                 }
             },
             genLayoutMarker(data) {
-              console.log(' Here DATA',data);
                 const el = document.createElement("div");
                 el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
                 if (data.photo) {
@@ -110,7 +106,6 @@
             }),
             markers() {
                 return this.positions.map(position => {
-                  console.log('POSITION ',position)
                     return {
                         id: position.id,
                         photo: position.photo,
