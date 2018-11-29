@@ -4,6 +4,9 @@ import router from './router';
 import store from "./store/index";
 import VueCookie from "vue-cookie";
 import axios from "axios";
+import VeeValidate from 'vee-validate';
+
+Vue.use(VeeValidate);
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
 import loadingMixin from './views/includes/loading-mixin';
