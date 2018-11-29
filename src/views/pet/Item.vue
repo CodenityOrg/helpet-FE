@@ -7,7 +7,7 @@
                 <img :src="item.user.profile" alt="foto de perfil">
                 <span>{{fullName}}</span>
             </div>
-            <button @click="showInfo">Info</button>
+            <button class="btn--show__info" @click="showInfo">Ver info</button>
         </div>
         <div class="tarjeta__imagen">
             <carousel
@@ -47,7 +47,7 @@ import { Carousel, Slide } from 'vue-carousel';
 export default {
     name: "ItemFound",
     components: {
-         Carousel,
+        Carousel,
         Slide
     },
     props: {
@@ -57,7 +57,6 @@ export default {
     },
     methods: {
         showInfo() {
-            console.log('on show info');
             this.$emit('onShowInfo', this.item);
         },
     },
