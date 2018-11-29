@@ -76,6 +76,9 @@
                 this.mapMarker();
             }
         },
+        beforeDestroy() {
+            this.map.remove();
+        },
         methods: {
             mapInitialized(map) {
                 this.map = map;
@@ -87,6 +90,7 @@
                   })
                   .setLngLat(marker.geometry.coordinates)
                   .addTo(this.map);
+
                 }
             },
             genLayoutMarker(data) {
