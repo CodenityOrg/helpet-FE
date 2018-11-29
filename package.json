@@ -19,6 +19,7 @@
     "mapbox-gl": "^0.51.0",
     "mapbox-gl-vue": "^1.9.0",
     "s": "^0.1.1",
+    "serve": "^10.1.1",
     "serve-static": "^1.13.2",
     "vue": "^2.5.17",
     "vue-carousel": "^0.14.0",

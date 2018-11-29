@@ -8,42 +8,44 @@
                 <div>
                     <form class="form" id="register-form">
                         <div class="form-input">
-                            <input 
-                                type="text" 
-                                v-model="user.firstName" 
-                                name="name" 
+                            <input
+                                type="text"
+                                v-model="user.firstName"
+                                name="name"
                                 placeholder="Nombres" />
                         </div>
                         <div class="form-input">
-                            <input 
-                                type="text" 
-                                v-model="user.lastName" 
-                                name="lastname"  
+                            <input
+                                type="text"
+                                v-model="user.lastName"
+                                name="lastname"
                                 placeholder="Apellidos" />
                         </div>
                         <div class="form-input">
-                            <input 
-                                type="phone" 
-                                v-model="user.phone" 
-                                name="phone" 
+                            <input
+                                type="phone"
+                                v-model="user.phone"
+                                name="phone"
                                 placeholder="Telefono (Opcional)"/>
                         </div>
                         <div class="form-input">
-                            <input 
-                                type="email" 
-                                v-model="user.email" 
-                                name="email" 
+                            <input
+                                type="email"
+                                v-model="user.email"
+                                name="email"
+                                 @change="changeValidate"
                                 placeholder="Correo" />
+                                <div class="validate" :v-if="validate">{{ this.email_ }}</div>
                         </div>
                         <div class="form-input">
-                            <input 
-                                type="password" 
-                                v-model="user.password" 
-                                name="password" 
+                            <input
+                                type="password"
+                                v-model="user.password"
+                                name="password"
                                 placeholder="Contraseña" />
                         </div>
                         <div>
-                            <vue-recaptcha 
+                            <vue-recaptcha
                                 @verify="verify"
                                 sitekey="6Ld2lDMUAAAAAAANVdV6YEsvi8xehx9NmXK8Ce8a">
                             </vue-recaptcha>
@@ -70,7 +72,7 @@
 
 <script>
 
-    import {mapActions} from "vuex";
+    import {mapActions, mapState} from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
 
     export default {
@@ -86,12 +88,27 @@
             recaptchaScript.setAttribute('src', 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit')
             document.head.appendChild(recaptchaScript)
         },
+        created() {
+            this.$store.dispatch('validate', {email: this.user.email});
+            this.email_ = this.$store.state.user.validate.message;
+
+        },
+        updated() {
+            this.$store.dispatch('validate', {email: this.user.email});
+            this.email_ = this.$store.state.user.validate.message;
+        },
         components: { VueRecaptcha },
         methods: {
             ...mapActions({
-                registerUser: "registerUser"
+                registerUser: "registerUser",
             }),
-            async register() {
+            ...mapState({
+                validate: state => state.validate
+            }),
+            async changeValidate() {
+              await this.$store.dispatch('validate', { email: this.user.email })
+            },
+            async register(event) {
                 event.preventDefault();
                 event.stopPropagation();
                 if (!this.isVerified) {
