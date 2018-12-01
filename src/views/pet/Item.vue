@@ -3,8 +3,11 @@
         class="tarjeta tarjeta--perrrito-perdido" 
         :id="item.id">
         <div class="tarjeta__titulo">
-            <img :src="item.user.profile" alt="foto de perfil">
-            <span>{{fullName}}</span>
+            <div class="image__name">
+                <img :src="item.user.profile" alt="foto de perfil">
+                <span>{{fullName}}</span>
+            </div>
+            <button class="btn--show__info" @click="showInfo">Ver info</button>
         </div>
         <div class="tarjeta__imagen">
             <carousel
@@ -44,13 +47,18 @@ import { Carousel, Slide } from 'vue-carousel';
 export default {
     name: "ItemFound",
     components: {
-         Carousel,
+        Carousel,
         Slide
     },
     props: {
         item: {
             type: Object
         }
+    },
+    methods: {
+        showInfo() {
+            this.$emit('onShowInfo', this.item);
+        },
     },
     computed: {
         fullName() {

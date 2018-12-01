@@ -10,6 +10,7 @@
             :key="index"
             v-for="(lostPost, index) in lostPosts"
             :item="lostPost"
+            @onShowInfo="showUser"
         />
     </infinite-list>
 </template>
@@ -42,7 +43,10 @@
         methods: {
             ...mapActions({
                 getItems: "getLostPosts"
-            })
+            }),
+            showUser(user) {
+                this.$emit('onShowInfoUser', user);
+            },
         },
         beforeDestroy() {
             this.$store.commit("RESET_LOST_POSTS");

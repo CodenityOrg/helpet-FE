@@ -12,7 +12,7 @@
                         <button type="button" class="tab-link posts-tab">Encontrados</button>
                     </router-link>
                 </div>
-                <router-view></router-view>
+                <router-view @onShowInfoUser="showUser"></router-view>
             </div>
         </div>
         <div class="cont--mapa">
@@ -77,6 +77,9 @@
                     }
                 }
             },
+            showUser(user) {
+                this.$emit('onShowUserInfo', user);
+            },
             mapInitialized(map) {
                 this.map = map;
                 for (const markers of this.markers) {
@@ -125,3 +128,6 @@
 
 </script>
 
+<style>
+    @import "../assets/css/componentes.css";
+</style>
