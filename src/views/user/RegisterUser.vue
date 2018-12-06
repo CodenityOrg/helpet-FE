@@ -89,24 +89,21 @@
             document.head.appendChild(recaptchaScript)
         },
         created() {
-            this.$store.dispatch('validate', {email: this.user.email});
+            this.validate({ email: this.user.email })
             this.email_ = this.$store.state.user.validate.message;
-
         },
         updated() {
-            this.$store.dispatch('validate', {email: this.user.email});
+            this.validate({ email: this.user.email })
             this.email_ = this.$store.state.user.validate.message;
         },
         components: { VueRecaptcha },
         methods: {
             ...mapActions({
                 registerUser: "registerUser",
+                validate: "validate",
             }),
-            ...mapState({
-                validate: state => state.validate
-            }),
-            async changeValidate() {
-              await this.$store.dispatch('validate', { email: this.user.email })
+            changeValidate() {
+               this.validate({ email: this.user.email });
             },
             async register(event) {
                 event.preventDefault();
