@@ -55,6 +55,8 @@
                     zoom: 14,
                     center: new google.maps.LatLng(-18.013611, -70.252769),
                 },
+                flagInfoUser: false,
+                crntUser: {},
                 map: {}
             }
         },
@@ -62,35 +64,29 @@
             Mapbox
         },
         watch: {
-            positions() {
-                this.setMapOnAll(null);
+            markers() {
+                this.mapMarker();
             }
         },
         beforeDestroy() {
             this.map.remove();
         },
         methods: {
-            setMapOnAll(map) {
-                for (const marker of this.markers) {
-                    if (marker.setMap) {
-                        marker.setMap(map);
-                    }
-                }
-            },
             showUser(user) {
                 this.$emit('onShowUserInfo', user);
             },
             mapInitialized(map) {
                 this.map = map;
-                for (const markers of this.markers) {
-                    let marker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
-                        offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
-                    })
-                    .setLngLat(marker.geometry.coordinates)
-                    .addTo(map);
+            },
+            mapMarker() {
+                for (const marker of this.markers) {
+                  new mapboxgl.Marker(this.genLayoutMarker(marker), {
+                    offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
+                  })
+                  .setLngLat(marker.geometry.coordinates)
+                  .addTo(this.map);
+
                 }
-    
-                
             },
             genLayoutMarker(data) {
                 const el = document.createElement("div");
