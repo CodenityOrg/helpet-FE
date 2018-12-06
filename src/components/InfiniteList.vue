@@ -14,7 +14,7 @@
       async scrollHandler() {
         console.log("scrollHeight", this.$refs.container.scrollHeight);
         if (this.isAtTheBottom()) {
-          console.log("scroll reached")
+            console.log("scroll reached")
             this.$emit("scrollEnd");
         }
       },
@@ -22,10 +22,15 @@
         console.log("scrollHeight", this.$refs.container.scrollHeight);
       },
       isAtTheBottom() {
-          const {clientHeight, scrollHeight, scrollTop} = this.$refs.container;
-          const diff = Math.trunc(scrollHeight - scrollTop);
-          console.log(diff, Math.trunc(this.$refs.container.getBoundingClientRect().height))
-          return diff === Math.trunc(this.$refs.container.getBoundingClientRect().height);
+          const $container = this.$refs.container;
+          
+          // Use getBoundingClientRect for get height with decimal part
+          const {height} = $container.getBoundingClientRect();
+          const {scrollHeight, scrollTop} = $container;
+
+          // Using truncate function for avoid problems with extra pixels in some list elements 
+          // and get a more accurate difference
+          return Math.trunc(scrollHeight - scrollTop) === Math.trunc(height);
       }
     }
   }
