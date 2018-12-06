@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import NavBar from './views/includes/NavBar.vue';
-import LoginUser from './views/user/LoginUser.vue';
-import InfoUser from './views/user/InfoUser.vue';
+import NavBar from './components/common/includes/NavBar.vue';
+import LoginUser from './components/users/LoginUser.vue';
+import InfoUser from './components/users/InfoUser.vue';
 
 export default {
   components: {
