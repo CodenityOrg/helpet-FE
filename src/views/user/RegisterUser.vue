@@ -104,7 +104,7 @@
             async register() {
                 event.preventDefault();
                 event.stopPropagation();
-                if (!this.isVerified) {
+                if (this.isVerified) {
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);
