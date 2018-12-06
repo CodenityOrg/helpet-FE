@@ -8,39 +8,49 @@
                 <div>
                     <form class="form" id="register-form">
                         <div class="form-input">
-                            <input 
+                            <input
+                                v-validate="'required|alpha'"
                                 type="text" 
                                 v-model="user.firstName" 
                                 name="name" 
                                 placeholder="Nombres" />
-                        </div>
+                            <span>{{ errors.first('name') }}</span>
+                        </div>                        
                         <div class="form-input">
                             <input 
+                                v-validate="'required|alpha'"
                                 type="text" 
                                 v-model="user.lastName" 
                                 name="lastname"  
                                 placeholder="Apellidos" />
+                            <span>{{ errors.first('lastname') }}</span>
                         </div>
                         <div class="form-input">
                             <input 
+                                v-validate="'required|numeric'"
                                 type="phone" 
                                 v-model="user.phone" 
                                 name="phone" 
                                 placeholder="Telefono (Opcional)"/>
+                            <span>{{ errors.first('phone') }}</span>
                         </div>
                         <div class="form-input">
                             <input 
+                                v-validate="'required|email'"
                                 type="email" 
                                 v-model="user.email" 
                                 name="email" 
                                 placeholder="Correo" />
+                            <span>{{ errors.first('email') }}</span>
                         </div>
                         <div class="form-input">
                             <input 
+                                v-validate="'required'"
                                 type="password" 
                                 v-model="user.password" 
                                 name="password" 
                                 placeholder="Contraseña" />
+                            <span>{{ errors.first('password') }}</span>
                         </div>
                         <div>
                             <vue-recaptcha 
@@ -94,7 +104,7 @@
             async register() {
                 event.preventDefault();
                 event.stopPropagation();
-                if (!this.isVerified) {
+                if (this.isVerified) {
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);

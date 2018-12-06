@@ -12,12 +12,7 @@
                         <button type="button" class="tab-link posts-tab">Encontrados</button>
                     </router-link>
                 </div>
-                <info-user
-                    v-if="flagInfoUser"
-                    :currentUser="crntUser"
-                    @onCloseInfoUser="flagInfoUser=false"
-                ></info-user>
-                <router-view ></router-view>
+                <router-view @onShowInfoUser="showUser"></router-view>
             </div>
         </div>
         <div class="cont--mapa">
@@ -48,15 +43,11 @@
 </template>
 
 <script>
-    import InfoUser from './user/InfoUser.vue';
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
     import {random} from "lodash";
     import Mapbox from 'mapbox-gl-vue';
     export default {
-        components: {
-            InfoUser,
-        },
         name: "Map",
         data() {
             return {
@@ -66,6 +57,7 @@
                 },
                 flagInfoUser: false,
                 crntUser: {},
+                map: {}
             }
         },
         components: {
@@ -80,6 +72,9 @@
             this.map.remove();
         },
         methods: {
+            showUser(user) {
+                this.$emit('onShowUserInfo', user);
+            },
             mapInitialized(map) {
                 this.map = map;
             },
