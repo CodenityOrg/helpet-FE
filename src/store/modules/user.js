@@ -26,8 +26,7 @@ const actions = {
     },
     async validate({commit}, data) {
         const { status, data: user} = await userAPI.validate(data);
-        console.log(user);
-        console.log(status);
+        console.log("validate", user);
         if (status === 200) {
           commit("VALIDATE", user);
         }

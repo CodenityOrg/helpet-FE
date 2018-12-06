@@ -16,20 +16,20 @@
                     <h3 class="titulo">INICIAR</h3>
                     <div class="form-input">
                         <label for="inputEmail">Correo</label>
-                        <input 
+                        <input
                             v-model="credentials.email"
-                            type="email" 
-                            name="email" 
+                            type="email"
+                            name="email"
                             placeholder="Correo"
                         />
                     </div>
 
                     <div class="form-input">
                         <label for="inputPassword">Contraseña</label>
-                        <input 
+                        <input
                             v-model="credentials.password"
-                            type="password" 
-                            name="password" 
+                            type="password"
+                            name="password"
                             placeholder="Contraseña"
                         />
                     </div>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions,mapState} from "vuex";
     export default {
         name: 'LoginUser',
         data() {
@@ -53,6 +53,11 @@
                     password: ""
                 }
             }
+        },
+        computed: {
+          ...mapState({
+              isAuthenticated: state => state.auth.authenticated
+          }),
         },
         methods: {
             ...mapActions({

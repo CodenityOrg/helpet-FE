@@ -29,13 +29,12 @@
                                 placeholder="Telefono (Opcional)"/>
                         </div>
                         <div class="form-input">
-                            <input
-                                type="email"
+                            <input type="email"
                                 v-model="user.email"
                                 name="email"
-                                 @change="changeValidate"
+                                @keyup="changeValidate"
                                 placeholder="Correo" />
-                                <div class="validate" :v-if="validate">{{ this.email_ }}</div>
+                                <div class="validate" :v-if="validate">{{ this.validateEmail.validate.message }}</div>
                         </div>
                         <div class="form-input">
                             <input
@@ -72,7 +71,7 @@
 
 <script>
 
-    import {mapActions, mapState} from "vuex";
+    import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
 
     export default {
@@ -88,23 +87,17 @@
             recaptchaScript.setAttribute('src', 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit')
             document.head.appendChild(recaptchaScript)
         },
-        created() {
-            this.validate({ email: this.user.email })
-            this.email_ = this.$store.state.user.validate.message;
-        },
-        updated() {
-            this.validate({ email: this.user.email })
-            this.email_ = this.$store.state.user.validate.message;
-        },
         components: { VueRecaptcha },
+        computed: {
+            ...mapState({
+                validateEmail: state => state.user,
+            }),
+        },
         methods: {
             ...mapActions({
                 registerUser: "registerUser",
                 validate: "validate",
             }),
-            changeValidate() {
-               this.validate({ email: this.user.email });
-            },
             async register(event) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -121,7 +114,10 @@
             },
             expired() {
                 this.isVerified = false;
-            }
+            },
+            changeValidate(){
+              this.validate({ email: this.user.email });
+            },
         }
     };
 </script>
