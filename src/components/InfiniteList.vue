@@ -12,7 +12,6 @@
     name: "InfiniteList",
     methods: {
       async scrollHandler() {
-        console.log("scrollHeight", this.$refs.container.scrollHeight);
         if (this.isAtTheBottom()) {
             console.log("scroll reached")
             this.$emit("scrollEnd");
