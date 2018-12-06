@@ -66,7 +66,7 @@
             </ul>
             <div class="redes">
                 <figure class="figure">
-                    <img src="../../assets/img/icon-register.png" alt="icono-register">
+                    <img src="../assets/img/icon-register.png" alt="icono-register">
                 </figure>
                 <div class="iconos">
                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -123,5 +123,5 @@
 </script>
 
 <style>
-    @import "../../assets/css/register.css";
+    @import "../assets/css/register.css";
 </style>

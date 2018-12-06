@@ -18,7 +18,7 @@
 <script>
   import ItemFound from "./Item";
   import { mapActions, mapState, mapGetters } from "vuex";
-  import InfiniteList from "../../components/InfiniteList";
+  import InfiniteList from "../common/InfiniteList";
   import listMixin from "./mixins/list";
 
   export default {
