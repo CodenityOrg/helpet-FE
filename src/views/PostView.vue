@@ -2,20 +2,12 @@
     <div>
         <loading :active.sync="isLoading" />
         <section class="cont cont--inicio">
-        <!-- inicio de formulario -->
             <div class="cont--formulario">
                 <form id="post-form">
                     <h3 align="center">Informacion de la mascota</h3>
                     <div>
                         <form class="form" id="register-form">
                             <div class="form-input">
-                                <vue-dropzone 
-                                    ref="myVueDropzone" 
-                                    id="dropzone" 
-                                    @vdropzone-file-added="fileAdded"
-                                    :options="dropzoneOptions">
-                                </vue-dropzone>
-                                <input type="file" name="photo">
                                 <figure class="avatar">
                                     <img height="128" width="128" :src='preview'>
                                     <div class="file is-centered">
@@ -86,35 +78,11 @@
                     </div>
                 </form>
             </div>
-        <!-- Final de formulario -->
-        <!-- Inicio del mapa -->
-            <div class="cont--mapa">
-                <mapbox 
-                    access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
-                    :map-options="{
-                        style: 'mapbox://styles/mapbox/streets-v9',
-                        center: [-70.221799, -18.0031498],
-                        zoom: 15
-                    }"
-                    :geolocate-control="{
-                        show: true,
-                        position: 'top-left'
-                    }"
-                    :nav-control="{
-                        show: true, 
-                        position: 'top-left'
-                    }"
-                    @map-init="mapInitialized"
-                    :fullscreen-control="{
-                        show: true,
-                        position: 'top-left'
-                    }"
-                    @map-click="mapClicked"
-                />
-            </div>
-        <!-- Final del mapa -->
+            <PostMap
+                @init="mapInitialized"
+                @clicked="mapClicked"
+            />
         </section>
-
     </div>
 </template>
 
@@ -122,17 +90,14 @@
     import Vue from 'vue'
     import Selectize from 'vue2-selectize'
     import { mapActions, mapState } from 'vuex';
-    import vue2Dropzone from 'vue2-dropzone'
-    import 'vue2-dropzone/dist/vue2Dropzone.min.css'
     import _ from "lodash";
-    import Mapbox from 'mapbox-gl-vue';
+    import mapMixin from "./common/map";
 
     export default {
         name: 'PostForm',
+        mixins: [mapMixin],
         components: {
-            Selectize,
-            vueDropzone: vue2Dropzone,
-            Mapbox
+            Selectize
         },
         computed: {
             ...mapState({
@@ -141,9 +106,6 @@
         },
         created() {
             this.getTags();    
-        },
-        beforeDestroy() {
-            this.map.remove();
         },
         methods: {
             ...mapActions({
@@ -178,9 +140,6 @@
                     alert("Necesitas seleccionar una posicion en el mapa");
                 }
                 this.isLoading = false;
-            },
-            mapInitialized(map) {
-                this.map = map;
             },
             mapClicked(map, {lngLat: {lng, lat}}) {
                 if (this.marker && this.marker.remove) {
@@ -221,19 +180,7 @@
                     mode: "multi",
                     maxItems: 20
                 },
-                dropzoneOptions: {
-                    url: 'https://httpbin.org/post',
-                    thumbnailWidth: 150,
-                    maxFilesize: 0.5,
-                    dictDefaultMessage: "Haga click aqui or arrastre un archivo",
-                    dictFileTooBig: "La imagen es demasiado grande ({{filesize}}MiB). Tamaño de la imagen maxima: {{maxFilesize}}MiB."
-                },
-                mapOptions: {
-                    zoom: 14,
-                    center: new google.maps.LatLng(-18.013611, -70.252769),
-                },
-                marker: {},
-                map: {}
+                marker: {}
             }
         }
     };
