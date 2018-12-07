@@ -12,7 +12,7 @@
         <div class="tarjeta__imagen">
             <carousel
                 v-if="item.photos && item.photos.length"
-                :perPageCustom="[[1024, 1]]"
+                :perPageCustom="[[1024, 1], [300, 1]]"
             >
                 <slide
                     :key="photo._id"

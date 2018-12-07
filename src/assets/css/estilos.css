@@ -277,26 +277,24 @@
 
 .cont--inicio {
     padding-top: 0;
-    display: flex;
     background-color: var(--color-gris);
-    position: absolute;
     bottom: 0;
     top: 90px;
 }
 
 .cont--inicio .cont--tarjetas {
-    padding-top: 4em;
+    padding-top: 2em;
     padding-bottom: 2em;
     padding-left: 2em;
     padding-right: 2em;
-    flex: 0 0 35%;
-    display: flex;
+    max-height: 400px;
 }
 
 .content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    max-height: 600px;
 }
 
 .cont--inicio .cont--mapa {

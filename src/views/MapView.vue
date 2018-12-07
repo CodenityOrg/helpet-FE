@@ -1,45 +1,69 @@
 <template>
-    <div class="cont cont--inicio">
-        <div class="cont--tarjetas">
-            <div class="content">
-                <div class="tab-links">
-                    <router-link :to="{name : 'ListLost'}" exact>
-                        <button type="button" class="tab-link posts-tab">
-                            Perdidos
-                        </button>
-                    </router-link>
-                    <router-link :to="{name : 'ListFound'}" exact>
-                        <button type="button" class="tab-link posts-tab">Encontrados</button>
-                    </router-link>
+    <div class="row cont cont--inicio">
+            <div v-if="isMobile" class="col-sm-12 col-md-8 cont--mapa"
+                :style="customStyles"
+            >
+                <mapbox 
+                    access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+                    :map-options="{
+                        style: 'mapbox://styles/mapbox/streets-v9',
+                        center: [-70.221799, -18.0031498],
+                        zoom: 15
+                    }"
+                    :geolocate-control="{
+                        show: true,
+                        position: 'top-left'
+                    }"
+                    :nav-control="{
+                        show: true, 
+                        position: 'top-left'
+                    }"
+                    @map-init="mapInitialized"
+                    :fullscreen-control="{
+                        show: true,
+                        position: 'top-left'
+                    }"
+                />
+            </div>
+            <div class="cont--tarjetas col-sm-12 col-md-4 ">
+                <div class="content">
+                    <div class="tab-links">
+                        <router-link :to="{name : 'ListLost'}" exact>
+                            <button type="button" class="tab-link posts-tab">
+                                Perdidos
+                            </button>
+                        </router-link>
+                        <router-link :to="{name : 'ListFound'}" exact>
+                            <button type="button" class="tab-link posts-tab">Encontrados</button>
+                        </router-link>
+                    </div>
+                    <router-view @onShowInfoUser="showUser"></router-view>
                 </div>
-                <router-view @onShowInfoUser="showUser"></router-view>
+            </div>
+            <div v-if="!isMobile" class="col-sm-12 col-md-8 cont--mapa">
+                <mapbox 
+                    access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+                    :map-options="{
+                        style: 'mapbox://styles/mapbox/streets-v9',
+                        center: [-70.221799, -18.0031498],
+                        zoom: 15
+                    }"
+                    :geolocate-control="{
+                        show: true,
+                        position: 'top-left'
+                    }"
+                    :nav-control="{
+                        show: true, 
+                        position: 'top-left'
+                    }"
+                    @map-init="mapInitialized"
+                    :fullscreen-control="{
+                        show: true,
+                        position: 'top-left'
+                    }"
+                />
             </div>
         </div>
-        <div class="cont--mapa">
-            <mapbox 
-                access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
-                :map-options="{
-                    style: 'mapbox://styles/mapbox/streets-v9',
-                    center: [-70.221799, -18.0031498],
-                    zoom: 15
-                }"
-                :geolocate-control="{
-                    show: true,
-                    position: 'top-left'
-                }"
-                :nav-control="{
-                    show: true, 
-                    position: 'top-left'
-                }"
-                @map-init="mapInitialized"
-                :fullscreen-control="{
-                    show: true,
-                    position: 'top-left'
-                }"
-            />
-           
-        </div>
-    </div>
 </template>
 
 <script>
@@ -57,11 +81,23 @@
                 },
                 flagInfoUser: false,
                 crntUser: {},
-                map: {}
+                map: {},
+                isMobile: false,
+                customStyles: {}
             }
         },
         components: {
             Mapbox
+        },
+        mounted() {
+            const that = this;
+            window.onresize = function(event) {
+                if (window.innerWidth < 650) {
+                    that.isMobile = true;
+                } else {
+                    that.isMobile = false;
+                }
+            }
         },
         watch: {
             markers() {

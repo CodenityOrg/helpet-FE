@@ -1,10 +1,14 @@
 <template>
-    <nav class="navbar">
-        <div class="navbar__logo">
+<nav class="navbar navbar-expand-lg ">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar__logo">
             <a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a>
         </div>
-        <ul class="navbar__menu">
-            <template v-if="!isAuthenticated">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <ul class="navbar-nav mr-auto navbar__menu">
+      <template v-if="!isAuthenticated">
                 <li>
                     <a href="" @click="clickLogin()">Inicia</a>
                 </li>
@@ -26,8 +30,10 @@
             <li v-if="isAuthenticated">
                 <button @click="doLogout">Cerrar sesión</button>
             </li>
-        </ul>
-    </nav>
+    </ul>
+
+  </div>
+</nav>
 </template>
 
 <script>
