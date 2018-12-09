@@ -6,6 +6,9 @@ import VueCookie from "vue-cookie";
 import axios from "axios";
 import VeeValidate from 'vee-validate';
 
+require('../node_modules/bootstrap/less/bootstrap.less')
+
+
 Vue.use(VeeValidate);
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");

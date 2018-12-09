@@ -1,39 +1,39 @@
 <template>
-<nav class="navbar navbar-expand-lg ">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="navbar__logo">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="navbar__logo">
             <a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-    <ul class="navbar-nav mr-auto navbar__menu">
-      <template v-if="!isAuthenticated">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <ul class="navbar-nav mr-auto navbar__menu">
+                <template v-if="!isAuthenticated">
+                    <li>
+                        <a href="" @click="clickLogin()">Inicia</a>
+                    </li>
+                    <li >
+                        <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                    </li>
+                </template> 
+                <template v-else>
+                    <li>
+                        <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
+                    </li>
+                </template>
                 <li>
-                    <a href="" @click="clickLogin()">Inicia</a>
+                    <router-link :to="{name : 'ListLost'}">Mapa</router-link>
                 </li>
-                <li >
-                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                <li v-if="isAuthenticated">
+                    <button @click="doLogout">Cerrar sesión</button>
                 </li>
-            </template> 
-            <template v-else>
-                <li>
-                    <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
-                </li>
-                <li>
-                    <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
-                </li>
-            </template>
-            <li>
-                <router-link :to="{name : 'ListLost'}">Mapa</router-link>
-            </li>
-            <li v-if="isAuthenticated">
-                <button @click="doLogout">Cerrar sesión</button>
-            </li>
-    </ul>
-
-  </div>
-</nav>
+            </ul>
+        </div>
+    </nav>
 </template>
 
 <script>
