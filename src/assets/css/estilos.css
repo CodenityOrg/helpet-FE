@@ -158,7 +158,7 @@
     font-weight: 300;
     font-size: 1.2em;
     text-decoration: none;
-    margin-right: 1em;
+    margin-right: 0.5em;
     transition: all .3s;
     outline: none;
     border: none;
@@ -278,8 +278,6 @@
 .cont--inicio {
     padding-top: 0;
     background-color: var(--color-gris);
-    bottom: 0;
-    top: 90px;
 }
 
 .cont--inicio .cont--tarjetas {
