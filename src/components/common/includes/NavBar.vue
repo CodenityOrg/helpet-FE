@@ -1,5 +1,5 @@
 <template>
-    <b-navbar class="navbar" toggleable="md" type="dark" variant="info">
+    <b-navbar class="navbar" toggleable="md" type="dark">
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-navbar-brand class="navbar__logo" href="#"><a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a></b-navbar-brand>
