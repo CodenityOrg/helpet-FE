@@ -279,7 +279,7 @@
     padding-top: 0;
     background-color: var(--color-gris);
     bottom: 0;
-    top: 90px;
+    top: 70px;
 }
 
 .cont--inicio .cont--tarjetas {
@@ -287,7 +287,6 @@
     padding-bottom: 2em;
     padding-left: 2em;
     padding-right: 2em;
-    max-height: 400px;
 }
 
 .content {
@@ -297,12 +296,9 @@
     max-height: 600px;
 }
 
-.cont--inicio .cont--mapa {
-    flex: 0 0 65%;
-}
+
 .cont--inicio .cont--mapa #map {
-    min-height: 100vh;
-    position: fixed;
+    min-height: 100%;
     width: 100%;
 }
 
