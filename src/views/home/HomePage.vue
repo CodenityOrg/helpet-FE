@@ -21,6 +21,7 @@
         </section>
         </router-link>
         <router-view></router-view>
+        <notifications group="foo" position='bottom right' />
     </div>
 </template>
 

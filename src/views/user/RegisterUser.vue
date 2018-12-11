@@ -32,7 +32,7 @@
                             <input type="email"
                                 v-model="user.email"
                                 name="email"
-                                @keyup="changeValidate"
+                                  @keyup="changeValidate"
                                 placeholder="Correo" />
                                 <div class="validate" :v-if="validate">{{ this.validateEmail.validate.message }}</div>
                         </div>

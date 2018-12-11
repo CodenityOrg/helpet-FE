@@ -1,8 +1,10 @@
 import authAPI from "../../api/auth";
 import Vue from "vue";
 import VueCookie from "vue-cookie";
+import Notifications from 'vue-notification';
 
 Vue.use(VueCookie);
+Vue.use(Notifications);
 
 const state = {
     authenticated: false,
@@ -22,10 +24,13 @@ const actions = {
     async login({commit}, credentials) {
         const {status, data: user} = await authAPI.login(credentials);
         if (status === 200) {
+            console.log("200");
             commit("SET_AUTHENTICATED", true);
             commit("SET_USER", user);
             VueCookie.set("helpet_auth", user.token);
         } else {
+          console.log("dsds",this);
+          
           commit("SET_AUTHENTICATED", false);
         }
     },
