@@ -1,39 +1,36 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="navbar__logo">
-            <a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-            <ul class="navbar-nav mr-auto navbar__menu">
+    <b-navbar class="navbar" toggleable="md" type="dark" variant="info">
+        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+        <b-navbar-brand class="navbar__logo" href="#"><a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a></b-navbar-brand>
+
+        <b-collapse is-nav id="nav_collapse">
+            <b-navbar-nav class="ml-auto">
                 <template v-if="!isAuthenticated">
-                    <li>
+                    <b-nav-item>
                         <a href="" @click="clickLogin()">Inicia</a>
-                    </li>
-                    <li >
+                    </b-nav-item>
+                    <b-nav-item >
                         <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
-                    </li>
+                    </b-nav-item>
                 </template> 
                 <template v-else>
-                    <li>
+                    <b-nav-item>
                         <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
-                    </li>
-                    <li>
+                    </b-nav-item>
+                    <b-nav-item>
                         <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
-                    </li>
+                    </b-nav-item>
                 </template>
-                <li>
+                <b-nav-item>
                     <router-link :to="{name : 'ListLost'}">Mapa</router-link>
-                </li>
-                <li v-if="isAuthenticated">
+                </b-nav-item>
+                <b-nav-item v-if="isAuthenticated">
                     <button @click="doLogout">Cerrar sesión</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                </b-nav-item>
+            </b-navbar-nav>
+        </b-collapse>
+    </b-navbar>
 </template>
 
 <script>
