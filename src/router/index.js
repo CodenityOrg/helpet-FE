@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HomePage from '../views/home/HomePage.vue';
-import RegisterUser from '../views/user/RegisterUser.vue';
+
+import HomePage from '../views/HomeView.vue';
+import RegisterUser from '../views/RegisterView.vue';
+import PostPet from '../views/PostView.vue'
+import Profile from "../views/ProfileView";
 import MapView from '../views/MapView';
-import PetFound from '../views/pet/PetFound.vue';
-import PetLost from '../views/pet/PetLost.vue';
-import PostPet from '../views/pet/publication/Post.vue'
-import Profile from "../views/user/Profile";
+
+import PetFound from '../components/posts/PetFound.vue';
+import PetLost from '../components/posts/PetLost.vue';
 
 Vue.use(Router);
 
