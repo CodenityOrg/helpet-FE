@@ -24,13 +24,10 @@ const actions = {
     async login({commit}, credentials) {
         const {status, data: user} = await authAPI.login(credentials);
         if (status === 200) {
-            console.log("200");
             commit("SET_AUTHENTICATED", true);
             commit("SET_USER", user);
             VueCookie.set("helpet_auth", user.token);
-        } else {
-          console.log("dsds",this);
-          
+        } else {          
           commit("SET_AUTHENTICATED", false);
         }
     },
