@@ -15,7 +15,7 @@
 
                 </div>
                 <div class="logo">
-                    <img src="../../assets/img/img-A.png" alt="logo helpet">
+                    <img src="../assets/img/img-A.png" alt="logo helpet">
                 </div>
             </ul>
         </section>

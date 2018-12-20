@@ -9,8 +9,8 @@ export default {
     login(credentials) {
         return axios.post(`${HOST}/login`, credentials);
     },
-    profile() {
-        return axios.get(`${HOST}/users/profile`);
+    profile(fullData) {
+        return axios.get(`${HOST}/users/profile?full=${fullData}`);
     },
     update(payload) {
         return axios.put(`${HOST}/users/profile`, payload);

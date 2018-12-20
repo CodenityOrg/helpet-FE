@@ -31,8 +31,8 @@ const actions = {
         }
         return user;
     },
-    getProfile({commit}) {
-        return userAPI.profile().then(res => res.data);
+    getProfile({commit}, fullData = true) {
+        return userAPI.profile(fullData).then(res => res.data);
     },
     updateUser({commit}, data) {
         return userAPI.update(data);

@@ -9,27 +9,35 @@
                     <form class="form" id="register-form">
                         <div class="form-input">
                             <input
+                                v-validate="'required|alpha'"
                                 type="text"
                                 v-model="user.firstName"
                                 name="name"
                                 placeholder="Nombres" />
+                            <span>{{ errors.first('name') }}</span>
                         </div>
                         <div class="form-input">
                             <input
+                                v-validate="'required|alpha'"
                                 type="text"
                                 v-model="user.lastName"
                                 name="lastname"
                                 placeholder="Apellidos" />
+                            <span>{{ errors.first('lastname') }}</span>
                         </div>
                         <div class="form-input">
                             <input
+                                v-validate="'required|numeric'"
                                 type="phone"
                                 v-model="user.phone"
                                 name="phone"
                                 placeholder="Telefono (Opcional)"/>
+                            <span>{{ errors.first('phone') }}</span>
                         </div>
                         <div class="form-input">
                             <input type="email"
+                                v-validate="'required|email'"
+
                                 v-model="user.email"
                                 name="email"
                                   @keyup="changeValidate"
@@ -42,6 +50,7 @@
                                 v-model="user.password"
                                 name="password"
                                 placeholder="Contraseña" />
+                            <span>{{ errors.first('password') }}</span>
                         </div>
                         <div>
                             <vue-recaptcha
@@ -57,7 +66,7 @@
             </ul>
             <div class="redes">
                 <figure class="figure">
-                    <img src="../../assets/img/icon-register.png" alt="icono-register">
+                    <img src="../assets/img/icon-register.png" alt="icono-register">
                 </figure>
                 <div class="iconos">
                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -66,6 +75,8 @@
                 </div>
             </div>
         </section>
+        <notifications group="foo" position='bottom right' />
+
     </div>
 </template>
 
@@ -101,7 +112,7 @@
             async register(event) {
                 event.preventDefault();
                 event.stopPropagation();
-                if (!this.isVerified) {
+                if (this.isVerified) {
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);
@@ -123,5 +134,5 @@
 </script>
 
 <style>
-    @import "../../assets/css/register.css";
+    @import "../assets/css/register.css";
 </style>
