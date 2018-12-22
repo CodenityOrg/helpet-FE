@@ -1,5 +1,9 @@
 <template>
-    <b-navbar style="background-color: rgba(33, 177, 106,1); padding: 20px 30px;" class="navbar" toggleable="md" type="dark">
+    <b-navbar 
+        class="navbar hp-navbar" 
+        :class="{ 'navbar-home': isHomePage }"
+        toggleable="md" 
+        type="dark">
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-navbar-brand class="navbar__logo" href="#"><a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a></b-navbar-brand>
@@ -45,6 +49,9 @@
             }),
             fullName() {
                 return this.user.firstName + " " + this.user.lastName;
+            },
+            isHomePage() {
+                return this.$route.fullPath === "/";
             }
         },
         methods: {

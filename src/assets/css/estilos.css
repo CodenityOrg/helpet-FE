@@ -131,6 +131,16 @@
     transition: all .3s;
 }
 
+.navbar-home {
+    background: transparent !important;
+    position: absolute !important;
+}
+
+.hp-navbar {
+    background-color: rgba(33, 177, 106,1); 
+    padding: 20px 30px !important; 
+}
+
 .navbar__logo {
     max-width: 10em;
     display: flex;
@@ -285,14 +295,13 @@
     padding-bottom: 2em;
     padding-left: 2em;
     padding-right: 2em;
-    max-height: 400px;
 }
 
 .content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    max-height: 600px;
+    max-height: 1050px;
 }
 
 .cont--inicio .cont--mapa {
