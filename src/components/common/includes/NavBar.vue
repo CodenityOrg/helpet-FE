@@ -1,11 +1,15 @@
 <template>
-    <b-navbar class="navbar" toggleable="md" type="dark" variant="info">
+    <b-navbar 
+        class="navbar hp-navbar" 
+        :class="{ 'navbar-home': isHomePage }"
+        toggleable="md" 
+        type="dark">
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-navbar-brand class="navbar__logo" href="#"><a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a></b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
-            <b-navbar-nav class="ml-auto">
+            <b-navbar-nav class="ml-auto navbar__menu">
                 <template v-if="!isAuthenticated">
                     <b-nav-item>
                         <a href="" @click="clickLogin()">Inicia</a>
@@ -45,6 +49,9 @@
             }),
             fullName() {
                 return this.user.firstName + " " + this.user.lastName;
+            },
+            isHomePage() {
+                return this.$route.fullPath === "/";
             }
         },
         methods: {
