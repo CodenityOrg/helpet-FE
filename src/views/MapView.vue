@@ -57,7 +57,8 @@
                 },
                 flagInfoUser: false,
                 crntUser: {},
-                map: {}
+                map: {},
+                mbMarkers: []
             }
         },
         components: {
@@ -65,7 +66,8 @@
         },
         watch: {
             markers() {
-                this.mapMarker();
+                this.clearMap();
+                this.createMarkers();
             }
         },
         beforeDestroy() {
@@ -75,17 +77,23 @@
             showUser(user) {
                 this.$emit('onShowUserInfo', user);
             },
+            clearMap() {
+                for (const mbMarker of this.mbMarkers) {
+                    mbMarker.remove();
+                }
+                this.mbMarkers = [];
+            },
             mapInitialized(map) {
                 this.map = map;
             },
-            mapMarker() {
+            createMarkers() {
                 for (const marker of this.markers) {
-                  new mapboxgl.Marker(this.genLayoutMarker(marker), {
-                    offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
-                  })
-                  .setLngLat(marker.geometry.coordinates)
-                  .addTo(this.map);
-
+                    const mbMarker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
+                            offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
+                        })
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(this.map);
+                    this.mbMarkers.push(mbMarker);
                 }
             },
             genLayoutMarker(data) {
