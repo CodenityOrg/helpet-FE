@@ -304,12 +304,9 @@
     max-height: 1050px;
 }
 
-.cont--inicio .cont--mapa {
-    flex: 0 0 65%;
-}
+
 .cont--inicio .cont--mapa #map {
-    min-height: 100vh;
-    position: fixed;
+    min-height: 100%;
     width: 100%;
 }
 
