@@ -80,6 +80,7 @@
                 flagInfoUser: false,
                 crntUser: {},
                 map: {},
+                mbMarkers: [],
                 isMobile: false,
                 customStyles: {}
             }
@@ -99,6 +100,7 @@
         },
         watch: {
             markers() {
+                this.clearMap();
                 this.mapMarker();
             }
         },
@@ -112,14 +114,19 @@
             mapInitialized(map) {
                 this.map = map;
             },
+            clearMap() {
+                for (const mbMarker of this.mbMarkers) {
+                    mbMarker.remove();
+                }
+                this.mbMarkers = [];
+            },
             mapMarker() {
                 for (const marker of this.markers) {
-                  new mapboxgl.Marker(this.genLayoutMarker(marker), {
-                    offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
-                  })
-                  .setLngLat(marker.geometry.coordinates)
-                  .addTo(this.map);
-
+                    this.mbMarkers.push(new mapboxgl.Marker(this.genLayoutMarker(marker), {
+                        offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
+                    })
+                    .setLngLat(marker.geometry.coordinates)
+                    .addTo(this.map))
                 }
             },
             genLayoutMarker(data) {

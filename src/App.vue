@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-      <div id="snackbar"></div>
       <nav-bar
         @onShowLogin="flagLogin=true"
       ></nav-bar>

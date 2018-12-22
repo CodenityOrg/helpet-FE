@@ -10,8 +10,19 @@
             <button class="btn--show__info" @click="showInfo">Ver info</button>
         </div>
         <div class="tarjeta__imagen">
-            
+            <carousel
+                v-if="item.photos && item.photos.length"
+                :perPageCustom="[[1024, 1]]"
+            >
+                <slide
+                    :key="photo._id"
+                    v-for="photo in item.photos"
+                >
+                    <img :src="photo.thumbnailPath" alt="perrito encontrado">
+                </slide>
+            </carousel>
             <img 
+                v-else
                 src="https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg" 
                 alt="perrito encontrado">
         </div>

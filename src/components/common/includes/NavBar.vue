@@ -12,7 +12,7 @@
             <b-navbar-nav class="ml-auto navbar__menu">
                 <template v-if="!isAuthenticated">
                     <b-nav-item>
-                        <a href="" @click="clickLogin()">Inicia</a>
+                        <a href="" @click="clickLogin">Inicia</a>
                     </b-nav-item>
                     <b-nav-item >
                         <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
@@ -62,7 +62,7 @@
                 this.logout();
                 this.$router.go();
             },
-            clickLogin() {
+            clickLogin(event) {
                 event.preventDefault();
                 this.$emit('onShowLogin');
             }
