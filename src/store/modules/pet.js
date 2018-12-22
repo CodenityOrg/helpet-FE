@@ -54,10 +54,13 @@ const actions = {
 }
 
 const getCoordinates = (post) => {
+    // console.log('MY POST',post)
     return {
         id: post._id,
         latitude: post.latitude,
-        longitude: post.longitude
+        longitude: post.longitude,
+        photo: post.photos[0].thumbnailPath,
+        type: 1
     }
 }
 
