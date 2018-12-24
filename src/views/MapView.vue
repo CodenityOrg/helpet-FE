@@ -15,7 +15,7 @@
                 <router-view @onShowInfoUser="showUser"></router-view>
             </div>
         </b-col>
-        <b-col md="8" sm="12" v-if="!isMobile" class="cont--mapa">
+        <b-col md="8" sm="12" class="cont--mapa">
             <mapbox 
                 access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                 :map-options="{
@@ -58,7 +58,6 @@
                 crntUser: {},
                 map: {},
                 mbMarkers: [],
-                isMobile: false,
                 customStyles: {}
             }
         },
