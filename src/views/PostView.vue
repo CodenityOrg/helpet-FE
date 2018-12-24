@@ -9,14 +9,8 @@
                     <div>
                         <form class="form" id="register-form">
                             <div class="form-input">
-                                <vue-dropzone 
-                                    ref="myVueDropzone" 
-                                    id="dropzone" 
-                                    @vdropzone-file-added="fileAdded"
-                                    :options="dropzoneOptions">
-                                </vue-dropzone>
-                                <input type="file" name="photo">
-                                <figure class="avatar">
+
+                                <div class="avatar">
                                     <img height="128" width="128" :src='preview'>
                                     <div class="file is-centered">
                                         <label class="file-label">
@@ -31,7 +25,7 @@
                                         </span>
                                         </label>
                                     </div>
-                                </figure>
+                                </div>
                             </div>
                             <div class="form-input">
                                 <textarea
