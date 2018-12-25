@@ -9,7 +9,7 @@ import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
-import loadingMixin from './views/includes/loading-mixin';
+import loadingMixin from './components/common/includes/loading-mixin';
 
 Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
