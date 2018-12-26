@@ -47,7 +47,7 @@
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import {random} from "lodash";
+    import { random } from "lodash";
     import Mapbox from 'mapbox-gl-vue';
     export default {
         name: "Map",
@@ -93,7 +93,7 @@
             },
             genLayoutMarker(data) {
                 const el = document.createElement("div");
-                el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
+                el.className = (data.type == 1) ? "marker marker--encontrado" : "xmarker marker--perdido";
                 if (data.photo) {
                     el.style.backgroundImage = `url(${data.photo})`;
                 }
