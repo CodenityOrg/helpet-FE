@@ -14,5 +14,8 @@ export default {
     },
     update(payload) {
         return axios.put(`${HOST}/users/profile`, payload);
+    },
+    userById(id) {
+        return axios.get(`${HOST}/users/${id}`);
     }
 };

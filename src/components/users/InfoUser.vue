@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-6 img-promo">
-                    <img style="margin-bottom: 0px;" :src="currentUser.user.profile">
+                    <img style="margin-bottom: 0px;" :src="currentUser.profile">
                 </div>
                 <div class="col-6">
                     <div style="display:flex;">
@@ -17,7 +17,7 @@
                             <p>Nombre:</p>
                         </div>
                         <div class="col-6" style="padding: 0 1em;">
-                            <p>{{ currentUser.user.firstName }} {{ currentUser.user.lastName }}</p>
+                            <p>{{ currentUser.firstName }} {{ currentUser.lastName }}</p>
                         </div>
                     </div>
                     <div style="display:flex;">
