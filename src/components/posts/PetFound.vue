@@ -10,14 +10,15 @@
       :key="index"
       v-for="(foundPost, index) in foundPosts"
       :item="foundPost"
+      @onShowInfo="showUser"
     />
   </infinite-list>
 </template>
 
 <script>
-  import ItemFound from "./Item";
+  import ItemFound from "./PostItem";
   import { mapActions, mapState, mapGetters } from "vuex";
-  import InfiniteList from "../../components/InfiniteList";
+  import InfiniteList from "../common/InfiniteList";
   import listMixin from "./mixins/list";
 
   export default {
@@ -42,7 +43,10 @@
     methods: {
       ...mapActions({
         getItems: "getFoundPosts"
-      })
+      }),
+      showUser(user) {
+        this.$emit('onShowInfoUser', user);
+      },
     },
     beforeDestroy() {
       this.$store.commit("RESET_FOUND_POSTS");

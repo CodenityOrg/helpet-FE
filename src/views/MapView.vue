@@ -12,7 +12,7 @@
                         <button type="button" class="tab-link posts-tab">Encontrados</button>
                     </router-link>
                 </div>
-                <router-view></router-view>
+                <router-view @onShowInfoUser="showUser"></router-view>
             </div>
         </div>
         <div class="cont--mapa">
@@ -55,39 +55,46 @@
                     zoom: 14,
                     center: new google.maps.LatLng(-18.013611, -70.252769),
                 },
-                map: {}
+                flagInfoUser: false,
+                crntUser: {},
+                map: {},
+                mbMarkers: []
             }
         },
         components: {
             Mapbox
         },
         watch: {
-            positions() {
-                this.setMapOnAll(null);
+            markers() {
+                this.clearMap();
+                this.createMarkers();
             }
         },
         beforeDestroy() {
             this.map.remove();
         },
         methods: {
-            setMapOnAll(map) {
-                for (const marker of this.markers) {
-                    if (marker.setMap) {
-                        marker.setMap(map);
-                    }
+            showUser(user) {
+                this.$emit('onShowUserInfo', user);
+            },
+            clearMap() {
+                for (const mbMarker of this.mbMarkers) {
+                    mbMarker.remove();
                 }
+                this.mbMarkers = [];
             },
             mapInitialized(map) {
                 this.map = map;
-                for (const markers of this.markers) {
-                    let marker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
-                        offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
-                    })
-                    .setLngLat(marker.geometry.coordinates)
-                    .addTo(map);
+            },
+            createMarkers() {
+                for (const marker of this.markers) {
+                    const mbMarker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
+                            offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
+                        })
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(this.map);
+                    this.mbMarkers.push(mbMarker);
                 }
-    
-                
             },
             genLayoutMarker(data) {
                 const el = document.createElement("div");
@@ -125,3 +132,6 @@
 
 </script>
 
+<style>
+    @import "../assets/css/componentes.css";
+</style>

@@ -17,21 +17,25 @@
                     <div class="form-input">
                         <label for="inputEmail">Correo</label>
                         <input
+                            v-validate="'required|email'"
                             v-model="credentials.email"
                             type="email"
                             name="email"
                             placeholder="Correo"
                         />
+                        <span>{{ errors.first('email') }}</span>
                     </div>
 
                     <div class="form-input">
                         <label for="inputPassword">Contraseña</label>
                         <input
+                            v-validate="'required'"
                             v-model="credentials.password"
                             type="password"
                             name="password"
                             placeholder="Contraseña"
                         />
+                        <span>{{ errors.first('password') }}</span>
                     </div>
                     <div class="form-submit">
                         <button class="frm--btm" type="submit" @click="signUp">Iniciar sesion</button>

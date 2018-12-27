@@ -3,8 +3,11 @@
         class="tarjeta tarjeta--perrrito-perdido"
         :id="item.id">
         <div class="tarjeta__titulo">
-            <img :src="item.user.profile" alt="foto de perfil">
-            <span>{{fullName}}</span>
+            <div class="image__name">
+                <img :src="item.user.profile" alt="foto de perfil">
+                <span>{{fullName}}</span>
+            </div>
+            <button class="btn--show__info" @click="showInfo">Ver info</button>
         </div>
         <div class="tarjeta__imagen">
             <carousel v-if="item.photos && item.photos.length" :perPageCustom="[[1024, 1]]" >
@@ -36,17 +39,27 @@
 </template>
 <script>
 import { Carousel, Slide } from 'vue-carousel';
+import { mapActions, mapState } from "vuex";
 
 export default {
     name: "ItemFound",
     components: {
-         Carousel,
+        Carousel,
         Slide
     },
     props: {
         item: {
             type: Object
         }
+    },
+    methods: {
+        ...mapActions({
+            getOne: "getOne",
+        }),
+        async showInfo() {
+            const user = await this.getOne(this.item.user._id);
+            this.$emit('onShowInfo', user);
+        },
     },
     computed: {
         fullName() {
