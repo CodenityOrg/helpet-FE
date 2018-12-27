@@ -55,7 +55,7 @@ const router = new Router({
       path: '/mapa',
       name: 'Map',
       component: MapView,
-      
+
       children: [
         {
           name: 'ListFound',
@@ -74,7 +74,12 @@ const router = new Router({
           }
         },
       ],
-      
+
+    },
+    {
+      path: '*',
+      name:'Home',
+      component: HomePage
     }
   ],
 });
