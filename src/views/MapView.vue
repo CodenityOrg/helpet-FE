@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="cont--mapa">
-            <mapbox 
+            <mapbox
                 access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                 :map-options="{
                     style: 'mapbox://styles/mapbox/streets-v9',
@@ -28,7 +28,7 @@
                     position: 'top-left'
                 }"
                 :nav-control="{
-                    show: true, 
+                    show: true,
                     position: 'top-left'
                 }"
                 @map-init="mapInitialized"
@@ -37,8 +37,10 @@
                     position: 'top-left'
                 }"
             />
-           
+
         </div>
+        <notifications group="foo" position='bottom right' />
+
     </div>
 </template>
 
@@ -131,7 +133,6 @@
     };
 
 </script>
-
 <style>
     @import "../assets/css/componentes.css";
 </style>

@@ -11,7 +11,7 @@
                 <li >
                     <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
                 </li>
-            </template> 
+            </template>
             <template v-else>
                 <li>
                     <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
@@ -57,7 +57,7 @@
                 this.$emit('onShowLogin');
             }
         }
-        
+
     };
 </script>
 

@@ -19,20 +19,20 @@
                         <input
                             v-validate="'required|email'"
                             v-model="credentials.email"
-                            type="email" 
-                            name="email" 
-                            placeholder="Correo"                            
+                            type="email"
+                            name="email"
+                            placeholder="Correo"
                         />
                         <span>{{ errors.first('email') }}</span>
                     </div>
 
                     <div class="form-input">
                         <label for="inputPassword">Contraseña</label>
-                        <input 
+                        <input
                             v-validate="'required'"
                             v-model="credentials.password"
-                            type="password" 
-                            name="password" 
+                            type="password"
+                            name="password"
                             placeholder="Contraseña"
                         />
                         <span>{{ errors.first('password') }}</span>
@@ -41,13 +41,16 @@
                         <button class="frm--btm" type="submit" @click="signUp">Iniciar sesion</button>
                     </div>
                 </form>
+
             </div>
         </div>
+
+
     </div>
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions,mapState} from "vuex";
     export default {
         name: 'LoginUser',
         data() {
@@ -58,6 +61,11 @@
                 }
             }
         },
+        computed: {
+          ...mapState({
+              isAuthenticated: state => state.auth.authenticated
+          }),
+        },
         methods: {
             ...mapActions({
                 login: "login"
@@ -67,10 +75,22 @@
                 event.stopPropagation();
                 const credentials = this.credentials;
                 this.isLoading = true;
-                await this.login(credentials);
-                this.isLoading = false;
-                this.$emit('onCloseLogin');
-                this.$router.push("/mapa/encontrados")
+                let result = await this.login(credentials);
+                if (!this.isAuthenticated) {
+                  this.$notify({
+                     group: 'foo',
+                     type: 'error',
+                     title: 'INICIO DE SESION',
+                     text: 'Tu usuario o contraseña son incorrectos  <br> <b>   "Por favor intentelo nuevamente"</b>',
+                  });
+                }
+                if (this.isAuthenticated) {
+                  this.isLoading = false;
+                  this.$emit('onCloseLogin');
+                  this.$router.push("/mapa/encontrados")
+                }
+
+
             }
         }
     };
