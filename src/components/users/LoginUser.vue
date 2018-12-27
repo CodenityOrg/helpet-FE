@@ -19,20 +19,20 @@
                         <input
                             v-validate="'required|email'"
                             v-model="credentials.email"
-                            type="email" 
-                            name="email" 
-                            placeholder="Correo"                            
+                            type="email"
+                            name="email"
+                            placeholder="Correo"
                         />
                         <span>{{ errors.first('email') }}</span>
                     </div>
 
                     <div class="form-input">
                         <label for="inputPassword">Contraseña</label>
-                        <input 
+                        <input
                             v-validate="'required'"
                             v-model="credentials.password"
-                            type="password" 
-                            name="password" 
+                            type="password"
+                            name="password"
                             placeholder="Contraseña"
                         />
                         <span>{{ errors.first('password') }}</span>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions,mapState} from "vuex";
     export default {
         name: 'LoginUser',
         data() {
@@ -57,6 +57,11 @@
                     password: ""
                 }
             }
+        },
+        computed: {
+          ...mapState({
+              isAuthenticated: state => state.auth.authenticated
+          }),
         },
         methods: {
             ...mapActions({

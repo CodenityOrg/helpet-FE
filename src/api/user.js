@@ -15,6 +15,9 @@ export default {
     update(payload) {
         return axios.put(`${HOST}/users/profile`, payload);
     },
+    validate(payload) {
+      return axios.post(`${HOST}/users/validate`, payload);
+    },
     userById(id) {
         return axios.get(`${HOST}/users/${id}`);
     }

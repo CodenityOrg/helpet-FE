@@ -10,50 +10,50 @@
                         <div class="form-input">
                             <input
                                 v-validate="'required|alpha'"
-                                type="text" 
-                                v-model="user.firstName" 
-                                name="name" 
+                                type="text"
+                                v-model="user.firstName"
+                                name="name"
                                 placeholder="Nombres" />
                             <span>{{ errors.first('name') }}</span>
-                        </div>                        
+                        </div>
                         <div class="form-input">
-                            <input 
+                            <input
                                 v-validate="'required|alpha'"
-                                type="text" 
-                                v-model="user.lastName" 
-                                name="lastname"  
+                                type="text"
+                                v-model="user.lastName"
+                                name="lastname"
                                 placeholder="Apellidos" />
                             <span>{{ errors.first('lastname') }}</span>
                         </div>
                         <div class="form-input">
-                            <input 
+                            <input
                                 v-validate="'required|numeric'"
-                                type="phone" 
-                                v-model="user.phone" 
-                                name="phone" 
+                                type="phone"
+                                v-model="user.phone"
+                                name="phone"
                                 placeholder="Telefono (Opcional)"/>
                             <span>{{ errors.first('phone') }}</span>
                         </div>
                         <div class="form-input">
-                            <input 
+                            <input type="email"
                                 v-validate="'required|email'"
-                                type="email" 
-                                v-model="user.email" 
-                                name="email" 
+
+                                v-model="user.email"
+                                name="email"
+                                  @keyup="changeValidate"
                                 placeholder="Correo" />
-                            <span>{{ errors.first('email') }}</span>
+                                <div class="validate" :v-if="validate">{{ this.validateEmail.validate.message }}</div>
                         </div>
                         <div class="form-input">
-                            <input 
-                                v-validate="'required'"
-                                type="password" 
-                                v-model="user.password" 
-                                name="password" 
+                            <input
+                                type="password"
+                                v-model="user.password"
+                                name="password"
                                 placeholder="Contraseña" />
                             <span>{{ errors.first('password') }}</span>
                         </div>
                         <div>
-                            <vue-recaptcha 
+                            <vue-recaptcha
                                 @verify="verify"
                                 sitekey="6Ld2lDMUAAAAAAANVdV6YEsvi8xehx9NmXK8Ce8a">
                             </vue-recaptcha>
@@ -75,12 +75,14 @@
                 </div>
             </div>
         </section>
+        <notifications group="foo" position='bottom right' />
+
     </div>
 </template>
 
 <script>
 
-    import {mapActions} from "vuex";
+    import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
 
     export default {
@@ -97,11 +99,17 @@
             document.head.appendChild(recaptchaScript)
         },
         components: { VueRecaptcha },
+        computed: {
+            ...mapState({
+                validateEmail: state => state.user,
+            }),
+        },
         methods: {
             ...mapActions({
-                registerUser: "registerUser"
+                registerUser: "registerUser",
+                validate: "validate",
             }),
-            async register() {
+            async register(event) {
                 event.preventDefault();
                 event.stopPropagation();
                 if (this.isVerified) {
@@ -117,7 +125,10 @@
             },
             expired() {
                 this.isVerified = false;
-            }
+            },
+            changeValidate(){
+              this.validate({ email: this.user.email });
+            },
         }
     };
 </script>
