@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="cont--mapa">
-            <mapbox 
+            <mapbox
                 access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                 :map-options="{
                     style: 'mapbox://styles/mapbox/streets-v9',
@@ -28,7 +28,7 @@
                     position: 'top-left'
                 }"
                 :nav-control="{
-                    show: true, 
+                    show: true,
                     position: 'top-left'
                 }"
                 @map-init="mapInitialized"
@@ -37,15 +37,17 @@
                     position: 'top-left'
                 }"
             />
-           
+
         </div>
+        <notifications group="foo" position='bottom right' />
+
     </div>
 </template>
 
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import {random} from "lodash";
+    import { random } from "lodash";
     import Mapbox from 'mapbox-gl-vue';
     export default {
         name: "Map",
@@ -98,7 +100,7 @@
             },
             genLayoutMarker(data) {
                 const el = document.createElement("div");
-                el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
+                el.className = (data.type == 1) ? "marker marker--encontrado" : "xmarker marker--perdido";
                 if (data.photo) {
                     el.style.backgroundImage = `url(${data.photo})`;
                 }
@@ -131,7 +133,10 @@
     };
 
 </script>
+<<<<<<< HEAD
 
 <style>
     @import "../assets/css/componentes.css";
 </style>
+=======
+>>>>>>> c99533ae7e94cf08bcf931cc1465fb3766d80a7f
