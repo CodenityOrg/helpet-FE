@@ -97,13 +97,22 @@
                 }
             },
             genLayoutMarker(data) {
+                // const self = this;
                 const el = document.createElement("div");
                 el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
                 if (data.photo) {
                     el.style.backgroundImage = `url(${data.photo})`;
                 }
+                el.dataset.idPet = data.id;
                 el.style.width = data.properties.iconSize[0] ? (data.properties.iconSize[0] + 'px') : '48px';
                 el.style.height = data.properties.iconSize[1] ? (data.properties.iconSize[1] + 'px') : '48px';
+                el.addEventListener("click",function(e){
+                  const { target: { dataset: { idPet }}} = e;
+                  // const pets = self.$children[3].$refs
+                  const divPet = document.getElementById(idPet);
+                  const tabLost = document.getElementById('tab-perdidos') || document.getElementById('tab-encontrados');
+                  tabLost.scrollTop = divPet.offsetTop;
+                });
                 return el;
             }
         },
