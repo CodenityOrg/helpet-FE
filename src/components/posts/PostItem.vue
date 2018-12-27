@@ -43,6 +43,7 @@
 </template>
 <script>
 import { Carousel, Slide } from 'vue-carousel';
+import { mapActions, mapState } from "vuex";
 
 export default {
     name: "ItemFound",
@@ -56,8 +57,12 @@ export default {
         }
     },
     methods: {
-        showInfo() {
-            this.$emit('onShowInfo', this.item);
+        ...mapActions({
+            getOne: "getOne",
+        }),
+        async showInfo() {
+            const user = await this.getOne(this.item.user._id);
+            this.$emit('onShowInfo', user);
         },
     },
     computed: {
