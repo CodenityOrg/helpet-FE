@@ -133,10 +133,6 @@
     };
 
 </script>
-<<<<<<< HEAD
-
 <style>
     @import "../assets/css/componentes.css";
 </style>
-=======
->>>>>>> c99533ae7e94cf08bcf931cc1465fb3766d80a7f
