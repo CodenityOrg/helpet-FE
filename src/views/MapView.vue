@@ -51,7 +51,7 @@
                     position: 'top-left'
                 }"
                 :nav-control="{
-                    show: true, 
+                    show: true,
                     position: 'top-left'
                 }"
                 @map-init="mapInitialized"
@@ -67,7 +67,7 @@
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import {random} from "lodash";
+    import { random } from "lodash";
     import Mapbox from 'mapbox-gl-vue';
     export default {
         name: "Map",
@@ -101,7 +101,7 @@
         watch: {
             markers() {
                 this.clearMap();
-                this.mapMarker();
+                this.createMarkers();
             }
         },
         beforeDestroy() {
@@ -111,27 +111,28 @@
             showUser(user) {
                 this.$emit('onShowUserInfo', user);
             },
-            mapInitialized(map) {
-                this.map = map;
-            },
             clearMap() {
                 for (const mbMarker of this.mbMarkers) {
                     mbMarker.remove();
                 }
                 this.mbMarkers = [];
             },
-            mapMarker() {
+            mapInitialized(map) {
+                this.map = map;
+            },
+            createMarkers() {
                 for (const marker of this.markers) {
-                    this.mbMarkers.push(new mapboxgl.Marker(this.genLayoutMarker(marker), {
-                        offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
-                    })
-                    .setLngLat(marker.geometry.coordinates)
-                    .addTo(this.map))
+                    const mbMarker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
+                            offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
+                        })
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(this.map);
+                    this.mbMarkers.push(mbMarker);
                 }
             },
             genLayoutMarker(data) {
                 const el = document.createElement("div");
-                el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
+                el.className = (data.type == 1) ? "marker marker--encontrado" : "xmarker marker--perdido";
                 if (data.photo) {
                     el.style.backgroundImage = `url(${data.photo})`;
                 }
@@ -164,7 +165,6 @@
     };
 
 </script>
-
 <style>
     @import "../assets/css/componentes.css";
 </style>

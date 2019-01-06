@@ -67,7 +67,7 @@
                 this.$emit('onShowLogin');
             }
         }
-        
+
     };
 </script>
 
