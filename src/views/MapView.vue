@@ -1,28 +1,5 @@
 <template>
     <b-row style="margin: 0;" class="cont cont--inicio">
-        <b-col md="8" sm="12" v-if="isMobile" class="cont--mapa">
-            <mapbox 
-                access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
-                :map-options="{
-                    style: 'mapbox://styles/mapbox/streets-v9',
-                    center: [-70.221799, -18.0031498],
-                    zoom: 15
-                }"
-                :geolocate-control="{
-                    show: true,
-                    position: 'top-left'
-                }"
-                :nav-control="{
-                    show: true, 
-                    position: 'top-left'
-                }"
-                @map-init="mapInitialized"
-                :fullscreen-control="{
-                    show: true,
-                    position: 'top-left'
-                }"
-            />
-        </b-col>
         <b-col md="4" sm="12" class="cont--tarjetas">
             <div class="content">
                 <div class="tab-links">
@@ -38,7 +15,7 @@
                 <router-view @onShowInfoUser="showUser"></router-view>
             </div>
         </b-col>
-        <b-col md="8" sm="12" v-if="!isMobile" class="cont--mapa">
+        <b-col md="8" sm="12" class="cont--mapa">
             <mapbox 
                 access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                 :map-options="{
@@ -81,22 +58,11 @@
                 crntUser: {},
                 map: {},
                 mbMarkers: [],
-                isMobile: false,
                 customStyles: {}
             }
         },
         components: {
             Mapbox
-        },
-        mounted() {
-            const that = this;
-            window.onresize = function(event) {
-                if (window.innerWidth < 650) {
-                    that.isMobile = true;
-                } else {
-                    that.isMobile = false;
-                }
-            }
         },
         watch: {
             markers() {
