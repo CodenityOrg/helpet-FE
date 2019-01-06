@@ -1,9 +1,9 @@
 <template>
     <div>
         <loading :active.sync="isLoading" />
-        <section class="cont cont--inicio">
+        <section class="row cont cont--inicio">
         <!-- inicio de formulario -->
-            <div class="cont--formulario">
+            <div class="col-md-4 cont--formulario">
                 <form id="post-form">
                     <h3 align="center">Informacion de la mascota</h3>
                     <div>
@@ -88,7 +88,7 @@
             </div>
         <!-- Final de formulario -->
         <!-- Inicio del mapa -->
-            <div class="cont--mapa">
+            <div class="col-md-8 cont--mapa">
                 <mapbox 
                     access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                     :map-options="{

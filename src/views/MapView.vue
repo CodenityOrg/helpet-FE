@@ -1,6 +1,6 @@
 <template>
-    <div class="cont cont--inicio">
-        <div class="cont--tarjetas">
+    <b-row style="margin: 0;" class="cont cont--inicio">
+        <b-col md="4" sm="12" class="cont--tarjetas">
             <div class="content">
                 <div class="tab-links">
                     <router-link :to="{name : 'ListLost'}" exact>
@@ -14,9 +14,9 @@
                 </div>
                 <router-view @onShowInfoUser="showUser"></router-view>
             </div>
-        </div>
-        <div class="cont--mapa">
-            <mapbox
+        </b-col>
+        <b-col md="8" sm="12" class="cont--mapa">
+            <mapbox 
                 access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                 :map-options="{
                     style: 'mapbox://styles/mapbox/streets-v9',
@@ -37,11 +37,8 @@
                     position: 'top-left'
                 }"
             />
-
-        </div>
-        <notifications group="foo" position='bottom right' />
-
-    </div>
+        </b-col>
+    </b-row>
 </template>
 
 <script>
@@ -60,7 +57,8 @@
                 flagInfoUser: false,
                 crntUser: {},
                 map: {},
-                mbMarkers: []
+                mbMarkers: [],
+                customStyles: {}
             }
         },
         components: {

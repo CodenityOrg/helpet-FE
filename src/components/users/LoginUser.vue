@@ -1,9 +1,12 @@
 <template>
-    <div class="modal">
+    <div class="modal-hp">
         <div class="modal__box modal--inicio-sesion">
             <div class="modal-header">
                 <h3 class="titulo"></h3>
-                <button type="button" class="btnCerrarModal" @click="$emit('onCloseLogin')">
+                <button 
+                    type="button" 
+                    class="btnCerrarModal" 
+                    @click="closeLogin">
                     X
                 </button>
             </div>
@@ -89,8 +92,6 @@
                   this.$emit('onCloseLogin');
                   this.$router.push("/mapa/encontrados")
                 }
-
-
             }
         }
     };
