@@ -131,6 +131,16 @@
     transition: all .3s;
 }
 
+.navbar-home {
+    background: transparent !important;
+    position: absolute !important;
+}
+
+.hp-navbar {
+    background-color: rgba(33, 177, 106,1); 
+    padding: 20px 30px !important; 
+}
+
 .navbar__logo {
     max-width: 10em;
     display: flex;
@@ -158,7 +168,7 @@
     font-weight: 300;
     font-size: 1.2em;
     text-decoration: none;
-    margin-right: 1em;
+    margin-right: 0.5em;
     transition: all .3s;
     outline: none;
     border: none;
@@ -283,20 +293,16 @@ html, body {
 
 .cont--inicio {
     padding-top: 0;
-    display: flex;
     background-color: var(--color-gris);
-    position: absolute;
-    bottom: 0;
-    top: 90px;
+    height: calc(100% - 90px);
 }
 
 .cont--inicio .cont--tarjetas {
-    padding-top: 4em;
+    display: flex;
+    padding-top: 2em;
     padding-bottom: 2em;
     padding-left: 2em;
     padding-right: 2em;
-    flex: 0 0 35%;
-    display: flex;
 }
 
 .content {
@@ -305,12 +311,9 @@ html, body {
     flex-direction: column;
 }
 
-.cont--inicio .cont--mapa {
-    flex: 0 0 65%;
-}
+
 .cont--inicio .cont--mapa #map {
-    min-height: 100vh;
-    position: fixed;
+    min-height: 100%;
     width: 100%;
 }
 

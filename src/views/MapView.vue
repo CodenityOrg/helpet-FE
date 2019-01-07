@@ -1,6 +1,6 @@
 <template>
-    <div class="cont cont--inicio">
-        <div class="cont--tarjetas">
+    <b-row style="margin: 0;" class="cont cont--inicio">
+        <b-col md="4" sm="12" class="cont--tarjetas">
             <div class="content">
                 <div class="tab-links">
                     <router-link :to="{name : 'ListLost'}" exact>
@@ -14,8 +14,8 @@
                 </div>
                 <router-view @onShowInfoUser="showUser"></router-view>
             </div>
-        </div>
-        <div class="cont--mapa">
+        </b-col>
+        <b-col md="8" sm="12" class="cont--mapa">
             <mapbox 
                 access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                 :map-options="{
@@ -28,7 +28,7 @@
                     position: 'top-left'
                 }"
                 :nav-control="{
-                    show: true, 
+                    show: true,
                     position: 'top-left'
                 }"
                 @map-init="mapInitialized"
@@ -37,15 +37,14 @@
                     position: 'top-left'
                 }"
             />
-           
-        </div>
-    </div>
+        </b-col>
+    </b-row>
 </template>
 
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import {random} from "lodash";
+    import { random } from "lodash";
     import Mapbox from 'mapbox-gl-vue';
     export default {
         name: "Map",
@@ -58,7 +57,8 @@
                 flagInfoUser: false,
                 crntUser: {},
                 map: {},
-                mbMarkers: []
+                mbMarkers: [],
+                customStyles: {}
             }
         },
         components: {
@@ -98,7 +98,7 @@
             },
             genLayoutMarker(data) {
                 const el = document.createElement("div");
-                el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
+                el.className = (data.type == 1) ? "marker marker--encontrado" : "xmarker marker--perdido";
                 if (data.photo) {
                     el.style.backgroundImage = `url(${data.photo})`;
                 }
@@ -138,7 +138,6 @@
     };
 
 </script>
-
 <style>
     @import "../assets/css/componentes.css";
 </style>

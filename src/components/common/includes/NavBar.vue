@@ -1,33 +1,40 @@
 <template>
-    <nav class="navbar">
-        <div class="navbar__logo">
-            <a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a>
-        </div>
-        <ul class="navbar__menu">
-            <template v-if="!isAuthenticated">
-                <li>
-                    <a href="" @click="clickLogin()">Inicia</a>
-                </li>
-                <li >
-                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
-                </li>
-            </template> 
-            <template v-else>
-                <li>
-                    <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
-                </li>
-                <li>
-                    <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
-                </li>
-            </template>
-            <li>
-                <router-link :to="{name : 'ListLost'}">Mapa</router-link>
-            </li>
-            <li v-if="isAuthenticated">
-                <button @click="doLogout">Cerrar sesión</button>
-            </li>
-        </ul>
-    </nav>
+    <b-navbar 
+        class="navbar hp-navbar" 
+        :class="{ 'navbar-home': isHomePage }"
+        toggleable="md" 
+        type="dark">
+        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+        <b-navbar-brand class="navbar__logo" href="#"><a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a></b-navbar-brand>
+
+        <b-collapse is-nav id="nav_collapse">
+            <b-navbar-nav class="ml-auto navbar__menu">
+                <template v-if="!isAuthenticated">
+                    <b-nav-item>
+                        <a href="" @click="clickLogin">Inicia</a>
+                    </b-nav-item>
+                    <b-nav-item >
+                        <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                    </b-nav-item>
+                </template> 
+                <template v-else>
+                    <b-nav-item>
+                        <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
+                    </b-nav-item>
+                    <b-nav-item>
+                        <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
+                    </b-nav-item>
+                </template>
+                <b-nav-item>
+                    <router-link :to="{name : 'ListLost'}">Mapa</router-link>
+                </b-nav-item>
+                <b-nav-item v-if="isAuthenticated">
+                    <button @click="doLogout">Cerrar sesión</button>
+                </b-nav-item>
+            </b-navbar-nav>
+        </b-collapse>
+    </b-navbar>
 </template>
 
 <script>
@@ -42,6 +49,9 @@
             }),
             fullName() {
                 return this.user.firstName + " " + this.user.lastName;
+            },
+            isHomePage() {
+                return this.$route.fullPath === "/";
             }
         },
         methods: {
@@ -52,12 +62,12 @@
                 this.logout();
                 this.$router.go();
             },
-            clickLogin() {
+            clickLogin(event) {
                 event.preventDefault();
                 this.$emit('onShowLogin');
             }
         }
-        
+
     };
 </script>
 
