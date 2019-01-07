@@ -1,7 +1,6 @@
 <template>
-    <div
-        class="tarjeta tarjeta--perrrito-perdido"
-        :id="item.id">
+    <div class="tarjeta tarjeta--perrrito-perdido" 
+        :id="item._id">
         <div class="tarjeta__titulo">
             <div class="image__name">
                 <img :src="item.user.profile" alt="foto de perfil">
