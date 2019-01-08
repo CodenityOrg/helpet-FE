@@ -9,32 +9,32 @@
                     <div>
                         <form class="form" id="register-form">
                             <div class="form-input">
-
-                                <div class="avatar">
-                                    <img height="128" width="128" :src='preview'>
-                                    <div class="file is-centered">
-                                        <label class="file-label">
-                                        <input class="file-input" type="file" name="photo" @change="processFile($event)">
-                                        <span class="file-cta">
-                                            <span class="file-icon">
-                                            <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="file-label">
-                                            Choose a file…
-                                            </span>
-                                        </span>
-                                        </label>
-                                    </div>
+                              <div class="grid-container">
+                                <div v-for="image in preview">
+                                  <div class="grid-item">
+                                    <img width="50px" height="50px" :src="image" />
+                                  </div>
                                 </div>
+                              </div>
+                            </div>
+                            <div class="form-input">
+
+                              <span class="btn btn-default btn-file">
+                                  Seleccionar Imagen <input
+                                              class="frm--btm"
+                                              type="file"
+                                              multiple="multiple"
+                                              v-on:change="filePreview" hidden/>
+                              </span>
                             </div>
                             <div class="form-input">
                                 <textarea
                                     placeholder="Descripcion"
                                     style="height: 100px;"
-                                    v-model="post.description" 
-                                    name="description" 
-                                    id="" 
-                                    cols="30" 
+                                    v-model="post.description"
+                                    name="description"
+                                    id=""
+                                    cols="30"
                                     rows="100"
                                     />
                             </div>
@@ -42,12 +42,12 @@
                                 <input v-model="post.address" type="text" name="address" placeholder="Direccion">
                             </div>
                             <div class="form-input">
-                                <selectize 
-                                    v-model="post.tags" 
+                                <selectize
+                                    v-model="post.tags"
                                     :settings="settings">
-                                    <option 
+                                    <option
                                         :key="tag._id"
-                                        v-for="tag in tags" 
+                                        v-for="tag in tags"
                                         :value="tag.value">
                                         {{tag.value}}
                                     </option>
@@ -70,8 +70,8 @@
                                 </div>
                             </div>
                             <div class="form-submit">
-                                <button 
-                                    @click="newPost" 
+                                <button
+                                    @click="newPost"
                                     class="btn btn-regular">
                                     Aceptar
                                 </button>
@@ -83,7 +83,7 @@
         <!-- Final de formulario -->
         <!-- Inicio del mapa -->
             <div class="cont--mapa">
-                <mapbox 
+                <mapbox
                     access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                     :map-options="{
                         style: 'mapbox://styles/mapbox/streets-v9',
@@ -95,7 +95,7 @@
                         position: 'top-left'
                     }"
                     :nav-control="{
-                        show: true, 
+                        show: true,
                         position: 'top-left'
                     }"
                     @map-init="mapInitialized"
@@ -134,7 +134,7 @@
             })
         },
         created() {
-            this.getTags();    
+            this.getTags();
         },
         beforeDestroy() {
             this.map.remove();
@@ -142,10 +142,24 @@
         methods: {
             ...mapActions({
                 getTags: "getTags",
-                createPost: "createPost"
+                createPost: "createPost",
+                previewPhotos: "previewPhotos",
             }),
+            filePreview(e) {
+              this.photos = [];
+              const img = e.target.files;
+              for (var i=0; i < img.length; i++){
+                  this.photos.push(img[i]);
+              }
+              for (var i=0; i<this.photos.length; i++){
+                  let reader = new FileReader();
+                  reader.addEventListener('load', () => {
+                    this.preview.push(reader.result);
+                  });
+                  reader.readAsDataURL(this.photos[i]);
+              }
+            },
             fileAdded(file) {
-                console.log(this.$refs.myVueDropzone)
             },
             processFile (e) {
                 this.post.photo = e.target.files[0];
@@ -180,7 +194,7 @@
                 if (this.marker && this.marker.remove) {
                     this.marker.remove();
                     this.marker = null;
-                } 
+                }
                 this.marker = new mapboxgl.Marker(this.genLayoutMarker(), {
                     offset: [-24, -24]
                 })
@@ -227,7 +241,9 @@
                     center: new google.maps.LatLng(-18.013611, -70.252769),
                 },
                 marker: {},
-                map: {}
+                map: {},
+                preview: [],
+                photos: []
             }
         }
     };
@@ -236,5 +252,44 @@
 <style scoped>
 @import "~selectize/dist/css/selectize.default.css";
 @import "~selectize/dist/css/selectize.bootstrap3.css";
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    padding: 0.5em 2em;
+    font-size: 0.8em;
+    line-height: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    background: var(--color-logo-verde);
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+.grid-item {
 
+}
 </style>
