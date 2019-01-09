@@ -6,7 +6,7 @@
                 <img :src="item.user.profile" alt="foto de perfil">
                 <span>{{fullName}}</span>
             </div>
-            <button class="btn--show__info" @click="showInfo">Ver info</button>
+            <button class="btn--show__info" @click="showInfo(item.user._id)">Ver info</button>
         </div>
         <div class="tarjeta__imagen">
             <carousel v-if="item.photos && item.photos.length" :perPageCustom="[[1024, 1]]" >
@@ -55,8 +55,8 @@ export default {
         ...mapActions({
             getOne: "getOne",
         }),
-        async showInfo() {
-            const user = await this.getOne(this.item.user._id);
+        async showInfo(id) {
+            const user = await this.getOne(id);
             this.$emit('onShowInfo', user);
         },
     },
