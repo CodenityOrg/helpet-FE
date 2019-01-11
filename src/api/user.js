@@ -18,7 +18,7 @@ export default {
     validate(payload) {
         return axios.post(`${HOST}/users/validate`, payload);
     },
-    userById(id) {
-        return axios.get(`${HOST}/users/${id}`);
+    userById({id, fullData}) {
+        return axios.get(`${HOST}/users/${id}?full=${fullData}`);
     }
 };

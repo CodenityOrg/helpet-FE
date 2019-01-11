@@ -35,7 +35,7 @@ const actions = {
         return userAPI.profile(fullData).then(res => res.data);
     },
     getOne({commit}, id) {
-        return userAPI.userById(id).then(res => res.data);
+        return userAPI.userById({id, fullData: true}).then(res => res.data);
     },
     updateUser({commit}, data) {
         return userAPI.update(data);
