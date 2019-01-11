@@ -86,12 +86,14 @@
                      title: 'INICIO DE SESION',
                      text: 'Tu usuario o contraseña son incorrectos  <br> <b>   "Por favor intentelo nuevamente"</b>',
                   });
-                }
-                if (this.isAuthenticated) {
+                } else {
                   this.isLoading = false;
-                  this.$emit('onCloseLogin');
+                  this.closeLogin();    
                   this.$router.push("/mapa/encontrados")
                 }
+            },
+            closeLogin() {
+                this.$emit('onCloseLogin');
             }
         }
     };
