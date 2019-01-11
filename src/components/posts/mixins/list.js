@@ -1,11 +1,13 @@
+import * as _ from "lodash";
+
 export default {
     methods: {
-        async scrollEnd() {
+        scrollEnd: _.throttle(async function () {
             this.isLoading = true;
             await this.getItems({ limit: this.limit, skip: this.skip });
             this.skip = this.skip + this.limit;
             this.isLoading = false;
-        }
+        }, 350)
     },
     data() {
         return {

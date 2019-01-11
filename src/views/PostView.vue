@@ -1,8 +1,9 @@
 <template>
     <div>
         <loading :active.sync="isLoading" />
-        <section class="cont cont--inicio">
-            <div class="cont--formulario">
+        <section class="row cont cont--inicio">
+        <!-- inicio de formulario -->
+            <div class="col-md-4 cont--formulario">
                 <form id="post-form">
                     <h3 align="center">Informacion de la mascota</h3>
                     <div>

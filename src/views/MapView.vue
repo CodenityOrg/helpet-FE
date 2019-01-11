@@ -1,6 +1,6 @@
 <template>
-    <div class="cont cont--inicio">
-        <div class="cont--tarjetas">
+    <b-row style="margin: 0;" class="cont cont--inicio">
+        <b-col md="4" sm="12" class="cont--tarjetas">
             <div class="content">
                 <div class="tab-links">
                     <router-link :to="{name : 'ListLost'}" exact>
@@ -14,11 +14,13 @@
                 </div>
                 <router-view @onShowInfoUser="showUser"></router-view>
             </div>
-        </div>
-        <PostMap
-            @init="mapInitialized"
-        />
-    </div>
+        </b-col>
+        <b-col md="8" sm="12" class="cont--mapa">
+            <PostMap
+                @init="mapInitialized"
+            />
+        </b-col>
+    </b-row>
 </template>
 
 <script>
@@ -33,29 +35,39 @@
         data() {
             return {
                 flagInfoUser: false,
-                crntUser: {}
+                crntUser: {},
+                map: {},
+                mbMarkers: [],
+                customStyles: {}
             }
         },
         watch: {
             markers() {
-                this.mapMarker();
+                this.clearMap();
+                this.createMarkers();
             }
         },
         methods: {
             showUser(user) {
                 this.$emit('onShowUserInfo', user);
             },
+            clearMap() {
+                for (const mbMarker of this.mbMarkers) {
+                    mbMarker.remove();
+                }
+                this.mbMarkers = [];
+            },
             mapInitialized(map) {
                 this.map = map;
             },
-            mapMarker() {
+            createMarkers() {
                 for (const marker of this.markers) {
-                  new mapboxgl.Marker(this.genLayoutMarker(marker), {
-                    offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
-                  })
-                  .setLngLat(marker.geometry.coordinates)
-                  .addTo(this.map);
-
+                    const mbMarker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
+                            offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]
+                        })
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(this.map);
+                    this.mbMarkers.push(mbMarker);
                 }
             }
         },
@@ -83,7 +95,6 @@
     };
 
 </script>
-
 <style>
     @import "../assets/css/componentes.css";
 </style>

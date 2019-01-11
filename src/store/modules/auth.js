@@ -1,8 +1,10 @@
 import authAPI from "../../api/auth";
 import Vue from "vue";
 import VueCookie from "vue-cookie";
+import Notifications from 'vue-notification';
 
 Vue.use(VueCookie);
+Vue.use(Notifications);
 
 const state = {
     authenticated: false,
@@ -25,6 +27,8 @@ const actions = {
             commit("SET_AUTHENTICATED", true);
             commit("SET_USER", user);
             VueCookie.set("helpet_auth", user.token);
+        } else {          
+          commit("SET_AUTHENTICATED", false);
         }
     },
     logout({commit}) {
