@@ -79,7 +79,8 @@ const router = new Router({
     {
       path: '*',
       name:'Home',
-      component: HomePage
+      redirect: { name: 'Home' },
+      //component: HomePage
     }
   ],
 });
