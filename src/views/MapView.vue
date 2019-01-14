@@ -16,7 +16,7 @@
             </div>
         </b-col>
         <b-col md="8" sm="12" class="cont--mapa">
-            <mapbox 
+            <mapbox
                 access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
                 :map-options="{
                     style: 'mapbox://styles/mapbox/streets-v9',
@@ -38,6 +38,8 @@
                 }"
             />
         </b-col>
+        <notifications group="foo" position='bottom right' />
+
     </b-row>
 </template>
 
