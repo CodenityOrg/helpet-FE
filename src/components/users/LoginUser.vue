@@ -29,7 +29,7 @@
                                     name="email"
                                     placeholder="Correo"
                                 />
-                                <span>{{ errors.first('email') }}</span>
+                                <span>{{ errors.first('email') }}</span>    
                             </div>
 
                             <div class="form-input">
