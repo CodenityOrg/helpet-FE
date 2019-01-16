@@ -3,9 +3,9 @@
         <div class="modal__box modal--inicio-sesion">
             <div class="modal-header">
                 <h3 class="titulo"></h3>
-                <button 
-                    type="button" 
-                    class="btnCerrarModal" 
+                <button
+                    type="button"
+                    class="btnCerrarModal"
                     @click="closeLogin">
                     X
                 </button>
@@ -66,19 +66,20 @@
         },
         computed: {
           ...mapState({
-              isAuthenticated: state => state.auth.authenticated
+              isAuthenticated: state => state.auth.authenticated,
           }),
         },
         methods: {
             ...mapActions({
-                login: "login"
+                login: "login",
             }),
             async signUp() {
                 event.preventDefault();
                 event.stopPropagation();
                 const credentials = this.credentials;
                 this.isLoading = true;
-                let result = await this.login(credentials);
+                await this.login(credentials);
+                console.log(this.isAuthenticated);
                 if (!this.isAuthenticated) {
                   this.$notify({
                      group: 'foo',
@@ -87,11 +88,14 @@
                      text: 'Tu usuario o contraseña son incorrectos  <br> <b>   "Por favor intentelo nuevamente"</b>',
                   });
                 }
-                if (this.isAuthenticated) {
+                if(this.isAuthenticated) {
                   this.isLoading = false;
                   this.$emit('onCloseLogin');
                   this.$router.push("/mapa/encontrados")
                 }
+            },
+            closeLogin() {
+                this.$emit('onCloseLogin');
             }
         }
     };

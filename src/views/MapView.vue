@@ -20,6 +20,8 @@
                 @init="mapInitialized"
             />
         </b-col>
+        <notifications group="foo" position='bottom right' />
+
     </b-row>
 </template>
 

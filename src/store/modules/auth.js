@@ -27,8 +27,8 @@ const actions = {
             commit("SET_AUTHENTICATED", true);
             commit("SET_USER", user);
             VueCookie.set("helpet_auth", user.token);
-        } else {          
-          commit("SET_AUTHENTICATED", false);
+        } else {
+            commit("SET_AUTHENTICATED", false);
         }
     },
     logout({commit}) {
