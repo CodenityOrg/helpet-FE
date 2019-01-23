@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
                 <b-row>
-                    <b-col v-if="showImage" md="6">
+                    <b-col class="d-none d-sm-block" md="6">
                         <div class="img-promo">
                             <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesion">
                             <span class="slogan">Ayudalo a ser encontrado y encuentra a tu mascota</span>
@@ -29,7 +29,7 @@
                                     name="email"
                                     placeholder="Correo"
                                 />
-                                <span>{{ errors.first('email') }}</span>
+                                <span>{{ errors.first('email') }}</span>    
                             </div>
 
                             <div class="form-input">
@@ -69,11 +69,6 @@
                     password: ""
                 },
                 showImage: true
-            }
-        },
-        created() {
-            window.onresize = function() {
-                this.showImage = window.innerWidth < 700;
             }
         },
         computed: {
