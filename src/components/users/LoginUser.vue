@@ -67,8 +67,7 @@
                 credentials: {
                     email: "",
                     password: ""
-                },
-                showImage: true
+                }
             }
         },
         computed: {
@@ -86,7 +85,6 @@
                 const credentials = this.credentials;
                 this.isLoading = true;
                 await this.login(credentials);
-                console.log(this.isAuthenticated);
                 if (!this.isAuthenticated) {
                   this.$notify({
                      group: 'foo',
@@ -94,8 +92,7 @@
                      title: 'INICIO DE SESION',
                      text: 'Tu usuario o contraseña son incorrectos  <br> <b>   "Por favor intentelo nuevamente"</b>',
                   });
-                }
-                if(this.isAuthenticated) {
+                } else {
                   this.isLoading = false;
                   this.$emit('onCloseLogin');
                   this.$router.push("/mapa/encontrados")
