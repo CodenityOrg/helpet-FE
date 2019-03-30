@@ -1,114 +1,96 @@
 <template>
     <div>
         <loading :active.sync="isLoading" />
-        <section class="cont cont--inicio">
-        <!-- inicio de formulario -->
-            <div class="cont--formulario">
-                <form id="post-form">
-                    <h3 align="center">Informacion de la mascota</h3>
-                    <div>
-                        <form class="form" id="register-form">
-                            <div class="form-input">
-                              <div class="grid-container">
-                                <div v-for="image in preview">
-                                  <div class="grid-item">
-                                    <img width="50px" height="50px" :src="image" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-input">
-
-                              <span class="btn btn-default btn-file">
-                                  Seleccionar Imagen <input
-                                              class="frm--btm"
-                                              type="file"
-                                              multiple="multiple"
-                                              v-on:change="filePreview" hidden/>
-                              </span>
-                            </div>
-                            <div class="form-input">
-                                <textarea
-                                    placeholder="Descripcion"
-                                    style="height: 100px;"
-                                    v-model="post.description"
-                                    name="description"
-                                    id=""
-                                    cols="30"
-                                    rows="100"
-                                    />
-                            </div>
-                            <div class="form-input">
-                                <input v-model="post.address" type="text" name="address" placeholder="Direccion">
-                            </div>
-                            <div class="form-input">
-                                <selectize
-                                    v-model="post.tags"
-                                    :settings="settings">
-                                    <option
-                                        :key="tag._id"
-                                        v-for="tag in tags"
-                                        :value="tag.value">
-                                        {{tag.value}}
-                                    </option>
-                                </selectize>
-                            </div>
-                            <div class="form-input">
-                                <div class="cleck--flex">
-                                    <label class="cleck--flex">
-                                        <div class="field--input">
-                                            <input v-model.number="post.type" checked="checked" name="type" type="radio" value=0>
+        <b-row>
+                <!-- inicio de formulario -->
+            <b-col md="4" class="cont cont--inicio">
+                <div class="cont--formulario">
+                    <form id="post-form">
+                        <h3 align="center">Informacion de la mascota</h3>
+                        <div>
+                            <form class="form" id="register-form">
+                                <div class="form-input">
+                                    <div class="grid-container">
+                                        <div 
+                                            :key="idx"
+                                            v-for="(image, idx) in preview">
+                                            <div class="grid-item">
+                                                <img width="50px" height="50px" :src="image" />
+                                            </div>
                                         </div>
-                                            <span>Perdido</span>
-                                    </label>
-                                    <label class="cleck--flex">
-                                        <div class="field--input">
-                                            <input v-model.number="post.type" name="type" type="radio" value=1>
-                                        </div>
-                                            <span>Encontrado</span>
-                                    </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-submit">
-                                <button
-                                    @click="newPost"
-                                    class="btn btn-regular">
-                                    Aceptar
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </form>
-            </div>
-        <!-- Final de formulario -->
-        <!-- Inicio del mapa -->
-            <div class="cont--mapa">
-                <mapbox
-                    access-token="pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
-                    :map-options="{
-                        style: 'mapbox://styles/mapbox/streets-v9',
-                        center: [-70.221799, -18.0031498],
-                        zoom: 15
-                    }"
-                    :geolocate-control="{
-                        show: true,
-                        position: 'top-left'
-                    }"
-                    :nav-control="{
-                        show: true,
-                        position: 'top-left'
-                    }"
-                    @map-init="mapInitialized"
-                    :fullscreen-control="{
-                        show: true,
-                        position: 'top-left'
-                    }"
-                    @map-click="mapClicked"
+                                <div class="form-input">
+                                    <span class="btn btn-default btn-file">
+                                        Seleccionar Imagen 
+                                        <input
+                                            class="frm--btm"
+                                            type="file"
+                                            multiple="multiple"
+                                            v-on:change="filePreview" hidden/>
+                                    </span>
+                                </div>
+                                <div class="form-input">
+                                    <textarea
+                                        placeholder="Descripcion"
+                                        style="height: 100px;"
+                                        v-model="post.description" 
+                                        name="description" 
+                                        id="" 
+                                        cols="30" 
+                                        rows="100"
+                                        />
+                                </div>
+                                <div class="form-input">
+                                    <input v-model="post.address" type="text" name="address" placeholder="Direccion">
+                                </div>
+                                <div class="form-input">
+                                    <selectize 
+                                        v-model="post.tags" 
+                                        :settings="settings">
+                                        <option 
+                                            :key="tag._id"
+                                            v-for="tag in tags" 
+                                            :value="tag.value">
+                                            {{tag.value}}
+                                        </option>
+                                    </selectize>
+                                </div>
+                                <div class="form-input">
+                                    <div class="cleck--flex">
+                                        <label class="cleck--flex">
+                                            <div class="field--input">
+                                                <input v-model.number="post.type" checked="checked" name="type" type="radio" value=0>
+                                            </div>
+                                                <span>Perdido</span>
+                                        </label>
+                                        <label class="cleck--flex">
+                                            <div class="field--input">
+                                                <input v-model.number="post.type" name="type" type="radio" value=1>
+                                            </div>
+                                                <span>Encontrado</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-submit">
+                                    <button 
+                                        @click="newPost" 
+                                        class="btn btn-regular">
+                                        Aceptar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+            </b-col>
+            <b-col md="8">
+                <PostMap
+                    @init="mapInitialized"
+                    @clicked="mapClicked"
                 />
-            </div>
-        <!-- Final del mapa -->
-        </section>
-
+            </b-col>
+        </b-row>
     </div>
 </template>
 
@@ -116,17 +98,14 @@
     import Vue from 'vue'
     import Selectize from 'vue2-selectize'
     import { mapActions, mapState } from 'vuex';
-    import vue2Dropzone from 'vue2-dropzone'
-    import 'vue2-dropzone/dist/vue2Dropzone.min.css'
     import _ from "lodash";
-    import Mapbox from 'mapbox-gl-vue';
+    import mapMixin from "./common/map";
 
     export default {
         name: 'PostForm',
+        mixins: [mapMixin],
         components: {
-            Selectize,
-            vueDropzone: vue2Dropzone,
-            Mapbox
+            Selectize
         },
         computed: {
             ...mapState({
@@ -135,9 +114,6 @@
         },
         created() {
             this.getTags();
-        },
-        beforeDestroy() {
-            this.map.remove();
         },
         methods: {
             ...mapActions({
@@ -186,9 +162,6 @@
                     alert("Necesitas seleccionar una posicion en el mapa");
                 }
                 this.isLoading = false;
-            },
-            mapInitialized(map) {
-                this.map = map;
             },
             mapClicked(map, {lngLat: {lng, lat}}) {
                 if (this.marker && this.marker.remove) {

@@ -1,29 +1,24 @@
 <template>
-    <div 
-        class="tarjeta tarjeta--perrrito-perdido" 
-        :id="item.id">
+    <div class="tarjeta tarjeta--perrrito-perdido" 
+        :id="item._id">
         <div class="tarjeta__titulo">
             <div class="image__name">
                 <img :src="item.user.profile" alt="foto de perfil">
                 <span>{{fullName}}</span>
             </div>
-            <button class="btn--show__info" @click="showInfo">Ver info</button>
+            <button class="btn--show__info" @click="showInfo(item.user._id)">Ver info</button>
         </div>
         <div class="tarjeta__imagen">
-            <carousel
-                v-if="item.photos && item.photos.length"
-                :perPageCustom="[[1024, 1]]"
-            >
+            <carousel v-if="item.photos && item.photos.length" :perPageCustom="[[1024, 1]]" >
                 <slide
                     :key="photo._id"
-                    v-for="photo in item.photos"
-                >
+                    v-for="photo in item.photos" >
                     <img :src="photo.thumbnailPath" alt="perrito encontrado">
                 </slide>
             </carousel>
-            <img 
+            <img
                 v-else
-                src="https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg" 
+                src="https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg"
                 alt="perrito encontrado">
         </div>
         <div class="tarjeta__descripcion">
@@ -31,7 +26,7 @@
             <p class="direccion"> {{item.address}} </p>
             <div class="caracteristicas">
                 <p><b> Características </b> </p>
-                <span 
+                <span
                     :key="tag._id"
                     v-for="tag in item.tags"
                     class="caracteristica">
@@ -43,6 +38,7 @@
 </template>
 <script>
 import { Carousel, Slide } from 'vue-carousel';
+import { mapActions, mapState } from "vuex";
 
 export default {
     name: "ItemFound",
@@ -56,8 +52,12 @@ export default {
         }
     },
     methods: {
-        showInfo() {
-            this.$emit('onShowInfo', this.item);
+        ...mapActions({
+            getOne: "getOne",
+        }),
+        async showInfo(id) {
+            const user = await this.getOne(id);
+            this.$emit('onShowInfo', user);
         },
     },
     computed: {

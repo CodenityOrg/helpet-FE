@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-      <div id="snackbar"></div>
       <nav-bar
         @onShowLogin="flagLogin=true"
       ></nav-bar>
@@ -46,6 +45,7 @@ export default {
 </script>
 
 <style>
+    @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css");
     @import "assets/css/base.css";
     @import "assets/css/componentes.css";
     @import "assets/css/estilos.css";
