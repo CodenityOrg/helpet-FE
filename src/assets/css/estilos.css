@@ -303,6 +303,7 @@ html, body {
     padding-bottom: 2em;
     padding-left: 2em;
     padding-right: 2em;
+    height: 100%;
 }
 
 .content {
@@ -312,7 +313,7 @@ html, body {
 }
 
 
-.cont--inicio .cont--mapa #map {
+#map {
     min-height: 100%;
     width: 100%;
 }

@@ -16,7 +16,6 @@
                     <span class="slogan">Ayudalo a ser encontrado y encuentra a tu mascota</span>
                 </div>
                 <form id="login-form" class="col-6" action="">
-                    <h3 class="titulo">INICIAR</h3>
                     <div class="form-input">
                         <label for="inputEmail">Correo</label>
                         <input
