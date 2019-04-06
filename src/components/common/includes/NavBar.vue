@@ -40,8 +40,9 @@
 <script>
     import {mapState, mapActions} from "vuex";
     import VueCookie from "vue-cookie";
+    
     export default {
-        name: 'NavBar',
+        name: "NavBar",
         computed: {
             ...mapState({
                 user: state => state.auth.user,

@@ -1,7 +1,7 @@
 <template>
     <div class="register">
         <loading :active.sync="isLoading"
-                 :is-full-page="fullPage"></loading>
+            :is-full-page="fullPage"></loading>
         <section class="cont cont--register">
             <b-row>
                 <b-col md="8">

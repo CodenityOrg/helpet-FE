@@ -6,7 +6,9 @@ import VueCookie from "vue-cookie";
 import axios from "axios";
 import VeeValidate from 'vee-validate';
 import BootstrapVue from "bootstrap-vue";
-
+import VueBus from 'vue-bus';
+ 
+Vue.use(VueBus);
 Vue.use(BootstrapVue);
 
 import 'bootstrap/dist/css/bootstrap.css'
