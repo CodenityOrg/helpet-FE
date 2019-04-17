@@ -34,10 +34,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     width: 100%;
     background: #20b16a;
-    margin-top: -95px;
+    height: calc(100% - 90px);
 }
 
 .register{
