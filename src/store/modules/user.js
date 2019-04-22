@@ -18,16 +18,16 @@ const actions = {
     async registerUser({commit}, data) {
         const {status, data: user } = await userAPI.create(data);
         if (status === 200) {
-          commit("SET_AUTHENTICATED", true);
-          commit("SET_USER", user);
-          VueCookie.set("helpet_auth", user.token);
+            commit("SET_AUTHENTICATED", true);
+            commit("SET_USER", user);
+            VueCookie.set("helpet_auth", user.token);
         }
         return user;
     },
     async validate({commit}, data) {
         const { status, data: user} = await userAPI.validate(data);
         if (status === 200) {
-          commit("VALIDATE", user);
+            commit("VALIDATE", user);
         }
         return user;
     },

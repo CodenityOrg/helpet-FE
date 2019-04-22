@@ -6,7 +6,7 @@
         type="dark">
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-        <b-navbar-brand class="navbar__logo" href="#"><a href="/"><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></a></b-navbar-brand>
+        <b-navbar-brand class="navbar__logo" href="#"><router-link :to="{ name: 'Home' }" ><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></router-link> </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
             <b-navbar-nav class="ml-auto navbar__menu">
@@ -40,8 +40,9 @@
 <script>
     import {mapState, mapActions} from "vuex";
     import VueCookie from "vue-cookie";
+    
     export default {
-        name: 'NavBar',
+        name: "NavBar",
         computed: {
             ...mapState({
                 user: state => state.auth.user,

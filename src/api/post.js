@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const HOST = process.env.VUE_APP_ROOT_HOST || 'http://localhost:3000/api';
+const HOST = process.env.VUE_APP_ROOT_HOST || "http://localhost:3000/api";
 
 export default {
     list({type, limit = 5, skip = 0}) {

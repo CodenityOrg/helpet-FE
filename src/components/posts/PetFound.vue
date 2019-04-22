@@ -6,7 +6,7 @@
   >
     <loading :active.sync="isLoading"
       :is-full-page="fullPage" />
-    <ItemFound
+    <PostItem
       :key="index"
       v-for="(foundPost, index) in foundPosts"
       :item="foundPost"
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import ItemFound from "./PostItem";
+  import PostItem from "./PostItem";
   import { mapActions, mapState, mapGetters } from "vuex";
   import InfiniteList from "../common/InfiniteList";
   import listMixin from "./mixins/list";
@@ -24,7 +24,7 @@
   export default {
     name: "PetsFound",
     components: {
-      ItemFound,
+      PostItem,
       InfiniteList
     },
     mixins: [listMixin],

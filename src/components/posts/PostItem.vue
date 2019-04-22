@@ -6,14 +6,18 @@
                 <img :src="item.user.profile" alt="foto de perfil">
                 <span>{{fullName}}</span>
             </div>
-            <button class="btn--show__info" @click="showInfo(item.user._id)">Ver info</button>
+            <button class="btn--show__info" @click="showUserInfo">Ver info</button>
         </div>
-        <div class="tarjeta__imagen">
+        <div style="width: 400px; min-height: 50px; max-height: auto; float: left; " class="tarjeta__imagen">
             <carousel v-if="item.photos && item.photos.length" :perPageCustom="[[1024, 1]]" >
                 <slide
                     :key="photo._id"
                     v-for="photo in item.photos" >
-                    <img :src="photo.thumbnailPath" alt="perrito encontrado">
+
+                    <div
+                        :style="styles(photo.thumbnailPath)"
+                    >
+                    </div>
                 </slide>
             </carousel>
             <img
@@ -32,6 +36,7 @@
                     class="caracteristica">
                     {{tag.value}}
                 </span>
+                <br/>
             </div>
         </div>
     </div>
@@ -41,11 +46,12 @@ import { Carousel, Slide } from 'vue-carousel';
 import { mapActions, mapState } from "vuex";
 
 export default {
-    name: "ItemFound",
+    name: "PostItem",
     components: {
         Carousel,
         Slide
     },
+    
     props: {
         item: {
             type: Object
@@ -53,14 +59,31 @@ export default {
     },
     methods: {
         ...mapActions({
-            getOne: "getOne",
+            getOne: "getOne"
         }),
-        async showInfo(id) {
-            const user = await this.getOne(id);
-            this.$emit('onShowInfo', user);
+        async showUserInfo() {
+            if (!this.isAuthenticated) {
+                alert("Quiere comenzar a ayudar, por favor registrate :)");
+                return;
+            }
+
+            this.$bus.$emit("showUserInfo", this.item.user._id);
         },
+        styles(url) {
+            return {
+                'background': `url(${url}) no-repeat center center`,
+                'background-size': '100% 100%;',
+                width: "400px",
+                height: "200px",
+                'background-position': 'center',
+                'background-size': 'contain'
+            }
+        }
     },
     computed: {
+        ...mapState({
+            isAuthenticated: state => state.auth.authenticated
+        }),
         fullName() {
             return this.item.user.firstName +  " " + this.item.user.lastName
         }
