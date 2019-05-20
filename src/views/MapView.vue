@@ -51,7 +51,7 @@
         },
         methods: {
             showUser(user) {
-                this.$emit('onShowUserInfo', user);
+                this.$emit("onShowUserInfo", user);
             },
             clearMap() {
                 for (const mbMarker of this.mbMarkers) {
