@@ -47,6 +47,7 @@ const actions = {
     createPost({ commit }, payload) {
         return postAPI.create(payload);
     },
+    
     async getTags({commit}, q) {
         const {data: tags} = await postAPI.getTags(q);
         commit("SET_TAGS", tags);

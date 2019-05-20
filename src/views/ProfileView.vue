@@ -37,12 +37,10 @@
 
     export default {
         name: "UserProfile",
-        data() {
-            return {
-                user: {},
-                isLoading: false
-            }
-        },
+        data: () => ({
+            user: {},
+            isLoading: false
+        }),
         methods: {
             ...mapActions({
                 getProfile: "getProfile",

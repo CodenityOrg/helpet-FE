@@ -166,7 +166,7 @@
     color: inherit;
     font-family: "open sans";
     font-weight: 300;
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-decoration: none;
     margin-right: 0.5em;
     transition: all .3s;
@@ -303,6 +303,7 @@ html, body {
     padding-bottom: 2em;
     padding-left: 2em;
     padding-right: 2em;
+    height: 100%;
 }
 
 .content {
@@ -312,7 +313,7 @@ html, body {
 }
 
 
-.cont--inicio .cont--mapa #map {
+#map {
     min-height: 100%;
     width: 100%;
 }
@@ -369,7 +370,7 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1.5em;
-    width: 100%;
+    width: 55%;
 }
 
 .modal--inicio-sesion .modal-body button[type="submit"] {

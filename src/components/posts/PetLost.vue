@@ -6,7 +6,7 @@
     >
         <loading :active.sync="isLoading"
                 :is-full-page="fullPage" />
-        <ItemFound
+        <PostItem
             :key="index"
             v-for="(lostPost, index) in lostPosts"
             :item="lostPost"
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import ItemFound from "./PostItem";
+    import PostItem from "./PostItem";
     import { mapActions, mapState, mapGetters } from "vuex";
     import InfiniteList from "../common/InfiniteList";
     import listMixin from "./mixins/list";
@@ -25,7 +25,7 @@
         name: "AnimalLost",
         mixins: [listMixin],
         components: {
-            ItemFound,
+            PostItem,
             InfiniteList
         },
         async created() {
@@ -45,7 +45,7 @@
                 getItems: "getLostPosts"
             }),
             showUser(user) {
-                this.$emit('onShowInfoUser', user);
+                this.$emit("onShowInfoUser", user);
             },
         },
         beforeDestroy() {

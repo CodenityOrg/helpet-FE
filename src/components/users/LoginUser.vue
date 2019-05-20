@@ -16,9 +16,7 @@
                     <span class="slogan">Ayudalo a ser encontrado y encuentra a tu mascota</span>
                 </div>
                 <form id="login-form" class="col-6" action="">
-                    <h3 class="titulo">INICIAR</h3>
                     <div class="form-input">
-                        <label for="inputEmail">Correo</label>
                         <input
                             v-validate="'required|email'"
                             v-model="credentials.email"
@@ -29,21 +27,24 @@
                         <span>{{ errors.first('email') }}</span>
                     </div>
 
-                    <div class="form-input">
-                        <label for="inputPassword">Contraseña</label>
-                        <input
-                            v-validate="'required'"
-                            v-model="credentials.password"
-                            type="password"
-                            name="password"
-                            placeholder="Contraseña"
-                        />
-                        <span>{{ errors.first('password') }}</span>
-                    </div>
-                    <div class="form-submit">
-                        <button class="frm--btm" type="submit" @click="signUp">Iniciar sesion</button>
-                    </div>
-                </form>
+                            <div class="form-input">
+                                <input
+                                    v-validate="'required'"
+                                    v-model="credentials.password"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Contraseña"
+                                />
+                                <span>{{ errors.first('password') }}</span>
+                            </div>
+                            <div class="form-submit">
+                                <button class="frm--btm" type="submit" @click="signUp">Iniciar sesion</button>
+                            </div>
+                        </form>
+                    </b-col>
+                </b-row>
+
+                
 
             </div>
         </div>
@@ -79,7 +80,6 @@
                 const credentials = this.credentials;
                 this.isLoading = true;
                 await this.login(credentials);
-                console.log(this.isAuthenticated);
                 if (!this.isAuthenticated) {
                   this.$notify({
                      group: 'foo',
@@ -87,8 +87,7 @@
                      title: 'INICIO DE SESION',
                      text: 'Tu usuario o contraseña son incorrectos  <br> <b>   "Por favor intentelo nuevamente"</b>',
                   });
-                }
-                if(this.isAuthenticated) {
+                } else {
                   this.isLoading = false;
                   this.$emit('onCloseLogin');
                   this.$router.push("/mapa/encontrados")

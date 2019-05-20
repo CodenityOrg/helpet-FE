@@ -34,14 +34,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     width: 100%;
+    background: #20b16a;
+    height: calc(100% - 90px);
 }
-.cont-register .cont-df {
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-content: center;*/
-}
+
 .register{
     /* padding: 0 3em; */
     color: white;

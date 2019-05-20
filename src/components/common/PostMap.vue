@@ -24,7 +24,7 @@
 </template>
 <script>
     import Mapbox from 'mapbox-gl-vue';
-
+    
     export default {
         name: "PostMap",
         components: {

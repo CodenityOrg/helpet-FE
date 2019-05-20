@@ -1,5 +1,38 @@
 <template>
-    <div class="modal">
+    <b-modal :cancel-disabled="true" v-model="showInfo">
+        <b-row>
+            <b-col md="6" class="img-promo">
+                <img width="200" height="200" style="margin-bottom: 0px;" :src="user.profile">
+            </b-col>
+            <b-col md="6">
+                <b-row>
+                    <b-col md="6">
+                        <p> Nombre: </p>
+                    </b-col>
+                    <b-col md="6">
+                        <p>{{ user.firstName }} {{ user.lastName }}</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col md="6">
+                        <p>Teléfono:</p>
+                    </b-col>
+                    <b-col md="6">
+                        <p>{{ user.phone }}</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col md="6">
+                        <p>Facebook:</p>
+                    </b-col>
+                    <b-col md="6" style="padding: 0 1em;">
+                        <p><a href="https://www.facebook.com/VuejsNews/">/VuejsNews</a></p>
+                    </b-col>
+                </b-row>
+            </b-col>
+        </b-row>
+    </b-modal>
+    <!-- <div class="modal">
         <div class="modal__box modal--inicio-sesion">
             <div class="modal-header">
                 <h3 class="titulo"></h3>
@@ -36,23 +69,40 @@
                             <p><a href="https://www.facebook.com/VuejsNews/">/VuejsNews</a></p>
                         </div>
                     </div>
-                    
-                    
-                    
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
+
+    import {mapState, mapActions} from "vuex";
     export default {
-        name: 'InfoUser',
-        props: ['currentUser'],
+        name: "InfoUser",
         data() {
             return {
                 user: {},
+                showInfo: false,
+                userId: ""
             }
         },
+        
+        watch: {
+            async userId(val) {
+                this.user = await this.getOne(val);
+            }
+        },
+        methods: {
+            ...mapActions({
+                getOne: "getOne",
+            }),
+        },
+        created() {
+            this.$bus.$on("showUserInfo", (id) => {
+                this.userId = id;
+                this.showInfo = true;
+            });
+        }
     };
 </script>
