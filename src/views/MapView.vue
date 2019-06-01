@@ -16,12 +16,15 @@
             </div>
         </b-col>
         <b-col md="8" sm="12" class="cont--mapa">
-            <PostMap
+            <Map
                 @init="mapInitialized"
             />
         </b-col>
-        <notifications group="foo" position='bottom right' />
-
+        <notifications
+            style="margin-top: 80px;"
+            group="foo" 
+            position='top center' 
+        />
     </b-row>
 </template>
 
@@ -29,11 +32,18 @@
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
     import {random} from "lodash";
-    import mapMixin from "./common/map";
+    import mapMixin from "./mixins/map";
+    import Map from "../components/common/Map";
 
     export default {
-        name: "Map",
+        name: "MapView",
         mixins: [mapMixin],
+        components: {
+            Map
+        },
+        mounted() {
+            this.showDetectLocationAlert();
+        },
         data() {
             return {
                 flagInfoUser: false,
@@ -51,16 +61,13 @@
         },
         methods: {
             showUser(user) {
-                this.$emit('onShowUserInfo', user);
+                this.$emit("onShowUserInfo", user);
             },
             clearMap() {
                 for (const mbMarker of this.mbMarkers) {
                     mbMarker.remove();
                 }
                 this.mbMarkers = [];
-            },
-            mapInitialized(map) {
-                this.map = map;
             },
             createMarkers() {
                 for (const marker of this.markers) {
@@ -71,6 +78,14 @@
                         .addTo(this.map);
                     this.mbMarkers.push(mbMarker);
                 }
+            },
+            showDetectLocationAlert() {
+                this.$notify({
+                    group: 'foo',
+                    type: 'warn',
+                    duration: 4500,
+                    title: 'Estamos ubicandote, espere un momento',
+                });
             }
         },
         computed: {
