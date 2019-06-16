@@ -16,6 +16,8 @@
 }
 
 .modal__box {
+    width: 535px;
+    height: 297px;
     background: white;
     position: absolute;
     top: 50%;
@@ -23,11 +25,6 @@
     transform: translate(-50%, -50%);
 }
 
-.modal__box .modal-header,
-.modal__box .modal-body,
-.modal__box .modal-footer {
-    padding: 1em;
-}
 
 .modal-header {
     display: flex;
