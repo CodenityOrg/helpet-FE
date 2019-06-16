@@ -11,10 +11,22 @@
                 <div class="login-form">
                     <form id="login-form">
                         <div class="social-buttons">
-                            <fb-signin-button
-                                :params="fbSignInParams">
-                                Iniciar sesion con Facebook
-                            </fb-signin-button>
+                            <a href="#">
+                                <fb-signin-button
+                                    @success="onSignInFacebookSuccess"
+                                    @error="onSignInFacebookError"
+                                    :params="fbSignInParams">
+                                    Iniciar sesion con Facebook
+                                </fb-signin-button>
+                            </a>
+                            <a href="#">
+                                <g-signin-button
+                                    :params="googleSignInParams"
+                                    @success="onSignInSuccess"
+                                    @error="onSignInError">
+                                    Iniciar sesion con Google
+                                </g-signin-button>
+                            </a>
                         </div>
                         <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>    
                         <div class="form-input font-size-10px" >
@@ -54,11 +66,14 @@
 
 <script>
     import FBSignInButton from "vue-facebook-signin-button";
+    import GSignInButton from 'vue-google-signin-button'
+
     import Vue from "vue";
     import {mapActions,mapState} from "vuex";
 
     Vue.use(FBSignInButton);
-
+    Vue.use(GSignInButton);
+    //client-secret: J1pcDCnmFLWq0M9c7jEMCG0G
     export default {
         name: "LoginUser",
         data() {
@@ -70,6 +85,9 @@
                 fbSignInParams: {
                     scope: 'email,user_likes',
                     return_scopes: true
+                },
+                googleSignInParams: {
+                    client_id: '1076081297271-he3s2qr0ob61s4cpbgl0cnj2s5ajpqu7.apps.googleusercontent.com'
                 }
             }
         },
@@ -103,6 +121,23 @@
             },
             closeLogin() {
                 this.$emit("onCloseLogin");
+            },
+            onSignInSuccess (googleUser) {
+                // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+                // See https://developers.google.com/identity/sign-in/web/reference#users
+                const profile = googleUser.getBasicProfile() // etc etc
+            },
+            onSignInError (error) {
+                // `error` contains any error occurred.
+                console.log('OH NOES', error)
+            },
+            onSignInFacebookSuccess (response) {
+                FB.api('/me', dude => {
+                    console.log(`Good to see you, ${dude.name}.`)
+                })
+            },
+            onSignInFacebookError (error) {
+                console.log('OH NOES', error)
             }
         }
     };
@@ -117,6 +152,20 @@
         color: #fff;
         width: 100%;
         text-align: center;
+        margin-top: 10px;
+    }
+
+    .g-signin-button {
+        /* This is where you control how the button looks. Be creative! */
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 3px;
+        background-color: #3c82f7;
+        color: #fff;
+        box-shadow: 0 3px 0 #0f69ff;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
     }
 </style>
 
