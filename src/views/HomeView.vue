@@ -33,9 +33,9 @@
                             <div style="margin: 100px;">
                                 <h4 style="color: white;">Enviar mensaje</h4>
                                 <form class="contact-form" action="" >
-                                    <input class="form-input" type="text">
-                                    <input class="form-input" type="text">
-                                    <textarea style="background: none; border: 1px solid white; height: 220px; border-radius: 10px; width: 100%; margin: 5px 0; color: white; padding: 10px;" name="" id="" cols="30" rows="10"></textarea>
+                                    <input class="form-input" placeholder="Nombre completo" type="text">
+                                    <input class="form-input" placeholder="Correo" type="text">
+                                    <textarea class="form-textarea" placeholder="Mensaje" name="" cols="30" rows="10"></textarea>
                                     <input style="background: none; width: 200px; height: 50px; border: 1px solid white; color: white; border-radius: 10px; " type="submit" value="Enviar">
                                 </form>
                             </div>
@@ -95,7 +95,26 @@
         width: 100%; 
     }
 
+    .contact-form .form-textarea {
+        background: none; 
+        border: 1px solid white; 
+        height: 220px; 
+        border-radius: 10px; 
+        width: 100%; 
+        margin: 5px 0; 
+        color: white; 
+        padding: 10px;
+        outline: none;
+    }
+
     .contact-form .form-input:focus {
         border: 1px solid white;
+        outline: none;
     }
+    
+    .form-input::placeholder, .form-textarea::placeholder {
+        color: white;
+    }
+
+
 </style>
