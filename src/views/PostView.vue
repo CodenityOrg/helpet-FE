@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import mapMixin from "./common/map";
+    import mapMixin from "./mixins/map";
     import PostForm from "../components/posts/PostForm";
 
     export default {
