@@ -18,11 +18,15 @@
                     <p> Telefono:  </p>
                     <p> Direccion: </p>
                     <p> Info: </p>
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                            <iframe height="234" id="gmap_canvas" src="https://maps.google.com/maps?q=peru&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div style="width: 100%; background: #404040; height: 40px; position: absolute; bottom: 0;">
-
         </div>
     </section>
 </template>
@@ -83,4 +87,6 @@
     .form-input::placeholder, .form-textarea::placeholder {
         color: white;
     }
+
+    .mapouter{position:relative;text-align:right;height:234px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:234px;width:100%;}
 </style>
