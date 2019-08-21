@@ -19,14 +19,14 @@
                                     Iniciar sesion con Facebook
                                 </fb-signin-button>
                             </a>
-                            <a href="#">
+                            <!-- <a href="#">
                                 <g-signin-button
                                     :params="googleSignInParams"
                                     @success="onSignInSuccess"
                                     @error="onSignInError">
                                     Iniciar sesion con Google
                                 </g-signin-button>
-                            </a>
+                            </a> -->
                         </div>
                         <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>    
                         <div class="form-input font-size-10px" >
@@ -52,7 +52,7 @@
                             />
                         </div>
                         <div class="info-message">
-                            <p>No tienes cuenta ? <a href="">Crea una cuenta aqui</a> </p> 
+                            <p>No tienes cuenta ? <router-link to="/registro">Crea una cuenta aqui</router-link></p> 
                         </div>
                         <div class="form-submit">
                             <button class="frm--btm login-btn" type="submit" @click="signUp">Iniciar sesion</button>
@@ -83,8 +83,8 @@
                     password: ""
                 },
                 fbSignInParams: {
-                    scope: 'email,user_likes',
-                    return_scopes: true
+                    scope: 'email',
+                    return_scopes: true,
                 },
                 googleSignInParams: {
                     client_id: '1076081297271-he3s2qr0ob61s4cpbgl0cnj2s5ajpqu7.apps.googleusercontent.com'
@@ -99,6 +99,7 @@
         methods: {
             ...mapActions({
                 login: "login",
+                oauthLogin: "oauthLogin"
             }),
             async signUp(event) {
                 event.preventDefault();
@@ -106,23 +107,12 @@
                 const credentials = this.credentials;
                 this.isLoading = true;
                 await this.login(credentials);
-                if (!this.isAuthenticated) {
-                    this.$notify({
-                        group: "foo",
-                        type: "error",
-                        title: "INICIO DE SESION",
-                        text: "Tu usuario o contraseña son incorrectos  <br> <b>   'Por favor intentelo nuevamente'</b>",
-                    });
-                } else {
-                    this.isLoading = false;
-                    this.$emit("onCloseLogin");
-                    this.$router.push("/mapa/encontrados")
-                }
+                this.redirectToMapOrFail();
             },
             closeLogin() {
                 this.$emit("onCloseLogin");
             },
-            onSignInSuccess (googleUser) {
+/*             onSignInSuccess (googleUser) {
                 // `googleUser` is the GoogleUser object that represents the just-signed-in user.
                 // See https://developers.google.com/identity/sign-in/web/reference#users
                 const profile = googleUser.getBasicProfile() // etc etc
@@ -130,14 +120,34 @@
             onSignInError (error) {
                 // `error` contains any error occurred.
                 console.log('OH NOES', error)
+            }, */
+            async onSignInFacebookSuccess (response) {
+                const info = await new Promise( (resolve, reject) => {
+                    FB.api('/me', { fields: 'first_name, last_name, email' },  resolve)
+                });
+                info.accessToken = response.authResponse.accessToken;
+                await this.oauthLogin(info);
+                this.redirectToMapOrFail();
             },
-            onSignInFacebookSuccess (response) {
-                FB.api('/me', dude => {
-                    console.log(`Good to see you, ${dude.name}.`)
-                })
+            redirectToMapOrFail() {
+                if (!this.isAuthenticated) {
+                    this.showFailMessage();
+                } else {
+                    this.isLoading = false;
+                    this.$emit("onCloseLogin");
+                    this.$router.push("/mapa/encontrados")
+                }
             },
             onSignInFacebookError (error) {
-                console.log('OH NOES', error)
+                this.showFailMessage();
+            },
+            showFailMessage() {
+                this.$notify({
+                    group: "foo",
+                    type: "error",
+                    title: "INICIO DE SESION",
+                    text: "Tu usuario o contraseña son incorrectos  <br> <b>   'Por favor intentelo nuevamente'</b>",
+                });
             }
         }
     };

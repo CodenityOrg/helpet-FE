@@ -31,6 +31,16 @@ const actions = {
             commit("SET_AUTHENTICATED", false);
         }
     },
+    async oauthLogin({commit}, data) {
+        const {status, data: user} = await authAPI.oauthLogin(data);
+        if (status === 200) {
+            commit("SET_AUTHENTICATED", true);
+            commit("SET_USER", user);
+            VueCookie.set("helpet_auth", user.token);
+        } else {
+            commit("SET_AUTHENTICATED", false);
+        }
+    },
     logout({commit}) {
         VueCookie.delete("helpet_auth");
     },
