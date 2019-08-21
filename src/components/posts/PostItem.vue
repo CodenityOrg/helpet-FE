@@ -1,34 +1,42 @@
 <template>
-    <div class="tarjeta tarjeta--perrrito-perdido"
+    <div class="PostItem"
         :id="item._id">
-        <b-row>
-            <b-col md="4">
-                <div class="tarjeta__imagen">
-                    <img
-                        src="https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg"
-                        alt="perrito encontrado">
-                </div>
-            </b-col>
-            <b-col md="8">
-                <h2>Title</h2>
-                <div class="tarjeta__titulo">
-                    <div class="image__name">
-                        <img :src="item.user.profile" alt="foto de perfil">
-                        <span>{{fullName}}</span>
+        <div class="PostItem__card">
+            <div class="PostItem__cardPhoto">
+                <img
+                    src="https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg"
+                    alt="perrito encontrado">
+            </div>
+            <div class="PostItem__cardContent">
+                <div style="padding: 0 20px;">
+                    <h2>Title</h2>
+                    <div class="PostItem__cardContentInfo">
+                        <div class="PostItem__cardContentInfoUser">
+                            <div class="PostItem__cardContentInfoUserImage">
+                                <img :src="item.user.profile" >
+                                <span>{{fullName}}</span>
+                            </div>
+                        </div>
+                        <div class="PostItem__cardContentInfoDate">
+                            Jun 7, 2018
+                        </div>
+                        <div class="PostItem__cardContentInfoType">
+                            PERDIDO
+                        </div>
                     </div>
-                    <BasicButton
-                        style="border-radius: 5px;"
-                        @click.native="showUserInfo"
-                    >
-                        Ver Info
-                    </BasicButton>
-                </div>
-                <div class="tarjeta__descripcion">
-                    <p class="descripcion"> {{item.description}} </p>
-                    <p class="direccion"> {{item.address}} </p>
-                    <div class="caracteristicas">
-                        <p><b> Características </b> </p>
+                    <div class="PostItem__cardContentDescription">
+                        <span >Descripcion</span>
+                        <p> {{item.description}} </p>
+                    </div>
+                    <div class="PostItem__cardContentAddress">
+                        <span>Ultimo lugar visto</span>
+                        <p> {{item.address}} </p>
+                    </div>
+                    <div class="PostItem__cardContentTags">
+                        <span style="font-size: 12px; color: #8e8e8e;"> Características </span>
+                        <br>
                         <span
+                            style="background: green; margin: 0 5px; padding: 0 10px; font-size: 12px; color: white; border-radius: 3px;"
                             :key="tag._id"
                             v-for="tag in item.tags"
                             class="caracteristica">
@@ -37,15 +45,16 @@
                         <br/>
                     </div>
                 </div>
-                <div >
+                <div>
                     <BasicButton
-                        style="width: 100%; "
+                        class="PostItem__cardContactButton"
+                        @click.native="showUserInfo"
                     >
                         Contactar
                     </BasicButton>
                 </div>
-            </b-col>
-        </b-row>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -98,3 +107,107 @@
         }
     }
 </script>
+<style lang="scss" >
+
+    .PostItem {
+        background: white;
+        max-width: 100%;
+        width: 568px;
+        margin-bottom: 2em;
+        border-radius: 2px;
+
+        p {
+            margin: 0;
+        }
+
+        &__card{
+            display: flex;
+
+            &Photo {
+                width: 230px;
+                flex: 1;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            &Content {
+                width: 330px;
+                margin: 0px;
+
+                &Info{
+                    display: flex;
+                    font-size: 11px;
+
+                    &User{
+                        padding: 0.5em 1em;
+                        display: -webkit-box;
+                        display: -ms-flexbox;
+                        display: flex;
+                        -webkit-box-orient: horizontal;
+                        -webkit-box-direction: normal;
+                        -ms-flex-direction: row;
+                        flex-direction: row;
+                        -webkit-box-align: center;
+                        -ms-flex-align: center;
+                        align-items: center;
+                        -webkit-box-pack: justify;
+                        -ms-flex-pack: justify;
+                        justify-content: space-between;
+
+                        img {
+                            width: 2em;
+                            height: 2em;
+                            border-radius: 50%;
+                        }
+
+                        &Image {
+                            display: -webkit-box;
+                            display: -ms-flexbox;
+                            display: flex;
+                            -webkit-box-orient: horizontal;
+                            -webkit-box-direction: normal;
+                            -ms-flex-direction: row;
+                            flex-direction: row;
+                            -webkit-box-align: center;
+                            -ms-flex-align: center;
+                            align-items: center;
+                        }
+                    }
+
+
+                    &Type{
+                        background: #009900;
+                        border: none;
+                        padding: 10px 15px;
+                        color: white;
+                        border-radius: 5px;
+                    }
+                }
+
+                &Description {
+                    font-size: 15px;
+
+                    span {
+                        font-size: 12px;
+                        color: #8e8e8e;
+                    }
+                }
+
+                &Address{
+                    font-size: 15px;
+                    span {
+                        font-size: 12px;
+                        color: #8e8e8e;
+                    }
+                }
+            }
+
+            &ContactButton {
+                width: 100%;
+            }
+        }
+    }
+</style>
