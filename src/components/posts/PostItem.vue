@@ -18,8 +18,11 @@
                     <button class="btn--show__info" @click="showUserInfo">Ver info</button>
                 </div>
                 <div class="tarjeta__descripcion">
-                    <p class="descripcion"> {{item.description}} </p>
-                    <p class="direccion"> {{item.address}} </p>
+                    <div>
+                        Direccion                    
+                        <p class="direccion"> {{item.address}} </p>
+                    </div>
+                        <p class="descripcion"> {{item.description}} </p>
                     <div class="caracteristicas">
                         <p><b> Características </b> </p>
                         <span

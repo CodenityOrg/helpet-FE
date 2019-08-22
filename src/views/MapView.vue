@@ -1,6 +1,6 @@
 <template>
     <b-row style="margin: 0;" class="cont cont--inicio">
-        <b-col md="4" sm="12" class="cont--tarjetas">
+        <b-col md="6" sm="12" class="cont--tarjetas">
             <div class="content">
                 <div class="tab-links">
                     <router-link :to="{name : 'ListLost'}" exact>
@@ -15,7 +15,7 @@
                 <router-view @onShowInfoUser="showUser"></router-view>
             </div>
         </b-col>
-        <b-col md="8" sm="12" class="cont--mapa">
+        <b-col md="6" sm="12" class="cont--mapa">
             <Map
                 @init="mapInitialized"
             />
