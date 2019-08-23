@@ -8,7 +8,7 @@
                     alt="perrito encontrado">
             </div>
             <div class="PostItem__cardContent">
-                <div style="padding: 0 20px;">
+                <div style="padding: 0 20px; margin: 10px 0px;">
                     <h2>Title</h2>
                     <div class="PostItem__cardContentInfo">
                         <div class="PostItem__cardContentInfoUser">
@@ -18,28 +18,29 @@
                             </div>
                         </div>
                         <div class="PostItem__cardContentInfoDate">
-                            Jun 7, 2018
+                            <font-awesome-icon icon="calendar-alt" />
+                            Jun 7, 19:00
                         </div>
                         <div class="PostItem__cardContentInfoType">
                             PERDIDO
                         </div>
                     </div>
                     <div class="PostItem__cardContentDescription">
-                        <span >Descripcion</span>
+                        <span > <font-awesome-icon icon="comments" /> Descripcion</span>
+                        <!-- TODO: Show ellipsis and show more button -->
                         <p> {{item.description}} </p>
                     </div>
                     <div class="PostItem__cardContentAddress">
-                        <span>Ultimo lugar visto</span>
+                        <span><font-awesome-icon icon="map" />Ultimo lugar visto</span>
                         <p> {{item.address}} </p>
                     </div>
                     <div class="PostItem__cardContentTags">
-                        <span style="font-size: 12px; color: #8e8e8e;"> Características </span>
+                        <span style="font-size: 12px; color: #8e8e8e;"><font-awesome-icon icon="tags" /> Características </span>
                         <br>
                         <span
-                            style="background: green; margin: 0 5px; padding: 0 10px; font-size: 12px; color: white; border-radius: 3px;"
+                            class="PostItem__cardContentTagsItem"
                             :key="tag._id"
-                            v-for="tag in item.tags"
-                            class="caracteristica">
+                            v-for="tag in item.tags">
                             {{tag.value}}
                         </span>
                         <br/>
@@ -50,6 +51,7 @@
                         class="PostItem__cardContactButton"
                         @click.native="showUserInfo"
                     >
+                        <font-awesome-icon icon="phone-alt" />
                         Contactar
                     </BasicButton>
                 </div>
@@ -112,6 +114,7 @@
     .PostItem {
         background: white;
         max-width: 100%;
+        border: 1px solid #c5c5c5;
         width: 568px;
         margin-bottom: 2em;
         border-radius: 2px;
@@ -142,10 +145,8 @@
                     font-size: 11px;
 
                     &User{
-                        padding: 0.5em 1em;
                         display: -webkit-box;
                         display: -ms-flexbox;
-                        display: flex;
                         -webkit-box-orient: horizontal;
                         -webkit-box-direction: normal;
                         -ms-flex-direction: row;
@@ -156,6 +157,7 @@
                         -webkit-box-pack: justify;
                         -ms-flex-pack: justify;
                         justify-content: space-between;
+                        flex: 1.5;
 
                         img {
                             width: 2em;
@@ -177,19 +179,38 @@
                         }
                     }
 
+                    &Date{
+                        flex: 1;
+                        line-height: 30px;
+                    }
 
                     &Type{
+                        flex: 1;
                         background: #009900;
                         border: none;
-                        padding: 10px 15px;
+                        padding: 15px;
                         color: white;
                         border-radius: 5px;
+                        height: 20px;
+                        max-width: 80px;
+                        line-height: 0px;
                     }
                 }
 
                 &Description {
                     font-size: 15px;
-
+                    margin-top: 10px;
+                    p {
+                        display: block;
+                        max-height: 100px;
+                        line-height: 1.4;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+/*                         height: 150px;
+ */                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
                     span {
                         font-size: 12px;
                         color: #8e8e8e;
@@ -198,9 +219,23 @@
 
                 &Address{
                     font-size: 15px;
+                    margin-top: 5px;
+
                     span {
                         font-size: 12px;
                         color: #8e8e8e;
+                    }
+                }
+
+                &Tags{
+                    margin-top: 10px;
+                    &Item{
+                        background: green;
+                        margin: 5px;
+                        padding: 5px 10px;
+                        font-size: 12px;
+                        color: white;
+                        border-radius: 3px;
                     }
                 }
             }

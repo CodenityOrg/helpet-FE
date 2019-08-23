@@ -7,12 +7,19 @@ import axios from "axios";
 import VeeValidate from 'vee-validate';
 import BootstrapVue from "bootstrap-vue";
 import VueBus from 'vue-bus';
- 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt]);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 
 Vue.use(VueBus);
 Vue.use(BootstrapVue);
 
-// import 'bootstrap/dist/css/bootstrap.css'	
+// import 'bootstrap/dist/css/bootstrap.css'
 // import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(VeeValidate);
@@ -43,7 +50,7 @@ router.beforeEach(async ({meta, path}, from, next) => {
       return redirectToMap(next);
     }
     return next();
-  } 
+  }
 
   if (meta.auth) {
     return next({
