@@ -22,8 +22,8 @@
         </b-col>
         <notifications
             style="margin-top: 80px;"
-            group="foo" 
-            position='top center' 
+            group="foo"
+            position='top center'
         />
     </b-row>
 </template>
