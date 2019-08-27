@@ -60,6 +60,9 @@
     </div>
 </template>
 <script>
+
+    //TODO: Check button efect after hover it
+    //TODO:
     import { Carousel, Slide } from 'vue-carousel';
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
