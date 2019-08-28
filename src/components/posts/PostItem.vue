@@ -3,16 +3,21 @@
         :id="item._id">
         <div class="PostItem__card">
             <div class="PostItem__cardPhoto">
-                <!-- TODO : Add carousel -->
-                <!-- <agile v-if="item.photos && item.photos.length > 0" :initial-slide="3">
-                    <div
+                <carousel
+                    v-if="item.photos && item.photos.length"
+                    :perPageCustom="[[1024, 1]]"
+                >
+                    <slide
                         :key="photo._id"
-                        v-for="photo in item.photos"
-                        class="slide"
-                        :style="styles(photo.thumbnailPath)"
-                    />
-                </agile> -->
+                        v-for="photo in item.photos" >
+                        <div
+                            :style="styles(photo.thumbnailPath)"
+                        >
+                        </div>
+                    </slide>
+                </carousel>
                 <img
+                    v-else
                     src="https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg"
                     alt="perrito encontrado">
             </div>
@@ -55,7 +60,11 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div
+                    style="position: absolute;
+    bottom: 0;
+    width: 100%;"
+                >
                     <BasicButton
                         class="PostItem__cardContactButton"
                         @click.native="showUserInfo"
@@ -72,14 +81,17 @@
 
     //TODO: Check button efect after hover it
     //TODO:
+
+    import { Carousel, Slide } from 'vue-carousel';
     import { VueAgile } from "vue-agile";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
     export default {
         name: "PostItem",
         components: {
-            agile: VueAgile,
-            BasicButton
+            BasicButton,
+            Carousel,
+            Slide
         },
         props: {
             item: {
@@ -103,6 +115,8 @@
                     'background': `url(${url}) no-repeat center center`,
                     'background-size': '100% 100%;',
                     'background-position': 'center',
+                    'width': '100%',
+                    'height': '400px'
                 }
             }
         },
@@ -125,14 +139,14 @@
         width: 568px;
         margin-bottom: 2em;
         border-radius: 2px;
-
+        height: 400px;
         p {
             margin: 0;
         }
 
         &__card{
             display: flex;
-
+            height: 400px;
             &Photo {
                 width: 230px;
                 flex: 1;
@@ -146,6 +160,7 @@
             &Content {
                 width: 330px;
                 margin: 0px;
+                position: relative;
 
                 &Info{
                     display: flex;
@@ -259,6 +274,7 @@
 
             &ContactButton {
                 width: 100%;
+
             }
         }
     }
