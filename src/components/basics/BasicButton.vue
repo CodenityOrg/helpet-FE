@@ -12,4 +12,8 @@
         color: white;
         font-size: 1em;
     }
+
+    .ButtonBasic:hover {
+        background: #039603;
+    }
 </style>>

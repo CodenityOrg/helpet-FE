@@ -3,6 +3,15 @@
         :id="item._id">
         <div class="PostItem__card">
             <div class="PostItem__cardPhoto">
+                <!-- TODO : Add carousel -->
+                <!-- <agile v-if="item.photos && item.photos.length > 0" :initial-slide="3">
+                    <div
+                        :key="photo._id"
+                        v-for="photo in item.photos"
+                        class="slide"
+                        :style="styles(photo.thumbnailPath)"
+                    />
+                </agile> -->
                 <img
                     src="https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg"
                     alt="perrito encontrado">
@@ -26,24 +35,24 @@
                         </div>
                     </div>
                     <div class="PostItem__cardContentDescription">
-                        <span > <font-awesome-icon icon="comments" /> Descripcion</span>
+                        <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> Descripcion</span>
                         <!-- TODO: Check ellipsis compability -->
                         <div> {{item.description}} </div>
                     </div>
                     <div class="PostItem__cardContentAddress">
-                        <span><font-awesome-icon icon="map" />Ultimo lugar visto</span>
+                        <span><font-awesome-icon icon="map" style="margin-right: 5px;" />Ultimo lugar visto</span>
                         <p> {{item.address}} </p>
                     </div>
                     <div class="PostItem__cardContentTags">
-                        <span style="font-size: 12px; color: #8e8e8e;"><font-awesome-icon icon="tags" /> Características </span>
-                        <br>
-                        <span
-                            class="PostItem__cardContentTagsItem"
-                            :key="tag._id"
-                            v-for="tag in item.tags">
-                            {{tag.value}}
-                        </span>
-                        <br/>
+                        <span style="font-size: 12px; color: #8e8e8e; margin-right: 5px;"><font-awesome-icon icon="tags" /> Características </span>
+                        <div class="PostItem__cardContentTagsContainer">
+                            <span
+                                class="PostItem__cardContentTagsItem"
+                                :key="tag._id"
+                                v-for="tag in item.tags">
+                                {{tag.value}}
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -63,15 +72,13 @@
 
     //TODO: Check button efect after hover it
     //TODO:
-    import { Carousel, Slide } from 'vue-carousel';
+    import { VueAgile } from "vue-agile";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
-
     export default {
         name: "PostItem",
         components: {
-            Carousel,
-            Slide,
+            agile: VueAgile,
             BasicButton
         },
         props: {
@@ -95,10 +102,7 @@
                 return {
                     'background': `url(${url}) no-repeat center center`,
                     'background-size': '100% 100%;',
-                    width: "400px",
-                    height: "200px",
                     'background-position': 'center',
-                    'background-size': 'contain'
                 }
             }
         },
@@ -162,6 +166,10 @@
                         justify-content: space-between;
                         flex: 1.5;
 
+                        span {
+                            margin-left: 5px;
+                        }
+
                         img {
                             width: 2em;
                             height: 2em;
@@ -207,7 +215,6 @@
                         display: block;
                         display: -webkit-box;
                         max-width: 100%;
-                        height: 90px;
                         margin: 0 auto;
                         line-height: 1.2;
                         -webkit-line-clamp: 5;
@@ -243,6 +250,10 @@
                         border-radius: 3px;
                         line-height: 30px;
                     }
+
+                    &Container{
+                        margin: 10px 0px;
+                    }
                 }
             }
 
@@ -251,4 +262,63 @@
             }
         }
     }
+
+    .agile__nav-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 24px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition-duration: 0.3s;
+  width: 80px;
+}
+.agile__nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+.agile__nav-button--prev {
+  left: 0;
+}
+.agile__nav-button--next {
+  right: 0;
+}
+.agile__dots {
+  bottom: 10px;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.agile__dot {
+  margin: 0 10px;
+}
+    .agile__dot button {
+        background-color: transparent;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        display: block;
+        height: 10px;
+        font-size: 0;
+        line-height: 0;
+        margin: 0;
+        padding: 0;
+        transition-duration: 0.3s;
+        width: 10px;
+    }
+    .agile__dot--current button, .agile__dot:hover button {
+        background-color: #fff;
+    }
+
+    .slide {
+        display: block;
+        height: 400px;
+        -o-object-fit: cover;
+        object-fit: cover;
+        width: 100%;
+    }
+
 </style>
