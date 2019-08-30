@@ -61,9 +61,7 @@
                     </div>
                 </div>
                 <div
-                    style="position: absolute;
-    bottom: 0;
-    width: 100%;"
+                    class="PostItem__cardContact"
                 >
                     <BasicButton
                         class="PostItem__cardContactButton"
@@ -82,8 +80,7 @@
     //TODO: Check button efect after hover it
     //TODO:
 
-    import { Carousel, Slide } from 'vue-carousel';
-    import { VueAgile } from "vue-agile";
+    import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
     export default {
@@ -116,7 +113,7 @@
                     'background-size': '100% 100%;',
                     'background-position': 'center',
                     'width': '100%',
-                    'height': '400px'
+                    'height': '410px'
                 }
             }
         },
@@ -139,14 +136,14 @@
         width: 568px;
         margin-bottom: 2em;
         border-radius: 2px;
-        height: 400px;
+        height: 410px;
         p {
             margin: 0;
         }
 
         &__card{
             display: flex;
-            height: 400px;
+            height: 410px;
             &Photo {
                 width: 230px;
                 flex: 1;
@@ -272,69 +269,15 @@
                 }
             }
 
-            &ContactButton {
+            &Contact {
+                position: absolute;
+                bottom: 0;
                 width: 100%;
 
+                &Button {
+                    width: 100%;
+                }
             }
         }
     }
-
-    .agile__nav-button {
-  background: transparent;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  font-size: 24px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  transition-duration: 0.3s;
-  width: 80px;
-}
-.agile__nav-button:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-}
-.agile__nav-button--prev {
-  left: 0;
-}
-.agile__nav-button--next {
-  right: 0;
-}
-.agile__dots {
-  bottom: 10px;
-  left: 50%;
-  position: absolute;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-}
-.agile__dot {
-  margin: 0 10px;
-}
-    .agile__dot button {
-        background-color: transparent;
-        border: 1px solid #fff;
-        border-radius: 50%;
-        cursor: pointer;
-        display: block;
-        height: 10px;
-        font-size: 0;
-        line-height: 0;
-        margin: 0;
-        padding: 0;
-        transition-duration: 0.3s;
-        width: 10px;
-    }
-    .agile__dot--current button, .agile__dot:hover button {
-        background-color: #fff;
-    }
-
-    .slide {
-        display: block;
-        height: 400px;
-        -o-object-fit: cover;
-        object-fit: cover;
-        width: 100%;
-    }
-
 </style>
