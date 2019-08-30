@@ -5,12 +5,13 @@
             <div class="PostItem__cardPhoto">
                 <carousel
                     v-if="item.photos && item.photos.length"
-                    :perPageCustom="[[1024, 1]]"
+                    :perPageCustom="[[1024, 1], [300, 1]]"
                 >
                     <slide
                         :key="photo._id"
                         v-for="photo in item.photos" >
                         <div
+                            class="PostItem__cardPhotoItem"
                             :style="styles(photo.thumbnailPath)"
                         >
                         </div>
@@ -77,7 +78,6 @@
 </template>
 <script>
 
-    //TODO: Check button efect after hover it
     //TODO:
 
     import { Carousel, Slide } from "vue-carousel";
@@ -109,11 +109,7 @@
             },
             styles(url) {
                 return {
-                    'background': `url(${url}) no-repeat center center`,
-                    'background-size': '100% 100%;',
-                    'background-position': 'center',
-                    'width': '100%',
-                    'height': '410px'
+                    'background-image': `url(${url})`,
                 }
             }
         },
@@ -133,17 +129,18 @@
         background: white;
         max-width: 100%;
         border: 1px solid #c5c5c5;
-        width: 568px;
+        width: 100%;
+        max-width: 700px;
         margin-bottom: 2em;
         border-radius: 2px;
-        height: 410px;
         p {
             margin: 0;
         }
 
         &__card{
             display: flex;
-            height: 410px;
+            min-height: 420px;
+
             &Photo {
                 width: 230px;
                 flex: 1;
@@ -152,7 +149,16 @@
                     width: 100%;
                     height: 100%;
                 }
+
+                &Item{
+                    background-position: center;
+                    width: 100%;
+                    height: 420px;
+                    background-size: auto;
+                }
             }
+
+
 
             &Content {
                 width: 330px;
@@ -279,5 +285,33 @@
                 }
             }
         }
+    }
+
+    @media (max-width: 400px) {
+
+        .PostItem__card{
+            flex-direction: column;
+        }
+
+        .PostItem__cardPhoto {
+            width: 100%;
+            flex: 1;
+            height: 250px;
+        }
+
+        .PostItem__cardContent {
+            width: 100%;
+            flex: 1;
+            padding-bottom: 40px;
+        }
+
+        .PostItem__cardPhotoItem{
+            height: 250px;
+        }
+    }
+
+    .VueCarousel-pagination {
+        position: absolute;
+        bottom: 0;
     }
 </style>
