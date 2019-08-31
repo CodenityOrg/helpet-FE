@@ -1,15 +1,15 @@
 <template>
     <div class="PostItem"
-        :id="item._id">
+        :id="post._id">
         <div class="PostItem__card">
             <div class="PostItem__cardPhoto">
                 <carousel
-                    v-if="item.photos && item.photos.length"
+                    v-if="post.photos && post.photos.length"
                     :perPageCustom="[[1024, 1], [300, 1]]"
                 >
                     <slide
                         :key="photo._id"
-                        v-for="photo in item.photos" >
+                        v-for="photo in post.photos" >
                         <div
                             class="PostItem__cardPhotoItem"
                             :style="styles(photo.thumbnailPath)"
@@ -24,11 +24,11 @@
             </div>
             <div class="PostItem__cardContent">
                 <div style="padding: 0 20px; margin: 10px 0px;">
-                    <h2>Title</h2>
+                    <h2>{{post.title || "Default title"}}</h2>
                     <div class="PostItem__cardContentInfo">
                         <div class="PostItem__cardContentInfoUser">
                             <div class="PostItem__cardContentInfoUserImage">
-                                <img :src="item.user.profile" >
+                                <img :src="post.user.profile" >
                                 <span>{{fullName}}</span>
                             </div>
                         </div>
@@ -37,17 +37,17 @@
                             Jun 7, 19:00
                         </div>
                         <div class="PostItem__cardContentInfoType">
-                            PERDIDO
+                            {{type === "lost"? "Perdido" : "Encontrado"}}
                         </div>
                     </div>
                     <div class="PostItem__cardContentDescription">
                         <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> Descripcion</span>
                         <!-- TODO: Check ellipsis compability -->
-                        <div> {{item.description}} </div>
+                        <div> {{post.description}} </div>
                     </div>
                     <div class="PostItem__cardContentAddress">
                         <span><font-awesome-icon icon="map" style="margin-right: 5px;" />Ultimo lugar visto</span>
-                        <p> {{item.address}} </p>
+                        <p> {{post.address}} </p>
                     </div>
                     <div class="PostItem__cardContentTags">
                         <span style="font-size: 12px; color: #8e8e8e; margin-right: 5px;"><font-awesome-icon icon="tags" /> Características </span>
@@ -55,7 +55,7 @@
                             <span
                                 class="PostItem__cardContentTagsItem"
                                 :key="tag._id"
-                                v-for="tag in item.tags">
+                                v-for="tag in post.tags">
                                 {{tag.value}}
                             </span>
                         </div>
@@ -91,8 +91,11 @@
             Slide
         },
         props: {
-            item: {
+            post: {
                 type: Object
+            },
+            type: {
+                type: String
             }
         },
         methods: {
@@ -105,7 +108,7 @@
                     return;
                 }
 
-                this.$bus.$emit("showUserInfo", this.item.user._id);
+                this.$bus.$emit("showUserInfo", this.post.user._id);
             },
             styles(url) {
                 return {
@@ -118,7 +121,7 @@
                 isAuthenticated: state => state.auth.authenticated
             }),
             fullName() {
-                return this.item.user.firstName +  " " + this.item.user.lastName
+                return this.post.user.firstName +  " " + this.post.user.lastName
             }
         }
     }
@@ -153,8 +156,9 @@
                 &Item{
                     background-position: center;
                     width: 100%;
-                    height: 420px;
-                    background-size: auto;
+                    min-height: 420px;
+                    background-size: cover;
+                    height: 100%;
                 }
             }
 
@@ -164,6 +168,7 @@
                 width: 330px;
                 margin: 0px;
                 position: relative;
+                padding-bottom: 35px;
 
                 &Info{
                     display: flex;
@@ -214,14 +219,13 @@
                     }
 
                     &Type{
-                        flex: 1;
                         background: #009900;
                         border: none;
                         padding: 15px;
                         color: white;
                         border-radius: 5px;
                         height: 20px;
-                        max-width: 80px;
+                        max-width: 90px;
                         line-height: 0px;
                     }
                 }
@@ -288,30 +292,33 @@
     }
 
     @media (max-width: 400px) {
-
         .PostItem__card{
             flex-direction: column;
-        }
 
-        .PostItem__cardPhoto {
-            width: 100%;
-            flex: 1;
-            height: 250px;
-        }
+            &Photo{
+                width: 100%;
+                flex: 1;
+                height: 250px;
+            }
 
-        .PostItem__cardContent {
-            width: 100%;
-            flex: 1;
-            padding-bottom: 40px;
-        }
+            &Content{
+                width: 100%;
+                flex: 1;
+                padding-bottom: 40px;
+            }
 
-        .PostItem__cardPhotoItem{
-            height: 250px;
+            &PhotoItem{
+                height: 250px;
+            }
         }
     }
 
     .VueCarousel-pagination {
         position: absolute;
         bottom: 0;
+    }
+
+    .VueCarousel, .VueCarousel-wrapper, .VueCarousel-inner {
+        height: 100%;
     }
 </style>
