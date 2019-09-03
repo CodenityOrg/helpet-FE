@@ -1,6 +1,6 @@
 <template>
     <infinite-list
-        id="tab-perdidos" 
+        id="tab-perdidos"
         class="tab-content"
         @scrollEnd="scrollEnd"
     >
@@ -9,7 +9,8 @@
         <PostItem
             :key="index"
             v-for="(lostPost, index) in lostPosts"
-            :item="lostPost"
+            :post="lostPost"
+            :type="type"
             @onShowInfo="showUser"
         />
     </infinite-list>
@@ -27,6 +28,11 @@
         components: {
             PostItem,
             InfiniteList
+        },
+        data() {
+            return {
+                type: "lost"
+            }
         },
         async created() {
             this.isLoading = true;

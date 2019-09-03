@@ -1,6 +1,6 @@
 <template>
   <infinite-list
-    id="tab-encontrados" 
+    id="tab-encontrados"
     class="tab-content"
     @scrollEnd="scrollEnd"
   >
@@ -9,7 +9,7 @@
     <PostItem
       :key="index"
       v-for="(foundPost, index) in foundPosts"
-      :item="foundPost"
+      :post="foundPost"
       @onShowInfo="showUser"
     />
   </infinite-list>
@@ -17,7 +17,7 @@
 
 <script>
   import PostItem from "./PostItem";
-  import { mapActions, mapState, mapGetters } from "vuex";
+  import { mapActions, mapState } from "vuex";
   import InfiniteList from "../common/InfiniteList";
   import listMixin from "./mixins/list";
 
@@ -34,6 +34,11 @@
       await this.getItems();
       this.skip = this.skip + this.limit;
       this.isLoading = false;
+    },
+    data() {
+      return {
+          type: "found"
+      }
     },
     computed: {
       ...mapState({
