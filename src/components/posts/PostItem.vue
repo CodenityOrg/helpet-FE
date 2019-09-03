@@ -34,7 +34,7 @@
                         </div>
                         <div class="PostItem__cardContentInfoDate">
                             <font-awesome-icon icon="calendar-alt" />
-                            {{post.createdAt || "Jun 7, 19:00"}}
+                            {{formattedDate || "Jun 7, 19:00"}}
                         </div>
                         <div class="PostItem__cardContentInfoType">
                             {{type === "lost"? "Perdido" : "Encontrado"}}
@@ -96,6 +96,8 @@
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
+    import moment from "moment";
+
     export default {
         name: "PostItem",
         components: {
@@ -150,6 +152,10 @@
             },
             isDescriptionHigher() {
                 return this.descriptionEl && (this.descriptionEl.scrollHeight - 1) > 90;
+            },
+            formattedDate(){
+                // TODO: Adjust date in order to fit in the box
+                return moment(this.post.createdAt).format('Do MMM YY, h:mm a');
             }
         }
     }
