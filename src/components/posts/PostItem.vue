@@ -48,7 +48,14 @@
                             :class="showMore? 'PostItem__cardContentDescriptionText--full-text' : ''"
                             > {{post.description}}
                         </div>
-                        <a v-show="isDescriptionHigher && !showMore" @click="showMoreContent" href="#">Show more</a>
+                        <a
+                            class="PostItem__cardContentDescriptionLink" 
+                            v-show="isDescriptionHigher && !showMore" 
+                            @click="showMoreContent" 
+                            href="#"
+                        >
+                            Show more
+                        </a>
                     </div>
                     <div class="PostItem__cardContentAddress">
                         <span><font-awesome-icon icon="map" style="margin-right: 5px;" />Ultimo lugar visto</span>
@@ -82,7 +89,7 @@
     </div>
 </template>
 <script>
-    //TODO: Remove default values for title and date after add theses fields in post model
+    // TODO: Remove default values for title and date after add theses fields in post model
     // TODO: Check ellipsis compability
     // TODO: Add "show more" functionality
 
@@ -142,7 +149,7 @@
                 return this.post.user.firstName +  " " + this.post.user.lastName
             },
             isDescriptionHigher() {
-                return this.descriptionEl && this.descriptionEl.clientHeight >= 80;
+                return this.descriptionEl && (this.descriptionEl.scrollHeight - 1) > 90;
             }
         }
     }
@@ -264,6 +271,14 @@
                         -webkit-box-orient: vertical;
                         overflow: hidden;
                         text-overflow: ellipsis;
+                    }
+
+                    &Link{
+                        color: #009900;
+                    }
+
+                    &Link:hover{
+                        text-decoration-line: none;
                     }
 
                     &Text--full-text {
