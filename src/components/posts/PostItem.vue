@@ -34,7 +34,7 @@
                         </div>
                         <div class="PostItem__cardContentInfoDate">
                             <font-awesome-icon icon="calendar-alt" />
-                            Jun 7, 19:00
+                            {{post.createdAt || "Jun 7, 19:00"}}
                         </div>
                         <div class="PostItem__cardContentInfoType">
                             {{type === "lost"? "Perdido" : "Encontrado"}}
@@ -42,12 +42,17 @@
                     </div>
                     <div class="PostItem__cardContentDescription">
                         <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> Descripcion</span>
-                        <!-- TODO: Check ellipsis compability -->
-                        <div> {{post.description}} </div>
+                        <div
+                            ref="descriptionPost"
+                            class="PostItem__cardContentDescriptionText"
+                            :class="showMore? 'PostItem__cardContentDescriptionText--full-text' : ''"
+                            > {{post.description}}
+                        </div>
+                        <a v-show="isDescriptionHigher && !showMore" @click="showMoreContent" href="#">Show more</a>
                     </div>
                     <div class="PostItem__cardContentAddress">
                         <span><font-awesome-icon icon="map" style="margin-right: 5px;" />Ultimo lugar visto</span>
-                        <p> {{post.address}} </p>
+                        <p> {{post.address}}  </p>
                     </div>
                     <div class="PostItem__cardContentTags">
                         <span style="font-size: 12px; color: #8e8e8e; margin-right: 5px;"><font-awesome-icon icon="tags" /> Características </span>
@@ -77,8 +82,9 @@
     </div>
 </template>
 <script>
-
-    //TODO:
+    //TODO: Remove default values for title and date after add theses fields in post model
+    // TODO: Check ellipsis compability
+    // TODO: Add "show more" functionality
 
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
@@ -98,6 +104,12 @@
                 type: String
             }
         },
+        data() {
+            return {
+                showMore: false,
+                descriptionEl: {}
+            }
+        },
         methods: {
             ...mapActions({
                 getOne: "getOne"
@@ -114,7 +126,13 @@
                 return {
                     'background-image': `url(${url})`,
                 }
+            },
+            showMoreContent() {
+                this.showMore = true;
             }
+        },
+        mounted() {
+            this.descriptionEl = this.$refs.descriptionPost;
         },
         computed: {
             ...mapState({
@@ -122,6 +140,9 @@
             }),
             fullName() {
                 return this.post.user.firstName +  " " + this.post.user.lastName
+            },
+            isDescriptionHigher() {
+                return this.descriptionEl && this.descriptionEl.clientHeight >= 80;
             }
         }
     }
@@ -233,7 +254,7 @@
                 &Description {
                     font-size: 15px;
                     margin-top: 10px;
-                    div {
+                    &Text {
                         display: block;
                         display: -webkit-box;
                         max-width: 100%;
@@ -243,6 +264,10 @@
                         -webkit-box-orient: vertical;
                         overflow: hidden;
                         text-overflow: ellipsis;
+                    }
+
+                    &Text--full-text {
+                        -webkit-line-clamp: inherit;
                     }
 
                     span {
