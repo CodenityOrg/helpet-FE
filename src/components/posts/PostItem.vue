@@ -34,7 +34,7 @@
                         </div>
                         <div class="PostItem__cardContentInfoDate">
                             <font-awesome-icon icon="calendar-alt" />
-                            {{post.createdAt || "Jun 7, 19:00"}}
+                            {{formattedDate}}
                         </div>
                         <div class="PostItem__cardContentInfoType">
                             {{type === "lost"? "Perdido" : "Encontrado"}}
@@ -49,9 +49,9 @@
                             > {{post.description}}
                         </div>
                         <a
-                            class="PostItem__cardContentDescriptionLink" 
-                            v-show="isDescriptionHigher && !showMore" 
-                            @click="showMoreContent" 
+                            class="PostItem__cardContentDescriptionLink"
+                            v-show="isDescriptionHigher && !showMore"
+                            @click="showMoreContent"
                             href="#"
                         >
                             Show more
@@ -96,6 +96,8 @@
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
+    import moment from "moment";
+
     export default {
         name: "PostItem",
         components: {
@@ -150,6 +152,9 @@
             },
             isDescriptionHigher() {
                 return this.descriptionEl && (this.descriptionEl.scrollHeight - 1) > 90;
+            },
+            formattedDate(){
+                return moment(this.post.createdAt).format('D MMM, kk:mm');
             }
         }
     }

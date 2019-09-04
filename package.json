@@ -23,6 +23,7 @@
     "lodash": "^4.17.11",
     "mapbox-gl": "^0.51.0",
     "mapbox-gl-vue": "^1.9.0",
+    "moment": "^2.24.0",
     "s": "^0.1.1",
     "serve": "^10.1.1",
     "serve-static": "^1.13.2",
