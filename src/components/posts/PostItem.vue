@@ -49,9 +49,9 @@
                             > {{post.description}}
                         </div>
                         <a
-                            class="PostItem__cardContentDescriptionLink" 
-                            v-show="isDescriptionHigher && !showMore" 
-                            @click="showMoreContent" 
+                            class="PostItem__cardContentDescriptionLink"
+                            v-show="isDescriptionHigher && !showMore"
+                            @click="showMoreContent"
                             href="#"
                         >
                             Show more
@@ -155,7 +155,7 @@
             },
             formattedDate(){
                 // TODO: Adjust date in order to fit in the box
-                return moment(this.post.createdAt).format('Do MMM YY, h:mm a');
+                return moment(this.post.createdAt).format('D MMM, kk:mm');
             }
         }
     }
