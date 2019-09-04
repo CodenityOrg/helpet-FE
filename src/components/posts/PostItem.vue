@@ -34,7 +34,7 @@
                         </div>
                         <div class="PostItem__cardContentInfoDate">
                             <font-awesome-icon icon="calendar-alt" />
-                            {{formattedDate || "Jun 7, 19:00"}}
+                            {{formattedDate}}
                         </div>
                         <div class="PostItem__cardContentInfoType">
                             {{type === "lost"? "Perdido" : "Encontrado"}}
@@ -154,7 +154,6 @@
                 return this.descriptionEl && (this.descriptionEl.scrollHeight - 1) > 90;
             },
             formattedDate(){
-                // TODO: Adjust date in order to fit in the box
                 return moment(this.post.createdAt).format('D MMM, kk:mm');
             }
         }
