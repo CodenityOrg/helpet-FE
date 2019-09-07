@@ -7,8 +7,6 @@ import PostPet from '../views/PostView.vue'
 import Profile from "../views/ProfileView";
 import MapView from '../views/MapView';
 
-import PetFound from '../components/posts/PetFound.vue';
-import PetLost from '../components/posts/PetLost.vue';
 
 Vue.use(Router);
 
@@ -53,28 +51,11 @@ const router = new Router({
     },
     {
       path: '/mapa',
-      name: 'Map',
+      name: 'MapView',
       component: MapView,
-
-      children: [
-        {
-          name: 'ListFound',
-          path: 'encontrados',
-          component: PetFound,
-          meta: {
-            title: "Mascotas encontradas"
-          }
-        },
-        {
-          name: 'ListLost',
-          path: 'perdidos',
-          component: PetLost,
-          meta: {
-            title: "Mascotas perdidas"
-          }
-        },
-      ],
-
+      meta: {
+        title: "Mapa"
+      }
     },
     {
       path: '*',
