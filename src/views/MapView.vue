@@ -1,19 +1,11 @@
 <template>
     <b-row style="margin: 0;" class="cont cont--inicio">
         <b-col xl="6" md="6" sm="12" class="cont--tarjetas">
-            <div class="content">
-                <div class="tab-links">
-                    <router-link :to="{name : 'ListLost'}" exact>
-                        <button type="button" class="tab-link posts-tab">
-                            Perdidos
-                        </button>
-                    </router-link>
-                    <router-link :to="{name : 'ListFound'}" exact>
-                        <button type="button" class="tab-link posts-tab">Encontrados</button>
-                    </router-link>
-                </div>
-                <router-view @onShowInfoUser="showUser"></router-view>
-            </div>
+            <PostsListFilters />
+            <PostListSelected />
+            <PostsList 
+                :filters="filters"
+            />
         </b-col>
         <b-col xl="6" md="6" sm="12" class="cont--mapa">
             <Map
@@ -31,15 +23,20 @@
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import {random} from "lodash";
     import mapMixin from "./mixins/map";
     import Map from "../components/common/Map";
+    import PostsList from "../components/posts/PostsList";
+    import PostsListFilters from "../components/posts/PostsListFilters";
+    import PostListSelected from "../components/posts/PostsListFIltersSelected";
 
     export default {
         name: "MapView",
         mixins: [mapMixin],
         components: {
-            Map
+            Map,
+            PostsList,
+            PostsListFilters,
+            PostListSelected
         },
         mounted() {
             this.showDetectLocationAlert();
@@ -89,6 +86,9 @@
             }
         },
         computed: {
+            ...mapState({
+                filters: state => state.pet.filters
+            }),
             ...mapGetters({
                 positions: "getCurrentPositions"
             }),

@@ -11,7 +11,7 @@
                     </h3>
                     <span class="slogan__subtitle">Porque las mascotas son los mejores amigos</span>
 
-                    <router-link :to="{name : 'ListLost'}">Comienza</router-link>
+                    <router-link :to="{name : 'MapView'}">Comienza</router-link>
 
                 </div>
                 <div class="logo">
