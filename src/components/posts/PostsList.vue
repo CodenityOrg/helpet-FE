@@ -10,7 +10,6 @@
             :key="index"
             v-for="(post, index) in posts"
             :post="post"
-            :type="type"
             @onShowInfo="showUser"
         />
     </infinite-list>
@@ -18,6 +17,8 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import PostsListItem from "./PostsListItem";
+import InfiniteList from "../common/InfiniteList";
+import {throttle} from "lodash";
 
 export default {
     name: "PostsList",
@@ -27,18 +28,36 @@ export default {
         }
     },
     components: {
-        PostsListItem
-    },
-    async created() {
-        this.isLoading = true;
-        await this.fetchPosts();
-        this.skip = this.skip + this.limit;
-        this.isLoading = false;
+        PostsListItem,
+        InfiniteList
     },
     computed: {
         ...mapState({
-            posts: state => state.pet.posts
+            posts: state => state.pet.posts,
         })
+    },
+    watch: {
+        filters: {
+            async handler(){
+                this.isLoading = true;
+                await this.fetchPosts({
+                    filters: this.filters,
+                    skip: this.skip,
+                    limit: this.limit
+                });
+                //this.skip = this.skip + this.limit;
+                this.skip = 0;
+                this.isLoading = false;
+            },
+            immediate: true
+        } 
+    },
+    data() {
+        return {
+            skip: 0,
+            limit: 5,
+            isLoading: false
+        }
     },
     methods: {
         ...mapActions({
@@ -49,10 +68,20 @@ export default {
         },
         resetFilters() {
             this.skip = 0;
-        }
+        },
+        scrollEnd: throttle(async function () {
+            this.isLoading = true;
+            await this.fetchPosts({
+                filters: this.filters, 
+                limit: this.limit, 
+                skip: this.skip 
+            });
+            this.skip = this.skip + this.limit;
+            this.isLoading = false;
+        }, 350)
     },
     beforeDestroy() {
-        this.$store.commit("RESET_LOST_POSTS");
+        this.$store.commit("RESET_POSTS");
     }
 }
 </script>

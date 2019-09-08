@@ -8,10 +8,10 @@ import VeeValidate from 'vee-validate';
 import BootstrapVue from "bootstrap-vue";
 import VueBus from 'vue-bus';
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt]);
+library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort]);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -31,19 +31,12 @@ Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
-const redirectToMap = next => {
-  next({
-    path: "/mapa/perdidos"
-  });
-}
 
 router.beforeEach(async ({meta, path}, from, next) => {
 
   document.title = meta.title;
   const hasAuth = await store.dispatch("validateAuthorization");
-  if (path === "/mapa") {
-    return redirectToMap(next);
-  }
+
 
   if (hasAuth) {
     if (meta.user) {

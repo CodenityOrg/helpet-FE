@@ -86,7 +86,6 @@
 
     import Selectize from "vue2-selectize"
     import { mapActions, mapState } from "vuex";
-    import _ from "lodash";
 
     export default {
         name: "PostForm",

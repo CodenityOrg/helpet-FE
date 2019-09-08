@@ -1,7 +1,11 @@
 <template>
     <b-row style="margin: 0;" class="cont cont--inicio">
         <b-col xl="6" md="6" sm="12" class="cont--tarjetas">
-
+            <PostsListFilters />
+            <PostListSelected />
+            <PostsList 
+                :filters="filters"
+            />
         </b-col>
         <b-col xl="6" md="6" sm="12" class="cont--mapa">
             <Map
@@ -22,13 +26,17 @@
     import mapMixin from "./mixins/map";
     import Map from "../components/common/Map";
     import PostsList from "../components/posts/PostsList";
+    import PostsListFilters from "../components/posts/PostsListFilters";
+    import PostListSelected from "../components/posts/PostsListFIltersSelected";
 
     export default {
         name: "MapView",
         mixins: [mapMixin],
         components: {
             Map,
-            PostsList
+            PostsList,
+            PostsListFilters,
+            PostListSelected
         },
         mounted() {
             this.showDetectLocationAlert();

@@ -3,7 +3,10 @@ import postAPI from "../../api/post";
 const state = {
     post: {},
     posts: [],
-    filters: {},
+    filters: {
+        types: 0,
+        order: "desc"
+    },
     tags: []
 }
 
@@ -29,7 +32,7 @@ const mutations = {
 
 const actions = {
     async fetchPosts({ commit }, { ...searchParams }) {
-        const posts = await postAPI.list({ type: 0, ...searchParams });
+        const posts = await postAPI.fetchPostList(searchParams);
         commit("ADD_POSTS", posts);
     },
     createPost({ commit }, payload) {
@@ -52,7 +55,6 @@ const getCoordinates = (post) => {
 }
 
 const getters = {
-    getPosts: state => state.foundPosts,
     getCurrentPositions: state => state.posts.map(getCoordinates)
 }
 

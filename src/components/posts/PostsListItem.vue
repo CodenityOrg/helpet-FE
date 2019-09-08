@@ -37,7 +37,7 @@
                             {{formattedDate}}
                         </div>
                         <div class="PostItem__cardContentInfoType">
-                            {{type === "lost"? "Perdido" : "Encontrado"}}
+                            {{post.type === 0? "Perdido" : "Encontrado"}}
                         </div>
                     </div>
                     <div class="PostItem__cardContentDescription">
