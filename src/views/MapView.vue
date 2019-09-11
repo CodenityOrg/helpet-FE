@@ -1,23 +1,23 @@
 <template>
-    <b-row style="margin: 0;" class="cont cont--inicio">
-        <b-col xl="6" md="6" sm="12" class="cont--tarjetas">
+    <div class="MapView cont cont--inicio">
+        <div class="MapView__PostList cont--tarjetas">
             <PostsListFilters />
             <PostListSelected />
             <PostsList 
                 :filters="filters"
             />
-        </b-col>
-        <b-col xl="6" md="6" sm="12" class="cont--mapa">
+        </div>
+        <div class="MapView__PostMap cont--mapa">
             <Map
                 @init="mapInitialized"
             />
-        </b-col>
+        </div>
         <notifications
             style="margin-top: 80px;"
             group="foo"
             position='top center'
         />
-    </b-row>
+    </div>
 </template>
 
 <script>
@@ -112,6 +112,20 @@
     };
 
 </script>
-<style>
+<style lang="scss">
     @import "../assets/css/componentes.css";
+
+    .MapView {
+        display: flex;
+
+        &__PostMap{
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            &__PostMap{
+                display: none;
+            }
+        }
+    }
 </style>
