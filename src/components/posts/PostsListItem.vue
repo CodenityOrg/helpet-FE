@@ -336,7 +336,7 @@
         }
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 650px) {
         .PostItem__card{
             flex-direction: column;
 
