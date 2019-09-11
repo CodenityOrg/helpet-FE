@@ -122,7 +122,7 @@
             flex: 1;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
             &__PostMap{
                 display: none;
             }
