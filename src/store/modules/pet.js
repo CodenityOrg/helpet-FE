@@ -2,9 +2,11 @@ import postAPI from "../../api/post";
 
 const state = {
     post: {},
-    lostPosts: [],
-    foundPosts: [],
-    currentType: "found",
+    posts: [],
+    filters: {
+        types: 0,
+        order: "desc"
+    },
     tags: []
 }
 
@@ -15,39 +17,27 @@ const mutations = {
     SET_TAGS(state, tags) {
         state.tags = tags;
     },
-    ADD_FOUND_POSTS(state, foundPosts) {
-        if (foundPosts) {
-            state.foundPosts.push(...foundPosts);
+    ADD_POSTS(state, posts) {
+        if (posts) {
+            state.posts.push(...posts);
         }
     },
-    ADD_LOST_POSTS(state, lostPosts) {
-        if (lostPosts) {
-            state.lostPosts.push(...lostPosts);
-        }
+    SET_FILTERS(state, filters) {
+        state.filters = filters;
     },
-    RESET_FOUND_POSTS(state) {
-        state.foundPosts = [];
-    },
-    RESET_LOST_POSTS(state) {
-        state.lostPosts = [];
+    RESET_POSTS(state) {
+        state.posts = [];
     }
 }
 
 const actions = {
-    async getLostPosts({ commit }, { ...searchParams }) {
-        const lostPosts = await postAPI.list({ type: 0, ...searchParams });
-        commit("ADD_LOST_POSTS", lostPosts);
-    },
-    async getFoundPosts({ commit }, { ...searchParams }) {
-        const foundPosts = await postAPI.list({ type: 1, ...searchParams });
-        if (foundPosts) {
-            commit("ADD_FOUND_POSTS", foundPosts);
-        }
+    async fetchPosts({ commit }, { ...searchParams }) {
+        const posts = await postAPI.fetchPostList(searchParams);
+        commit("ADD_POSTS", posts);
     },
     createPost({ commit }, payload) {
         return postAPI.create(payload);
     },
-    
     async getTags({commit}, q) {
         const {data: tags} = await postAPI.getTags(q);
         commit("SET_TAGS", tags);
@@ -55,7 +45,6 @@ const actions = {
 }
 
 const getCoordinates = (post) => {
-    // console.log('MY POST',post)
     return {
         id: post._id,
         latitude: post.latitude,
@@ -66,16 +55,7 @@ const getCoordinates = (post) => {
 }
 
 const getters = {
-    getPosts: state => state.foundPosts,
-    getCurrentPositions: state => {
-        if (state.currentType === "found") {
-            return state.foundPosts.map(getCoordinates);
-        }
-
-        if (state.currentType === "lost") {
-            return state.lostPosts.map(getCoordinates);
-        }
-    }
+    getCurrentPositions: state => state.posts.map(getCoordinates)
 }
 
 export default {
