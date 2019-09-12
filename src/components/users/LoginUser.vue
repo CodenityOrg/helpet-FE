@@ -1,70 +1,73 @@
 <template>
-    <Modal class="LoginUser">
-        <div class="LoginUser__sectionImg">
-            <div class="LoginUser__sectionImgCont">
-                <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesion">
-                <span class="LoginUser__sectionImgContSlogan">Inicia sesion y ayuda a una mascota a regresar a su hogar</span>
+    <div class="modal-hp">
+        <div class="modal__box modal--inicio-sesion">
+            <div class="modal-body login-modal-body" >
+                <div class="LoginUser__sectionImg">
+                    <div class="LoginUser__sectionImgCont">
+                        <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesion">
+                        <span class="LoginUser__sectionImgContSlogan">Inicia sesion y ayuda a una mascota a regresar a su hogar</span>
+                    </div>
+                </div>
+                <div class="LoginUser__sectionLogin">
+                    <form id="login-form">
+                        <div class="social-buttons">
+                            <a href="#">
+                                <fb-signin-button
+                                    @success="onSignInFacebookSuccess"
+                                    @error="onSignInFacebookError"
+                                    :params="fbSignInParams">
+                                    Iniciar sesion con Facebook
+                                </fb-signin-button>
+                            </a>
+                            <!-- <a href="#">
+                                <g-signin-button
+                                    :params="googleSignInParams"
+                                    @success="onSignInSuccess"
+                                    @error="onSignInError">
+                                    Iniciar sesion con Google
+                                </g-signin-button>
+                            </a> -->
+                        </div>
+                        <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>    
+                        <div class="form-input font-size-10px" >
+                            <input
+                                class="login-input"
+                                :class="{'error-input': errors.first('email')}"
+                                v-validate="'required|email'"
+                                v-model="credentials.email"
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                            />
+                        </div>
+                        <div class="form-input font-size-10px">
+                            <input
+                                class="login-input"
+                                :class="{'error-input': errors.first('password') }"
+                                v-validate="'required'"
+                                v-model="credentials.password"
+                                type="password"
+                                name="password"
+                                placeholder="Contraseña"
+                            />
+                        </div>
+                        <div class="info-message">
+                            <p>No tienes cuenta ? <router-link to="/registro">Crea una cuenta aqui</router-link></p> 
+                        </div>
+                        <div class="form-submit">
+                            <button class="frm--btm login-btn" type="submit" @click="signUp">Iniciar sesion</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="LoginUser__sectionLogin">
-            <form>
-                <div class="social-buttons">
-                    <a href="#">
-                        <fb-signin-button
-                            @success="onSignInFacebookSuccess"
-                            @error="onSignInFacebookError"
-                            :params="fbSignInParams">
-                            Iniciar sesion con Facebook
-                        </fb-signin-button>
-                    </a>
-                    <!-- <a href="#">
-                        <g-signin-button
-                            :params="googleSignInParams"
-                            @success="onSignInSuccess"
-                            @error="onSignInError">
-                            Iniciar sesion con Google
-                        </g-signin-button>
-                    </a> -->
-                </div>
-                <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>
-                <div class="form-input font-size-10px" >
-                    <input
-                        class="login-input"
-                        :class="{'error-input': errors.first('email')}"
-                        v-validate="'required|email'"
-                        v-model="credentials.email"
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                    />
-                </div>
-                <div class="form-input font-size-10px">
-                    <input
-                        class="login-input"
-                        :class="{'error-input': errors.first('password') }"
-                        v-validate="'required'"
-                        v-model="credentials.password"
-                        type="password"
-                        name="password"
-                        placeholder="Contraseña"
-                    />
-                </div>
-                <div class="info-message">
-                    <p>No tienes cuenta ? <router-link to="/registro">Crea una cuenta aqui</router-link></p>
-                </div>
-                <div class="form-submit">
-                    <button class="frm--btm login-btn" type="submit" @click="signUp">Iniciar sesion</button>
-                </div>
-            </form>
-        </div>
-    </Modal>
+    </div>
 </template>
 
 <script>
     import FBSignInButton from "vue-facebook-signin-button";
     import GSignInButton from "vue-google-signin-button";
 
-    import Modal from "../common/Modal";
 
     import Vue from "vue";
     import {mapActions, mapState} from "vuex";
@@ -88,9 +91,6 @@
                     client_id: '1076081297271-he3s2qr0ob61s4cpbgl0cnj2s5ajpqu7.apps.googleusercontent.com'
                 }
             }
-        },
-        components: {
-            Modal
         },
         computed: {
             ...mapState({
