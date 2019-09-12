@@ -1,0 +1,63 @@
+.login-modal-body {
+    height: 100%;
+    padding: 0;
+}
+
+.img-slogan {
+    width: 40%;
+    height: 100%; 
+    padding: 0; 
+    background: #009900; 
+}
+
+.login-form {
+    width: 60%;
+    padding: 30px;
+}
+
+.info-message {
+    font-size: 12px; 
+    text-align: center;
+    margin: 1px 0;
+}
+
+.font-size-10px {
+    font-size: 10px;
+}
+
+.login-input {
+    border: 1px solid gray !important;
+    height: 35px !important;
+}
+
+.login-input.error-input {
+    border: 1px solid red !important;
+}
+
+.border-gray {
+    border: 1px solid gray !important;
+}
+
+.login-btn {
+    width: 100%; 
+    background: rgb(0, 153, 0); 
+    margin-top: 0px !important;
+}
+
+.social-buttons {
+    margin: 20px 0;
+}
+
+@media (max-width: 600px) {
+    .img-slogan {
+      display: none;
+    }
+    .modal__box {
+        width: 100%;
+    }
+    
+    .login-form {
+        width: 100%;
+    }
+}
+
