@@ -89,7 +89,6 @@
     </div>
 </template>
 <script>
-    // TODO: Remove default values for title and date after add theses fields in post model
     // TODO: Check ellipsis compability
     // TODO: Add "show more" functionality
 
