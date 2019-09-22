@@ -85,10 +85,13 @@
             &__Form{
                 width: 100%;
                 flex: 2;
+                order: 2;
             }
 
             &__Map{
-                flex: 1;
+                flex: 3;
+                order: 1;
+                min-height: 300px;
             }
         }
     }
