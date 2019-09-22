@@ -61,6 +61,7 @@
     };
 </script>
 
+
 <style lang="scss">
     .PostView{
         display: flex;
