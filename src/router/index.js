@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 import HomePage from '../views/HomeView.vue';
 import RegisterUser from '../views/RegisterView.vue';
-import PostPet from '../views/PostView.vue'
+import PostRegister from '../views/PostRegisterView.vue'
 import Profile from "../views/ProfileView";
 import MapView from '../views/MapView';
 
@@ -43,7 +43,7 @@ const router = new Router({
       path: '/publicacion',
       name: 'RegisterPostPet',
       auth: true,
-      component: PostPet,
+      component: PostRegister,
       meta: {
         title: "Nueva publicacion",
         auth: true
