@@ -483,6 +483,10 @@ html, body {
     margin: 0 0.3em;
 }
 
+.selectize-input {
+    border: none !important;
+}
+
 .selectize-control.multi .selectize-input > div{
     background: green !important;
 }
