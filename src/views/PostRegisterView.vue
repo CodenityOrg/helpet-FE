@@ -83,7 +83,12 @@
             flex-direction: column;
 
             &__Form{
-                height: 550px;
+                width: 100%;
+                flex: 2;
+            }
+
+            &__Map{
+                flex: 1;
             }
         }
     }
