@@ -7,7 +7,8 @@
         v-if="flagLogin"
         @onCloseLogin="flagLogin=false"
       ></login-user>
-      <info-user />
+      <info-user
+      />
       <router-view @onShowUserInfo="showUserInfo"/>
   </div>
 </template>
