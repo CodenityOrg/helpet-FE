@@ -1,6 +1,6 @@
 <template>
     <div class="cont--formulario">
-        <form id="post-form">
+        <form id="post-form" style="max-width: 400px; ">
             <h3 align="center">Informacion de la mascota</h3>
             <div>
                 <form class="form" id="register-form">
@@ -56,18 +56,18 @@
                     </div>
                     <div class="form-input">
                         <div class="cleck--flex">
-                            <label class="cleck--flex">
-                                <div class="field--input">
-                                    <input v-model.number="post.type" checked="checked" name="type" type="radio" value=0>
+                            <div class="cleck--flex">
+                                <div class="field--input" style="width: 150px; display: flex;">
+                                    <label>Perdido</label>
+                                    <input style="margin: 0 15px;" v-model.number="post.type" checked="checked" name="type" type="radio" value=0>
                                 </div>
-                                    <span>Perdido</span>
-                            </label>
-                            <label class="cleck--flex">
-                                <div class="field--input">
-                                    <input v-model.number="post.type" name="type" type="radio" value=1>
+                            </div>
+                            <div class="cleck--flex">
+                                <div class="field--input" style="width: 150px; display: flex;">
+                                    <label>Encontrado</label>
+                                    <input style="margin: 0 15px;" v-model.number="post.type" name="type" type="radio" value=1>
                                 </div>
-                                    <span>Encontrado</span>
-                            </label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-submit">
@@ -142,7 +142,7 @@
                         console.log(error);
                         this.$emit("toggleLoading");
                     }
-                    this.$router.push("/mapa/perdidos");
+                    this.$router.push("/mapa");
                 } else {
                     alert("Necesitas seleccionar una posicion en el mapa");
                 }
@@ -170,7 +170,7 @@
 </script>
 <style scoped>
     @import "~selectize/dist/css/selectize.default.css";
-    @import "~selectize/dist/css/selectize.bootstrap3.css";
+    
     .btn-file {
         position: relative;
         overflow: hidden;
@@ -211,7 +211,6 @@
         max-width: 360px;
         max-height: 500px;
     }
-    .grid-item {
+    
 
-    }
 </style>

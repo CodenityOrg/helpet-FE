@@ -1,13 +1,15 @@
 <template>
   <div id="app">
       <nav-bar
-        @onShowLogin="flagLogin=true"
+        @onShowLogin="showLogin=true"
       ></nav-bar>
       <login-user
-        v-if="flagLogin"
-        @onCloseLogin="flagLogin=false"
+        v-if="showLogin"
+        @onCloseLogin="showLogin=false"
       ></login-user>
       <info-user
+        v-show="showInfoUser"
+        :userId="userId"
       />
       <router-view @onShowUserInfo="showUserInfo"/>
   </div>
@@ -20,21 +22,29 @@
 
   export default {
       components: {
-        NavBar,
-        LoginUser,
-        InfoUser
+          NavBar,
+          LoginUser,
+          InfoUser
       },
       name: 'app',
       data() {
         return {
-          flagLogin: false,
-          crntUser: {},
+          showInfoUser: false,
+          showLogin: false,
+          userId: {},
         };
       },
+      created() {
+        this.$bus.$on("showUserInfo", this.showUserInfo);
+        this.$bus.$on("onCloseInfoUser", this.closeUserInfo);
+      },
       methods: {
-        showUserInfo(user) {
-          this.crntUser = user;
-          this.flagInfoUser = true;
+        showUserInfo(userId) {
+          this.userId = userId;
+          this.showInfoUser = true;
+        },
+        closeUserInfo() {
+          this.showInfoUser = false;
         }
       }
   };

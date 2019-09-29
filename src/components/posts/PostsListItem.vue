@@ -83,14 +83,24 @@
                         <font-awesome-icon icon="phone-alt" />
                         Contactar
                     </BasicButton>
+                    <a
+                        class="PostItem__cardContactMap"
+                        :href="'https://www.google.com/maps/search/?api=1&query='+ post.latitude + ',' + post.longitude">
+                        <BasicButton
+                            style="width: 100%;"
+                        >
+                            <font-awesome-icon icon="map" />
+                            Ver mapa
+                        </BasicButton>
+                    </a>
+
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-    // TODO: Check ellipsis compability
-    // TODO: Add "show more" functionality
+    // TODO: Remove default values for title and date after add theses fields in post model
 
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
@@ -331,6 +341,10 @@
                 &Button {
                     width: 100%;
                 }
+
+                &Map{
+                    display: none;
+                }
             }
         }
     }
@@ -353,6 +367,28 @@
 
             &PhotoItem{
                 height: 250px;
+            }
+
+            &Contact {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+
+                &Button {
+                    flex: 1;
+                }
+
+                &Map{
+                    display:inherit;
+                    flex: 1;
+
+                    a {
+                        margin: 0 auto;
+                        color: white;
+                        text-decoration: none;
+                    }
+                }
             }
         }
     }
