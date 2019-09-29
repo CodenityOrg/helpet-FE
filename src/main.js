@@ -8,10 +8,10 @@ import VeeValidate from 'vee-validate';
 import BootstrapVue from "bootstrap-vue";
 import VueBus from 'vue-bus';
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort]);
+library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes]);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
