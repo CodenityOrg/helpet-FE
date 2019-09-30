@@ -88,7 +88,6 @@
     transition: all .3s;
     border-radius: 6px;
     outline: none;
-    border: none;
 }
 
 .form-input input[type=radio]  {

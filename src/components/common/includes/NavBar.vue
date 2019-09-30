@@ -22,9 +22,6 @@
                     <b-nav-item>
                         <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
                     </b-nav-item>
-                    <b-nav-item>
-                        <router-link :to="{name : 'RegisterPostPet'}">Nuevo post</router-link>
-                    </b-nav-item>
                 </template>
                 <b-nav-item>
                     <router-link :to="{name : 'MapView'}">Mapa</router-link>
