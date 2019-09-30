@@ -189,7 +189,7 @@
 
         input, textarea {
             border: 1px solid #b9b9b9;
-            font-size: 14px;
+            font-size: 14px !important;
         }
     }
 
