@@ -108,9 +108,6 @@
                 login: "login",
                 oauthLogin: "oauthLogin"
             }),
-            closeModal() {
-
-            },
             async signUp(event) {
                 event.preventDefault();
                 event.stopPropagation();
