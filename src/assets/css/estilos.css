@@ -297,6 +297,8 @@ html, body {
     height: calc(100% - 90px);
 }
 
+
+
 .cont--inicio .cont--tarjetas {
     display: flex;
     padding-top: 1em;
@@ -479,4 +481,8 @@ html, body {
 }
 .field--input{
     margin: 0 0.3em;
+}
+
+.selectize-control.multi .selectize-input > div{
+    background: green !important;
 }

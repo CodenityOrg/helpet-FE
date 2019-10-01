@@ -88,10 +88,12 @@
     transition: all .3s;
     border-radius: 6px;
     outline: none;
-    border: none;
 }
 
-
+.form-input input[type=radio]  {
+    width: 20px;
+    height: 20px;
+}
 /**
  * tarjetas
  */
@@ -161,6 +163,11 @@
 
 .marker--encontrado {
     border: 3px solid var(--color-logo-verde);
+}
+
+.marker--empty{
+    border: 3px solid var(--color-logo-verde);
+    background:  rgba(33, 177, 106, 1);
 }
 
 .marker::before {

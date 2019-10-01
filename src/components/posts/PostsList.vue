@@ -6,6 +6,8 @@
     >
         <loading :active.sync="isLoading"
                 :is-full-page="fullPage" />
+        
+        
         <PostsListItem
             :key="index"
             v-for="(post, index) in posts"
