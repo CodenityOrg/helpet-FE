@@ -1,42 +1,42 @@
 <template>
-  <div id="app">
-      <nav-bar
-        @onShowLogin="flagLogin=true"
-      ></nav-bar>
-      <login-user
-        v-if="flagLogin"
-        @onCloseLogin="flagLogin=false"
-      ></login-user>
-      <info-user />
-      <router-view @onShowUserInfo="showUserInfo"/>
-  </div>
+	<div id="app">
+		<nav-bar
+			@onShowLogin="flagLogin=true"
+		/>
+		<login-user
+			v-if="flagLogin"
+			@close="flagLogin=false"
+		/>
+		<info-user />
+		<router-view @onShowUserInfo="showUserInfo"/>
+	</div>
 </template>
 
 <script>
-  import NavBar from './components/common/includes/NavBar.vue';
-  import LoginUser from './components/users/LoginUser.vue';
-  import InfoUser from './components/users/InfoUser.vue';
+	import NavBar from './components/common/includes/NavBar.vue';
+	import LoginUser from './components/users/LoginUser.vue';
+	import InfoUser from './components/users/InfoUser.vue';
 
-  export default {
-      components: {
-        NavBar,
-        LoginUser,
-        InfoUser
-      },
-      name: 'app',
-      data() {
-        return {
-          flagLogin: false,
-          crntUser: {},
-        };
-      },
-      methods: {
-        showUserInfo(user) {
-          this.crntUser = user;
-          this.flagInfoUser = true;
-        }
-      }
-  };
+	export default {
+		components: {
+			NavBar,
+			LoginUser,
+			InfoUser
+		},
+		name: 'app',
+		data() {
+			return {
+				flagLogin: false,
+				crntUser: {},
+			};
+		},
+		methods: {
+			showUserInfo(user) {
+				this.crntUser = user;
+				this.flagInfoUser = true;
+			}
+		}
+	};
 </script>
 
 <style>

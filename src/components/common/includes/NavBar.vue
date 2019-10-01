@@ -20,6 +20,9 @@
                 </template>
                 <template v-else>
                     <b-nav-item>
+                        <a href="" style="color: white;" ><font-awesome-icon icon="bell" style="margin-right: 5px;" /></a>
+                    </b-nav-item>
+                    <b-nav-item>
                         <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
                     </b-nav-item>
                 </template>
