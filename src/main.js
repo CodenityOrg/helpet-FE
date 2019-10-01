@@ -31,7 +31,6 @@ Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
-
 router.beforeEach(async ({meta, path}, from, next) => {
 
   document.title = meta.title;
@@ -40,7 +39,9 @@ router.beforeEach(async ({meta, path}, from, next) => {
 
   if (hasAuth) {
     if (meta.user) {
-      return redirectToMap(next);
+      return next({
+        path: "/mapa"
+      });
     }
     return next();
   }
