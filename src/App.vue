@@ -8,6 +8,7 @@
 			@close="flagLogin=false"
 		/>
 		<info-user />
+		<post-modal v-if="showPostModal" :post="post" />
 		<router-view @onShowUserInfo="showUserInfo"/>
 	</div>
 </template>
@@ -16,19 +17,29 @@
 	import NavBar from './components/common/includes/NavBar.vue';
 	import LoginUser from './components/users/LoginUser.vue';
 	import InfoUser from './components/users/InfoUser.vue';
+	import PostModal from './components/posts/PostModal';
 
 	export default {
 		components: {
 			NavBar,
 			LoginUser,
-			InfoUser
+			InfoUser,
+			PostModal
 		},
 		name: 'app',
 		data() {
 			return {
 				flagLogin: false,
+				showPostModal: false,
 				crntUser: {},
+				post: {}
 			};
+		},
+		mounted() {
+			this.$bus.$on("showPost", (post) => {
+				this.post = post;
+				this.showPostModal = true;
+			})
 		},
 		methods: {
 			showUserInfo(user) {

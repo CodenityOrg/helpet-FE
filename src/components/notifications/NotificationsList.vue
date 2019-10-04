@@ -1,19 +1,24 @@
 <template>
     <div>
-        <Notification
-            :key="notification.id"
-            v-for="notification in notifications"
-        />
+        <template v-if="notifications.length">
+            <Notification
+                :key="notification.id"
+                :notification="notification"
+                v-for="notification in notifications"
+            />
+        </template>
+        <template v-else>
+            <p style="color: black;">No tienes notificaciones pendientes</p>
+        </template>
     </div>
 </template>
 <script>
 import Notification from "./Notification";
 
 export default {
-    props: {
-        notifications: {
-            type: Array
-        }
+    props: ["notifications"],
+    components: {
+        Notification
     }
 }
 </script>

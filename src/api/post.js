@@ -18,5 +18,8 @@ export default {
     },
     getTags(query) {
         return axios.get(`${HOST}/posts/tags?q=${query}`);
+    },
+    getOne(id) {
+        return axios.get(`${HOST}/posts/${id}`);
     }
 };

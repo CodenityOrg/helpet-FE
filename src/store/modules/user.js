@@ -1,17 +1,32 @@
 import userAPI from "../../api/user";
 import Vue from "vue";
 import VueCookie from "vue-cookie";
-
 Vue.use(VueCookie);
 
 const state = {
     user: {},
-    validate: {}
+    validate: {},
+    notifications: {},
+    countUnreadNotifications: 0
 };
 
 const mutations = {
     SET_USER(state, user){ state.user = user; },
-    VALIDATE: (state, validate) => { state.validate = validate }
+    VALIDATE: (state, validate) => { state.validate = validate },
+    SET_NOTIFICATIONS(state, notifications) {
+        state.notifications = notifications;
+    },
+    SET_NOTIFICATION_READ(state, id) {
+        const {notifications} = state;
+        const index = notifications.findIndex(notification => notification._id === id);
+        Vue.set(notifications, index, {
+            ...notifications[index],
+            read: true
+        });
+    },
+    SET_NOTIFICATIONS_UNREAD(state, count) {
+        state.countUnreadNotifications = count;
+    }
 };
 
 const actions = {
@@ -39,6 +54,17 @@ const actions = {
     },
     updateUser({commit}, data) {
         return userAPI.update(data);
+    },
+    getNotifications({commit}) {
+        return userAPI.fetchNotifications().then(({ status, data: { notifications, unread } }) => {
+            commit("SET_NOTIFICATIONS", notifications);
+            commit("SET_NOTIFICATIONS_UNREAD", unread);
+        });
+    },
+    readNotification({commit}, id) {
+        return userAPI.readNotification(id).then(() => {
+            commit("SET_NOTIFICATION_READ", id);
+        });
     }
 };
 
