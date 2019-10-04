@@ -105,6 +105,7 @@
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
+    import {formatDate} from "../utils";
     import moment from "moment";
 
     export default {

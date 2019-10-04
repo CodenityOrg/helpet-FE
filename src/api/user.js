@@ -20,5 +20,11 @@ export default {
     },
     userById({id, fullData}) {
         return axios.get(`${HOST}/users/${id}?full=${fullData}`);
+    },
+    fetchNotifications() {
+        return axios.get(`${HOST}/notifications/`);
+    },
+    readNotification(id) {
+        return axios.post(`${HOST}/notifications/${id}/read`);
     }
 };

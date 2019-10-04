@@ -50,7 +50,7 @@ const router = new Router({
       }
     },
     {
-      path: '/mapa',
+      path: '/publicaciones',
       name: 'MapView',
       component: MapView,
       meta: {
