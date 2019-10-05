@@ -14,7 +14,7 @@
 </template>
 
 <script>
-	import NavBar from './components/common/includes/NavBar.vue';
+	import NavBar from './components/common/includes/NewNavBar.vue';
 	import LoginUser from './components/users/LoginUser.vue';
 	import InfoUser from './components/users/InfoUser.vue';
 	import PostModal from './components/posts/PostModal';
