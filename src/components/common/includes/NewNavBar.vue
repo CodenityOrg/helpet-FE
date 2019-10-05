@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 <div class="Navbar__menuItem">
-                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                    <router-link @click="showMenu = false" :to="{name : 'RegisterUser'}">Regístrate</router-link>
                 </div>
             </template>
             <template v-else>
@@ -94,6 +94,7 @@
         z-index: 10;
         padding: 12px 15px;
         width: 100%;
+        min-height: 90px;
 
         &__triggerButton {
             display: none;
@@ -119,6 +120,7 @@
                 padding-left: 20px;
                 display: flex;
                 transition: left 0.3s;
+                z-index: 99;
             }
 
             &__menu--show {
