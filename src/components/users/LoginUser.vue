@@ -106,7 +106,8 @@
         methods: {
             ...mapActions({
                 login: "login",
-                oauthLogin: "oauthLogin"
+                oauthLogin: "oauthLogin",
+                updateToken: "updateToken"
             }),
             async signUp(event) {
                 event.preventDefault();
@@ -136,13 +137,16 @@
                 await this.oauthLogin(info);
                 this.redirectToMapOrFail();
             },
-            redirectToMapOrFail() {
+            async redirectToMapOrFail() {
                 if (!this.isAuthenticated) {
                     this.showFailMessage();
                 } else {
                     this.isLoading = false;
                     this.$emit("close");
-                    this.$router.push("/mapa/encontrados")
+                    const token = await this.$messaging.getToken();
+                    debugger
+                    await this.updateUserToken(token);
+                    this.$router.push("/publicaciones")
                 }
             },
             onSignInFacebookError (error) {

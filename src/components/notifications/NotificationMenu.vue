@@ -2,7 +2,7 @@
     <div>
         <div style="display: flex;">
             <span v-if="countUnreadNotifications > 0" style="color: white; margin-right: 10px;">{{countUnreadNotifications}}</span>
-            <a href="" @click="show = !show" style="color: white;" ><font-awesome-icon icon="bell" style="margin-right: 5px;" /></a>
+            <a href="#" @click="show = !show" style="color: white;" ><font-awesome-icon icon="bell" style="margin-right: 5px;" /></a>
         </div>
         <div v-show="show" class="NotificationMenu">
             <NotificationList
@@ -47,6 +47,7 @@ export default {
         height: 400px;
         background-color: white;
         position: absolute;
+        z-index: 10;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 </style>

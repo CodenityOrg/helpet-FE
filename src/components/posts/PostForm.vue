@@ -4,7 +4,7 @@
         <form class="form" id="post-form">
             <div class="form-input">
                 <div class="grid-container">
-                    <div 
+                    <div
                         :key="idx"
                         v-for="(image, idx) in preview">
                         <div class="grid-item">
@@ -15,7 +15,7 @@
             </div>
             <div class="form-input">
                 <span @click="openFileSelector" class="btn btn-default btn-file">
-                    Seleccionar Imagen 
+                    Seleccionar Imagen
                 </span>
                 <input
                     class="frm--btm"
@@ -30,10 +30,10 @@
                 <textarea
                     placeholder="Descripcion"
                     style="height: 100px;"
-                    v-model="post.description" 
-                    name="description" 
-                    id="" 
-                    cols="30" 
+                    v-model="post.description"
+                    name="description"
+                    id=""
+                    cols="30"
                     rows="100"
                 />
             </div>
@@ -41,12 +41,12 @@
                 <input v-model="post.address" type="text" name="address" placeholder="Direccion">
             </div>
             <div class="form-input">
-                <selectize 
-                    v-model="post.tags" 
+                <selectize
+                    v-model="post.tags"
                     :settings="settings">
-                    <option 
+                    <option
                         :key="tag._id"
-                        v-for="tag in tags" 
+                        v-for="tag in tags"
                         :value="tag.value">
                         {{tag.value}}
                     </option>
@@ -69,8 +69,8 @@
                 </div>
             </div>
             <div class="form-submit">
-                <BasicButton 
-                    @click.native="newPost" 
+                <BasicButton
+                    @click.native="newPost"
                     class="btn btn-regular">
                     Aceptar
                 </BasicButton>
@@ -144,7 +144,7 @@
                         console.log(error);
                         this.$emit("toggleLoading");
                     }
-                    this.$router.push("/mapa");
+                    this.$router.push("/publicaciones");
                 } else {
                     alert("Necesitas seleccionar una posicion en el mapa");
                 }
@@ -194,7 +194,7 @@
     }
 
     @import "~selectize/dist/css/selectize.default.css";
-    
+
     .btn-file {
         position: relative;
         overflow: hidden;
@@ -235,6 +235,6 @@
         max-width: 360px;
         max-height: 500px;
     }
-    
+
 
 </style>

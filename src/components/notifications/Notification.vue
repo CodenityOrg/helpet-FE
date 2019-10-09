@@ -10,7 +10,6 @@
                 <span class="Notification__InfoDate"><strong>{{formattedDate}}</strong> </span>
             </div>
         </div>
-        <hr>
     </div>
 </template>
 <script>
@@ -50,6 +49,7 @@ export default {
         color: black;
         display: flex;
         padding: 10px;
+        cursor: pointer;
 
         &__Profile {
             img {
@@ -82,6 +82,6 @@ export default {
     }
 
     // .Notification:hover{
-    //     background: #e8e8e8;
+    //     opacity: 0.3;
     // }
 </style>

@@ -10,11 +10,13 @@ import VueBus from 'vue-bus';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import firebase from "./firebase";
 
 library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome]);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+firebase.startMessaging();
 
 Vue.use(VueBus);
 Vue.use(BootstrapVue);
@@ -33,30 +35,30 @@ Vue.config.productionTip = false;
 
 router.beforeEach(async ({meta, path}, from, next) => {
 
-  document.title = meta.title;
-  const hasAuth = await store.dispatch("validateAuthorization");
+	document.title = meta.title;
+	const hasAuth = await store.dispatch("validateAuthorization");
 
 
-  if (hasAuth) {
-    if (meta.user) {
-      return next({
-        path: "/mapa"
-      });
-    }
-    return next();
-  }
+	if (hasAuth) {
+		if (meta.user) {
+			return next({
+				path: "/mapa"
+			});
+		}
+		return next();
+	}
 
-  if (meta.auth) {
-    return next({
-      path: "/"
-    });
-  }
+	if (meta.auth) {
+		return next({
+			path: "/"
+		});
+	}
 
-  next();
+	next();
 })
 
 new Vue({
-  render: h => h(App),
-  router,
-  store
+	render: h => h(App),
+	router,
+	store
 }).$mount('#app');

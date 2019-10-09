@@ -21,6 +21,9 @@ export default {
     userById({id, fullData}) {
         return axios.get(`${HOST}/users/${id}?full=${fullData}`);
     },
+    updateToken(token) {
+        return axios.post(`${HOST}/users/firebase-token`, { firebaseToken: token });
+    },
     fetchNotifications() {
         return axios.get(`${HOST}/notifications/`);
     },

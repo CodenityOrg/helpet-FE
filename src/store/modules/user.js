@@ -55,6 +55,9 @@ const actions = {
     updateUser({commit}, data) {
         return userAPI.update(data);
     },
+    updateToken({commit, state}, token) {
+        return userAPI.updateToken({ token });
+    },
     getNotifications({commit}) {
         return userAPI.fetchNotifications().then(({ status, data: { notifications, unread } }) => {
             commit("SET_NOTIFICATIONS", notifications);
