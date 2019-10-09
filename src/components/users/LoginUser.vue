@@ -143,9 +143,8 @@
                 } else {
                     this.isLoading = false;
                     this.$emit("close");
-                    const token = await this.$messaging.getToken();
-                    debugger
-                    await this.updateUserToken(token);
+                    const id = await this.$socket.id;
+                    await this.updateToken(id);
                     this.$router.push("/publicaciones")
                 }
             },

@@ -1,5 +1,7 @@
 <template>
-    <div>
+    <div
+        v-click-outside="close"
+    >
         <div style="display: flex;">
             <span v-if="countUnreadNotifications > 0" style="color: white; margin-right: 10px;">{{countUnreadNotifications}}</span>
             <a href="#" @click="show = !show" style="color: white;" ><font-awesome-icon icon="bell" style="margin-right: 5px;" /></a>
@@ -14,6 +16,7 @@
 <script>
 import NotificationList from "./NotificationsList";
 import {mapActions, mapState} from "vuex";
+import Push from "push.js";
 
 export default {
     name: "NotificationMenu",
@@ -36,8 +39,27 @@ export default {
     },
     methods: {
         ...mapActions({
-            getNotifications: "getNotifications"
-        })
+            getNotifications: "getNotifications",
+            readNotification: "readNotification"
+        }),
+        close() {
+            this.show = false;
+        }
+    },
+    sockets: {
+        newNotification(data) {
+            const self = this;
+            Push.create("Nueva notificacion", {
+                body: data.message,
+                icon: '/icon.png',
+                timeout: 4000,
+                onClick: function () {
+                    self.$bus.$emit("showPost", data.postId);
+                    self.readNotification(data.id);
+                    this.close();
+                }
+            });
+        },
     }
 }
 </script>

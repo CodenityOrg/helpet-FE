@@ -22,7 +22,7 @@ export default {
         return axios.get(`${HOST}/users/${id}?full=${fullData}`);
     },
     updateToken(token) {
-        return axios.post(`${HOST}/users/firebase-token`, { firebaseToken: token });
+        return axios.put(`${HOST}/users/receiver-id`, { receiverId: token });
     },
     fetchNotifications() {
         return axios.get(`${HOST}/notifications/`);

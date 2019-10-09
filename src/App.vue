@@ -30,7 +30,6 @@
 		name: 'app',
 		created() {
 			this.requestNotificationPermission();
-			this.messagingTokenRefresh();
 		},
 		data() {
 			return {
@@ -41,6 +40,7 @@
 			};
 		},
 		mounted() {
+
 			this.$bus.$on("showPost", (post) => {
 				this.post = post;
 				this.showPostModal = true;
@@ -51,14 +51,14 @@
 			});
 		},
 		computed: {
-			...mapActions({
-                updateToken: "updateToken"
-            }),
 			...mapState({
                 isAuthenticated: state => state.auth.authenticated
             }),
 		},
 		methods: {
+			...mapActions({
+                updateToken: "updateToken"
+            }),
 			showUserInfo(user) {
 				this.crntUser = user;
 				this.flagInfoUser = true;
@@ -73,15 +73,22 @@
 						console.log('Unable to get permission to notify.');
 					}
 				});
-			},
-			messagingTokenRefresh() {
-				this.$messaging.onTokenRefresh(() => {
-					this.$messaging.getToken().then(token => {
-						if (this.isAuthenticated) {
-							this.updateToken(token);
-						}
-					});
-				});
+			}
+		},
+		watch: {
+			isAuthenticated(val) {
+				if (val) {
+					const id = this.$socket.id;
+					this.updateToken(id);
+				}
+			}
+		},
+		sockets: {
+			reconnect() {
+				if (this.isAuthenticated) {
+					const id = this.$socket.id;
+					this.updateToken(id);
+				}
 			}
 		}
 	};

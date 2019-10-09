@@ -31,10 +31,11 @@ export default {
         height: 400px;
         z-index: 9999999;
         flex-direction: column;
-        overflow: scroll;
+        overflow: auto;
         &__emptyList{
             display: flex;
             width: 100%;
+            margin: auto;
             &Message{
                 color: gray;
                 margin: auto;

@@ -10,20 +10,14 @@ import VueBus from 'vue-bus';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import firebase from "./firebase";
+import VueSocketIO from 'vue-socket.io';
 
 library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome]);
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-
-firebase.startMessaging();
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(VueBus);
 Vue.use(BootstrapVue);
-
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
-
 Vue.use(VeeValidate);
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
@@ -33,6 +27,15 @@ Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
+Vue.use(new VueSocketIO({
+    debug: true,
+    connection: 'http://localhost:3000',
+    vuex: {
+        store,
+        actionPrefix: 'SOCKET_',
+        mutationPrefix: 'SOCKET_'
+    } //Optional options
+}))
 router.beforeEach(async ({meta, path}, from, next) => {
 
 	document.title = meta.title;

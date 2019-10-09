@@ -15,6 +15,8 @@
 <script>
 import moment from "moment";
 import { mapActions } from 'vuex';
+import Push from "push.js";
+
 export default {
     name: "Notification",
     props: {
