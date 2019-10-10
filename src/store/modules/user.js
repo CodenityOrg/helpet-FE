@@ -26,6 +26,9 @@ const mutations = {
     },
     SET_NOTIFICATIONS_UNREAD(state, count) {
         state.countUnreadNotifications = count;
+    },
+    DECREASE_NOTIFICATIONS_UNREAD(state) {
+        state.countUnreadNotifications = state.countUnreadNotifications - 1;
     }
 };
 
@@ -54,6 +57,9 @@ const actions = {
     },
     updateUser({commit}, data) {
         return userAPI.update(data);
+    },
+    updateToken({commit, state}, token) {
+        return userAPI.updateToken({ token });
     },
     getNotifications({commit}) {
         return userAPI.fetchNotifications().then(({ status, data: { notifications, unread } }) => {

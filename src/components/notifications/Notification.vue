@@ -10,12 +10,12 @@
                 <span class="Notification__InfoDate"><strong>{{formattedDate}}</strong> </span>
             </div>
         </div>
-        <hr>
     </div>
 </template>
 <script>
 import moment from "moment";
 import { mapActions } from 'vuex';
+
 export default {
     name: "Notification",
     props: {
@@ -29,7 +29,10 @@ export default {
         }),
         openPost() {
             this.$bus.$emit("showPost", this.notification.post);
-            this.readNotification(this.notification._id);
+            if (!this.notification.read) {
+                this.readNotification(this.notification._id);
+                this.$store.commit("DECREASE_NOTIFICATIONS_UNREAD");
+            }
         }
     },
     computed: {
@@ -50,6 +53,7 @@ export default {
         color: black;
         display: flex;
         padding: 10px;
+        cursor: pointer;
 
         &__Profile {
             img {
@@ -82,6 +86,6 @@ export default {
     }
 
     // .Notification:hover{
-    //     background: #e8e8e8;
+    //     opacity: 0.3;
     // }
 </style>

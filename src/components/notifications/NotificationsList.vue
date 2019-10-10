@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="NotificationList">
         <template v-if="notifications.length">
             <Notification
                 :key="notification.id"
@@ -8,7 +8,9 @@
             />
         </template>
         <template v-else>
-            <p style="color: black;">No tienes notificaciones pendientes</p>
+            <div class="NotificationList__emptyList">
+                <p class="NotificationList__emptyListMessage" >No tienes notificaciones pendientes</p>
+            </div>
         </template>
     </div>
 </template>
@@ -22,3 +24,22 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+    .NotificationList {
+        display: flex;
+        width: 100%;
+        height: 400px;
+        z-index: 9999999;
+        flex-direction: column;
+        overflow: auto;
+        &__emptyList{
+            display: flex;
+            width: 100%;
+            margin: auto;
+            &Message{
+                color: gray;
+                margin: auto;
+            }
+        }
+    }
+</style>

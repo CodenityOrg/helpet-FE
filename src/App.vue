@@ -18,6 +18,7 @@
 	import LoginUser from './components/users/LoginUser.vue';
 	import InfoUser from './components/users/InfoUser.vue';
 	import PostModal from './components/posts/PostModal';
+	import {mapActions, mapState} from "vuex";
 
 	export default {
 		components: {
@@ -27,6 +28,9 @@
 			PostModal
 		},
 		name: 'app',
+		created() {
+			this.requestNotificationPermission();
+		},
 		data() {
 			return {
 				flagLogin: false,
@@ -36,15 +40,55 @@
 			};
 		},
 		mounted() {
+
 			this.$bus.$on("showPost", (post) => {
 				this.post = post;
 				this.showPostModal = true;
-			})
+			});
+
+			this.$bus.$on("hidePost", () => {
+				this.showPostModal = false;
+			});
+		},
+		computed: {
+			...mapState({
+                isAuthenticated: state => state.auth.authenticated
+            }),
 		},
 		methods: {
+			...mapActions({
+                updateToken: "updateToken"
+            }),
 			showUserInfo(user) {
 				this.crntUser = user;
 				this.flagInfoUser = true;
+			},
+			requestNotificationPermission() {
+				Notification.requestPermission().then((permission) => {
+					if (permission === 'granted') {
+						console.log('Notification permission granted.');
+						// TODO(developer): Retrieve an Instance ID token for use with FCM.
+						// ...
+					} else {
+						console.log('Unable to get permission to notify.');
+					}
+				});
+			}
+		},
+		watch: {
+			isAuthenticated(val) {
+				if (val) {
+					const id = this.$socket.id;
+					this.updateToken(id);
+				}
+			}
+		},
+		sockets: {
+			reconnect() {
+				if (this.isAuthenticated) {
+					const id = this.$socket.id;
+					this.updateToken(id);
+				}
 			}
 		}
 	};
