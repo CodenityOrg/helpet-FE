@@ -27,6 +27,9 @@
                     v-on:change="filePreview" hidden/>
             </div>
             <div class="form-input">
+                <input v-model="post.title" type="text" name="title" placeholder="Titulo">
+            </div>
+            <div class="form-input">
                 <textarea
                     placeholder="Descripcion"
                     style="height: 100px;"
@@ -154,6 +157,7 @@
         data: () => ({
             isLoading: false,
             post: {
+                title: "",
                 description: "",
                 address: "",
                 tags: [],
