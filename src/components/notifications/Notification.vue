@@ -15,7 +15,6 @@
 <script>
 import moment from "moment";
 import { mapActions } from 'vuex';
-import Push from "push.js";
 
 export default {
     name: "Notification",
@@ -30,7 +29,10 @@ export default {
         }),
         openPost() {
             this.$bus.$emit("showPost", this.notification.post);
-            this.readNotification(this.notification._id);
+            if (!this.notification.read) {
+                this.readNotification(this.notification._id);
+                this.$store.commit("DECREASE_NOTIFICATIONS_UNREAD");
+            }
         }
     },
     computed: {

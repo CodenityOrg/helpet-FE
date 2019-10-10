@@ -26,6 +26,9 @@ const mutations = {
     },
     SET_NOTIFICATIONS_UNREAD(state, count) {
         state.countUnreadNotifications = count;
+    },
+    DECREASE_NOTIFICATIONS_UNREAD(state) {
+        state.countUnreadNotifications = state.countUnreadNotifications - 1;
     }
 };
 
