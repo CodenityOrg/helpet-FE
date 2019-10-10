@@ -24,7 +24,7 @@
             </div>
             <div class="PostItem__cardContent">
                 <div style="padding: 0 20px; margin: 10px 0px;">
-                    <h2>{{post.title || "Default title"}}</h2>
+                    <h2>{{post.title}}</h2>
                     <div class="PostItem__cardContentInfo">
                         <div class="PostItem__cardContentInfoUser">
                             <div class="PostItem__cardContentInfoUserImage">
