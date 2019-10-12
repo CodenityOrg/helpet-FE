@@ -1,6 +1,6 @@
 <template>
     <div class="Modal">
-        <!-- <div class="Modal__foreshadownBg" @click="$emit('close')"></div> -->
+        <div class="Modal__foreshadownBg" @click="$emit('close')"></div>
         <div class="Modal__content">
 <!--             <slot name="header" class="Modal__contentHeader"></slot>
  -->
@@ -11,17 +11,17 @@
     </div>
 </template>
 <script>
-export default {
-    mounted () {
-        const bgDivEl = document.createElement("div");
-        bgDivEl.className = "Modal__foreshadownBg";
-        bgDivEl.onclick = () => this.$emit("close");
-        document.body.append(bgDivEl);
-    },
-    beforeDestroy() {
-        document.body.querySelector(".Modal__foreshadownBg").remove();
-    }
-}
+// export default {
+//     mounted () {
+//         const bgDivEl = document.createElement("div");
+//         bgDivEl.className = "Modal__foreshadownBg";
+//         bgDivEl.onclick = () => this.$emit("close");
+//         document.body.append(bgDivEl);
+//     },
+//     beforeDestroy() {
+//         document.body.querySelector(".Modal__foreshadownBg").remove();
+//     }
+// }
 </script>
 <style lang="scss">
     .Modal{
