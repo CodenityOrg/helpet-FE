@@ -1,7 +1,7 @@
 <template>
     <div class="PostForm">
         <h3 align="center">Informacion de la mascota</h3>
-        <form class="form" id="post-form">
+        <form class="form" id="post-form" >
             <div class="form-input">
                 <div class="grid-container">
                     <div
@@ -58,13 +58,13 @@
             <div class="form-input">
                 <div class="cleck--flex">
                     <div class="cleck--flex">
-                        <div class="field--input" style="width: 150px; display: flex;">
+                        <div class="field--input" style="width: 90px; display: flex;">
                             <label>Perdido</label>
                             <input style="margin: 0 15px;" v-model.number="post.type" checked="checked" name="type" type="radio" value=0>
                         </div>
                     </div>
                     <div class="cleck--flex">
-                        <div class="field--input" style="width: 150px; display: flex;">
+                        <div class="field--input" style="width: 90px; display: flex;">
                             <label>Encontrado</label>
                             <input style="margin: 0 15px;" v-model.number="post.type" name="type" type="radio" value=1>
                         </div>
@@ -189,6 +189,7 @@
         form{
             max-width: 400px;
             margin: 0 auto;
+            width: 100%;
         }
 
         input, textarea {
