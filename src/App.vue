@@ -8,10 +8,11 @@
 			@close="showLogin=false"
 		/>
 		<info-user
-			v-show="showUserModal"
+			v-if="showUserModal"
 			:userId="userId"
 		/>
 		<post-modal v-if="showPostModal" :post="post" />
+		<notification-modal v-if="showNotificationModal"/>
 		<router-view />
 	</div>
 </template>
@@ -21,6 +22,8 @@
 	import LoginUser from './components/users/LoginUser.vue';
 	import InfoUser from './components/users/InfoUser.vue';
 	import PostModal from './components/posts/PostModal';
+	import NotificationModal from './components/notifications/NotificationModal';
+
 	import {mapActions, mapState} from "vuex";
 
 
@@ -29,32 +32,28 @@
 			NavBar,
 			LoginUser,
 			InfoUser,
-			PostModal
+			PostModal,
+			NotificationModal
 		},
 		name: 'app',
 		created() {
 			this.requestNotificationPermission();
 			this.$bus.$on("showUserInfo", this.showUserInfo);
 			this.$bus.$on("onCloseInfoUser", this.closeUserInfo);
+			this.$bus.$on("showPost", this.showPost);
+			this.$bus.$on("hidePost", this.hidePost);
+			this.$bus.$on("showNotificationModal", this.showNotifications);
+			this.$bus.$on("hideNotificationModal", this.hideNotifications);
 		},
 		data() {
 			return {
 				showLogin: false,
 				showPostModal: false,
 				showUserModal: false,
+				showNotificationModal: false,
 				userId: undefined,
 				post: {}
 			};
-		},
-		mounted() {
-			this.$bus.$on("showPost", (post) => {
-				this.post = post;
-				this.showPostModal = true;
-			});
-
-			this.$bus.$on("hidePost", () => {
-				this.showPostModal = false;
-			});
 		},
 		computed: {
 			...mapState({
@@ -81,6 +80,19 @@
 			closeUserInfo() {
 				this.showUserModal = false;
 			},
+			showPost() {
+				this.post = post;
+				this.showPostModal = true;
+			},
+			hidePost() {
+				this.showPostModal = false;
+			},
+			showNotifications() {
+				this.showNotificationModal = true;
+			},
+			hideNotifications() {
+				this.showNotificationModal = false;
+			}
 		},
 		watch: {
 			isAuthenticated(val) {

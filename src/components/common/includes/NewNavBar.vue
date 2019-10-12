@@ -9,7 +9,7 @@
         <div class="Navbar__triggerButton" :class="{ 'Navbar__triggerButton--left': showMenu }">
             <div @click="toggleMenu"><font-awesome-icon icon="bars" style="cursor: pointer; margin: 15px; color: white; font-size: 20px;" /></div>
         </div>
-        <div class="Navbar__menu" :class="{ 'Navbar__menu--show': showMenu }">
+        <div @click="close" class="Navbar__menu" :class="{ 'Navbar__menu--show': showMenu }">
             <div class="Navbar__menuLogo">
                 <router-link :to="{ name: 'Home' }" ><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></router-link>
             </div>
@@ -20,7 +20,7 @@
                     </a>
                 </div>
                 <div class="Navbar__menuItem">
-                    <router-link @click="showMenu = false" :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
                 </div>
             </template>
             <template v-else>
@@ -81,7 +81,6 @@
             },
             clickLogin(event) {
                 event.preventDefault();
-                this.showMenu = false;
                 this.$emit('onShowLogin');
             },
             close() {
