@@ -5,9 +5,9 @@
 
 .img-slogan {
     width: 40%;
-    height: 100%; 
-    padding: 0; 
-    background: #009900; 
+    height: 100%;
+    padding: 0;
+    background: #009900;
 }
 
 .login-form {
@@ -16,7 +16,7 @@
 }
 
 .info-message {
-    font-size: 12px; 
+    font-size: 12px;
     text-align: center;
     margin: 1px 0;
 }
@@ -39,13 +39,13 @@
 }
 
 .login-btn {
-    width: 100%; 
-    background: rgb(0, 153, 0); 
+    width: 100%;
+    background: rgb(0, 153, 0);
     margin-top: 0px !important;
 }
 
 .social-buttons {
-    margin: 20px 0;
+    margin-bottom: 20px ;
 }
 
 @media (max-width: 600px) {
@@ -55,7 +55,7 @@
     .modal__box {
         width: 100%;
     }
-    
+
     .login-form {
         width: 100%;
     }

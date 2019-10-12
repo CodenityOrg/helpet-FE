@@ -1,73 +1,75 @@
 <template>
-    <div class="modal-hp">
-        <div class="modal__box modal--inicio-sesion">
-            <div class="modal-body login-modal-body" >
-                <div class="LoginUser__sectionImg">
-                    <div class="LoginUser__sectionImgCont">
-                        <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesion">
-                        <span class="LoginUser__sectionImgContSlogan">Inicia sesion y ayuda a una mascota a regresar a su hogar</span>
-                    </div>
-                </div>
-                <div class="LoginUser__sectionLogin">
-                    <form id="login-form">
-                        <div class="social-buttons">
-                            <a href="#">
-                                <fb-signin-button
-                                    @success="onSignInFacebookSuccess"
-                                    @error="onSignInFacebookError"
-                                    :params="fbSignInParams">
-                                    Iniciar sesion con Facebook
-                                </fb-signin-button>
-                            </a>
-                            <!-- <a href="#">
-                                <g-signin-button
-                                    :params="googleSignInParams"
-                                    @success="onSignInSuccess"
-                                    @error="onSignInError">
-                                    Iniciar sesion con Google
-                                </g-signin-button>
-                            </a> -->
-                        </div>
-                        <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>    
-                        <div class="form-input font-size-10px" >
-                            <input
-                                class="login-input"
-                                :class="{'error-input': errors.first('email')}"
-                                v-validate="'required|email'"
-                                v-model="credentials.email"
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                            />
-                        </div>
-                        <div class="form-input font-size-10px">
-                            <input
-                                class="login-input"
-                                :class="{'error-input': errors.first('password') }"
-                                v-validate="'required'"
-                                v-model="credentials.password"
-                                type="password"
-                                name="password"
-                                placeholder="Contraseña"
-                            />
-                        </div>
-                        <div class="info-message">
-                            <p>No tienes cuenta ? <router-link to="/registro">Crea una cuenta aqui</router-link></p> 
-                        </div>
-                        <div class="form-submit">
-                            <button class="frm--btm login-btn" type="submit" @click="signUp">Iniciar sesion</button>
-                        </div>
-                    </form>
-                </div>
+    <Modal
+        @close="$emit('close')"
+    >
+        <div class="LoginUser__sectionImg">
+            <div class="LoginUser__sectionImgCont">
+                <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesion">
+                <span class="LoginUser__sectionImgContSlogan">Inicia sesion y ayuda a una mascota a regresar a su hogar</span>
             </div>
         </div>
-    </div>
+        <div class="LoginUser__sectionLogin">
+            <span @click="$emit('close')" style="float: right; cursor: pointer;">
+                <font-awesome-icon icon="times" />
+            </span>
+            <form id="login-form">
+                <div class="social-buttons">
+                    <a href="#">
+                        <fb-signin-button
+                            @success="onSignInFacebookSuccess"
+                            @error="onSignInFacebookError"
+                            :params="fbSignInParams">
+                            Iniciar sesion con Facebook
+                        </fb-signin-button>
+                    </a>
+                    <!-- <a href="#">
+                        <g-signin-button
+                            :params="googleSignInParams"
+                            @success="onSignInSuccess"
+                            @error="onSignInError">
+                            Iniciar sesion con Google
+                        </g-signin-button>
+                    </a> -->
+                </div>
+                <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>
+                <div class="form-input font-size-10px" >
+                    <input
+                        class="login-input"
+                        :class="{'error-input': errors.first('email')}"
+                        v-validate="'required|email'"
+                        v-model="credentials.email"
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                    />
+                </div>
+                <div class="form-input font-size-10px">
+                    <input
+                        class="login-input"
+                        :class="{'error-input': errors.first('password') }"
+                        v-validate="'required'"
+                        v-model="credentials.password"
+                        type="password"
+                        name="password"
+                        placeholder="Contraseña"
+                    />
+                </div>
+                <div class="info-message">
+                    <p>No tienes cuenta ? <router-link to="/registro">Crea una cuenta aqui</router-link></p>
+                </div>
+                <div class="form-submit">
+                    <BasicButton class="frm--btm login-btn" type="submit" @click.native="signUp">Iniciar sesion</BasicButton>
+                </div>
+            </form>
+        </div>
+    </Modal>
 </template>
 
 <script>
     import FBSignInButton from "vue-facebook-signin-button";
     import GSignInButton from "vue-google-signin-button";
-
+    import Modal from "../common/Modal";
+    import BasicButton from "../basics/BasicButton";
 
     import Vue from "vue";
     import {mapActions, mapState} from "vuex";
@@ -77,6 +79,10 @@
     //client-secret: J1pcDCnmFLWq0M9c7jEMCG0G
     export default {
         name: "LoginUser",
+        components: {
+            Modal,
+            BasicButton
+        },
         data() {
             return {
                 credentials: {
@@ -100,7 +106,8 @@
         methods: {
             ...mapActions({
                 login: "login",
-                oauthLogin: "oauthLogin"
+                oauthLogin: "oauthLogin",
+                updateToken: "updateToken"
             }),
             async signUp(event) {
                 event.preventDefault();
@@ -111,7 +118,7 @@
                 this.redirectToMapOrFail();
             },
             closeLogin() {
-                this.$emit("onCloseLogin");
+                this.$emit("close");
             },
 /*             onSignInSuccess (googleUser) {
                 // `googleUser` is the GoogleUser object that represents the just-signed-in user.
@@ -130,13 +137,15 @@
                 await this.oauthLogin(info);
                 this.redirectToMapOrFail();
             },
-            redirectToMapOrFail() {
+            async redirectToMapOrFail() {
                 if (!this.isAuthenticated) {
                     this.showFailMessage();
                 } else {
                     this.isLoading = false;
-                    this.$emit("onCloseLogin");
-                    this.$router.push("/mapa/encontrados")
+                    this.$emit("close");
+                    const id = await this.$socket.id;
+                    await this.updateToken(id);
+                    this.$router.push("/publicaciones")
                 }
             },
             onSignInFacebookError (error) {

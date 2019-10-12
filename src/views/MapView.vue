@@ -1,6 +1,13 @@
 <template>
     <div class="MapView cont cont--inicio">
         <div class="MapView__PostList cont--tarjetas">
+            <router-link v-if="isAuthenticated" :to="{name : 'RegisterPostPet'}">
+                <BasicButton
+                    class="MapView__PostListCreateButton"
+                >
+                    Nueva publicacion
+                </BasicButton>
+            </router-link>
             <PostsListFilters />
             <PostListSelected />
             <PostsList 
@@ -28,7 +35,7 @@
     import PostsList from "../components/posts/PostsList";
     import PostsListFilters from "../components/posts/PostsListFilters";
     import PostListSelected from "../components/posts/PostsListFIltersSelected";
-
+    import BasicButton from "../components/basics/BasicButton";
     export default {
         name: "MapView",
         mixins: [mapMixin],
@@ -36,7 +43,8 @@
             Map,
             PostsList,
             PostsListFilters,
-            PostListSelected
+            PostListSelected,
+            BasicButton
         },
         mounted() {
             this.showDetectLocationAlert();
@@ -87,7 +95,8 @@
         },
         computed: {
             ...mapState({
-                filters: state => state.pet.filters
+                filters: state => state.pet.filters,
+                isAuthenticated: state => state.auth.authenticated
             }),
             ...mapGetters({
                 positions: "getCurrentPositions"
@@ -118,9 +127,27 @@
     .MapView {
         display: flex;
 
+        &__PostList{
+            &CreateButton{
+                width: 250px; 
+                color: white; 
+                text-decoration: none;
+
+                a:link{
+                    color: white;
+                }
+
+                a:visited{
+                    color: white;
+                }
+            }
+        }
+
         &__PostMap{
             flex: 1;
         }
+
+
 
         @media (max-width: 650px) {
             &__PostMap{

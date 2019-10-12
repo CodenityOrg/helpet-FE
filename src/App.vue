@@ -1,53 +1,104 @@
 <template>
-  <div id="app">
-      <nav-bar
-        @onShowLogin="showLogin=true"
-      ></nav-bar>
-      <login-user
-        v-if="showLogin"
-        @onCloseLogin="showLogin=false"
-      ></login-user>
-      <info-user
-        v-show="showInfoUser"
-        :userId="userId"
-      />
-      <router-view @onShowUserInfo="showUserInfo"/>
-  </div>
+	<div id="app">
+		<nav-bar
+			@onShowLogin="showLogin=true"
+		/>
+		<login-user
+			v-if="showLogin"
+			@close="showLogin=false"
+		/>
+		<info-user
+			v-show="showUserModal"
+			:userId="userId"
+		/>
+		<post-modal v-if="showPostModal" :post="post" />
+		<router-view />
+	</div>
 </template>
 
 <script>
-  import NavBar from './components/common/includes/NavBar.vue';
-  import LoginUser from './components/users/LoginUser.vue';
-  import InfoUser from './components/users/InfoUser.vue';
+	import NavBar from './components/common/includes/NewNavBar.vue';
+	import LoginUser from './components/users/LoginUser.vue';
+	import InfoUser from './components/users/InfoUser.vue';
+	import PostModal from './components/posts/PostModal';
+	import {mapActions, mapState} from "vuex";
 
-  export default {
-      components: {
-          NavBar,
-          LoginUser,
-          InfoUser
-      },
-      name: 'app',
-      data() {
-        return {
-          showInfoUser: false,
-          showLogin: false,
-          userId: {},
-        };
-      },
-      created() {
-        this.$bus.$on("showUserInfo", this.showUserInfo);
-        this.$bus.$on("onCloseInfoUser", this.closeUserInfo);
-      },
-      methods: {
-        showUserInfo(userId) {
-          this.userId = userId;
-          this.showInfoUser = true;
-        },
-        closeUserInfo() {
-          this.showInfoUser = false;
-        }
-      }
-  };
+
+	export default {
+		components: {
+			NavBar,
+			LoginUser,
+			InfoUser,
+			PostModal
+		},
+		name: 'app',
+		created() {
+			this.requestNotificationPermission();
+			this.$bus.$on("showUserInfo", this.showUserInfo);
+			this.$bus.$on("onCloseInfoUser", this.closeUserInfo);
+		},
+		data() {
+			return {
+				showLogin: false,
+				showPostModal: false,
+				showUserModal: false,
+				userId: undefined,
+				post: {}
+			};
+		},
+		mounted() {
+			this.$bus.$on("showPost", (post) => {
+				this.post = post;
+				this.showPostModal = true;
+			});
+
+			this.$bus.$on("hidePost", () => {
+				this.showPostModal = false;
+			});
+		},
+		computed: {
+			...mapState({
+                isAuthenticated: state => state.auth.authenticated
+            }),
+		},
+		methods: {
+			...mapActions({
+                updateToken: "updateToken"
+            }),
+			showUserInfo(id) {
+				this.userId = id;
+				this.showUserModal = true;
+			},
+			requestNotificationPermission() {
+				Notification.requestPermission().then((permission) => {
+					if (permission === 'granted') {
+						console.log('Notification permission granted.');
+					} else {
+						console.log('Unable to get permission to notify.');
+					}
+				});
+			},
+			closeUserInfo() {
+				this.showUserModal = false;
+			},
+		},
+		watch: {
+			isAuthenticated(val) {
+				if (val) {
+					const id = this.$socket.id;
+					this.updateToken(id);
+				}
+			}
+		},
+		sockets: {
+			reconnect() {
+				if (this.isAuthenticated) {
+					const id = this.$socket.id;
+					this.updateToken(id);
+				}
+			}
+		}
+	};
 </script>
 
 <style>

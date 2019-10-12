@@ -1,37 +1,36 @@
 <template>
-    <div class="InfoUser modal-hp">
+    <Modal class="InfoUser">
         <loading :active.sync="isLoading"
-            />
-        <div class="InfoUser__Content modal__box modal--inicio-sesion">
-            <div class="InfoUser__ContentHeader">
-                <h3 class="titulo"></h3>
-                <a class="btnCerrarModal" @click="closeInfoUser">
-                    <font-awesome-icon icon="times" />
-                </a>
+        />
+
+        <div class="InfoUser__ContentBody">
+            <a class="InfoUser__ContentBodyClose"  @click="closeInfoUser">
+                <font-awesome-icon icon="times" />
+            </a>
+            <div class="InfoUser__ContentBodyImg">
+                <img
+                    alt=""
+                    style=""
+                    :src="user.profile">
             </div>
-            <div class="InfoUser__ContentBody">
-                <div class="InfoUser__ContentBodyImg">
-                    <img
-                        alt=""
-                        style=""
-                        :src="user.profile">
+            <div class="InfoUser__ContentBodyUser">
+                <div class="InfoUser__ContentBodyUserName">
+                    <p style="font-weight: bold;">Nombre:</p>
+                    <p>{{ user.firstName }} {{ user.lastName }}</p>
                 </div>
-                <div class="InfoUser__ContentBodyUser">
-                    <div class="InfoUser__ContentBodyUserName">
-                        <p style="font-weight: bold;">Nombre:</p>
-                        <p>{{ user.firstName }} {{ user.lastName }}</p>
-                    </div>
-                    <div>
-                        <p style="font-weight: bold;">Teléfono:</p>
-                        <p>{{ user.phone }}</p>
-                    </div>
+                <div>
+                    <p style="font-weight: bold;">Teléfono:</p>
+                    <p>{{ user.phone }}</p>
                 </div>
             </div>
         </div>
-    </div>
+
+    </Modal>
 </template>
 <script>
     import {mapActions} from "vuex";
+    import Modal from "../common/Modal";
+
     export default {
         name: "InfoUser",
         data() {
@@ -49,6 +48,9 @@
                 this.user = await this.getOne(val);
                 this.isLoading = false;
             }
+        },
+        components: {
+            Modal
         },
         methods: {
             ...mapActions({
@@ -77,10 +79,12 @@
 
             &Body{
                 display: flex;
+                width: 100%;
 
                 &Img{
                     flex: 1;
                     text-align: center;
+                    margin: 30px;
 
                     img{
                         margin-bottom: 0px;
@@ -91,6 +95,14 @@
 
                 &User{
                     flex: 1;
+                    margin-top: 25px;
+                }
+
+                &Close{
+                    position: absolute;
+                    top: 0; right: 0;
+                    margin: 15px;
+                    cursor: pointer;
                 }
             }
         }
@@ -99,6 +111,9 @@
     }
     @media (max-width: 650px) {
         .InfoUser__ContentBody{
+            position: relative;
+            flex-direction: column;
+            padding: 20px;
             &Img{
                 flex: 1;
                 text-align: center;
@@ -111,6 +126,8 @@
             &User{
                 flex: 1;
             }
+
+
         }
     }
 

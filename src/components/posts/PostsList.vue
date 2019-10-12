@@ -6,6 +6,8 @@
     >
         <loading :active.sync="isLoading"
                 :is-full-page="fullPage" />
+
+
         <PostsListItem
             :key="index"
             v-for="(post, index) in posts"
@@ -39,6 +41,7 @@ export default {
     watch: {
         filters: {
             async handler(){
+                this.skip = 0;
                 this.isLoading = true;
                 await this.fetchPosts({
                     filters: this.filters,
@@ -46,11 +49,10 @@ export default {
                     limit: this.limit
                 });
                 //this.skip = this.skip + this.limit;
-                this.skip = 0;
                 this.isLoading = false;
             },
             immediate: true
-        } 
+        }
     },
     data() {
         return {
@@ -72,9 +74,9 @@ export default {
         scrollEnd: throttle(async function () {
             this.isLoading = true;
             await this.fetchPosts({
-                filters: this.filters, 
-                limit: this.limit, 
-                skip: this.skip 
+                filters: this.filters,
+                limit: this.limit,
+                skip: this.skip
             });
             this.skip = this.skip + this.limit;
             this.isLoading = false;
