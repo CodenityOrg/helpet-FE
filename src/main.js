@@ -12,9 +12,10 @@ import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort,
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import VueSocketIO from 'vue-socket.io';
 
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome]);
 
-Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(VueBus);
 Vue.use(BootstrapVue);

@@ -1,15 +1,18 @@
 <template>
 	<div id="app">
 		<nav-bar
-			@onShowLogin="flagLogin=true"
+			@onShowLogin="showLogin=true"
 		/>
 		<login-user
-			v-if="flagLogin"
-			@close="flagLogin=false"
+			v-if="showLogin"
+			@close="showLogin=false"
 		/>
-		<info-user />
+		<info-user
+			v-show="showUserModal"
+			:userId="userId"
+		/>
 		<post-modal v-if="showPostModal" :post="post" />
-		<router-view @onShowUserInfo="showUserInfo"/>
+		<router-view />
 	</div>
 </template>
 
@@ -19,6 +22,7 @@
 	import InfoUser from './components/users/InfoUser.vue';
 	import PostModal from './components/posts/PostModal';
 	import {mapActions, mapState} from "vuex";
+
 
 	export default {
 		components: {
@@ -30,17 +34,19 @@
 		name: 'app',
 		created() {
 			this.requestNotificationPermission();
+			this.$bus.$on("showUserInfo", this.showUserInfo);
+			this.$bus.$on("onCloseInfoUser", this.closeUserInfo);
 		},
 		data() {
 			return {
-				flagLogin: false,
+				showLogin: false,
 				showPostModal: false,
-				crntUser: {},
+				showUserModal: false,
+				userId: undefined,
 				post: {}
 			};
 		},
 		mounted() {
-
 			this.$bus.$on("showPost", (post) => {
 				this.post = post;
 				this.showPostModal = true;
@@ -59,21 +65,22 @@
 			...mapActions({
                 updateToken: "updateToken"
             }),
-			showUserInfo(user) {
-				this.crntUser = user;
-				this.flagInfoUser = true;
+			showUserInfo(id) {
+				this.userId = id;
+				this.showUserModal = true;
 			},
 			requestNotificationPermission() {
 				Notification.requestPermission().then((permission) => {
 					if (permission === 'granted') {
 						console.log('Notification permission granted.');
-						// TODO(developer): Retrieve an Instance ID token for use with FCM.
-						// ...
 					} else {
 						console.log('Unable to get permission to notify.');
 					}
 				});
-			}
+			},
+			closeUserInfo() {
+				this.showUserModal = false;
+			},
 		},
 		watch: {
 			isAuthenticated(val) {

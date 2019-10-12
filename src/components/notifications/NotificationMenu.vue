@@ -1,12 +1,16 @@
 <template>
     <div
+        class="NotificationMenu"
         v-click-outside="close"
     >
-        <div style="display: flex;">
+        <div class="NotificationMenu__button">
             <span v-if="countUnreadNotifications > 0" style="color: white; margin-right: 10px;">{{countUnreadNotifications}}</span>
             <a href="#" @click="show = !show" style="color: white;" ><font-awesome-icon icon="bell" style="margin-right: 5px;" /></a>
+            <div class="NotificationMenu__buttonItem">
+                Notificaciones
+            </div>
         </div>
-        <div v-show="show" class="NotificationMenu">
+        <div v-show="show" class="NotificationMenu__list">
             <NotificationList
                 :notifications="notifications"
             />
@@ -65,11 +69,28 @@ export default {
 </script>
 <style lang="scss">
     .NotificationMenu {
-        width: 350px;
-        height: 400px;
-        background-color: white;
-        position: absolute;
-        z-index: 10;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        &__list {
+            width: 350px;
+            height: 400px;
+            background-color: white;
+            position: absolute;
+            z-index: 10;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        &__button {
+            display: flex;
+
+            &Item{
+                display: none;
+            }
+            @media (max-width: 650px) {
+                &Item{
+                    display: block;
+                }
+            }
+
+        }
     }
+
 </style>

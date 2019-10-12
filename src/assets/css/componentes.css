@@ -16,7 +16,8 @@
 }
 
 .modal__box {
-    width: 535px;
+    width: 100%;
+    max-width: 535px;
     height: 297px;
     background: white;
     position: absolute;

@@ -1,5 +1,6 @@
 <template>
     <nav class="Navbar"
+        v-click-outside="close"
         :class="{ 'Navbar--block': !isHomePage }"
     >
         <div class="Navbar__logo">
@@ -82,6 +83,9 @@
                 event.preventDefault();
                 this.showMenu = false;
                 this.$emit('onShowLogin');
+            },
+            close() {
+                this.showMenu = false;
             }
         }
     }

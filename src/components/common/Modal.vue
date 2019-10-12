@@ -47,4 +47,11 @@
             }
         }
     }
+
+    @media (max-width: 650px) {
+        .Modal__content{
+            width: 100%;
+        }
+    }
+
 </style>
