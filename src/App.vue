@@ -80,7 +80,7 @@
 			closeUserInfo() {
 				this.showUserModal = false;
 			},
-			showPost() {
+			showPost(post) {
 				this.post = post;
 				this.showPostModal = true;
 			},
