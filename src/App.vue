@@ -8,7 +8,7 @@
 			@close="showLogin=false"
 		/>
 		<info-user
-			v-if="showUserModal"
+			v-show="showUserModal"
 			:userId="userId"
 		/>
 		<post-modal v-if="showPostModal" :post="post" />
@@ -65,8 +65,8 @@
                 updateToken: "updateToken"
             }),
 			showUserInfo(id) {
-				this.userId = id;
 				this.showUserModal = true;
+				this.userId = id;
 			},
 			requestNotificationPermission() {
 				Notification.requestPermission().then((permission) => {

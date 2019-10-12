@@ -43,9 +43,11 @@
         props: ["userId"],
         watch: {
             async userId(val) {
+                debugger
                 this.user = {};
                 this.isLoading = true;
                 this.user = await this.getOne(val);
+                debugger
                 this.isLoading = false;
             }
         },
