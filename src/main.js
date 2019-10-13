@@ -4,7 +4,7 @@ import router from './router';
 import store from "./store/index";
 import VueCookie from "vue-cookie";
 import axios from "axios";
-import VeeValidate from 'vee-validate';
+import VeeValidate, { Validator } from 'vee-validate';
 import BootstrapVue from "bootstrap-vue";
 import VueBus from 'vue-bus';
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -12,6 +12,7 @@ import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort,
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import VueSocketIO from 'vue-socket.io';
 
+import es from "vee-validate/dist/locale/es";
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome]);
@@ -19,7 +20,8 @@ library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faS
 
 Vue.use(VueBus);
 Vue.use(BootstrapVue);
-Vue.use(VeeValidate);
+Validator.localize({ es })
+Vue.use(VeeValidate, { locale: "es" });
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
 import loadingMixin from './components/common/includes/loading-mixin';
@@ -46,7 +48,7 @@ router.beforeEach(async ({meta, path}, from, next) => {
 	if (hasAuth) {
 		if (meta.user) {
 			return next({
-				path: "/mapa"
+				path: "/publicaciones"
 			});
 		}
 		return next();

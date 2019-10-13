@@ -27,21 +27,35 @@
                     v-on:change="filePreview" hidden/>
             </div>
             <div class="form-input">
-                <input v-model="post.title" type="text" name="title" placeholder="Titulo">
+                <input
+                    v-validate="'required'"
+                    v-model="post.title"
+                    type="text"
+                    :class="{ 'PostForm__input--invalid': errors.has('titulo') }"
+                    name="titulo"
+                    placeholder="Titulo"
+                />
             </div>
             <div class="form-input">
                 <textarea
                     placeholder="Descripcion"
                     style="height: 100px;"
                     v-model="post.description"
-                    name="description"
+                    name="descripcion"
                     id=""
                     cols="30"
                     rows="100"
                 />
             </div>
             <div class="form-input">
-                <input v-model="post.address" type="text" name="address" placeholder="Direccion">
+                <input
+                    v-validate="'required'"
+                    v-model="post.address"
+                    type="text"
+                    :class="{ 'PostForm__input--invalid': errors.has('direccion') }"
+                    name="direccion"
+                    placeholder="Direccion"
+                />
             </div>
             <div class="form-input">
                 <selectize
@@ -56,19 +70,20 @@
                 </selectize>
             </div>
             <div class="form-input">
-                <div class="cleck--flex">
+                <div style="display: flex;">
                     <div class="cleck--flex">
-                        <div class="field--input" style="width: 90px; display: flex;">
+                        <div class="field--input" style="display: flex;">
                             <label>Perdido</label>
-                            <input style="margin: 0 15px;" v-model.number="post.type" checked="checked" name="type" type="radio" value=0>
+                            <input v-validate="'required'" style="margin: 0 15px;" v-model.number="post.type" checked="checked" name="tipo" type="radio" value=0>
                         </div>
                     </div>
                     <div class="cleck--flex">
-                        <div class="field--input" style="width: 90px; display: flex;">
+                        <div class="field--input" style="display: flex;">
                             <label>Encontrado</label>
-                            <input style="margin: 0 15px;" v-model.number="post.type" name="type" type="radio" value=1>
+                            <input v-validate="'required'" style="margin: 0 15px;" v-model.number="post.type" name="tipo" type="radio" value=1>
                         </div>
                     </div>
+                    <span>{{ errors.first('tipo') }}</span>
                 </div>
             </div>
             <div class="form-submit">
@@ -128,30 +143,38 @@
             },
             async newPost(e) {
                 e.preventDefault();
-                this.$emit("toggleLoading");
-                if (this.marker && this.marker._lngLat) {
-                    const post = {
-                        ...this.post,
-                        photo: [...this.photos][0],
-                        latitude: this.marker._lngLat.lat,
-                        longitude: this.marker._lngLat.lng
+                const isValidateAll = await this.$validator.validateAll();
+                debugger
+                if (isValidateAll) {
+                    this.$emit("toggleLoading");
+                    if (this.post.tags.length > 0) {
+                        if (this.marker && this.marker._lngLat) {
+                            const post = {
+                                ...this.post,
+                                photo: [...this.photos][0],
+                                latitude: this.marker._lngLat.lat,
+                                longitude: this.marker._lngLat.lng
+                            }
+                            post.tags = JSON.stringify(post.tags);
+                            const formData = new FormData();
+                            for (const prop in post) {
+                                formData.append(prop, post[prop]);
+                            }
+                            try {
+                                await this.createPost(formData);
+                            } catch (error) {
+                                console.log(error);
+                                this.$emit("toggleLoading");
+                            }
+                            this.$router.push("/publicaciones");
+                        } else {
+                            alert("Necesitas seleccionar una posicion en el mapa");
+                        }
+                    } else {
+                        alert("Necesitas añadir algunas caracteristicas antes de continuar :)")
                     }
-                    post.tags = JSON.stringify(post.tags);
-                    const formData = new FormData();
-                    for (const prop in post) {
-                        formData.append(prop, post[prop]);
-                    }
-                    try {
-                        await this.createPost(formData);
-                    } catch (error) {
-                        console.log(error);
-                        this.$emit("toggleLoading");
-                    }
-                    this.$router.push("/publicaciones");
-                } else {
-                    alert("Necesitas seleccionar una posicion en el mapa");
+                    this.$emit("toggleLoading");
                 }
-                this.$emit("toggleLoading");
             },
         },
         data: () => ({
@@ -166,7 +189,18 @@
             },
             settings: {
                 mode: "multi",
-                maxItems: 20
+                maxItems: 5,
+                create: function(input) {
+                    return {
+                        value: input,
+                        text: input
+                    }
+                },
+                render: {
+                    option_create(data, escape) {
+                        return '<div style="padding: 10px;" class="create">Añadir <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                    }
+                }
             },
             map: {},
             preview: [],
@@ -195,6 +229,10 @@
         input, textarea {
             border: 1px solid #b9b9b9;
             font-size: 14px !important;
+        }
+
+        &__input--invalid {
+            border-color: #ff4b5c !important;
         }
     }
 

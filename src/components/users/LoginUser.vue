@@ -55,7 +55,7 @@
                     />
                 </div>
                 <div class="info-message">
-                    <p>No tienes cuenta ? <router-link to="/registro">Crea una cuenta aqui</router-link></p>
+                    <p>No tienes cuenta ? <router-link to="/registro"><span @click="$emit('close')">Crea una cuenta aqui</span></router-link></p>
                 </div>
                 <div class="form-submit">
                     <BasicButton class="frm--btm login-btn" type="submit" @click.native="signUp">Iniciar sesion</BasicButton>

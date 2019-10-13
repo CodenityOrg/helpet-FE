@@ -1,6 +1,8 @@
 import userAPI from "../../api/user";
 import Vue from "vue";
 import VueCookie from "vue-cookie";
+import axios from "axios";
+
 Vue.use(VueCookie);
 
 const state = {
@@ -27,6 +29,9 @@ const mutations = {
     SET_NOTIFICATIONS_UNREAD(state, count) {
         state.countUnreadNotifications = count;
     },
+    INCREASE_NOTIFICATIONS_UNREAD(state) {
+        state.countUnreadNotifications = state.countUnreadNotifications + 1;
+    },
     DECREASE_NOTIFICATIONS_UNREAD(state) {
         state.countUnreadNotifications = state.countUnreadNotifications - 1;
     }
@@ -39,6 +44,7 @@ const actions = {
             commit("SET_AUTHENTICATED", true);
             commit("SET_USER", user);
             VueCookie.set("helpet_auth", user.token);
+            axios.defaults.headers.common['authorization'] = user.token;
         }
         return user;
     },

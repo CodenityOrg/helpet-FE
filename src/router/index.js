@@ -54,7 +54,7 @@ const router = new Router({
       name: 'MapView',
       component: MapView,
       meta: {
-        title: "Mapa"
+        title: "Publicaciones"
       }
     },
     {

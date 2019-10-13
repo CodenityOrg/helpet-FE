@@ -61,6 +61,8 @@ const actions = {
             return true;
         }
         if (status === 401) {
+            commit("SET_AUTHENTICATED", false);
+            commit("SET_USER", {});
             VueCookie.delete("helpet_auth");
         }
         return false;

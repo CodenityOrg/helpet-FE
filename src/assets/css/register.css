@@ -60,6 +60,12 @@ body {
 .input--register input{
     width: 49%;
 }
+
+.form-input .invalid{
+    border-color: #ff4b5c !important;
+}
+
+
 #inputApellido{
     margin:  0 0.4em 0 0;
 }

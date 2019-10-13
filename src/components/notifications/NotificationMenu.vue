@@ -63,6 +63,8 @@ export default {
     sockets: {
         newNotification(data) {
             const self = this;
+            this.$store.commit("INCREASE_NOTIFICATIONS_UNREAD");
+            this.getNotifications();
             Push.create("Nueva notificacion", {
                 body: data.message,
                 icon: '/icon.png',
