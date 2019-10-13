@@ -33,6 +33,7 @@ export default {
                 this.readNotification(this.notification._id);
                 this.$store.commit("DECREASE_NOTIFICATIONS_UNREAD");
             }
+            this.$bus.$emit("hideNotificationModal");
         }
     },
     computed: {

@@ -87,6 +87,7 @@
     font-size: 12px;
     padding: 10px;
     transition: all .3s;
+    border: 1px solid #b9b9b9;
     border-radius: 6px;
     outline: none;
 }
