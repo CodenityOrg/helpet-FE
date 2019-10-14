@@ -49,7 +49,7 @@ const getCoordinates = (post) => {
         id: post._id,
         latitude: post.latitude,
         longitude: post.longitude,
-        photo: post.photos[0].thumbnailPath,
+        photo: post.photos.length > 0 ? post.photos[0].thumbnailPath : "https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg",
         type: 1
     }
 }
