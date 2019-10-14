@@ -30,9 +30,11 @@ Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
+const APIHOST = process.env.VUE_APP_ROOT_API || "http://localhost:3000";
+
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: 'http://localhost:3000',
+    connection: APIHOST,
     vuex: {
         store,
         actionPrefix: 'SOCKET_',
