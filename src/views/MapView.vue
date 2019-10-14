@@ -10,7 +10,7 @@
             </router-link>
             <PostsListFilters />
             <PostListSelected />
-            <PostsList 
+            <PostsList
                 :filters="filters"
             />
         </div>
@@ -36,6 +36,8 @@
     import PostsListFilters from "../components/posts/PostsListFilters";
     import PostListSelected from "../components/posts/PostsListFIltersSelected";
     import BasicButton from "../components/basics/BasicButton";
+    import {debounce} from "lodash";
+
     export default {
         name: "MapView",
         mixins: [mapMixin],
@@ -47,7 +49,10 @@
             BasicButton
         },
         mounted() {
-            this.showDetectLocationAlert();
+            const self = this;
+            if (window.innerWidth > 650) {
+                self.showDetectLocationAlert();
+            }
         },
         data() {
             return {
@@ -129,8 +134,8 @@
 
         &__PostList{
             &CreateButton{
-                width: 250px; 
-                color: white; 
+                width: 250px;
+                color: white;
                 text-decoration: none;
 
                 a:link{
