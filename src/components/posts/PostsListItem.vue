@@ -140,6 +140,7 @@
                 }
 
                 this.$bus.$emit("showUserInfo", this.post.user._id);
+                this.$emit("close");
             },
             styles(url) {
                 return {

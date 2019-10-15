@@ -6,6 +6,7 @@
         <div @click="closeModal" style="margin: 10px; cursor: pointer; position: absolute; z-index: 999; top: -75px; right: 0;"><font-awesome-icon icon="times" /></div>
         <PostListItem
             :post="post"
+            @close="closeModal"
         />
     </Modal>
 </template>

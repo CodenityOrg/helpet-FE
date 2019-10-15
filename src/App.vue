@@ -7,11 +7,11 @@
 			v-if="showLogin"
 			@close="showLogin=false"
 		/>
+		<post-modal v-if="showPostModal" :post="post" />
 		<info-user
 			v-show="showUserModal"
 			:userId="userId"
 		/>
-		<post-modal v-if="showPostModal" :post="post" />
 		<notification-modal v-if="showNotificationModal"/>
 		<router-view />
 	</div>
