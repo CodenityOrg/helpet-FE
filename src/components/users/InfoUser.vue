@@ -1,5 +1,5 @@
 <template>
-    <Modal class="InfoUser">
+    <Modal style="z-index: 1001" class="InfoUser">
         <loading :active.sync="isLoading"
         />
 
