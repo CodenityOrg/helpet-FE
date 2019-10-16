@@ -3,14 +3,15 @@
         <router-link :to="{name : 'Home'}">
             <full-page ref="fullpage" :options="options">
                 <IndexSection />
-                <!-- <section class="cont--slogan section">
+                <section class="cont--slogan section">
+                    <h1 style="color: white; text-align: center; margin-top: 120px;">Descubre como ayudar a las mascotas a regresar a su hogar !</h1>
                     <ul class="slogan__elemt" style="padding-top: 180px;">
                         <div class="img-features"></div>
                         <div class="img-features"></div>
                         <div class="img-features"></div>
                     </ul>
-                </section> -->
-                <ContactSection />
+                </section>
+                <!-- <ContactSection /> -->
             </full-page>
         </router-link>
         <router-view></router-view>
@@ -46,10 +47,10 @@
     }
 
     .img-features {
-        background: white; 
-        border-radius: 100%; 
-        height: 300px; 
+        background: white;
+        border-radius: 100%;
+        height: 300px;
         margin: 0 50px;
-        width: 300px; 
+        width: 300px;
     }
 </style>
