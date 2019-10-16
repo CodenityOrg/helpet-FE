@@ -10,40 +10,40 @@
                         <form class="form" id="register-form">
                             <div class="form-input">
                                 <input
+                                    :class="{ 'invalid': errors.has('Nombres') }"
                                     v-validate="'required|alpha'"
                                     type="text"
                                     v-model="user.firstName"
-                                    name="name"
+                                    name="Nombres"
                                     placeholder="Nombres" />
-                                <span>{{ errors.first('name') }}</span>
                             </div>
                             <div class="form-input">
                                 <input
+                                    :class="{ 'invalid': errors.has('Apellidos') }"
                                     v-validate="'required|alpha'"
                                     type="text"
                                     v-model="user.lastName"
-                                    name="lastname"
+                                    name="Apellidos"
                                     placeholder="Apellidos" />
-                                <span>{{ errors.first('lastname') }}</span>
                             </div>
                             <div class="form-input">
                                 <input
-                                    v-validate="'required|numeric'"
+                                    :class="{ 'invalid': errors.has('Telefono') }"
+                                    v-validate="'numeric'"
                                     type="phone"
                                     v-model="user.phone"
-                                    name="phone"
+                                    name="Telefono"
                                     placeholder="Telefono (Opcional)"/>
-                                <span>{{ errors.first('phone') }}</span>
                             </div>
                             <div class="form-input">
-                                <input type="email"
+                                <input
+                                    type="email"
+                                    :class="{ 'invalid': errors.has('email') || !this.validateEmail.validate }"
                                     v-validate="'required|email'"
-
                                     v-model="user.email"
                                     name="email"
                                     @keyup="changeValidate"
                                     placeholder="Correo" />
-                                    <div class="validate" :v-if="validate">{{ this.validateEmail.validate.message }}</div>
                             </div>
                             <div class="form-input">
                                 <input
@@ -60,7 +60,7 @@
                                 </vue-recaptcha>
                             </div>
                             <div class="form-submit">
-                                <button v-if="isVerified" class="btn btn-regular" @click="register" >Aceptar</button>
+                                <button v-if="isVerified && this.validateEmail.validate" class="btn btn-regular" @click="register" >Aceptar</button>
                             </div>
                         </form>
                     </div>
@@ -105,7 +105,7 @@
         components: { VueRecaptcha },
         computed: {
             ...mapState({
-                validateEmail: state => state.user,
+                validateEmail: state => state.user.validate,
             }),
         },
         methods: {
@@ -116,12 +116,13 @@
             async register(event) {
                 event.preventDefault();
                 event.stopPropagation();
-                if (this.isVerified) {
+                const isValidateAll = await this.$validator.validateAll();
+                if (isValidateAll && this.isVerified && this.validateEmail.validate) {
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);
                     this.isLoading = false;
-                    this.$router.push("/mapa/encontrados")
+                    this.$router.push("/publicaciones")
                 }
             },
             verify(response) {
@@ -131,7 +132,7 @@
                 this.isVerified = false;
             },
             changeValidate(){
-              this.validate({ email: this.user.email });
+                this.validate({ email: this.user.email });
             },
         }
     };

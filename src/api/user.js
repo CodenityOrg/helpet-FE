@@ -20,5 +20,14 @@ export default {
     },
     userById({id, fullData}) {
         return axios.get(`${HOST}/users/${id}?full=${fullData}`);
+    },
+    updateToken(token) {
+        return axios.put(`${HOST}/users/receiver-id`, { receiverId: token });
+    },
+    fetchNotifications() {
+        return axios.get(`${HOST}/notifications/`);
+    },
+    readNotification(id) {
+        return axios.post(`${HOST}/notifications/${id}/read`);
     }
 };

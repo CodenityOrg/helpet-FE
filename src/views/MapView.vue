@@ -1,48 +1,58 @@
 <template>
-    <b-row style="margin: 0;" class="cont cont--inicio">
-        <b-col md="4" sm="12" class="cont--tarjetas">
-            <div class="content">
-                <div class="tab-links">
-                    <router-link :to="{name : 'ListLost'}" exact>
-                        <button type="button" class="tab-link posts-tab">
-                            Perdidos
-                        </button>
-                    </router-link>
-                    <router-link :to="{name : 'ListFound'}" exact>
-                        <button type="button" class="tab-link posts-tab">Encontrados</button>
-                    </router-link>
-                </div>
-                <router-view @onShowInfoUser="showUser"></router-view>
-            </div>
-        </b-col>
-        <b-col md="8" sm="12" class="cont--mapa">
+    <div class="MapView cont cont--inicio">
+        <div class="MapView__PostList cont--tarjetas">
+            <router-link v-if="isAuthenticated" :to="{name : 'RegisterPostPet'}">
+                <BasicButton
+                    class="MapView__PostListCreateButton"
+                >
+                    Nueva publicacion
+                </BasicButton>
+            </router-link>
+            <PostsListFilters />
+            <PostListSelected />
+            <PostsList
+                :filters="filters"
+            />
+        </div>
+        <div class="MapView__PostMap cont--mapa">
             <Map
                 @init="mapInitialized"
             />
-        </b-col>
+        </div>
         <notifications
             style="margin-top: 80px;"
-            group="foo" 
-            position='top center' 
+            group="foo"
+            position='top center'
         />
-    </b-row>
+    </div>
 </template>
 
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import {random} from "lodash";
     import mapMixin from "./mixins/map";
     import Map from "../components/common/Map";
+    import PostsList from "../components/posts/PostsList";
+    import PostsListFilters from "../components/posts/PostsListFilters";
+    import PostListSelected from "../components/posts/PostsListFIltersSelected";
+    import BasicButton from "../components/basics/BasicButton";
+    import {debounce} from "lodash";
 
     export default {
         name: "MapView",
         mixins: [mapMixin],
         components: {
-            Map
+            Map,
+            PostsList,
+            PostsListFilters,
+            PostListSelected,
+            BasicButton
         },
         mounted() {
-            this.showDetectLocationAlert();
+            const self = this;
+            if (window.innerWidth > 650) {
+                self.showDetectLocationAlert();
+            }
         },
         data() {
             return {
@@ -89,6 +99,10 @@
             }
         },
         computed: {
+            ...mapState({
+                filters: state => state.pet.filters,
+                isAuthenticated: state => state.auth.authenticated
+            }),
             ...mapGetters({
                 positions: "getCurrentPositions"
             }),
@@ -112,6 +126,38 @@
     };
 
 </script>
-<style>
+<style lang="scss">
     @import "../assets/css/componentes.css";
+
+    .MapView {
+        display: flex;
+
+        &__PostList{
+            &CreateButton{
+                width: 250px;
+                color: white;
+                text-decoration: none;
+
+                a:link{
+                    color: white;
+                }
+
+                a:visited{
+                    color: white;
+                }
+            }
+        }
+
+        &__PostMap{
+            flex: 1;
+        }
+
+
+
+        @media (max-width: 650px) {
+            &__PostMap{
+                display: none;
+            }
+        }
+    }
 </style>

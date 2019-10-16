@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <!-- <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
-    <link
-        type="text/css"
-        rel="stylesheet"
-        href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
-    /> -->
-    <!-- <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-vue.css"> -->
-    <title>Helpet</title>
-</head>
-<body>
-<noscript>
-    <strong>We're sorry but helpet doesn't work properly without JavaScript enabled. Please enable it to
-        continue.</strong>
-</noscript>
-<div id="app"></div>
-<!-- built files will be auto injected -->
-
-</body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+        <!-- <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
+        /> -->
+        <!-- <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-vue.css"> -->
+        <title>Helpet</title>
+    </head>
+    <body>
+        <noscript>
+            <strong>We're sorry but helpet doesn't work properly without JavaScript enabled. Please enable it to
+                continue.</strong>
+        </noscript>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                appId      : '835937416774006',
+                cookie     : true,  // enable cookies to allow the server to access the session
+                xfbml      : true,  // parse social plugins on this page
+                version    : 'v2.8' // use graph api version 2.8
+                });
+            };
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <script src="https://apis.google.com/js/api:client.js"></script>
+    </body>
 </html>

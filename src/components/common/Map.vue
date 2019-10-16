@@ -1,17 +1,17 @@
 <template>
-    <mapbox 
+    <mapbox
         :access-token="accessToken"
         :map-options="{
             style: 'mapbox://styles/mapbox/streets-v9',
-            center: [0, 0],
-            zoom: 8
+            center: [-70.3175874, -18.0228643],
+            zoom: 11
         }"
         :geolocate-control="{
             show: true,
             position: 'top-left'
         }"
         :nav-control="{
-            show: true, 
+            show: true,
             position: 'top-left'
         }"
         @map-init="$emit('init', $event)"
@@ -24,7 +24,7 @@
 </template>
 <script>
     import Mapbox from 'mapbox-gl-vue';
-    
+
     export default {
         name: "PostMap",
         components: {
