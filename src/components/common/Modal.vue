@@ -11,6 +11,9 @@
     </div>
 </template>
 <script>
+export default {
+    name: ""
+}
 // export default {
 //     mounted () {
 //         const bgDivEl = document.createElement("div");
