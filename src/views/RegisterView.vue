@@ -18,7 +18,6 @@
                             <div class="form-input">
                                 <input
                                     :class="{ 'invalid': errors.has('Nombres') }"
-                                    v-validate="'required'"
                                     type="text"
                                     v-model="user.firstName"
                                     name="Nombres"
@@ -27,7 +26,6 @@
                             <div class="form-input">
                                 <input
                                     :class="{ 'invalid': errors.has('Apellidos') }"
-                                    v-validate="'required'"
                                     type="text"
                                     v-model="user.lastName"
                                     name="Apellidos"
