@@ -7,6 +7,13 @@
                 <b-col md="8">
                     <div class="register">
                         <h3>REGISTRATE</h3>
+
+                        <SocialButtons
+                            @onSuccess="onSuccess"
+                        >
+                            Registrate con facebook
+                        </SocialButtons>
+                        <p style="margin: 10px;">o tambien con</p>
                         <form class="form" id="register-form">
                             <div class="form-input">
                                 <input
@@ -88,6 +95,7 @@
 
     import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
+    import SocialButtons from "../components/common/SocialButtons";
 
     export default {
         name: "RegisterUser",
@@ -102,7 +110,10 @@
             recaptchaScript.setAttribute('src', 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit')
             document.head.appendChild(recaptchaScript)
         },
-        components: { VueRecaptcha },
+        components: {
+            VueRecaptcha,
+            SocialButtons
+        },
         computed: {
             ...mapState({
                 validateEmail: state => state.user.validate,
@@ -112,6 +123,7 @@
             ...mapActions({
                 registerUser: "registerUser",
                 validate: "validate",
+                updateToken: "updateToken"
             }),
             async register(event) {
                 event.preventDefault();
@@ -121,9 +133,16 @@
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);
+                    const id = await this.$socket.id;
+                    await this.updateToken(id);
                     this.isLoading = false;
                     this.$router.push("/publicaciones")
                 }
+            },
+            async onSuccess() {
+                const id = await this.$socket.id;
+                await this.updateToken(id);
+                this.$router.push("/publicaciones")
             },
             verify(response) {
                 this.isVerified = !!response;

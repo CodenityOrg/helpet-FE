@@ -13,24 +13,13 @@
                 <font-awesome-icon icon="times" />
             </span>
             <form id="login-form">
-                <div class="social-buttons">
-                    <a href="#">
-                        <fb-signin-button
-                            @success="onSignInFacebookSuccess"
-                            @error="onSignInFacebookError"
-                            :params="fbSignInParams">
-                            Iniciar sesion con Facebook
-                        </fb-signin-button>
-                    </a>
-                    <!-- <a href="#">
-                        <g-signin-button
-                            :params="googleSignInParams"
-                            @success="onSignInSuccess"
-                            @error="onSignInError">
-                            Iniciar sesion con Google
-                        </g-signin-button>
-                    </a> -->
-                </div>
+                <SocialButtons
+                    class="social-buttons"
+                    @onSuccess="successOauth"
+                    @onFailure="failureOauth"
+                >
+                    Iniciar sesion con Facebook
+                </SocialButtons>
                 <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>
                 <div class="form-input font-size-10px" >
                     <input
@@ -66,22 +55,20 @@
 </template>
 
 <script>
-    import FBSignInButton from "vue-facebook-signin-button";
-    import GSignInButton from "vue-google-signin-button";
+
     import Modal from "../common/Modal";
+    import SocialButtons from "../common/SocialButtons";
     import BasicButton from "../basics/BasicButton";
 
-    import Vue from "vue";
     import {mapActions, mapState} from "vuex";
 
-    Vue.use(FBSignInButton);
-    Vue.use(GSignInButton);
     //client-secret: J1pcDCnmFLWq0M9c7jEMCG0G
     export default {
         name: "LoginUser",
         components: {
             Modal,
-            BasicButton
+            BasicButton,
+            SocialButtons
         },
         data() {
             return {
@@ -106,7 +93,6 @@
         methods: {
             ...mapActions({
                 login: "login",
-                oauthLogin: "oauthLogin",
                 updateToken: "updateToken"
             }),
             async signUp(event) {
@@ -120,22 +106,11 @@
             closeLogin() {
                 this.$emit("close");
             },
-/*             onSignInSuccess (googleUser) {
-                // `googleUser` is the GoogleUser object that represents the just-signed-in user.
-                // See https://developers.google.com/identity/sign-in/web/reference#users
-                const profile = googleUser.getBasicProfile() // etc etc
-            },
-            onSignInError (error) {
-                // `error` contains any error occurred.
-                console.log('OH NOES', error)
-            }, */
-            async onSignInFacebookSuccess (response) {
-                const info = await new Promise( (resolve, reject) => {
-                    FB.api('/me', { fields: 'first_name, last_name, email' },  resolve)
-                });
-                info.accessToken = response.authResponse.accessToken;
-                await this.oauthLogin(info);
+            successOauth() {
                 this.redirectToMapOrFail();
+            },
+            failureOauth() {
+                this.showFailMessage();
             },
             async redirectToMapOrFail() {
                 if (!this.isAuthenticated) {
@@ -147,9 +122,6 @@
                     await this.updateToken(id);
                     this.$router.push("/publicaciones")
                 }
-            },
-            onSignInFacebookError (error) {
-                this.showFailMessage();
             },
             showFailMessage() {
                 this.$notify({
