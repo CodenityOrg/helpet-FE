@@ -65,7 +65,7 @@
                         </form>
                     </div>
                 </b-col>
-                <b-col md="4">
+                <b-col class="img-register" md="4">
                     <div class="redes">
                         <figure class="figure">
                             <img src="../assets/img/icon-register.png" alt="icono-register">
@@ -140,4 +140,9 @@
 
 <style>
     @import "../assets/css/register.css";
+    @media (max-width: 650px) {
+        .img-register {
+            display: none;
+        }
+    }
 </style>

@@ -2,14 +2,12 @@
     <div class="cont">
         <router-link :to="{name : 'Home'}">
             <full-page ref="fullpage" :options="options">
-                <IndexSection />
-                <section class="cont--slogan section">
-                    <h1 style="color: white; text-align: center; margin-top: 120px;">Descubre como ayudar a las mascotas a regresar a su hogar !</h1>
-                    <ul class="slogan__elemt" style="padding-top: 180px;">
-                        <div class="img-features"></div>
-                        <div class="img-features"></div>
-                        <div class="img-features"></div>
-                    </ul>
+                <IndexSection @toHelp="$refs.fullpage.api.moveTo(2)" />
+                <section id="help" class="cont--slogan section">
+                    <h2 style="color: white; text-align: center; margin-top: 100px; margin-bottom: 30px;">Descubre como ayudar a las mascotas a regresar a su hogar !</h2>
+                    <div style="display: flex;">
+                        <iframe style="width: 80%; height: 400px; margin: auto; " width="560" height="315" src="https://www.youtube.com/embed/hfAK8nymLZw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </section>
                 <!-- <ContactSection /> -->
             </full-page>

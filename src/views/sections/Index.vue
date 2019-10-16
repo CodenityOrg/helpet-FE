@@ -1,4 +1,4 @@
-<template functional>
+<template>
     <section class="filtro section">
         <div class="cont--slogan">
             <ul class="slogan__elemt">
@@ -9,7 +9,10 @@
                         perdida o ayuda a una a encontrar su hogar
                     </h3>
                     <span class="slogan__subtitle">Porque las mascotas son los mejores amigos</span>
-                    <router-link :to="{name : 'ListLost'}">Comienza</router-link>
+                    <div style="display: flex;">
+                        <router-link :to="{name : 'ListLost'}">Comienza</router-link>
+                        <a style="margin-left: 10px; color: #21b16a;" @click="$emit('toHelp')" >Aprende como</a>
+                    </div>
                 </div>
                 <div class="logo">
                     <img src="../../assets/img/img-A.png" alt="logo helpet">
