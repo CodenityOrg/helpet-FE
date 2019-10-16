@@ -127,7 +127,7 @@
                 event.preventDefault();
                 event.stopPropagation();
                 const isValidateAll = await this.$validator.validateAll();
-                if (isValidateAll && this.isVerified && this.validateEmail.validate) {
+                if (this.user.firstName && this.user.lastName && isValidateAll && this.isVerified && this.validateEmail.validate) {
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);
@@ -135,6 +135,8 @@
                     await this.updateToken(id);
                     this.isLoading = false;
                     this.$router.push("/publicaciones")
+                } else {
+                    alert("Completa los datos antes de continuar :)");
                 }
             },
             async onSuccess() {
