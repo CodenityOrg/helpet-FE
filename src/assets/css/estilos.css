@@ -137,8 +137,8 @@
 }
 
 .hp-navbar {
-    background-color: rgba(33, 177, 106,1); 
-    padding: 20px 30px !important; 
+    background-color: rgba(33, 177, 106,1);
+    padding: 20px 30px !important;
 }
 
 .navbar__logo {
@@ -223,7 +223,7 @@ html, body {
 }
 
 
-.cont--mapa .mapboxgl-map, 
+.cont--mapa .mapboxgl-map,
 .vue-google-map {
     height: 100%;
 }
@@ -269,7 +269,6 @@ html, body {
     text-decoration: none;
     text-align: center;
     font-weight: 700;
-    max-width: 10em;
 }
 .cont--slogan .slogan a:hover{
     background: rgb(211, 210, 210);
