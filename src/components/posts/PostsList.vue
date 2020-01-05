@@ -11,6 +11,7 @@
         <PostsListItem
             :key="index"
             v-for="(post, index) in posts"
+            v-if="showDuplicatedPost(post)"
             :post="post"
             @onShowInfo="showUser"
         />
@@ -36,7 +37,11 @@ export default {
     computed: {
         ...mapState({
             posts: state => state.pet.posts,
-        })
+            total: state => state.pet.total,
+        }),
+        allIds() {
+            return this.posts.map(p => p._id);
+        }
     },
     watch: {
         filters: {
@@ -70,6 +75,9 @@ export default {
         },
         resetFilters() {
             this.skip = 0;
+        },
+        showDuplicatedPost(post) {
+            return this.allIds.filter(p => (p === post._id)).length === 1;
         },
         scrollEnd: throttle(async function () {
             this.isLoading = true;
