@@ -31,14 +31,17 @@ const mutations = {
     },
     RESET_POSTS(state) {
         state.posts = [];
+        state.total = 0;
     }
 }
 
 const actions = {
-    async fetchPosts({ commit }, { ...searchParams }) {
+    async fetchPosts({ commit, state }, { ...searchParams }) {
         const {total, posts} = await postAPI.fetchPostList(searchParams);
-        commit("SET_TOTAL_POSTS", total);
-        commit("ADD_POSTS", posts);
+        if (state.total != total) {
+            commit("SET_TOTAL_POSTS", total);
+            commit("ADD_POSTS", posts);
+        }
     },
     createPost({ commit }, payload) {
         return postAPI.create(payload);
