@@ -74,12 +74,12 @@ export default {
         },
         scrollEnd: throttle(async function () {
             this.isLoading = true;
-            this.skip = this.skip + this.limit;
             await this.fetchPosts({
                 filters: this.filters,
                 limit: this.limit,
                 skip: this.skip
             });
+            this.skip = this.skip + this.limit;
             this.isLoading = false;
         }, 350)
     },
