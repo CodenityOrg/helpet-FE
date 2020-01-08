@@ -36,6 +36,7 @@ export default {
     computed: {
         ...mapState({
             posts: state => state.pet.posts,
+            total: state => state.pet.total,
         })
     },
     watch: {

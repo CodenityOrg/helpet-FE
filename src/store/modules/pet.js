@@ -1,6 +1,7 @@
 import postAPI from "../../api/post";
 
 const state = {
+    total: 0,
     post: {},
     posts: [],
     filters: {
@@ -11,6 +12,9 @@ const state = {
 }
 
 const mutations = {
+    SET_TOTAL_POSTS(state, total) {
+        state.total = total;
+    },
     SET_CURRENT_TYPE(state, type) {
         state.currentType = type;
     },
@@ -27,13 +31,17 @@ const mutations = {
     },
     RESET_POSTS(state) {
         state.posts = [];
+        state.total = 0;
     }
 }
 
 const actions = {
-    async fetchPosts({ commit }, { ...searchParams }) {
-        const posts = await postAPI.fetchPostList(searchParams);
-        commit("ADD_POSTS", posts);
+    async fetchPosts({ commit, state }, { ...searchParams }) {
+        const {total, posts} = await postAPI.fetchPostList(searchParams);
+        if (state.total != total) {
+            commit("SET_TOTAL_POSTS", total);
+            commit("ADD_POSTS", posts);
+        }
     },
     createPost({ commit }, payload) {
         return postAPI.create(payload);
