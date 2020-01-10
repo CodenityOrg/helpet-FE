@@ -10,7 +10,7 @@
                     </h3>
                     <span class="slogan__subtitle">Porque las mascotas son los mejores amigos</span>
                     <div style="display: flex;">
-                        <router-link :to="{name : 'ListLost'}">Comienza</router-link>
+                        <router-link :to="{name : 'MapView'}">Comienza</router-link>
                         <a style="margin-left: 10px; color: #21b16a;" @click="$emit('toHelp')" >Aprende como</a>
                     </div>
                 </div>
