@@ -1,15 +1,15 @@
-<template functional>
-    <section class="section">
+<template>
+    <div>
         <div style="width: 100%; height: 100%;">
             <div style="float:left; width: 60%;">
                 <div style="margin: 100px;">
                     <h4 style="color: white;">Enviar mensaje</h4>
-                    <form class="contact-form" action="" >
-                        <input class="form-input" placeholder="Nombre completo" type="text">
-                        <input class="form-input" placeholder="Correo" type="text">
-                        <textarea class="form-textarea" placeholder="Mensaje" name="" cols="30" rows="10"></textarea>
-                        <input style="background: none; width: 200px; height: 50px; border: 1px solid white; color: white; border-radius: 10px; " type="submit" value="Enviar">
-                    </form>
+                    <div class="contact-form">
+                        <input class="form-input" v-model="form.fullName" placeholder="Nombre completo" type="text">
+                        <input class="form-input" v-model="form.email" placeholder="Correo" type="text">
+                        <textarea class="form-textarea" v-model="form.message" placeholder="Mensaje" name="" cols="30" rows="10"></textarea>
+                        <input style="background: none; width: 200px; height: 50px; border: 1px solid white; color: white; border-radius: 10px; " type="submit" v-on:click="submitForm()" value="Enviar">
+                    </div>
                 </div>
             </div>
             <div class="info">
@@ -28,8 +28,43 @@
         </div>
         <div style="width: 100%; background: #404040; height: 40px; position: absolute; bottom: 0;">
         </div>
-    </section>
+    </div>
 </template>
+
+<script>
+import { mapActions } from "vuex";
+
+export default {
+    name: "Contact",
+    data() {
+        return {
+            form: {
+                fullName: "",
+                email: "",
+                message: ""
+            }
+        }
+    },
+    methods: {
+        ...mapActions([
+            "submitContactForm"
+        ]),
+        async submitForm () {
+            const isValidateAll = await this.$validator.validateAll();
+            if (isValidateAll) {
+                status = await this.submitContactForm(this.form);
+                if (status) {
+                    alert("Mensaje enviado.")
+                } else {
+                    alert("No se pudo enviar el mail por alguna razon.")
+                }
+            } else {
+                alert("Por favor arreglar los valores de los campos del formulario.")
+            }
+        }
+    }
+}
+</script>
 <style>
 
     .info {
@@ -39,7 +74,7 @@
         background: white; 
         display:block; 
         height: 100%;
-        background-image: url('../../assets/img/map-sample.png');
+        background-image: url('../assets/img/map-sample.png');
     }
 
     .info .panel {

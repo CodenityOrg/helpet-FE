@@ -21,14 +21,12 @@
     import Vue from 'vue'
     import 'fullpage.js/vendors/scrolloverflow'
     import VueFullPage from 'vue-fullpage.js'
-    import ContactSection from "./sections/Contact";
     import IndexSection from "./sections/Index";
 
     Vue.use(VueFullPage);
     export default {
         name: 'HomePage',
         components: {
-            ContactSection,
             IndexSection
         },
         data() {

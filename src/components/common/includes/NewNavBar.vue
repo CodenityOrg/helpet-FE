@@ -36,6 +36,9 @@
             <div class="Navbar__menuItem">
                 <router-link :to="{name : 'MapView'}">Publicaciones</router-link>
             </div>
+            <div class="Navbar__menuItem">
+                <router-link :to="{name : 'Contact'}">Contacto</router-link>
+            </div>
             <div class="Navbar__menuItem" v-if="isAuthenticated">
                 <a href="" @click="doLogout">Cerrar sesión</a>
             </div>
