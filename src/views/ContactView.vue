@@ -56,7 +56,12 @@
                     <p> Info: </p>
                     <div class="mapouter">
                         <div class="gmap_canvas">
-                            <iframe height="234" id="gmap_canvas" src="https://maps.google.com/maps?q=peru&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            <iframe
+                                title="contact-map"
+                                height="234"
+                                id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=peru&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            ></iframe>
                         </div>
                     </div>
                 </div>
@@ -114,11 +119,7 @@ export default {
         },
         async submitForm () {
             status = await this.submitContactForm(this.form);
-            if (status) {
-                alert("Mensaje enviado.")
-            } else {
-                alert("No se pudo enviar el mail por alguna razon.")
-            }
+            // TODO: message if mail was sent or not
         }
     }
 }
