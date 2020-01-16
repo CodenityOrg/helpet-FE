@@ -5,13 +5,25 @@
         <div class="cont cont--register cont--profile">
             <form action="">
                 <div class="form-input">
-                    <input placeholder="Nombres" v-model="user.firstName" type="text">
+                    <input
+                        name="nombre"
+                        :class="{ 'invalid': errors.has('nombre') }"
+                        v-validate="'required'"
+                        placeholder="Nombres" v-model="user.firstName" type="text">
                 </div>
                 <div class="form-input">
-                    <input placeholder="Apellidos" v-model="user.lastName" type="text">
+                    <input
+                        name="apellidos"
+                        :class="{ 'invalid': errors.has('apellidos') }"
+                        v-validate="'required'"
+                        placeholder="Apellidos" v-model="user.lastName" type="text">
                 </div>
                 <div class="form-input">
-                    <input placeholder="Email" v-model="user.email" type="email">
+                    <input
+                        :class="{ 'invalid': errors.has('email') }"
+                        v-validate="'required|email'"
+                        name="email"
+                        placeholder="Email" v-model="user.email" type="email">
                 </div>
                 <div class="form-input">
                     <input placeholder="Telefono" v-model="user.phone" type="phone">
@@ -36,7 +48,7 @@
 </template>
 <script>
     import {debounce} from "lodash";
-    import {mapActions, mapState} from "vuex";
+    import {mapActions} from "vuex";
     import FormErrors from "../components/basics/FormErrors";
     import ErrorMessage from "../components/basics/ErrorMessage";
 
@@ -66,19 +78,13 @@
         },
         computed: {
             isFirstNameValid() {
-                if (!this.user.firstName) {
-                    return false;
-                }
-                return !!this.user.firstName.trim();
+                return !this.errors.has('nombre');
             },
             isLastNameValid() {
-                if (!this.user.lastName) {
-                    return false;
-                }
-                return !!this.user.lastName.trim();
+                return !this.errors.has('apellidos');
             },
             isEmailValid() {
-                return this.user.email && emailRegExp.test(this.user.email.trim());
+                return !this.errors.has('email');
             },
             areAllInputsValid() {
                 if (!this.userLoaded) {
@@ -100,8 +106,9 @@
                 this.isLoading = false;
                 this.validateAuthorization();
             },
-            validateAndSave() {
-                if (!this.areAllInputsValid) {
+            async validateAndSave() {
+                const allValid = await this.$validator.validateAll();
+                if (!allValid) {
                     return;
                 }
                 this.updateProfile();
