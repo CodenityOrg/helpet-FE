@@ -15,7 +15,7 @@
     import Notify from 'vue-notify-me'
 
     export default {
-        name: "UserProfile",
+        name: "Notification",
         components: {
           'notify-me': Notify
         }

@@ -72,6 +72,10 @@
     margin-bottom: 1em;
 }
 
+.form-input--no-margin {
+    margin-bottom: 0;
+}
+
 .form-input label {
     display: block;
     font-size: 0.8em;
