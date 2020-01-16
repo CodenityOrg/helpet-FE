@@ -14,7 +14,7 @@ const store = new Vuex.Store({
         auth,
         user,
         pet,
-        general
+        general,
     }
 });
 
