@@ -5,10 +5,46 @@
                 <div style="margin: 100px;">
                     <h4 style="color: white;">Enviar mensaje</h4>
                     <div class="contact-form">
-                        <input class="form-input" v-model="form.fullName" placeholder="Nombre completo" type="text">
-                        <input class="form-input" v-model="form.email" placeholder="Correo" type="text">
-                        <textarea class="form-textarea" v-model="form.message" placeholder="Mensaje" name="" cols="30" rows="10"></textarea>
-                        <input style="background: none; width: 200px; height: 50px; border: 1px solid white; color: white; border-radius: 10px; " type="submit" v-on:click="submitForm()" value="Enviar">
+                        <input
+                            name="fullName"
+                            class="form-input"
+                            :class="{ 'invalid': !isFullNameValid }"
+                            v-model="form.fullName"
+                            v-validate="'required'"
+                            placeholder="Nombre completo"
+                            type="text"
+                        >
+                        <input
+                            name="email"
+                            class="form-input"
+                            :class="{ 'invalid': !isEmailValid }"
+                            v-model="form.email"
+                            v-validate="'required|email'"
+                            placeholder="Correo"
+                            type="email"
+                        >
+                        <textarea
+                            name="message"
+                            class="form-textarea"
+                            :class="{ 'invalid': !isMessageValid }"
+                            v-validate="'required'"
+                            v-model="form.message"
+                            placeholder="Mensaje"
+                            cols="30"
+                            rows="10"
+                        ></textarea>
+                        <FormErrors v-show="!areAllInputsValid">
+                            <ErrorMessage
+                                v-show="!isFullNameValid"
+                                message="* Nombre requerido"/>
+                            <ErrorMessage
+                                v-show="!isMessageValid"
+                                message="* Mensaje requerido"/>
+                            <ErrorMessage
+                                v-show="!isEmailValid"
+                                message="* Ingrese un email válido"/>
+                        </FormErrors>
+                        <input style="background: none; width: 200px; height: 50px; border: 1px solid white; color: white; border-radius: 10px; " type="button" v-on:click="validateAndSave()" value="Enviar">
                     </div>
                 </div>
             </div>
@@ -33,6 +69,8 @@
 
 <script>
 import { mapActions } from "vuex";
+import FormErrors from "../components/basics/FormErrors";
+import ErrorMessage from "../components/basics/ErrorMessage";
 
 export default {
     name: "Contact",
@@ -45,21 +83,41 @@ export default {
             }
         }
     },
+    components: {
+        FormErrors,
+        ErrorMessage,
+    },
+    computed: {
+        isFullNameValid() {
+            return !this.errors.has('fullname');
+        },
+        isMessageValid() {
+            return !this.errors.has('message');
+        },
+        isEmailValid() {
+            return !this.errors.has('email');
+        },
+        areAllInputsValid() {
+            return this.isFullNameValid && this.isMessageValid && this.isEmailValid;
+        }
+    },
     methods: {
         ...mapActions([
             "submitContactForm"
         ]),
+        async validateAndSave() {
+            const allValid = await this.$validator.validateAll();
+            if (!allValid) {
+                return;
+            }
+            this.submitForm();
+        },
         async submitForm () {
-            const isValidateAll = await this.$validator.validateAll();
-            if (isValidateAll) {
-                status = await this.submitContactForm(this.form);
-                if (status) {
-                    alert("Mensaje enviado.")
-                } else {
-                    alert("No se pudo enviar el mail por alguna razon.")
-                }
+            status = await this.submitContactForm(this.form);
+            if (status) {
+                alert("Mensaje enviado.")
             } else {
-                alert("Por favor arreglar los valores de los campos del formulario.")
+                alert("No se pudo enviar el mail por alguna razon.")
             }
         }
     }
