@@ -52,8 +52,6 @@
     import FormErrors from "../components/basics/FormErrors";
     import ErrorMessage from "../components/basics/ErrorMessage";
 
-    const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     export default {
         name: "UserProfile",
         components: {
