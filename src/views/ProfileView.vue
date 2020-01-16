@@ -7,20 +7,20 @@
                 <div class="form-input">
                     <input
                         name="nombre"
-                        :class="{ 'invalid': errors.has('nombre') }"
+                        :class="{ 'invalid': !isFirstNameValid }"
                         v-validate="'required'"
                         placeholder="Nombres" v-model="user.firstName" type="text">
                 </div>
                 <div class="form-input">
                     <input
                         name="apellidos"
-                        :class="{ 'invalid': errors.has('apellidos') }"
+                        :class="{ 'invalid': !isLastNameValid }"
                         v-validate="'required'"
                         placeholder="Apellidos" v-model="user.lastName" type="text">
                 </div>
                 <div class="form-input">
                     <input
-                        :class="{ 'invalid': errors.has('email') }"
+                        :class="{ 'invalid': !isEmailValid }"
                         v-validate="'required|email'"
                         name="email"
                         placeholder="Email" v-model="user.email" type="email">
