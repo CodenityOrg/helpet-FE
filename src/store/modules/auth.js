@@ -2,6 +2,7 @@ import authAPI from "../../api/auth";
 import Vue from "vue";
 import VueCookie from "vue-cookie";
 import Notifications from 'vue-notification';
+import axios from "axios";
 
 Vue.use(VueCookie);
 Vue.use(Notifications);
@@ -27,6 +28,19 @@ const actions = {
             commit("SET_AUTHENTICATED", true);
             commit("SET_USER", user);
             VueCookie.set("helpet_auth", user.token);
+            axios.defaults.headers.common['authorization'] = user.token;
+
+        } else {
+            commit("SET_AUTHENTICATED", false);
+        }
+    },
+    async oauthLogin({commit}, data) {
+        const {status, data: user} = await authAPI.oauthLogin(data);
+        if (status === 200) {
+            commit("SET_AUTHENTICATED", true);
+            commit("SET_USER", user);
+            VueCookie.set("helpet_auth", user.token);
+            axios.defaults.headers.common['authorization'] = user.token;
         } else {
             commit("SET_AUTHENTICATED", false);
         }
@@ -47,6 +61,8 @@ const actions = {
             return true;
         }
         if (status === 401) {
+            commit("SET_AUTHENTICATED", false);
+            commit("SET_USER", {});
             VueCookie.delete("helpet_auth");
         }
         return false;

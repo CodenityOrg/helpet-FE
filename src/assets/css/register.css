@@ -39,6 +39,13 @@ body {
     height: calc(100% - 90px);
 }
 
+.cont--profile form {
+    background-color: #fff;
+    padding: 1rem;
+    width: 15em;
+    border-radius: 6px;
+}
+
 .register{
     /* padding: 0 3em; */
     color: white;
@@ -60,6 +67,12 @@ body {
 .input--register input{
     width: 49%;
 }
+
+.form-input .invalid{
+    border-color: #ff4b5c !important;
+}
+
+
 #inputApellido{
     margin:  0 0.4em 0 0;
 }
