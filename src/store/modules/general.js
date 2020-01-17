@@ -1,4 +1,4 @@
-const general = require("../../api/general");
+import general from "../../api/general";
 
 const state = {
 
@@ -10,7 +10,7 @@ const mutations = {
 
 const actions = {
     async submitContactForm({commit}, form) {
-        const {sent} = await general.default.submitContactForm(form);
+        const {sent} = await general.submitContactForm(form);
         return sent;
     }
 }
