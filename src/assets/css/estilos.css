@@ -297,13 +297,16 @@ html, body {
     height: calc(100% - 90px);
 }
 
+
+
 .cont--inicio .cont--tarjetas {
     display: flex;
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 2em;
     padding-left: 2em;
     padding-right: 2em;
     height: 100%;
+    flex-direction: column;
 }
 
 .content {
@@ -322,11 +325,6 @@ html, body {
  * modal de inicio de sesion
  */
 
-.modal--inicio-sesion.modal__box {
-    background: rgba(242, 242, 242, 1);
-    border-radius: 0.5em;
-}
-
 .modal--inicio-sesion .modal-header {
     position: absolute;
     width: 100%;
@@ -342,9 +340,9 @@ html, body {
     padding: 0 3em;
 }
 .modal--inicio-sesion .modal-body .img-promo {
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
     border-right: 2px solid var(--color-logo-verde);
+    height: 100%;
+    padding-top: 60px;
 }
 .modal--inicio-sesion .modal-body .form-login {
     padding-top: 1.5em;
@@ -361,15 +359,16 @@ html, body {
 
 .modal--inicio-sesion .modal-body .img-promo .slogan {
     display: block;
-    font-size: 1em;
+    font-size: 16px;
     text-align: center;
+    color: white;
+    padding: 10px;
 }
 
 .modal--inicio-sesion .modal-body .img-promo img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 1.5em;
     width: 55%;
 }
 
@@ -482,4 +481,8 @@ html, body {
 }
 .field--input{
     margin: 0 0.3em;
+}
+
+.selectize-control.multi .selectize-input > div{
+    background: green !important;
 }

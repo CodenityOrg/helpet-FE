@@ -18,5 +18,8 @@ export default {
                         return {status: 401}
                     }
                 });
+    },
+    oauthLogin(data) {
+        return axios.post(`${HOST}/login/oauth`, data);
     }
 };

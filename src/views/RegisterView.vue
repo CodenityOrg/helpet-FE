@@ -7,43 +7,48 @@
                 <b-col md="8">
                     <div class="register">
                         <h3>REGISTRATE</h3>
+
+                        <SocialButtons
+                            @onSuccess="onSuccess"
+                        >
+                            Registrate con facebook
+                        </SocialButtons>
+                        <p style="margin: 10px;">o tambien con</p>
                         <form class="form" id="register-form">
                             <div class="form-input">
                                 <input
-                                    v-validate="'required|alpha'"
+                                    :class="{ 'invalid': errors.has('Nombres') }"
                                     type="text"
                                     v-model="user.firstName"
-                                    name="name"
+                                    name="Nombres"
                                     placeholder="Nombres" />
-                                <span>{{ errors.first('name') }}</span>
                             </div>
                             <div class="form-input">
                                 <input
-                                    v-validate="'required|alpha'"
+                                    :class="{ 'invalid': errors.has('Apellidos') }"
                                     type="text"
                                     v-model="user.lastName"
-                                    name="lastname"
+                                    name="Apellidos"
                                     placeholder="Apellidos" />
-                                <span>{{ errors.first('lastname') }}</span>
                             </div>
                             <div class="form-input">
                                 <input
-                                    v-validate="'required|numeric'"
+                                    :class="{ 'invalid': errors.has('Telefono') }"
+                                    v-validate="'numeric'"
                                     type="phone"
                                     v-model="user.phone"
-                                    name="phone"
+                                    name="Telefono"
                                     placeholder="Telefono (Opcional)"/>
-                                <span>{{ errors.first('phone') }}</span>
                             </div>
                             <div class="form-input">
-                                <input type="email"
+                                <input
+                                    type="email"
+                                    :class="{ 'invalid': errors.has('email') || !this.validateEmail.validate }"
                                     v-validate="'required|email'"
-
                                     v-model="user.email"
                                     name="email"
                                     @keyup="changeValidate"
                                     placeholder="Correo" />
-                                    <div class="validate" :v-if="validate">{{ this.validateEmail.validate.message }}</div>
                             </div>
                             <div class="form-input">
                                 <input
@@ -60,12 +65,12 @@
                                 </vue-recaptcha>
                             </div>
                             <div class="form-submit">
-                                <button v-if="isVerified" class="btn btn-regular" @click="register" >Aceptar</button>
+                                <button v-if="isVerified && this.validateEmail.validate" class="btn btn-regular" @click="register" >Aceptar</button>
                             </div>
                         </form>
                     </div>
                 </b-col>
-                <b-col md="4">
+                <b-col class="img-register" md="4">
                     <div class="redes">
                         <figure class="figure">
                             <img src="../assets/img/icon-register.png" alt="icono-register">
@@ -88,6 +93,7 @@
 
     import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
+    import SocialButtons from "../components/common/SocialButtons";
 
     export default {
         name: "RegisterUser",
@@ -102,27 +108,41 @@
             recaptchaScript.setAttribute('src', 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit')
             document.head.appendChild(recaptchaScript)
         },
-        components: { VueRecaptcha },
+        components: {
+            VueRecaptcha,
+            SocialButtons
+        },
         computed: {
             ...mapState({
-                validateEmail: state => state.user,
+                validateEmail: state => state.user.validate,
             }),
         },
         methods: {
             ...mapActions({
                 registerUser: "registerUser",
                 validate: "validate",
+                updateToken: "updateToken"
             }),
             async register(event) {
                 event.preventDefault();
                 event.stopPropagation();
-                if (this.isVerified) {
+                const isValidateAll = await this.$validator.validateAll();
+                if (this.user.firstName && this.user.lastName && isValidateAll && this.isVerified && this.validateEmail.validate) {
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);
+                    const id = await this.$socket.id;
+                    await this.updateToken(id);
                     this.isLoading = false;
-                    this.$router.push("/mapa/encontrados")
+                    this.$router.push("/publicaciones")
+                } else {
+                    alert("Completa los datos antes de continuar :)");
                 }
+            },
+            async onSuccess() {
+                const id = await this.$socket.id;
+                await this.updateToken(id);
+                this.$router.push("/publicaciones")
             },
             verify(response) {
                 this.isVerified = !!response;
@@ -131,7 +151,7 @@
                 this.isVerified = false;
             },
             changeValidate(){
-              this.validate({ email: this.user.email });
+                this.validate({ email: this.user.email });
             },
         }
     };
@@ -139,4 +159,9 @@
 
 <style>
     @import "../assets/css/register.css";
+    @media (max-width: 650px) {
+        .img-register {
+            display: none;
+        }
+    }
 </style>

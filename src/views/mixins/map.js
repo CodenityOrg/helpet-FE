@@ -1,12 +1,16 @@
-import PostMap from "../../components/common/PostMap";
 
 export default {
-    components: {
-        PostMap
-    },
     methods: {
         mapInitialized(map) {
             this.map = map;
+            map.on("load", function () {
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(position => {
+                        document.querySelector(".mapboxgl-ctrl-geolocate").click();
+                    })
+                }
+            });
+
         },
         genLayoutMarker(data) {
             const el = document.createElement("div");
@@ -21,7 +25,7 @@ export default {
                 const { target: { dataset: { idPet }}} = e;
                 const divPet = document.getElementById(idPet);
                 const tabLost = document.getElementById('tab-perdidos') || document.getElementById('tab-encontrados');
-                tabLost.scrollTop = divPet.offsetTop;
+                tabLost.scrollTop = divPet.offsetTop - 120;
             });
             return el;
         }
