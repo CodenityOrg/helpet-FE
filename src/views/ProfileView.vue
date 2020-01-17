@@ -90,7 +90,6 @@
             async updateProfile() {
                 this.isLoading = true;
                 const user = omit(this.user, ["email"]);
-                console.log(user)
                 await this.updateUser(user);
                 this.isLoading = false;
                 this.validateAuthorization();
