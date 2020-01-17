@@ -1,3 +1,5 @@
+const general = require("../../api/general");
+
 const state = {
 
 }
