@@ -1,3 +1,5 @@
+import general from "../../api/general";
+
 const state = {
 
 }
