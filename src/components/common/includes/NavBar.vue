@@ -31,6 +31,9 @@
                 <b-nav-item>
                     <router-link :to="{name : 'MapView'}">Publicaciones</router-link>
                 </b-nav-item>
+                <b-nav-item>
+                    <router-link :to="{name : 'Contact'}">Contacto</router-link>
+                </b-nav-item>
                 <b-nav-item v-if="isAuthenticated">
                     <button @click="doLogout">Cerrar sesión</button>
                 </b-nav-item>

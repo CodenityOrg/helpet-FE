@@ -6,6 +6,7 @@ import RegisterUser from '../views/RegisterView.vue';
 import PostRegister from '../views/PostRegisterView.vue'
 import Profile from "../views/ProfileView";
 import MapView from '../views/MapView';
+import ContactView from "../views/ContactView"
 
 
 Vue.use(Router);
@@ -55,6 +56,14 @@ const router = new Router({
       component: MapView,
       meta: {
         title: "Publicaciones"
+      }
+    },
+    {
+      path: '/contacto',
+      name: 'Contact',
+      component: ContactView,
+      meta: {
+        title: "Contacto"
       }
     },
     {
