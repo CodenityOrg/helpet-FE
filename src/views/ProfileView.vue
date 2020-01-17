@@ -19,11 +19,7 @@
                         placeholder="Apellidos" v-model="user.lastName" type="text">
                 </div>
                 <div class="form-input">
-                    <input
-                        :class="{ 'invalid': !isEmailValid }"
-                        v-validate="'required|email'"
-                        name="email"
-                        placeholder="Email" v-model="user.email" type="email">
+                    <input readonly disabled name="email" placeholder="Email" :value="user.email" type="email">
                 </div>
                 <div class="form-input">
                     <input placeholder="Telefono" v-model="user.phone" type="phone">
@@ -38,16 +34,13 @@
                     <ErrorMessage
                         v-show="!isLastNameValid"
                         message="* Apellido requerido"/>
-                    <ErrorMessage
-                        v-show="!isEmailValid"
-                        message="* Ingrese un email válido"/>
                 </FormErrors>
             </form>
         </div>
     </div>
 </template>
 <script>
-    import {debounce} from "lodash";
+    import {debounce, omit} from "lodash";
     import {mapActions} from "vuex";
     import FormErrors from "../components/basics/FormErrors";
     import ErrorMessage from "../components/basics/ErrorMessage";
@@ -81,14 +74,11 @@
             isLastNameValid() {
                 return !this.errors.has('apellidos');
             },
-            isEmailValid() {
-                return !this.errors.has('email');
-            },
             areAllInputsValid() {
                 if (!this.userLoaded) {
                     return true;
                 }
-                return this.isFirstNameValid && this.isLastNameValid && this.isEmailValid;
+                return this.isFirstNameValid && this.isLastNameValid;
             }
         },
         methods: {
@@ -99,7 +89,8 @@
             }),
             async updateProfile() {
                 this.isLoading = true;
-                const user = this.user;
+                const user = omit(this.user, ["email"]);
+                console.log(user)
                 await this.updateUser(user);
                 this.isLoading = false;
                 this.validateAuthorization();
