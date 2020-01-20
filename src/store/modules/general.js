@@ -10,7 +10,10 @@ const mutations = {
 
 const actions = {
     async submitContactForm({commit}, form) {
-        const {sent} = await general.submitContactForm(form);
+        const { status, data: { sent } } = await general.submitContactForm(form);
+        if (status !== 200) {
+            return false;
+        }
         return sent;
     }
 }
