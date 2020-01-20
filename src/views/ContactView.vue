@@ -2,6 +2,7 @@
     <div>
         <div style="width: 100%; height: 100%;">
             <div style="float:left; width: 60%;">
+                <notifications group="top" position='center right' />
                 <div style="margin: 100px;">
                     <h4 style="color: white;">Enviar mensaje</h4>
                     <div class="contact-form">
@@ -117,9 +118,32 @@ export default {
             }
             this.submitForm();
         },
+        resetForm() {
+            this.form = {
+                fullName: "",
+                email: "",
+                message: ""
+            };
+        },
         async submitForm () {
             status = await this.submitContactForm(this.form);
-            // TODO: message if mail was sent or not
+            this.resetForm();
+            this.$validator.reset();
+            if (!status) {
+                this.$notify({
+                    group: "top",
+                    type: "error",
+                    title: "MENSAJE NO ENVIADO",
+                    text: "Lamentablemente no se pudo enviar su mensaje'</b>",
+                });
+            } else {
+                this.$notify({
+                    group: "top",
+                    type: "info",
+                    title: "MENSAJE ENVIADO",
+                    text: "Se ha enviado su mensaje exitosamente'</b>",
+                });
+            }
         }
     }
 }
