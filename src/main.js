@@ -30,9 +30,11 @@ Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
+const socketHost = process.env.VUE_APP_SOCKET_HOST || 'http://localhost:3000';
+
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: 'https://helpet-dev-api.herokuapp.com',
+    connection: socketHost,
     vuex: {
         store,
         actionPrefix: 'SOCKET_',
