@@ -31,7 +31,7 @@ Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
 const socketHost = process.env.VUE_APP_SOCKET_HOST || 'http://localhost:3000';
-console.log(socketHost)
+
 Vue.use(new VueSocketIO({
     debug: true,
     connection: socketHost,
