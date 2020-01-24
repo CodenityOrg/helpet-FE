@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <FootBar></FootBar>
+        <FootBar/>
     </div>
 </template>
 
