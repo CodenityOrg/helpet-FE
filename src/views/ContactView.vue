@@ -68,8 +68,7 @@
                 </div>
             </div>
         </div>
-        <div style="width: 100%; background: #404040; height: 40px; position: absolute; bottom: 0;">
-        </div>
+        <FootBar></FootBar>
     </div>
 </template>
 
@@ -77,6 +76,7 @@
 import { mapActions } from "vuex";
 import FormErrors from "../components/basics/FormErrors";
 import ErrorMessage from "../components/basics/ErrorMessage";
+import FootBar from "../components/common/includes/FootBar";
 
 export default {
     name: "Contact",
@@ -92,6 +92,7 @@ export default {
     components: {
         FormErrors,
         ErrorMessage,
+        FootBar,
     },
     computed: {
         isFullNameValid() {

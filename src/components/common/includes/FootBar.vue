@@ -8,7 +8,7 @@
         width: 100%; 
         background: #404040; 
         height: 50px;
-        position: absolute; 
         bottom: 0;
+        position: fixed;
     }
 </style>
