@@ -18,6 +18,9 @@ body {
     position: relative;
 }
 
+.register h1 {
+    margin:  0 0 1em 0;
+}
 .register h3{
     margin:  0 0 1em 0;
     font-size: 1.4em;
@@ -95,4 +98,7 @@ figure img{
     color: white;
 }
 
-
+.card-body .picture img {
+    object-fit: contain;
+    width: 100%;
+}
