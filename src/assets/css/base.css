@@ -17,6 +17,7 @@ button {
 body {
     --bg-color-transparente: rgba(33, 177, 106, .53);
     --color-logo-verde: rgba(33, 177, 106, 1);
+    --color-logo-verde-oscuro: #1b8e56;
     --color-gris: #f2f2f2;
     min-height: 100vh;
     position: relative;

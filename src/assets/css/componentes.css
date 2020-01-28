@@ -107,6 +107,28 @@
 }
 
 /**
+ * inputs con label
+ */
+
+.form-inline-label .form-input {
+    display: flex;
+    align-items: center;
+}
+
+.form-inline-label .form-input input {
+    font-size: 14px;
+    margin: 0 1rem;
+}
+
+.form-inline-label .form-input label {
+    color: #b6b6b6;
+    width: 130px;
+    text-align: left;
+    margin: 0;
+    font-size: 14px;
+}
+
+/**
  * tarjetas
  */
 

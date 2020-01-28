@@ -398,6 +398,34 @@ html, body {
 }
 
 /**
+ * container blanco (perfil usuario)
+ */
+.container--bg-white {
+    color: #212121 !important;
+    overflow: auto;
+    background: var(--color-logo-verde-oscuro);
+}
+.container--bg-white .wrapper {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 4rem;
+    min-height: calc(100vh - 90px);
+}
+
+.container--bg-white .card {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.container--bg-white .card-body > div {
+    padding: 2rem;
+}
+
+/**
  * tarjeta de perrito perdido / encontrado
  */
 .tarjeta--perrrito-perdido {
