@@ -101,7 +101,6 @@
         padding: 12px 15px;
         width: 100%;
         min-height: 90px;
-        background-color: var(--color-logo-verde);
 
         &__triggerButton {
             display: none;
