@@ -403,7 +403,7 @@ html, body {
 .container--bg-white {
     color: #212121 !important;
     overflow: auto;
-    background: var(--color-logo-verde-oscuro);
+    background-color: var(--color-logo-verde-oscuro);
 }
 .container--bg-white .wrapper {
     background-color: white;
