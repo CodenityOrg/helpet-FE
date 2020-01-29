@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import VueSocketIO from 'vue-socket.io';
 
 import es from "vee-validate/dist/locale/es";
+import dictionary from "./dictionary";
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome]);
@@ -21,7 +22,7 @@ library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faS
 Vue.use(VueBus);
 Vue.use(BootstrapVue);
 Validator.localize({ es })
-Vue.use(VeeValidate, { locale: "es" });
+Vue.use(VeeValidate, { locale: "es", dictionary });
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
 import loadingMixin from './components/common/includes/loading-mixin';
