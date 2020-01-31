@@ -14,9 +14,12 @@ import VueSocketIO from 'vue-socket.io';
 
 import es from "vee-validate/dist/locale/es";
 
+import FBLoginInstall from "./installs/fb-login";
+
+FBLoginInstall();
+
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome]);
-
 
 Vue.use(VueBus);
 Vue.use(BootstrapVue);
