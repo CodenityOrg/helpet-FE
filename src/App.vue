@@ -37,7 +37,6 @@
 		},
 		name: 'app',
 		created() {
-			console.log(process.env.EDITOR)
 			this.requestNotificationPermission();
 			this.$bus.$on("showUserInfo", this.showUserInfo);
 			this.$bus.$on("onCloseInfoUser", this.closeUserInfo);
