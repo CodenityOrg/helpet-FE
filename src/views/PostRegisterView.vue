@@ -70,6 +70,7 @@
             background-color: var(--color-gris);
             width: 600px;
             height: 100%;
+            overflow-y: auto;
         }
 
         &__Map{
