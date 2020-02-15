@@ -8,7 +8,6 @@ export default {
             map.on("load", function () {
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(position => {
-                        debugger
                         store.set('location', {
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
