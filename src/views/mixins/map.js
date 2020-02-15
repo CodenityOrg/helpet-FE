@@ -1,3 +1,5 @@
+import store from 'store';
+
 
 export default {
     methods: {
@@ -6,6 +8,11 @@ export default {
             map.on("load", function () {
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(position => {
+                        debugger
+                        store.set('location', {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        });
                         document.querySelector(".mapboxgl-ctrl-geolocate").click();
                     })
                 }

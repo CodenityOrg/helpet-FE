@@ -3,7 +3,7 @@
         :access-token="accessToken"
         :map-options="{
             style: 'mapbox://styles/mapbox/streets-v9',
-            center: [-70.3175874, -18.0228643],
+            center: location,
             zoom: 11
         }"
         :geolocate-control="{
@@ -29,6 +29,12 @@
         name: "PostMap",
         components: {
             Mapbox
+        },
+        props: {
+            location: {
+                type: Array,
+                default: () => [0, 0]
+            }
         },
         data() {
             return {
