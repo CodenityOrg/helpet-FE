@@ -124,8 +124,8 @@
                 })
             },
             currentLocation() {
-                const location = store.get('location');
-                return [location.longitude, location.latitude];
+                const {longitude = 0, latitude = 0} = store.get('location') || {};
+                return [longitude, latitude];
             }
         }
     };
