@@ -3,11 +3,13 @@ import Router from 'vue-router';
 
 import HomePage from '../views/HomeView.vue';
 import RegisterUser from '../views/RegisterView.vue';
-import PostRegister from '../views/PostRegisterView.vue'
 import Profile from "../views/ProfileView";
-import MapView from '../views/MapView';
-import ContactView from "../views/ContactView"
-
+// route level code-splitting
+// this generates a separate chunk (publications.[hash].js) for this route
+// which is lazy-loaded when the route is visited.
+const MapView = () => import(/* webpackChunkName: "publications" */ '../views/MapView');
+const PostRegister = () => import(/* webpackChunkName: "publications" */'../views/PostRegisterView.vue');
+const ContactView = () => import(/* webpackChunkName: "contact" */ '../views/ContactView');
 
 Vue.use(Router);
 
