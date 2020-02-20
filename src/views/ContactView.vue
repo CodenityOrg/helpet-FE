@@ -54,7 +54,7 @@
                 <div class="col-sm mt-4 mt-lg-0">
                     <b-card class="rounded-lg mb-4 text-center">
                         <h5 class="mt-4">Desarrollado por</h5>
-                        <a target="_blank" href="https://www.codenity.org/"><img class="w-100 py-3 px-4" alt="Codenity" src="../../src/assets/codenity-logo.png" /></a>
+                        <a rel="noopener noreferrer" target="_blank" href="https://www.codenity.org/"><img class="w-100 py-3 px-4" alt="Codenity" src="../../src/assets/codenity-logo.png" /></a>
                     </b-card>
                     <b-card class="rounded-lg text-center">
                         <div class="d-flex justify-content-around">
