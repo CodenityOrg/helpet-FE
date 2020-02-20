@@ -58,13 +58,13 @@
                     </b-card>
                     <b-card class="rounded-lg text-center">
                         <div class="d-flex justify-content-around">
-                            <a title="Ir a la página de Facebook de Codenity" class="social-button social-button--facebook rounded-circle m-2 color-white" target="_blank" href="https://www.facebook.com/codenity19/">
+                            <a rel="noopener noreferrer" title="Ir a la página de Facebook de Codenity" class="social-button social-button--facebook rounded-circle m-2 color-white" target="_blank" href="https://www.facebook.com/codenity19/">
                                 <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">f</div>
                             </a>
-                            <a title="Ir al perfil de LinkedIn de Codenity" class="social-button social-button--linkedin rounded-circle m-2 color-white" target="_blank" href="https://www.linkedin.com/company/codenity-org/">
+                            <a rel="noopener noreferrer" title="Ir al perfil de LinkedIn de Codenity" class="social-button social-button--linkedin rounded-circle m-2 color-white" target="_blank" href="https://www.linkedin.com/company/codenity-org/">
                                 <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">in</div>
                             </a>
-                            <a title="Ir al canal de YouTube de Codenity" class="social-button social-button--youtube rounded-circle m-2 color-white" target="_blank" href="#">
+                            <a rel="noopener noreferrer" title="Ir al canal de YouTube de Codenity" class="social-button social-button--youtube rounded-circle m-2 color-white" target="_blank" href="#">
                                 <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">
                                     <BIconPlayFill font-scale="1.5" style="left:2px; position: relative" />
                                 </div>
