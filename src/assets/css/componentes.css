@@ -352,6 +352,15 @@
     height: 3em;
 }
 
+.btn-primary {
+    background-color: #21b16a;
+    border-radius: 10px;
+}
+.btn-primary:hover,
+.btn-primary:active {
+    background-color: #005522 !important;
+}
+
 .btn-regular {
     width: 15em;
 }

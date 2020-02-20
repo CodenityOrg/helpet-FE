@@ -1,73 +1,79 @@
 <template>
     <div>
-        <div style="width: 100%; height: 100%;">
-            <div style="float:left; width: 60%;">
-                <notifications group="top" position='center right' />
-                <div style="margin: 100px;">
-                    <h4 style="color: white;">Enviar mensaje</h4>
-                    <div class="contact-form">
-                        <input
-                            name="fullName"
-                            class="form-input"
-                            :class="{ 'invalid': !isFullNameValid }"
-                            v-model="form.fullName"
-                            v-validate="'required'"
-                            placeholder="Nombre completo"
-                            type="text"
-                        >
-                        <input
-                            name="email"
-                            class="form-input"
-                            :class="{ 'invalid': !isEmailValid }"
-                            v-model="form.email"
-                            v-validate="'required|email'"
-                            placeholder="Correo"
-                            type="email"
-                        >
-                        <textarea
-                            name="message"
-                            class="form-textarea"
-                            :class="{ 'invalid': !isMessageValid }"
-                            v-validate="'required'"
-                            v-model="form.message"
-                            placeholder="Mensaje"
-                            cols="30"
-                            rows="10"
-                        ></textarea>
-                        <FormErrors v-show="!areAllInputsValid">
-                            <ErrorMessage
-                                v-show="!isFullNameValid"
-                                message="* Nombre requerido"/>
-                            <ErrorMessage
-                                v-show="!isMessageValid"
-                                message="* Mensaje requerido"/>
-                            <ErrorMessage
-                                v-show="!isEmailValid"
-                                message="* Ingrese un email válido"/>
-                        </FormErrors>
-                        <input style="background: none; width: 200px; height: 50px; border: 1px solid white; color: white; border-radius: 10px; " type="button" v-on:click="validateAndSave()" value="Enviar">
-                    </div>
-                </div>
-            </div>
-            <div class="info">
-                <div class="panel">  
-                    <h1>Contactanos</h1>
-                    <p> Telefono:  </p>
-                    <p> Direccion: </p>
-                    <p> Info: </p>
-                    <div class="mapouter">
-                        <div class="gmap_canvas">
-                            <iframe
-                                title="contact-map"
-                                height="234"
-                                id="gmap_canvas"
-                                src="https://maps.google.com/maps?q=peru&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                            ></iframe>
+        <notifications group="top" position='center right' />
+        <section class="container">
+            <div class="row mt-5 mb-5">
+                <div class="col-lg-8">
+                    <b-card class="p-4 rounded-lg">
+                        <h4 class="font-weight-bold">Enviar mensaje</h4>
+                        <p>Podrás ponerte en contacto con nosotros por cualquier duda.</p>
+                        <div class="contact-form">
+                            <input
+                                name="fullName"
+                                class="form-input"
+                                :class="{ 'invalid': !isFullNameValid }"
+                                v-model="form.fullName"
+                                v-validate="'required'"
+                                placeholder="Nombre completo"
+                                type="text"
+                            >
+                            <input
+                                name="email"
+                                class="form-input"
+                                :class="{ 'invalid': !isEmailValid }"
+                                v-model="form.email"
+                                v-validate="'required|email'"
+                                placeholder="Correo"
+                                type="email"
+                            >
+                            <textarea
+                                name="message"
+                                class="form-textarea"
+                                :class="{ 'invalid': !isMessageValid }"
+                                v-validate="'required'"
+                                v-model="form.message"
+                                placeholder="Mensaje"
+                                cols="30"
+                                rows="10"
+                            ></textarea>
+                            <FormErrors v-show="!areAllInputsValid">
+                                <ErrorMessage
+                                    v-show="!isFullNameValid"
+                                    message="* Nombre requerido"/>
+                                <ErrorMessage
+                                    v-show="!isMessageValid"
+                                    message="* Mensaje requerido"/>
+                                <ErrorMessage
+                                    v-show="!isEmailValid"
+                                    message="* Ingrese un email válido"/>
+                            </FormErrors>
+                            <button type="submit" class="btn btn-primary mt-3" @click="validateAndSave">Enviar</button>
                         </div>
-                    </div>
+                    </b-card>
+                </div>
+                <div class="col-sm mt-4 mt-lg-0">
+                    <b-card class="rounded-lg mb-4 text-center">
+                        <h5 class="mt-4">Desarrollado por</h5>
+                        <a target="_blank" href="https://www.codenity.org/"><img class="w-100 py-3 px-4" alt="Codenity" src="../../src/assets/codenity-logo.png" /></a>
+                    </b-card>
+                    <b-card class="rounded-lg text-center">
+                        <div class="d-flex justify-content-around">
+                            <a title="Ir a la página de Facebook de Codenity" class="social-button social-button--facebook rounded-circle m-2 color-white" target="_blank" href="https://www.facebook.com/codenity19/">
+                                <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">f</div>
+                            </a>
+                            <a title="Ir al perfil de LinkedIn de Codenity" class="social-button social-button--linkedin rounded-circle m-2 color-white" target="_blank" href="https://www.linkedin.com/company/codenity-org/">
+                                <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">in</div>
+                            </a>
+                            <a title="Ir al canal de YouTube de Codenity" class="social-button social-button--youtube rounded-circle m-2 color-white" target="_blank" href="#">
+                                <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">
+                                    <BIconPlayFill font-scale="1.5" style="left:2px; position: relative" />
+                                </div>
+                            </a>
+                        </div>
+                    </b-card>
                 </div>
             </div>
-        </div>
+        </section>
         <FootBar/>
     </div>
 </template>
@@ -77,6 +83,7 @@ import { mapActions } from "vuex";
 import FormErrors from "../components/basics/FormErrors";
 import ErrorMessage from "../components/basics/ErrorMessage";
 import FootBar from "../components/common/includes/FootBar";
+import { BIconPlayFill } from 'bootstrap-vue'
 
 export default {
     name: "Contact",
@@ -93,6 +100,7 @@ export default {
         FormErrors,
         ErrorMessage,
         FootBar,
+        BIconPlayFill
     },
     computed: {
         isFullNameValid() {
@@ -112,7 +120,8 @@ export default {
         ...mapActions([
             "submitContactForm"
         ]),
-        async validateAndSave() {
+        async validateAndSave(e) {
+            e.preventDefault();
             const allValid = await this.$validator.validateAll();
             if (!allValid) {
                 return;
@@ -150,62 +159,65 @@ export default {
 }
 </script>
 <style>
-
-    .info {
-        float:right; 
-        width: 40%; 
-        min-width: 300px; 
-        background: white; 
-        display:block; 
-        height: 100%;
-        background-image: url('../assets/img/map-sample.png');
-    }
-
-    .info .panel {
-        border: 1px solid #c7c4c4;
-        margin: 60px;
-        padding: 40px;
-        height: calc(100% - 140px);
-        color: black;
-        box-shadow: 8px 4px #ccc5c578;
-        background: white;
-    }
-
-    .info h1 {
-        margin-bottom: 30px;
-    }
-
     .contact-form .form-input {
         background: none; 
-        border: 1px solid white; 
+        border: 1px solid #c0c0c0; 
         border-radius: 10px; 
-        color: white; 
+        color: #c0c0c0; 
         margin: 5px 0;
         padding: 10px;
-        height: 60px; 
         width: 100%; 
     }
 
     .contact-form .form-textarea {
         background: none; 
-        border: 1px solid white; 
+        border: 1px solid #c0c0c0; 
         height: 220px; 
         border-radius: 10px; 
         width: 100%; 
         margin: 5px 0; 
-        color: white; 
+        color: #c0c0c0; 
         padding: 10px;
         outline: none;
     }
 
+    .contact-form .invalid {
+        border-color: red;
+    }
+
     .contact-form .form-input:focus {
-        border: 1px solid white;
+        border: 1px solid #c0c0c0;
         outline: none;
     }
     
     .form-input::placeholder, .form-textarea::placeholder {
-        color: white;
+        color: #c0c0c0;
     }
 
-    .mapouter{position:relative;text-align:right;height:234px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:234px;width:100%;}
+    .social-button {
+        width: 5rem;
+        height: 5rem;
+        color: white !important;
+        font-size: 3em;
+        font-weight: bold;
+        transition: background-color .3s ease;
+    }
+    .social-button--facebook {
+        background-color: #4267b2;
+    }
+    .social-button--facebook:hover {
+        background-color: #5e86d8;
+    }
+    .social-button--linkedin {
+        background-color: #0077b5;
+    }
+    .social-button--linkedin:hover {
+        background-color: #0892da;
+    }
+    .social-button--youtube {
+        background-color: #f00;
+    }
+    .social-button--youtube:hover {
+        background-color: #ff3535;
+    }
 </style>

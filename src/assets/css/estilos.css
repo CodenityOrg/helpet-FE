@@ -514,3 +514,7 @@ html, body {
 .selectize-control.multi .selectize-input > div{
     background: green !important;
 }
+
+.rounded-lg {
+    border-radius: 1.5rem !important;
+}
