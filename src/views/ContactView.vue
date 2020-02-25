@@ -64,7 +64,7 @@
                             <a rel="noopener noreferrer" title="Ir al perfil de LinkedIn de Codenity" class="social-button social-button--linkedin rounded-circle m-2 color-white" target="_blank" href="https://www.linkedin.com/company/codenity-org/">
                                 <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">in</div>
                             </a>
-                            <a rel="noopener noreferrer" title="Ir al canal de YouTube de Codenity" class="social-button social-button--youtube rounded-circle m-2 color-white" target="_blank" href="https://www.youtube.com/watch?v=7H5ZJUjMMQY">
+                            <a rel="noopener noreferrer" title="Ir al canal de YouTube de Codenity" class="social-button social-button--youtube rounded-circle m-2 color-white" target="_blank" href="https://www.youtube.com/channel/UC2DadiWRoeRgPGgzRGZ0g4g">
                                 <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">
                                     <BIconPlayFill font-scale="1.5" style="left:2px; position: relative" />
                                 </div>
