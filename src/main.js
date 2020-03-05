@@ -11,7 +11,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import VueSocketIO from 'vue-socket.io';
-import VueGtag from "vue-gtag";
+import VueGtm from 'vue-gtm';
 
 import es from "vee-validate/dist/locale/es";
 import dictionary from "./dictionary";
@@ -20,13 +20,12 @@ import FBLoginInstall from "./installs/fb-login";
 
 FBLoginInstall();
 
-const GA_CODES = {
-	development: 'UA-159833877-1',
-	production: 'UA-159821336-1'
-}
-
-Vue.use(VueGtag, {
-	config: { id: GA_CODES[process.env.NODE_ENV] }
+Vue.use(VueGtm, {
+	id: 'GTM-MWR6DP8',
+	debug: true,
+	loadScript: true,
+	vueRouter: router
+	//ignoredViews: ['homepage']
 });
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
