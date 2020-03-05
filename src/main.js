@@ -20,13 +20,8 @@ import FBLoginInstall from "./installs/fb-login";
 
 FBLoginInstall();
 
-const GA_CODES = [
-	'UA-159833877-1',
-	'UA-159821336-1'
-];
-
 Vue.use(VueGtm, {
-	id: GA_CODES,
+	id: 'GTM-MWR6DP8',
 	debug: true,
 	loadScript: true,
 	vueRouter: router
