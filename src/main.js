@@ -18,6 +18,36 @@ import dictionary from "./dictionary";
 
 import FBLoginInstall from "./installs/fb-login";
 
+import VueI18n from 'vue-i18n';
+
+Vue.directive('t', () => {});
+
+VueI18n.prototype._initVM = function _initVM (data) {
+	var silent = Vue.config.silent;
+	Vue.config.silent = true;
+	this._vm = new Vue({ data: data });
+	Vue.config.silent = silent;
+};
+
+const i18n = new VueI18n({
+	locale: 'es',
+	fallbackLocale: "es",
+	messages: {
+		es: {
+			message: {
+				hello: 'Hola Mundo!'
+			}
+		},
+		en: {
+			message: {
+			  	hello: 'Hello World!'
+			}
+		}
+	},
+});
+
+Vue.use(i18n);
+
 FBLoginInstall();
 
 Vue.use(VueGtm, {
@@ -80,6 +110,7 @@ router.beforeEach(async ({meta, path}, from, next) => {
 
 new Vue({
 	render: h => h(App),
+	i18n,
 	router,
 	store
 }).$mount('#app');

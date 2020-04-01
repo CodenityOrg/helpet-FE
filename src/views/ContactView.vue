@@ -5,6 +5,9 @@
             <div class="row mt-5 mb-5">
                 <div class="col-lg-8">
                     <b-card class="p-4 rounded-lg">
+                        <button @click="transl"> ASD </button>
+                        <p class="font-weight-bold">ASDADS</p>
+                        <!-- <p class="font-weight-bold">{{ $t("message.hello") }}</p> -->
                         <h4 class="font-weight-bold">Enviar mensaje</h4>
                         <p>Podrás ponerte en contacto con nosotros por cualquier duda.</p>
                         <div class="contact-form">
