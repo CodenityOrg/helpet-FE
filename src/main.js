@@ -25,18 +25,7 @@ Vue.use(VueI18n);
 const i18n = new VueI18n({
 	locale: 'en',
 	fallbackLocale: "en",
-	messages: {
-		es: {
-			message: {
-				hello: 'Hola Mundo!'
-			}
-		},
-		en: {
-			message: {
-			  	hello: 'Hello World!adsasd'
-			}
-		}
-	},
+	messages: dictionary,
 });
 
 FBLoginInstall();
