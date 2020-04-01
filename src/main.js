@@ -20,18 +20,11 @@ import FBLoginInstall from "./installs/fb-login";
 
 import VueI18n from 'vue-i18n';
 
-Vue.directive('t', () => {});
-
-VueI18n.prototype._initVM = function _initVM (data) {
-	var silent = Vue.config.silent;
-	Vue.config.silent = true;
-	this._vm = new Vue({ data: data });
-	Vue.config.silent = silent;
-};
+Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-	locale: 'es',
-	fallbackLocale: "es",
+	locale: 'en',
+	fallbackLocale: "en",
 	messages: {
 		es: {
 			message: {
@@ -40,13 +33,11 @@ const i18n = new VueI18n({
 		},
 		en: {
 			message: {
-			  	hello: 'Hello World!'
+			  	hello: 'Hello World!adsasd'
 			}
 		}
 	},
 });
-
-Vue.use(i18n);
 
 FBLoginInstall();
 
