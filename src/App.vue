@@ -14,11 +14,13 @@
 		/>
 		<notification-modal v-if="showNotificationModal"/>
 		<router-view />
+		<app-footer />
 	</div>
 </template>
 
 <script>
 	import NavBar from './components/common/includes/NewNavBar.vue';
+	import AppFooter from './components/common/includes/AppFooter.vue';
 	import LoginUser from './components/users/LoginUser.vue';
 	import InfoUser from './components/users/InfoUser.vue';
 	import PostModal from './components/posts/PostModal';
@@ -33,6 +35,7 @@
 			LoginUser,
 			InfoUser,
 			PostModal,
+			AppFooter,
 			NotificationModal
 		},
 		name: 'app',

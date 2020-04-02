@@ -10,6 +10,7 @@ import Profile from "../views/ProfileView";
 const MapView = () => import(/* webpackChunkName: "publications" */ '../views/MapView');
 const PostRegister = () => import(/* webpackChunkName: "publications" */'../views/PostRegisterView.vue');
 const ContactView = () => import(/* webpackChunkName: "contact" */ '../views/ContactView');
+const TermsView = () => import(/* webpackChunkName: "contact" */ '../views/TermsView');
 
 Vue.use(Router);
 
@@ -66,6 +67,14 @@ const router = new Router({
       component: ContactView,
       meta: {
         title: "Contacto"
+      }
+    },
+    {
+      path: '/terms',
+      name: 'Terms',
+      component: TermsView,
+      meta: {
+        title: "Términos y Condiciones"
       }
     },
     {
