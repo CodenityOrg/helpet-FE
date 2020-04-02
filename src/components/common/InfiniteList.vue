@@ -13,7 +13,6 @@
     methods: {
       async scrollHandler() {
         if (this.isAtTheBottom()) {
-            console.log("scroll reached")
             this.$emit("scrollEnd");
         }
       },

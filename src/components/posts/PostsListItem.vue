@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="PostItem__cardContentDescription">
-                        <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> Descripcion</span>
+                        <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> Descripción</span>
                         <div
                             ref="descriptionPost"
                             class="PostItem__cardContentDescriptionText"
@@ -58,7 +58,7 @@
                         </a>
                     </div>
                     <div class="PostItem__cardContentAddress">
-                        <span><font-awesome-icon icon="map" style="margin-right: 5px;" />Ultimo lugar visto</span>
+                        <span><font-awesome-icon icon="map" style="margin-right: 5px;" />Último lugar visto</span>
                         <p> {{post.address}}  </p>
                     </div>
                     <div class="PostItem__cardContentTags">
@@ -93,7 +93,6 @@
                             Ver mapa
                         </BasicButton>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -135,7 +134,7 @@
             }),
             async showUserInfo() {
                 if (!this.isAuthenticated) {
-                    alert("Quiere comenzar a ayudar, por favor registrate :)");
+                    alert("Quieres comenzar a ayudar, por favor regístrate :)");
                     return;
                 }
 

@@ -12,7 +12,6 @@
 
 import {mapState} from "vuex";
 
-import DateFilter from "./PostsListFiltersDate";
 import OrderFilter from "./PostsListFiltersOrder";
 import TypeFilter from "./PostsListFiltersType";
 
@@ -24,7 +23,6 @@ export default {
         })
     },
     components: {
-        DateFilter,
         OrderFilter,
         TypeFilter
     }
