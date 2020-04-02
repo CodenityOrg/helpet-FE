@@ -74,7 +74,7 @@ const router = new Router({
       name: 'Terms',
       component: TermsView,
       meta: {
-        title: "Términos y Condiciones"
+        title: "Privacidad y Términos de Uso"
       }
     },
     {

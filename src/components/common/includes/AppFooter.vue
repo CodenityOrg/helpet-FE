@@ -1,6 +1,6 @@
 <template functional>
     <footer class="footer">
-        <router-link to="/terms">Términos y Condiciones</router-link>
+        <router-link to="/terms">Privacidad y Términos de Uso</router-link>
     </footer>
 </template>
 <style>
