@@ -74,7 +74,6 @@
                 </div>
             </div>
         </section>
-        <FootBar/>
     </div>
 </template>
 
@@ -82,7 +81,6 @@
 import { mapActions } from "vuex";
 import FormErrors from "../components/basics/FormErrors";
 import ErrorMessage from "../components/basics/ErrorMessage";
-import FootBar from "../components/common/includes/FootBar";
 import { BIconPlayFill } from 'bootstrap-vue'
 
 export default {
@@ -99,7 +97,6 @@ export default {
     components: {
         FormErrors,
         ErrorMessage,
-        FootBar,
         BIconPlayFill
     },
     computed: {
