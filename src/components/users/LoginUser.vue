@@ -4,8 +4,8 @@
     >
         <div class="LoginUser__sectionImg">
             <div class="LoginUser__sectionImgCont">
-                <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesion">
-                <span class="LoginUser__sectionImgContSlogan">Inicia sesion y ayuda a una mascota a regresar a su hogar</span>
+                <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesión">
+                <span class="LoginUser__sectionImgContSlogan">Inicia sesión y ayuda a una mascota a regresar a su hogar</span>
             </div>
         </div>
         <div class="LoginUser__sectionLogin">
@@ -18,7 +18,7 @@
                     @onSuccess="successOauth"
                     @onFailure="failureOauth"
                 >
-                    Iniciar sesion con Facebook
+                    Iniciar sesión con Facebook
                 </SocialButtons>
                 <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>
                 <div class="form-input font-size-10px" >
@@ -44,10 +44,10 @@
                     />
                 </div>
                 <div class="info-message">
-                    <p>No tienes cuenta ? <router-link to="/registro"><span @click="$emit('close')">Crea una cuenta aqui</span></router-link></p>
+                    <p>No tienes cuenta ? <router-link to="/registro"><span @click="$emit('close')">Crea una cuenta aquí</span></router-link></p>
                 </div>
                 <div class="form-submit">
-                    <BasicButton class="frm--btm login-btn" type="submit" @click.native="signUp">Iniciar sesion</BasicButton>
+                    <BasicButton class="frm--btm login-btn" type="submit" @click.native="signUp">Iniciar sesión</BasicButton>
                 </div>
             </form>
         </div>
@@ -127,8 +127,8 @@
                 this.$notify({
                     group: "foo",
                     type: "error",
-                    title: "INICIO DE SESION",
-                    text: "Tu usuario o contraseña son incorrectos  <br> <b>   'Por favor intentelo nuevamente'</b>",
+                    title: "INICIO DE SESIÓN",
+                    text: "Tu usuario o contraseña son incorrectos  <br> <b>   'Por favor inténtelo nuevamente'</b>",
                 });
             }
         }

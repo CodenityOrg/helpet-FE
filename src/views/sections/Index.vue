@@ -1,5 +1,5 @@
 <template>
-    <section class="filtro section">
+    <section class="filter section">
         <div class="cont--slogan">
             <ul class="slogan__elemt">
                 <div class="slogan">

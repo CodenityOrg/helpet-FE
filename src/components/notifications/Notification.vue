@@ -6,7 +6,7 @@
                     :src="this.sender.profile" alt="">
             </div>
             <div class="Notification__Info">
-                <span class="Notification__InfoText"> <strong>{{senderFullName}}</strong>  ha encontrado una mascota parecida a la tuya! Haz click para ver!</span>
+                <span class="Notification__InfoText"> <strong>{{senderFullName}}</strong> ha encontrado una mascota parecida a la tuya! Haz click para ver!</span>
                 <span class="Notification__InfoDate"><strong>{{formattedDate}}</strong> </span>
             </div>
         </div>

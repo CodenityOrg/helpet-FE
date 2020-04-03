@@ -1,11 +1,11 @@
 <template>
-    <div class="MapView cont cont--inicio">
-        <div class="MapView__PostList cont--tarjetas">
+    <div class="MapView cont cont--start">
+        <div class="MapView__PostList cont--cards">
             <router-link v-if="isAuthenticated" :to="{name : 'RegisterPostPet'}">
                 <BasicButton
                     class="MapView__PostListCreateButton"
                 >
-                    Nueva publicacion
+                    Nueva publicación
                 </BasicButton>
             </router-link>
             <PostsListFilters />
@@ -14,7 +14,7 @@
                 :filters="filters"
             />
         </div>
-        <div class="MapView__PostMap cont--mapa">
+        <div class="MapView__PostMap cont--map">
             <Map
                 @init="mapInitialized"
                 :location="currentLocation"
@@ -95,7 +95,7 @@
                     group: 'foo',
                     type: 'warn',
                     duration: 4500,
-                    title: 'Estamos ubicandote, espere un momento',
+                    title: 'Estamos ubicándote, espere un momento',
                 });
             }
         },
@@ -132,7 +132,7 @@
 
 </script>
 <style lang="scss">
-    @import "../assets/css/componentes.css";
+    @import "../assets/css/components.css";
 
     .MapView {
         display: flex;

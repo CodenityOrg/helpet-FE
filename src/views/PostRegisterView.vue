@@ -1,5 +1,5 @@
 <template>
-    <div class="PostView cont cont--inicio">
+    <div class="PostView cont cont--start">
         <loading :active.sync="isLoading" />
         <div class="PostView__Form">
             <PostForm

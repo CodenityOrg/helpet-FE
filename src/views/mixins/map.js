@@ -20,7 +20,7 @@ export default {
         },
         genLayoutMarker(data) {
             const el = document.createElement("div");
-            el.className = (data.type == 1) ? "marker marker--encontrado" : "xmarker marker--perdido";
+            el.className = (data.type == 1) ? "marker marker--found" : "xmarker marker--lost";
             if (data.photo) {
                 el.style.backgroundImage = `url(${data.photo})`;
             }

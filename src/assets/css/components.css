@@ -26,43 +26,11 @@
     transform: translate(-50%, -50%);
 }
 
-
 .modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
-.modal-header .btnCerrarModal {
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #2a2a2a;
-    cursor: pointer;
-    z-index: 9999;
-}
-
-/* .modal-header .btnCerrarModal i:before {
-    font-size: 25px;
-} */
-
-.modal-header .btnCerrarModal {
-    font-size: 23px;
-    font-weight: bold;
-}
-
-/**
- * clases para cerrar el modal && para mostrar el modal
- */
-
-.cerrar-modal {
-    display: none;
-}
-
-.abrir-modal {
-    display: block;
-}
-
 
 /**
  * inputs
@@ -129,59 +97,12 @@
 }
 
 /**
- * tarjetas
- */
-
-.tarjeta {
-    background: white;
-    max-width: 100%;
-    margin-bottom: 2em;
-}
-
-.tarjeta__titulo {
-    padding: 0.5em 1em;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.tarjeta__titulo .image__name {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.tarjeta__titulo img {
-    width: 2em;
-    height: 2em;
-}
-
-.tarjeta__titulo span {
-    font-weight: 500;
-}
-
-.tarjeta__imagen {
-    width: 100%;
-}
-
-.tarjeta__imagen img {
-    width: 100%;
-}
-
-.tarjeta__descripcion {
-    font-size: 0.9em;
-}
-
-
-/**
- * marcador del mapa
+ * map marker
  * mapbox
  */
 
 .marker {
     display: block;
-    border: none;
     border-radius: 50%;
     background-position: center center;
     background-size: cover;
@@ -191,11 +112,11 @@
     position: relative;
 }
 
-.marker--perdido {
+.marker--lost {
     border: 3px solid #f44336;
 }
 
-.marker--encontrado {
+.marker--found {
     border: 3px solid var(--color-logo-verde);
 }
 
@@ -217,11 +138,11 @@
     transform: translateX(-50%);
 }
 
-.marker--perdido::before {
+.marker--lost::before {
     border-top: 10px solid #f44336;
 }
 
-.marker--encontrado::before {
+.marker--found::before {
     border-top: 10px solid var(--color-logo-verde);
 }
 
