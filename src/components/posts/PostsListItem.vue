@@ -205,13 +205,15 @@
                 }
             }
 
-
-
             &Content {
                 width: 330px;
                 margin: 0px;
                 position: relative;
                 padding-bottom: 35px;
+
+                h2 {
+                    word-break: break-word;
+                }
 
                 &Info{
                     display: flex;

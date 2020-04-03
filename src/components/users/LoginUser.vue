@@ -194,4 +194,10 @@
             padding: 30px;
         }
     }
+    
+    @media all and (max-width: 500px) {
+        .LoginUser__sectionLogin {
+            padding: 10px;
+        }
+    }
 </style>

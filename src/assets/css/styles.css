@@ -396,3 +396,14 @@ html, body {
 .rounded-lg {
     border-radius: 1.5rem !important;
 }
+
+
+@media all and (max-width: 840px) {
+    .MapView {
+        flex-direction: column;
+    }
+    .cont--start .cont--cards {
+        padding: .6em .9em;
+        max-height: 40vh;
+    }
+}
