@@ -347,8 +347,8 @@ html, body {
     margin-right: 5px;
 }
 
-@media (min-width: 1200px) {  }
-@media (min-width: 992px) { }
+/*@media (min-width: 1200px) {  }
+@media (min-width: 992px) { }*/
 @media (max-width: 768px) {
     .slogan__elemt {
         margin:  0 0 0 1em;
