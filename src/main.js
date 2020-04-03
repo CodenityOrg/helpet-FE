@@ -18,6 +18,16 @@ import dictionary from "./dictionary";
 
 import FBLoginInstall from "./installs/fb-login";
 
+import VueI18n from 'vue-i18n';
+
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+	locale: navigator.language.split('-')[0],
+	fallbackLocale: "en",
+	messages: dictionary,
+});
+
 FBLoginInstall();
 
 Vue.use(VueGtm, {
@@ -80,6 +90,7 @@ router.beforeEach(async ({meta, path}, from, next) => {
 
 new Vue({
 	render: h => h(App),
+	i18n,
 	router,
 	store
 }).$mount('#app');
