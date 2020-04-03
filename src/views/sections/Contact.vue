@@ -13,6 +13,7 @@
                 </div>
             </div>
             <div class="info">
+                <div class="background-image"></div>
                 <div class="panel">  
                     <h1>Contactanos</h1>
                     <p> Telefono:  </p>
@@ -20,7 +21,7 @@
                     <p> Info: </p>
                     <div class="mapouter">
                         <div class="gmap_canvas">
-                            <iframe height="234" id="gmap_canvas" src="https://maps.google.com/maps?q=peru&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            <iframe height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=peru&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                         </div>
                     </div>
                 </div>
@@ -39,7 +40,16 @@
         background: white; 
         display:block; 
         height: 100%;
+        position: relative;
+    }
+
+    .background-image {
         background-image: url('../../assets/img/map-sample.png');
+        filter: blur(4px);
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
     }
 
     .info .panel {
@@ -50,6 +60,7 @@
         color: black;
         box-shadow: 8px 4px #ccc5c578;
         background: white;
+        position: relative;
     }
 
     .info h1 {
@@ -88,5 +99,23 @@
         color: white;
     }
 
-    .mapouter{position:relative;text-align:right;height:234px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:234px;width:100%;}
+    .mapouter{
+        position: absolute;
+        text-align:right;
+        height:350px;
+        width:100%;
+        bottom: 0;
+        margin: 20px;
+    }
+    
+    .gmap_canvas {
+        overflow:hidden;
+        background:none!important;
+        height:350px;
+        width: 90%;
+    }
+
+    .gmap_canvas iframe {
+        width: 100%;
+    }
 </style>

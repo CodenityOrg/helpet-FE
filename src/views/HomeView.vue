@@ -3,13 +3,13 @@
         <router-link :to="{name : 'Home'}">
             <full-page ref="fullpage" :options="options">
                 <IndexSection />
-                <!-- <section class="cont--slogan section">
+                <section class="cont--slogan section">
                     <ul class="slogan__elemt" style="padding-top: 180px;">
-                        <div class="img-features"></div>
+                        <div style="" class="img-features search-image" ></div>
                         <div class="img-features"></div>
                         <div class="img-features"></div>
                     </ul>
-                </section> -->
+                </section>
                 <ContactSection />
             </full-page>
         </router-link>
@@ -46,10 +46,15 @@
     }
 
     .img-features {
-        background: white; 
+        background: white;
         border-radius: 100%; 
         height: 300px; 
         margin: 0 50px;
         width: 300px; 
+    }
+
+    .search-image {
+        background-image: url('../assets/img/search-icon.png');
+        background-position: center;
     }
 </style>
