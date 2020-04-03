@@ -48,6 +48,9 @@
 <script>
     import NotificationMenu from "../../notifications/NotificationMenu";
     import {mapState, mapActions} from "vuex";
+    import vClickOutside from "v-click-outside";
+    import Vue from "vue";
+    Vue.use(vClickOutside);
 
     export default {
         components: {
@@ -107,6 +110,10 @@
         }
 
         @media (max-width: 600px) {
+            & {
+                min-height: 55px;
+                padding: 0;
+            }
             &__triggerButton {
                 display: block;
             }

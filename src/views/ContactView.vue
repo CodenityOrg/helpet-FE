@@ -2,8 +2,8 @@
     <div>
         <notifications group="top" position='center right' />
         <section class="container">
-            <div class="row mt-5 mb-5">
-                <div class="col-lg-8">
+            <b-row class="mt-5 mb-5">
+                <b-col lg="8">
                     <b-card class="p-4 rounded-lg">
                         <h4 class="font-weight-bold">Enviar mensaje</h4>
                         <p>Podrás ponerte en contacto con nosotros por cualquier duda.</p>
@@ -50,29 +50,35 @@
                             <button type="submit" class="btn btn-primary mt-3" @click="validateAndSave">Enviar</button>
                         </div>
                     </b-card>
-                </div>
-                <div class="col-sm mt-4 mt-lg-0">
-                    <b-card class="rounded-lg mb-4 text-center">
-                        <h5 class="mt-4">Desarrollado por</h5>
-                        <a rel="noopener noreferrer" target="_blank" href="https://www.codenity.org/"><img class="w-100 py-3 px-4" alt="Codenity" src="../../src/assets/codenity-logo.png" /></a>
-                    </b-card>
-                    <b-card class="rounded-lg text-center">
-                        <div class="d-flex justify-content-around">
-                            <a rel="noopener noreferrer" title="Ir a la página de Facebook de Codenity" class="social-button social-button--facebook rounded-circle m-2 color-white" target="_blank" href="https://www.facebook.com/codenity19/">
-                                <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">f</div>
-                            </a>
-                            <a rel="noopener noreferrer" title="Ir al perfil de LinkedIn de Codenity" class="social-button social-button--linkedin rounded-circle m-2 color-white" target="_blank" href="https://www.linkedin.com/company/codenity-org/">
-                                <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">in</div>
-                            </a>
-                            <a rel="noopener noreferrer" title="Ir al canal de YouTube de Codenity" class="social-button social-button--youtube rounded-circle m-2 color-white" target="_blank" href="https://www.youtube.com/channel/UC2DadiWRoeRgPGgzRGZ0g4g">
-                                <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">
-                                    <BIconPlayFill font-scale="1.5" style="left:2px; position: relative" />
+                </b-col>
+                <b-col lg="4" class="mt-4 mt-lg-0">
+                    <b-row>
+                        <b-col md="6" lg="12">
+                            <b-card class="rounded-lg mb-4 text-center">
+                                <h5 class="mt-4">Desarrollado por</h5>
+                                <a rel="noopener noreferrer" target="_blank" href="https://www.codenity.org/"><img class="w-100 py-3 px-4" alt="Codenity" src="../../src/assets/codenity-logo.png" /></a>
+                            </b-card>
+                        </b-col>
+                        <b-col md="6" lg="12">
+                            <b-card class="rounded-lg text-center">
+                                <div class="d-flex justify-content-around">
+                                    <a rel="noopener noreferrer" title="Ir a la página de Facebook de Codenity" class="social-button social-button--facebook rounded-circle m-2 color-white" target="_blank" href="https://www.facebook.com/codenity19/">
+                                        <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">f</div>
+                                    </a>
+                                    <a rel="noopener noreferrer" title="Ir al perfil de LinkedIn de Codenity" class="social-button social-button--linkedin rounded-circle m-2 color-white" target="_blank" href="https://www.linkedin.com/company/codenity-org/">
+                                        <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">in</div>
+                                    </a>
+                                    <a rel="noopener noreferrer" title="Ir al canal de YouTube de Codenity" class="social-button social-button--youtube rounded-circle m-2 color-white" target="_blank" href="https://www.youtube.com/channel/UC2DadiWRoeRgPGgzRGZ0g4g">
+                                        <div class="rounded-circle w-100 h-100 d-flex justify-content-center align-items-center">
+                                            <BIconPlayFill font-scale="1.5" style="left:2px; position: relative" />
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                    </b-card>
-                </div>
-            </div>
+                            </b-card>
+                        </b-col>
+                    </b-row>
+                </b-col>
+            </b-row>
         </section>
     </div>
 </template>

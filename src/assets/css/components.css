@@ -274,7 +274,8 @@
 }
 
 .btn-primary {
-    background-color: #21b16a;
+    background-color: #21b16a !important;
+    border-color: #009900 !important;
     border-radius: 10px;
 }
 .btn-primary:hover,

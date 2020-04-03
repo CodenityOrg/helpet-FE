@@ -1,7 +1,7 @@
 <template functional>
     <section class="container">
-        <div class="row mt-5 mb-5">
-            <div class="col-lg-8 offset-lg-2">
+        <b-row class="mt-5 mb-5">
+            <b-col lg="8" offset-lg="2">
                 <b-card class="p-4 rounded-lg">
                     <h1 class="text-center font-weight-bold">Política de Privacidad, Términos de Uso y Cookies</h1>
                     <p>Podrás ponerte en contacto con nosotros por cualquier duda.</p>
@@ -40,8 +40,8 @@
                     <p>Este sitio web no venderá, cederá ni distribuirá la información personal que es recopilada, salvo que sea requerido en un proceso de disputa como por ejemplo por un juez con un orden judicial.</p>
                     <p>Helpet se reserva el derecho de cambiar los presentes términos en cualquier momento.</p>
                 </b-card>
-            </div>
-        </div>
+            </b-col>
+        </b-row>
     </section>
 </template>
 

@@ -156,13 +156,5 @@
         &__PostMap{
             flex: 1;
         }
-
-
-
-        @media (max-width: 650px) {
-            &__PostMap{
-                display: none;
-            }
-        }
     }
 </style>
