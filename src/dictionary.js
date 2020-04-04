@@ -60,13 +60,13 @@ export default {
       filterButton: 'Filtrar por...',
       orderButton: 'Ordenar por...',
       filters: {
-        losts: 'Losts',
-        found: 'Found',
-        recent: 'More recent',
-        old: 'Old'
+        losts: 'Perdidos',
+        found: 'Encontrados',
+        recent: 'Mas recientes',
+        old: 'Antiguos'
       }, 
       post: {
-        descriptionLabel: 'Descripcion',
+        descriptionLabel: 'Descripción',
         addressLabel: 'Ultimo lugar visto',
         characteristic: 'Caracteristicas',
         showMore: 'Mostrar mas',
