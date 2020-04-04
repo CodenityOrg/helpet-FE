@@ -23,7 +23,7 @@ import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-	locale: 'es',
+	locale: navigator.language.split('-')[0],
 	fallbackLocale: "en",
 	messages: dictionary,
 });
