@@ -12,11 +12,6 @@
     </footer>
 </template>
 
-<script>
-export default {
-}
-</script>
-
 <style>
     .footer {
         background-color: #404040;
