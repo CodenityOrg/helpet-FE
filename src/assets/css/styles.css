@@ -347,6 +347,10 @@ html, body {
     margin-right: 5px;
 }
 
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #002b00 !important;
+}
+
 /*@media (min-width: 1200px) {  }
 @media (min-width: 992px) { }*/
 @media (max-width: 768px) {
