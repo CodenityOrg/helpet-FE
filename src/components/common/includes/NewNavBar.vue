@@ -16,11 +16,11 @@
             <template v-if="!isAuthenticated">
                 <div class="Navbar__menuItem">
                     <a href="" @click="clickLogin">
-                        Iniciar sesion
+                        {{$t('navigation.button1')}}
                     </a>
                 </div>
                 <div class="Navbar__menuItem">
-                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                    <router-link :to="{name : 'RegisterUser'}">{{$t('navigation.button2')}}</router-link>
                 </div>
             </template>
             <template v-else>
@@ -34,13 +34,13 @@
                 </div>
             </template>
             <div class="Navbar__menuItem">
-                <router-link :to="{name : 'MapView'}">Publicaciones</router-link>
+                <router-link :to="{name : 'MapView'}">{{$t('navigation.button3')}}</router-link>
             </div>
             <div class="Navbar__menuItem">
-                <router-link :to="{name : 'Contact'}">Contacto</router-link>
+                <router-link :to="{name : 'Contact'}">{{$t('navigation.button4')}}</router-link>
             </div>
             <div class="Navbar__menuItem" v-if="isAuthenticated">
-                <a href="" @click="doLogout">Cerrar sesión</a>
+                <a href="" @click="doLogout">{{$t('navigation.button5')}}</a>
             </div>
         </div>
     </nav>

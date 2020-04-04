@@ -6,30 +6,30 @@
             <b-row>
                 <b-col md="8">
                     <div class="register">
-                        <h3>REGISTRATE</h3>
+                        <h3>{{$t('register.title')}}</h3>
 
                         <SocialButtons
                             @onSuccess="onSuccess"
                         >
-                            Registrate con facebook
+                            {{$t('register.fbButton')}}
                         </SocialButtons>
-                        <p style="margin: 10px;">o tambien con</p>
+                        <p style="margin: 10px;">{{$t('register.otherOptionText')}}</p>
                         <form class="form" id="register-form">
                             <div class="form-input">
                                 <input
                                     :class="{ 'invalid': errors.has('Nombres') }"
                                     type="text"
                                     v-model="user.firstName"
-                                    name="Nombres"
-                                    placeholder="Nombres" />
+                                    :name="$t('register.placeholders.name')"
+                                    :placeholder="$t('register.placeholders.name')" />
                             </div>
                             <div class="form-input">
                                 <input
                                     :class="{ 'invalid': errors.has('Apellidos') }"
                                     type="text"
                                     v-model="user.lastName"
-                                    name="Apellidos"
-                                    placeholder="Apellidos" />
+                                    name="lastname"
+                                    :placeholder="$t('register.placeholders.lastName')" />
                             </div>
                             <div class="form-input">
                                 <input
@@ -37,8 +37,8 @@
                                     v-validate="'numeric'"
                                     type="phone"
                                     v-model="user.phone"
-                                    name="Telefono"
-                                    placeholder="Telefono (Opcional)"/>
+                                    name="phone"
+                                    :placeholder="$t('register.placeholders.phone')"/>
                             </div>
                             <div class="form-input">
                                 <input
@@ -46,7 +46,7 @@
                                     :class="{ 'invalid': errors.has('email') || !this.validateEmail.validate }"
                                     v-validate="'required|email'"
                                     v-model="user.email"
-                                    name="email"
+                                    :name="$t('register.placeholders.email')"
                                     @keyup="changeValidate"
                                     placeholder="Correo" />
                             </div>
@@ -54,11 +54,12 @@
                                 <input
                                     type="password"
                                     v-model="user.password"
-                                    name="password"
+                                    :name="$t('register.placeholders.password')"
                                     placeholder="Contraseña" />
                                 <span>{{ errors.first('password') }}</span>
                             </div>
                             <div>
+                                <!-- TODO: Move API Key to .env file -->
                                 <vue-recaptcha
                                     @verify="verify"
                                     sitekey="6Ld2lDMUAAAAAAANVdV6YEsvi8xehx9NmXK8Ce8a">

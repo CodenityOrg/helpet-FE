@@ -12,10 +12,10 @@
             <b-navbar-nav class="ml-auto navbar__menu">
                 <template v-if="!isAuthenticated">
                     <b-nav-item>
-                        <a href="" @click="clickLogin">Inicia</a>
+                        <a href="" @click="clickLogin">{{$t('navigation.button1')}}</a>
                     </b-nav-item>
                     <b-nav-item >
-                        <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                        <router-link :to="{name : 'RegisterUser'}">{{$t('navigation.button2')}}</router-link>
                     </b-nav-item>
                 </template>
                 <template v-else>
@@ -29,10 +29,10 @@
                     </b-nav-item>
                 </template>
                 <b-nav-item>
-                    <router-link :to="{name : 'MapView'}">Publicaciones</router-link>
+                    <router-link :to="{name : 'MapView'}">{{$t('navigation.button3')}}</router-link>
                 </b-nav-item>
                 <b-nav-item>
-                    <router-link :to="{name : 'Contact'}">Contacto</router-link>
+                    <router-link :to="{name : 'Contact'}">{{$t('navigation.button4')}}</router-link>
                 </b-nav-item>
                 <b-nav-item v-if="isAuthenticated">
                     <button @click="doLogout">Cerrar sesión</button>
