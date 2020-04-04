@@ -175,7 +175,7 @@ export default {
       }, 
       post: {
         descriptionLabel: 'Description',
-        addressLabel: 'Last place viewed',
+        addressLabel: 'Last place seen',
         characteristic: 'Characteristics',
         showMore: 'Show more',
         contactButton: 'Contact'
