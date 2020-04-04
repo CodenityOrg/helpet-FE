@@ -1,8 +1,22 @@
 <template functional>
     <footer class="footer">
-        <router-link to="/terms">Privacidad y Términos de Uso</router-link>
+        <router-link :to="{ name: 'Terms' }">Privacidad y Términos de Uso</router-link>
+        <cookie-law
+            theme="dark-lime"
+            buttonText="OK"
+        >
+            <div slot="message">
+                Este sitio usa cookies para analizar tráfico y mejorar tu experiencia. <router-link target="_blank" class="more-info" :to="{ name: 'Terms' }">Más información</router-link>
+            </div>
+        </cookie-law>
     </footer>
 </template>
+
+<script>
+export default {
+}
+</script>
+
 <style>
     .footer {
         background-color: #404040;
@@ -26,5 +40,9 @@
     .footer a:link,
     .footer a:active {
         color: #d4d4d4 !important;
+    }
+    .footer .more-info {
+        font-size: inherit;
+        text-decoration: underline;
     }
 </style>
