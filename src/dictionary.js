@@ -49,11 +49,11 @@ export default {
       }
     },
     navigation: {
-      button1: 'Iniciar sesión',
-      button2: 'Registrate',
-      button3: 'Publicaciones',
-      button4: 'Contacto',
-      button5: 'Cerrar sesión'
+      loginButton: 'Iniciar sesión',
+      registerButton: 'Registrate',
+      postsButton: 'Publicaciones',
+      contactButton: 'Contacto',
+      logoutButton: 'Cerrar sesión'
     },
     publications: {
       newPost: 'Nueva publcación',
@@ -64,7 +64,7 @@ export default {
         found: 'Encontrados',
         recent: 'Mas recientes',
         old: 'Antiguos'
-      }, 
+      },
       post: {
         descriptionLabel: 'Descripción',
         addressLabel: 'Ultimo lugar visto',
@@ -109,7 +109,7 @@ export default {
     }
   },
   en: {
-    home: { 
+    home: {
       introMessage: `Find your lost <span class="slogan__title--bold">pet</span>
       <br>
       or help one to find its home`,
@@ -157,11 +157,11 @@ export default {
       developBy: 'Developed by'
     },
     navigation: {
-      button1: 'Sign in',
-      button2: 'Sign up',
-      button3: 'Publications',
-      button4: 'Contact',
-      button5: 'Logout'
+      loginButton: 'Sign in',
+      registerButton: 'Sign up',
+      postsButton: 'Publications',
+      contactButton: 'Contact',
+      logoutButton: 'Logout'
     },
     publications: {
       newPost: 'New post',
@@ -172,7 +172,7 @@ export default {
         found: 'Found',
         recent: 'Latest',
         old: 'Oldest'
-      }, 
+      },
       post: {
         descriptionLabel: 'Description',
         addressLabel: 'Last place seen',
