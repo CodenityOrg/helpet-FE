@@ -1,4 +1,5 @@
 <template>
+
     <nav class="Navbar"
         v-click-outside="close"
         :class="{ 'Navbar--block': !isHomePage }"
@@ -16,11 +17,11 @@
             <template v-if="!isAuthenticated">
                 <div class="Navbar__menuItem">
                     <a href="" @click="clickLogin">
-                        {{$t('navigation.loginButton')}}
+                        {{$t('navigation.button.login')}}
                     </a>
                 </div>
                 <div class="Navbar__menuItem">
-                    <router-link :to="{name : 'RegisterUser'}">{{$t('navigation.registerButton')}}</router-link>
+                    <router-link :to="{name : 'RegisterUser'}">{{$t('navigation.button.register')}}</router-link>
                 </div>
             </template>
             <template v-else>
@@ -34,13 +35,13 @@
                 </div>
             </template>
             <div class="Navbar__menuItem">
-                <router-link :to="{name : 'MapView'}">{{$t('navigation.postsButton')}}</router-link>
+                <router-link :to="{name : 'MapView'}">{{$t('navigation.button.posts')}}</router-link>
             </div>
             <div class="Navbar__menuItem">
-                <router-link :to="{name : 'Contact'}">{{$t('navigation.contactButton')}}</router-link>
+                <router-link :to="{name : 'Contact'}">{{$t('navigation.button.contact')}}</router-link>
             </div>
             <div class="Navbar__menuItem" v-if="isAuthenticated">
-                <a href="" @click="doLogout">{{$t('navigation.logoutButton')}}</a>
+                <a href="" @click="doLogout">{{$t('navigation.button.logout')}}</a>
             </div>
         </div>
     </nav>

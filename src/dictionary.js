@@ -49,11 +49,13 @@ export default {
       }
     },
     navigation: {
-      loginButton: 'Iniciar sesión',
-      registerButton: 'Registrate',
-      postsButton: 'Publicaciones',
-      contactButton: 'Contacto',
-      logoutButton: 'Cerrar sesión'
+      button: {
+        login: 'Iniciar sesión',
+        register: 'Registrate',
+        posts: 'Publicaciones',
+        contact: 'Contacto',
+        logout: 'Cerrar sesión'
+      }
     },
     publications: {
       newPost: 'Nueva publcación',
@@ -157,11 +159,13 @@ export default {
       developBy: 'Developed by'
     },
     navigation: {
-      loginButton: 'Sign in',
-      registerButton: 'Sign up',
-      postsButton: 'Publications',
-      contactButton: 'Contact',
-      logoutButton: 'Logout'
+      button: {
+        login: 'Sign in',
+        register: 'Sign up',
+        posts: 'Publications',
+        contact: 'Contact',
+        logout: 'Logout'
+      },
     },
     publications: {
       newPost: 'New post',
