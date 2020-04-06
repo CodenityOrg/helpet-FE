@@ -12,7 +12,7 @@ li{
 }
 body {
     min-height: 100vh;
-    background: rgba(33, 177, 106, 1);
+    background-color: rgba(33, 177, 106, 1);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -38,7 +38,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    background: #20b16a;
+    background-color: #20b16a;
     height: calc(100% - 90px);
 }
 
@@ -57,7 +57,7 @@ body {
     /*display: inline-block;*/
     /*width: 40%;*/
 }
-.redes{
+.net{
     align-items: center;
     padding: 0;
     /*display: inline-block;*/
@@ -75,10 +75,6 @@ body {
     border-color: #ff4b5c !important;
 }
 
-
-#inputApellido{
-    margin:  0 0.4em 0 0;
-}
 figure{
     width: 15em;
     height: 17em;
@@ -90,10 +86,10 @@ figure img{
     text-align: center;
 }
 
-.iconos{
+.icons{
     color: white;
 }
-.iconos .fa{
+.icons .fa{
     font-size:  1.5em;
     color: white;
 }

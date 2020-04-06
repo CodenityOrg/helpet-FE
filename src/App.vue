@@ -25,6 +25,7 @@
 	import InfoUser from './components/users/InfoUser.vue';
 	import PostModal from './components/posts/PostModal';
 	import NotificationModal from './components/notifications/NotificationModal';
+	import CookieLaw from 'vue-cookie-law';
 
 	import {mapActions, mapState} from "vuex";
 
@@ -36,6 +37,7 @@
 			InfoUser,
 			PostModal,
 			AppFooter,
+			CookieLaw,
 			NotificationModal
 		},
 		name: 'app',
