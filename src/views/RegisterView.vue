@@ -65,18 +65,27 @@
                                     sitekey="6Ld2lDMUAAAAAAANVdV6YEsvi8xehx9NmXK8Ce8a">
                                 </vue-recaptcha>
                             </div>
+                            <div class="mt-2 mb-2">
+                                <b-form-checkbox
+                                    id="terms"
+                                    v-model="acceptedTerms"
+                                    name="terms"
+                                >
+                                    Acepto los <router-link :to="{ name: 'Terms' }">Términos de Uso y Privacidad</router-link>
+                                </b-form-checkbox>
+                            </div>
                             <div class="form-submit">
-                                <button v-if="isVerified && this.validateEmail.validate" class="btn btn-regular" @click="register" >Aceptar</button>
+                                <button v-if="isVerified && acceptedTerms && this.validateEmail.validate" class="btn btn-regular" @click="register" >Aceptar</button>
                             </div>
                         </form>
                     </div>
                 </b-col>
                 <b-col class="img-register" md="4">
-                    <div class="redes">
+                    <div class="net">
                         <figure class="figure">
                             <img src="../assets/img/icon-register.png" alt="icono-register">
                         </figure>
-                        <div class="iconos">
+                        <div class="icons">
                             <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -101,7 +110,8 @@
         data() {
             return {
                 user: {},
-                isVerified: false
+                isVerified: false,
+                acceptedTerms: false
             }
         },
         mounted() {
