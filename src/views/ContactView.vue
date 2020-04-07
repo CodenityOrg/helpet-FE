@@ -5,8 +5,8 @@
             <b-row class="mt-5 mb-5">
                 <b-col lg="8">
                     <b-card class="p-4 rounded-lg">
-                        <h4 class="font-weight-bold">Enviar mensaje</h4>
-                        <p>Podrás ponerte en contacto con nosotros por cualquier duda.</p>
+                        <h4 class="font-weight-bold">{{$t('contact.title')}}</h4>
+                        <p>{{$t('contact.message')}}</p>
                         <div class="contact-form">
                             <input
                                 name="fullName"
@@ -14,7 +14,7 @@
                                 :class="{ 'invalid': !isFullNameValid }"
                                 v-model="form.fullName"
                                 v-validate="'required'"
-                                placeholder="Nombre completo"
+                                :placeholder="$t('contact.placeholders.fullname')"
                                 type="text"
                             >
                             <input
@@ -23,7 +23,7 @@
                                 :class="{ 'invalid': !isEmailValid }"
                                 v-model="form.email"
                                 v-validate="'required|email'"
-                                placeholder="Correo"
+                                :placeholder="$t('contact.placeholders.email')"
                                 type="email"
                             >
                             <textarea
@@ -32,22 +32,22 @@
                                 :class="{ 'invalid': !isMessageValid }"
                                 v-validate="'required'"
                                 v-model="form.message"
-                                placeholder="Mensaje"
+                                :placeholder="$t('contact.placeholders.message')"
                                 cols="30"
                                 rows="10"
                             ></textarea>
                             <FormErrors v-show="!areAllInputsValid">
                                 <ErrorMessage
                                     v-show="!isFullNameValid"
-                                    message="* Nombre requerido"/>
+                                    :message="$t('contact.errors.fullname')"/>
                                 <ErrorMessage
                                     v-show="!isMessageValid"
-                                    message="* Mensaje requerido"/>
+                                    :message="$t('contact.errors.email')"/>
                                 <ErrorMessage
                                     v-show="!isEmailValid"
-                                    message="* Ingrese un email válido"/>
+                                    :message="$t('contact.errors.message')"/>
                             </FormErrors>
-                            <button type="submit" class="btn btn-primary mt-3" @click="validateAndSave">Enviar</button>
+                            <button type="submit" class="btn btn-primary mt-3" @click="validateAndSave">{{$t('contact.sendButton')}}</button>
                         </div>
                     </b-card>
                 </b-col>
@@ -55,7 +55,7 @@
                     <b-row>
                         <b-col md="6" lg="12">
                             <b-card class="rounded-lg mb-4 text-center">
-                                <h5 class="mt-4">Desarrollado por</h5>
+                                <h5 class="mt-4">{{$t('contact.developedBy')}}</h5>
                                 <a rel="noopener noreferrer" target="_blank" href="https://www.codenity.org/"><img class="w-100 py-3 px-4" alt="Codenity" src="../../src/assets/codenity-logo.png" /></a>
                             </b-card>
                         </b-col>

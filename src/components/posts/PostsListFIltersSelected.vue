@@ -35,13 +35,13 @@ export default {
                 if (key === "order") {
                     if (value === "asc") {
                         flattenedFilters.push({
-                            label: "Mas antiguo",
+                            label: this.$t('publications.filters.old'),
                             value,
                             type: key
                         });         
                     } else if (value === "desc") {
                         flattenedFilters.push({
-                            label: "Mas reciente",
+                            label: this.$t('publications.filters.recent'),
                             value,
                             type: key
                         });
@@ -51,7 +51,7 @@ export default {
                 if (key === "types") {
                     if (value === 1) {
                         flattenedFilters.push({
-                            label: "Encontrados",
+                            label: this.$t('publications.filters.found'),
                             value,
                             type: key
                         });
@@ -59,7 +59,7 @@ export default {
 
                     if (value === 0) {
                         flattenedFilters.push({
-                            label: "Perdidos",
+                            label: this.$t('publications.filters.losts'),
                             value,
                             type: key
                         });

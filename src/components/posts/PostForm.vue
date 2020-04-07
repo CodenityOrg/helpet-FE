@@ -1,7 +1,7 @@
 <template>
     <div class="PostForm">
         <notifications group="top" position='center top' />
-        <h3 align="center">Información de la mascota</h3>
+        <h3 align="center">{{$t('postRegister.title')}}</h3>
         <form class="form" id="post-form" >
             <div class="form-input">
                 <div class="grid-container">
@@ -16,7 +16,7 @@
             </div>
             <div class="form-input">
                 <span @click="openFileSelector" class="btn btn-default btn-file">
-                    Seleccionar Imagen
+                    {{$t('postRegister.selectImage')}}
                 </span>
                 <input
                     class="frm--btm"
@@ -38,12 +38,12 @@
                     type="text"
                     :class="{ 'PostForm__input--invalid': !isTitleValid }"
                     name="titulo"
-                    placeholder="Título"
+                    :placeholder="$t('postRegister.placeholders.title')"
                 />
             </div>
             <div class="form-input">
                 <textarea
-                    placeholder="Descripción"
+                    :placeholder="$t('postRegister.placeholders.description')"
                     style="height: 100px;"
                     v-model="post.description"
                     name="descripcion"
@@ -59,7 +59,7 @@
                     type="text"
                     :class="{ 'PostForm__input--invalid': !isAddressValid }"
                     name="direccion"
-                    placeholder="Dirección"
+                    :placeholder="$t('postRegister.placeholders.address')"
                 />
             </div>
             <div class="form-input" :class="{ 'PostForm__input--invalid': errors.has('tags') }">
@@ -80,13 +80,13 @@
                 <div style="display: flex;">
                     <div class="cleck--flex">
                         <div class="field--input" style="display: flex;">
-                            <label>Perdido</label>
+                            <label>{{$t('postRegister.options.lost')}}</label>
                             <input v-validate="'required'" style="margin: 0 15px;" v-model.number="post.type" checked="checked" name="tipo" type="radio" value=0>
                         </div>
                     </div>
                     <div class="cleck--flex">
                         <div class="field--input" style="display: flex;">
-                            <label>Encontrado</label>
+                            <label>{{$t('postRegister.options.found')}}</label>
                             <input v-validate="'required'" style="margin: 0 15px;" v-model.number="post.type" name="tipo" type="radio" value=1>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                     @click.native="newPost"
                     :disabled="!areAllInputsValid"
                     class="btn btn-regular">
-                    Aceptar
+                    {{$t('postRegister.acceptButton')}}
                 </BasicButton>
             </div>
         </form>

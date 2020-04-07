@@ -5,7 +5,7 @@
         <div class="LoginUser__sectionImg">
             <div class="LoginUser__sectionImgCont">
                 <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesión">
-                <span class="LoginUser__sectionImgContSlogan">Inicia sesión y ayuda a una mascota a regresar a su hogar</span>
+                <span class="LoginUser__sectionImgContSlogan">{{$t('login.sloganMessage')}}</span>
             </div>
         </div>
         <div class="LoginUser__sectionLogin">
@@ -18,9 +18,9 @@
                     @onSuccess="successOauth"
                     @onFailure="failureOauth"
                 >
-                    Iniciar sesión con Facebook
+                    {{$t('login.fbLoginButton')}}
                 </SocialButtons>
-                <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>
+                <p class="info-message">{{$t('login.emailText')}} | <a href="#">{{$t('login.forgotPasswordText')}}</a> </p>
                 <div class="form-input font-size-10px" >
                     <input
                         class="login-input"
@@ -29,7 +29,7 @@
                         v-model="credentials.email"
                         type="email"
                         name="email"
-                        placeholder="Email"
+                        :placeholder="$t('login.placeholders.email')"
                     />
                 </div>
                 <div class="form-input font-size-10px">
@@ -40,14 +40,14 @@
                         v-model="credentials.password"
                         type="password"
                         name="password"
-                        placeholder="Contraseña"
+                        :placeholder="$t('login.placeholders.password')"
                     />
                 </div>
                 <div class="info-message">
-                    <p>No tienes cuenta ? <router-link to="/registro"><span @click="$emit('close')">Crea una cuenta aquí</span></router-link></p>
+                    <p>{{$t('login.notAccountText')}} <router-link to="/registro"><span @click="$emit('close')">{{$t('login.createAccountText')}}</span></router-link></p>
                 </div>
                 <div class="form-submit">
-                    <BasicButton class="frm--btm login-btn" type="submit" @click.native="signUp">Iniciar sesión</BasicButton>
+                    <BasicButton class="frm--btm login-btn" type="submit" @click.native="signUp">{{$t('login.loginButton')}}</BasicButton>
                 </div>
             </form>
         </div>
