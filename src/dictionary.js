@@ -107,7 +107,11 @@ export default {
       acceptButton: 'Aceptar'
     },
     footer: {
-      privacy: 'Privacidad y Términos de Uso'
+      privacy: 'Privacidad y Términos de Uso',
+      cookies: {
+        message: 'Este sitio usa cookies para analizar tráfico y mejorar tu experiencia. ',
+        infoButton: 'Más información'
+      }
     },
     terms: {
       content:
@@ -256,7 +260,11 @@ export default {
       acceptButton: 'Accept'
     },
     footer: {
-      privacy: 'Privacy and User Terms'
+      privacy: 'Privacy and User Terms',
+      cookies: {
+        message: 'This site uses cookies to analyze traffic and improve your experience. ',
+        infoButton: 'More info'
+      }
     },
     terms: {
       content:
