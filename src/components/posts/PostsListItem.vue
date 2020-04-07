@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="PostItem__cardContentDescription">
-                        <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> Descripción</span>
+                        <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> {{$t('publications.post.descriptionLabel')}}</span>
                         <div
                             ref="descriptionPost"
                             class="PostItem__cardContentDescriptionText"
@@ -54,15 +54,15 @@
                             @click="showMoreContent"
                             href="#"
                         >
-                            Show more
+                            {{$t('publications.post.showMore')}}
                         </a>
                     </div>
                     <div class="PostItem__cardContentAddress">
-                        <span><font-awesome-icon icon="map" style="margin-right: 5px;" />Último lugar visto</span>
+                        <span><font-awesome-icon icon="map" style="margin-right: 5px;" />{{$t('publications.post.addressLabel')}}</span>
                         <p> {{post.address}}  </p>
                     </div>
                     <div class="PostItem__cardContentTags">
-                        <span style="font-size: 12px; color: #8e8e8e; margin-right: 5px;"><font-awesome-icon icon="tags" /> Características </span>
+                        <span style="font-size: 12px; color: #8e8e8e; margin-right: 5px;"><font-awesome-icon icon="tags" /> {{$t('publications.post.characteristic')}} </span>
                         <div class="PostItem__cardContentTagsContainer">
                             <span
                                 class="PostItem__cardContentTagsItem"
@@ -81,7 +81,7 @@
                         @click.native="showUserInfo"
                     >
                         <font-awesome-icon icon="phone-alt" />
-                        Contactar
+                        {{$t('publications.post.contactButton')}}
                     </BasicButton>
                     <a
                         class="PostItem__cardContactMap"

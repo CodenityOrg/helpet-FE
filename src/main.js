@@ -30,6 +30,7 @@ const i18n = new VueI18n({
 
 FBLoginInstall();
 
+//TODO: Move ga key to .env
 Vue.use(VueGtm, {
 	id: 'GTM-MWR6DP8',
 	debug: true,

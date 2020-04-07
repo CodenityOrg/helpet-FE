@@ -1,3 +1,4 @@
+// TODO: add translation
 <template functional>
     <footer class="footer">
         <router-link :to="{ name: 'Terms' }">Privacidad y Términos de Uso</router-link>
