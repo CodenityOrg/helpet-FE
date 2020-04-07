@@ -2,9 +2,10 @@
     <mapbox
         :access-token="accessToken"
         :map-options="{
-            style: 'mapbox://styles/mapbox/streets-v9',
+            style: 'mapbox://styles/mapbox/streets-v10',
             center: location,
-            zoom: 11
+            zoom: 11,
+            localIdeographFontFamily: false
         }"
         :geolocate-control="{
             show: true,
