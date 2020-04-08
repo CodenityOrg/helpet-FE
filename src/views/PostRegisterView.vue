@@ -36,7 +36,8 @@
                     this.marker.remove();
                     this.marker = null;
                 }
-                this.marker = new mapboxgl.Marker(this.genEmptyMarker(), {
+                const emptyMarker = this.genEmptyMarker();
+                this.marker = new mapboxgl.Marker(emptyMarker, {
                     offset: [-24, -24]
                 })
                 .setLngLat(

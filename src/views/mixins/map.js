@@ -1,10 +1,11 @@
 import store from 'store';
-
+import MapboxLanguage from '@mapbox/mapbox-gl-language';
 
 export default {
     methods: {
         mapInitialized(map) {
             this.map = map;
+            map.addControl(new MapboxLanguage());
             map.on("load", function () {
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(position => {
@@ -16,7 +17,6 @@ export default {
                     })
                 }
             });
-
         },
         genLayoutMarker(data) {
             const el = document.createElement("div");
