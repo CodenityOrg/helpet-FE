@@ -1,7 +1,7 @@
 /**
  * modal
  */
-
+/*
  .modal-hp {
     background: rgba(0, 0, 0, .7);
     width: 100%;
@@ -12,7 +12,7 @@
     left: 0;
     z-index: 1000;
     color: #2a2a2a;
-    /* display: none; */
+    /* display: none; *//*
 }
 
 .modal__box {
@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: space-between;
 }
-
+*/
 /**
  * inputs
  */
@@ -75,7 +75,7 @@
 }
 
 /**
- * inputs con label
+ * inputs with label
  */
 
 .form-inline-label .form-input {
@@ -106,7 +106,7 @@
     border-radius: 50%;
     background-position: center center;
     background-size: cover;
-    border: 3px solid var(--color-logo-verde);
+    border: 3px solid var(--color-logo-green);
     cursor: pointer;
     padding: 0;
     position: relative;
@@ -117,11 +117,11 @@
 }
 
 .marker--found {
-    border: 3px solid var(--color-logo-verde);
+    border: 3px solid var(--color-logo-green);
 }
 
 .marker--empty{
-    border: 3px solid var(--color-logo-verde);
+    border: 3px solid var(--color-logo-green);
     background:  rgba(33, 177, 106, 1);
 }
 
@@ -131,7 +131,7 @@
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 10px solid var(--color-logo-verde);
+    border-top: 10px solid var(--color-logo-green);
     position: absolute;
     top: 100%;
     left: 50%;
@@ -143,14 +143,14 @@
 }
 
 .marker--found::before {
-    border-top: 10px solid var(--color-logo-verde);
+    border-top: 10px solid var(--color-logo-green);
 }
 
 
 /**
   * tabs
   */
-
+/*
 .tab-links {
     text-align: center;
 }
@@ -170,21 +170,16 @@
 }
 
 .tab-link.active {
-    border-bottom: 5px solid var(--color-logo-verde);
+    border-bottom: 5px solid var(--color-logo-green);
 }
 
-
+*/
 /**
  * estilos globales
  */
 
-.oculto {
-    display: none;
-}
-
-
 /** z-levels */
-
+/*
 .z-depth-0 {
     box-shadow: none !important;
 }
@@ -264,6 +259,7 @@
     to {top: 0; opacity: 0;}
 }
 
+*/
 .btn{
     border-radius: 5px;
     background: #005522;
@@ -286,7 +282,7 @@
 .btn-regular {
     width: 15em;
 }
-
+/*
 .btn-small {
     width: 10em;
 }
@@ -302,3 +298,4 @@
 .btn--show__info:hover {
     background: #009900;
 }
+*/

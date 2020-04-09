@@ -119,10 +119,8 @@
 </script>
 
 <style>
-    @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css");
     @import "assets/css/components.css";
     @import "assets/css/styles.css";
-    @import url("https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css");
     @import "assets/css/bootstrap.css";
     @import "assets/css/bootstrap-vue.css";
     @import "assets/css/login.css";

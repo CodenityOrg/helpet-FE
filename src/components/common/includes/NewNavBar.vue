@@ -26,9 +26,7 @@
             </template>
             <template v-else>
                 <div class="Navbar__menuItem">
-                    <template v-if="true">
-                        <NotificationMenu />
-                    </template>
+                    <NotificationMenu />
                 </div>
                 <div class="Navbar__menuItem">
                     <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
@@ -47,7 +45,6 @@
     </nav>
 </template>
 <script>
-    import NotificationMenu from "../../notifications/NotificationMenu";
     import {mapState, mapActions} from "vuex";
     import vClickOutside from "v-click-outside";
     import Vue from "vue";
@@ -55,7 +52,7 @@
 
     export default {
         components: {
-            NotificationMenu
+            NotificationMenu: () => import(/* webpackPrefetch: true */ "../../notifications/NotificationMenu"),
         },
         computed: {
             ...mapState({

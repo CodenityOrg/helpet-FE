@@ -290,6 +290,10 @@
 
     @import "~selectize/dist/css/selectize.default.css";
 
+    .selectize-control.multi .selectize-input > div{
+        background: green !important;
+    }
+    
     .btn-file {
         position: relative;
         overflow: hidden;
@@ -306,7 +310,7 @@
         margin-right: auto;
         display: block;
         text-align: center;
-        background: var(--color-logo-verde);
+        background: var(--color-logo-green);
     }
     .btn-file input[type=file] {
         position: absolute;
