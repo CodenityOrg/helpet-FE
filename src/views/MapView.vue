@@ -132,7 +132,7 @@
 
 </script>
 <style lang="scss">
-    @import "../assets/css/components.css";
+    @import url("https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css");
 
     .MapView {
         display: flex;

@@ -62,13 +62,12 @@
     };
 </script>
 
-
 <style lang="scss">
     .PostView{
         display: flex;
         &__Form{
             padding-top: 0;
-            background-color: var(--color-gris);
+            background-color: var(--color-gray);
             width: 600px;
             height: 100%;
             overflow-y: auto;

@@ -168,7 +168,7 @@
             background: #009900;
 
             &Cont{
-                border-right: 2px solid var(--color-logo-verde);
+                border-right: 2px solid var(--color-logo-green);
                 height: 100%;
                 padding-top: 60px;
 
