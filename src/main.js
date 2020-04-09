@@ -14,7 +14,7 @@ import VueSocketIO from 'vue-socket.io';
 import VueGtm from 'vue-gtm';
 
 import es from "vee-validate/dist/locale/es";
-import dictionary from "./dictionary";
+import dictionary from "./localization";
 
 import FBLoginInstall from "./installs/fb-login";
 
