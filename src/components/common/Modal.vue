@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-    name: ""
+    name: "Modal"
 }
 // export default {
 //     mounted () {
