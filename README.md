@@ -15,6 +15,7 @@
 <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License Badge" title="License: MIT"></a>
 </p>
 
+Helpet born with the intention to give an easy way to identify lost pets through tagging and verification of characteristics, automatizating any daily check of possible found pets. So, you'll be notified when someone finds your lost pet, just only publishing once time.
 
 
 ## Contents
@@ -22,9 +23,9 @@
 - [Getting Started](#-getting-started)
 - [Issues](#-issues)
 - [Contribute](#-contribute)
-- [License](#-license)
 - [FAQ & Contact](#-faq-&-contact)
 - [Contributors](#-contributors)
+- [License](#-license)
 
 ## 🚀 Getting Started
 
@@ -54,17 +55,12 @@ Please make sure to read the [Contributing Guide]() before making a pull request
 
 Frequently asked questions are collected in our FAQ doc.
 
-You can get in touch with Codenity community in the following ways:
+You can get in touch with **Codenity** community in the following ways:
 
-Security-related issues, see our security policy document.
-Chat with us on our Slack workspace.
-
-Note: most of the maintainers are on a Ecuatorian time zone.
-
-Open a GitHub issue in this repository.
-Email the maintainers at codenity.org@gmail.com.
-
-When communicating within the Codenity community, please mind our code of conduct.
+- Security-related issues, see our security policy document.
+- Chat with us on our Slack workspace. Note: most of the maintainers are on a Ecuatorian time zone.
+- Open a GitHub issue in this repository.
+- Email the maintainers at codenity.org@gmail.com.
 
 ## 👨‍💻 Contributors
 
@@ -103,11 +99,12 @@ When communicating within the Codenity community, please mind our code of conduc
 </tbody>
 </table>
 
+
 ## 📄 License
 
-React Native is MIT licensed, as found in the [LICENSE][l] file.
+Helpet is MIT licensed, as found in the [LICENSE][l] file.
 
-React Native documentation is Creative Commons licensed, as found in the [LICENSE-docs][ld] file.
+Helpet documentation is Creative Commons licensed, as found in the [LICENSE-docs][ld] file.
 
-[l]: https://github.com/facebook/react-native/blob/master/LICENSE
-[ld]: https://github.com/facebook/react-native/blob/master/LICENSE-docs
+[l]: https://github.com/facebook/CodenityOrg/helpet-FE/master/LICENSE
+[ld]: https://github.com/CodenityOrg/helpet-FE/master/LICENSE-docs
