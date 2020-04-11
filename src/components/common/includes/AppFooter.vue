@@ -1,12 +1,12 @@
 <template functional>
     <footer class="footer">
-        <router-link :to="{ name: 'Terms' }">Privacidad y Términos de Uso</router-link>
+        <router-link :to="{ name: 'Terms' }">{{parent.$t('footer.privacy')}}</router-link>
         <cookie-law
             theme="dark-lime"
             buttonText="OK"
         >
             <div slot="message">
-                Este sitio usa cookies para analizar tráfico y mejorar tu experiencia. <router-link target="_blank" class="more-info" :to="{ name: 'Terms' }">Más información</router-link>
+                {{parent.$t('footer.cookies.message')}}<router-link target="_blank" class="more-info" :to="{ name: 'Terms' }">{{parent.$t('footer.cookies.infoButton')}}</router-link>
             </div>
         </cookie-law>
     </footer>

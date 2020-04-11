@@ -15,10 +15,10 @@ button {
 }
 
 body {
-    --bg-color-transparente: rgba(33, 177, 106, .53);
-    --color-logo-verde: rgba(33, 177, 106, 1);
-    --color-logo-verde-oscuro: #1b8e56;
-    --color-gris: #f2f2f2;
+    --bg-color-transparent: rgba(33, 177, 106, .53);
+    --color-logo-green: rgba(33, 177, 106, 1);
+    --color-logo-dark-green: #1b8e56;
+    --color-gray: #f2f2f2;
     min-height: 100vh;
     position: relative;
 }
@@ -30,4 +30,8 @@ a{
 a:hover, a:visited, a:link, a:active {
     text-decoration: none;
     color: green;
+}
+
+li{
+    list-style: none;
 }

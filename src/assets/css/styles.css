@@ -1,7 +1,46 @@
 /**
  * open sans typography
  */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+ /* open-sans-300 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+       url('../fonts/open-sans-v17-latin/open-sans-v17-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/open-sans-v17-latin/open-sans-v17-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+       url('../fonts/open-sans-v17-latin/open-sans-v17-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/open-sans-v17-latin/open-sans-v17-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+       url('../fonts/open-sans-v17-latin/open-sans-v17-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/open-sans-v17-latin/open-sans-v17-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-800 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+       url('../fonts/open-sans-v17-latin/open-sans-v17-latin-800.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/open-sans-v17-latin/open-sans-v17-latin-800.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 
 /**
  * icomoon icons
@@ -186,7 +225,7 @@
  */
 .navbar--inicio {
     background: white;
-    color: var(--color-logo-verde);
+    color: var(--color-logo-green);
     padding-top: 1.5em;
     padding-bottom: 1.5em;
 }
@@ -218,7 +257,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-color-transparente);
+    background: var(--bg-color-transparent);
     height: 100%;
 }
 
@@ -261,7 +300,7 @@ html, body {
     display: block;
     padding: 1em;
     margin-top: 1.6em;
-    color: var(--color-logo-verde);
+    color: var(--color-logo-green);
     background: white;
     text-decoration: none;
     text-align: center;
@@ -288,7 +327,7 @@ html, body {
 
 .cont--start {
     padding-top: 0;
-    background-color: var(--color-gris);
+    background-color: var(--color-gray);
     height: calc(100% - 90px);
 }
 
@@ -321,7 +360,7 @@ html, body {
 .container--bg-white {
     color: #212121 !important;
     overflow: auto;
-    background-color: var(--color-logo-verde-oscuro);
+    background-color: var(--color-logo-dark-green);
 }
 .container--bg-white .wrapper {
     background-color: white;
@@ -393,14 +432,9 @@ html, body {
     margin: 0 0.3em;
 }
 
-.selectize-control.multi .selectize-input > div{
-    background: green !important;
-}
-
 .rounded-lg {
     border-radius: 1.5rem !important;
 }
-
 
 @media all and (max-width: 840px) {
     .MapView {

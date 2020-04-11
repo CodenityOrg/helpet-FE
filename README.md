@@ -1,26 +1,33 @@
 <h1 align="center">
   <a href="">
-    Helpet
+    HELPET
   </a>
 </h1>
 
 <p align="center">
   Help lost pets come back to their owners 🐶🐕🐱
 </p>
+<img src="https://img.shields.io/github/package-json/dependency-version/CodenityOrg/helpet-FE/vue" alt="Vue Badge" title="Vue version">
+<img src="https://img.shields.io/github/package-json/dependency-version/CodenityOrg/helpet-FE/webpack" alt="Webpack Badge" title="Webpack version">
+<a href="https://sonarcloud.io/dashboard?id=CodenityOrg_helpet-FE" target="_blank"><img src="https://sonarcloud.io/api/project_badges/measure?project=CodenityOrg_helpet-FE&metric=alert_status" alt="Quality Gate Status Badge" title="Quality Gate Status"></a>
+<a href="https://github.com/CodenityOrg/helpet-FE/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/CodenityOrg/helpet-FE.svg" alt="Contributors Badge" title="Contributors"></a>
+<a href="https://www.twitch.tv/codenity" target="_blank"><img alt="Twitch Status" src="https://img.shields.io/twitch/status/codenity"></a>
+<a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License Badge" title="License: MIT"></a>
+</p>
 
-<h3 align="center">
-  <a href="https://reactnative.dev/docs/getting-started">Getting Started</a>
-  <span> · </span>
-  <span> · </span>
-  <a href="https://reactnative.dev/showcase.html">Showcase</a>
-  <span> · </span>
-  <span> · </span>
-  <a href="https://reactnative.dev/en/help">Issues</a>
-  <span> · </span>
-  <a href="https://github.com/facebook/react-native/blob/master/.github/SUPPORT.md">Contribute</a>
-</h3>
+
+
+## Contents
+
+- [Getting Started](#-getting-started)
+- [Issues](#-issues)
+- [Contribute](#-contribute)
+- [License](#-license)
+- [FAQ & Contact](#-faq-&-contact)
+- [Contributors](#-contributors)
 
 ## 🚀 Getting Started
+
 ```
 npm install
 npm run serve
@@ -39,7 +46,62 @@ Please make sure to read the [Issue Reporting Checklist]() before opening an iss
 
 ## 👏 Contribute
 
-Please make sure to read the [Contributing Guide](https://github.com/kazupon/vue-i18n/blob/dev/CONTRIBUTING.md) before making a pull request.
+Please make sure to read the [Contributing Guide]() before making a pull request.
+
+
+
+## 🙋‍♂️ FAQ & Contact
+
+Frequently asked questions are collected in our FAQ doc.
+
+You can get in touch with Codenity community in the following ways:
+
+Security-related issues, see our security policy document.
+Chat with us on our Slack workspace.
+
+Note: most of the maintainers are on a Ecuatorian time zone.
+
+Open a GitHub issue in this repository.
+Email the maintainers at codenity.org@gmail.com.
+
+When communicating within the Codenity community, please mind our code of conduct.
+
+## 👨‍💻 Contributors
+
+<table>
+<tbody>
+<tr align="center">
+      <td>
+      <img src="https://avatars0.githubusercontent.com/u/8053607?v=4" alt="Angel Rodriguez Romero icon"  width="75px" height="75px">
+      <p><a href="https://github.com/AngelRodRo">AngelRodRo</a></p>
+      </td>
+      <td>
+      <img src="https://avatars2.githubusercontent.com/u/15824340?v=4" alt="Florencia Peretti icon"  width="75px" height="75px">
+      <p><a href="https://github.com/florenperetti">florenperetti</a></p>
+      </td>
+      <td>
+      <img src="https://avatars3.githubusercontent.com/u/20257402?v=4" alt="Cristian Peralta Segura icon"  width="75px" height="75px">
+      <p><a href="https://github.com/CristianPeralta">CristianPeralta</a></p>
+      </td>
+      <td>
+      <img src="https://avatars0.githubusercontent.com/u/10179993?v=4" alt="Jhair Rodrigo Viveros Cordova icon"  width="75px" height="75px">
+      <p><a href="https://github.com/rodrigovive">rodrigovive</a></p>
+      </td>
+      <td>
+      <img src="https://avatars0.githubusercontent.com/u/12487274?v=4" alt="José Thea icon"  width="75px" height="75px">
+      <p><a href="https://github.com/jthea">jthea</a></p>
+      </td>
+      <td>
+      <img src="https://avatars3.githubusercontent.com/u/10256085?v=4" alt="Julio Cesar icon"  width="75px" height="75px">
+      <p><a href="https://github.com/juliocsar13">juliocsar13</a></p>
+      </td>
+      <td>
+      <img src="https://avatars0.githubusercontent.com/u/36344137?v=4" alt="LedvirV icon"  width="75px" height="75px">
+      <p><a href="https://github.com/LedvirV">LedvirV</a></p>
+      </td>
+</tr>
+</tbody>
+</table>
 
 ## 📄 License
 
@@ -49,15 +111,3 @@ React Native documentation is Creative Commons licensed, as found in the [LICENS
 
 [l]: https://github.com/facebook/react-native/blob/master/LICENSE
 [ld]: https://github.com/facebook/react-native/blob/master/LICENSE-docs
-
-## 🙋‍♂️ FAQ & Contact
-
-Frequently asked questions are collected in our FAQ doc.
-
-You can get in touch with the Firecracker community in the following ways:
-
-Security-related issues, see our security policy document.
-Chat with us on our Slack workspace. Note: most of the maintainers are on a European time zone.
-Open a GitHub issue in this repository.
-Email the maintainers at firecracker-maintainers@amazon.com.
-When communicating within the Firecracker community, please mind our code of conduct.

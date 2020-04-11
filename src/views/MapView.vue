@@ -5,7 +5,7 @@
                 <BasicButton
                     class="MapView__PostListCreateButton"
                 >
-                    Nueva publicación
+                    {{$t('publications.newPost')}}
                 </BasicButton>
             </router-link>
             <PostsListFilters />
@@ -95,7 +95,7 @@
                     group: 'foo',
                     type: 'warn',
                     duration: 4500,
-                    title: 'Estamos ubicándote, espere un momento',
+                    title: this.$t('publications.mapAlert'),
                 });
             }
         },
@@ -132,7 +132,7 @@
 
 </script>
 <style lang="scss">
-    @import "../assets/css/components.css";
+    @import url("https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css");
 
     .MapView {
         display: flex;

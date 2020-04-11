@@ -1,4 +1,5 @@
 <template>
+
     <nav class="Navbar"
         v-click-outside="close"
         :class="{ 'Navbar--block': !isHomePage }"
@@ -16,37 +17,34 @@
             <template v-if="!isAuthenticated">
                 <div class="Navbar__menuItem">
                     <a href="" @click="clickLogin">
-                        Iniciar sesion
+                        {{$t('navigation.button.login')}}
                     </a>
                 </div>
                 <div class="Navbar__menuItem">
-                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                    <router-link :to="{name : 'RegisterUser'}">{{$t('navigation.button.register')}}</router-link>
                 </div>
             </template>
             <template v-else>
                 <div class="Navbar__menuItem">
-                    <template v-if="true">
-                        <NotificationMenu />
-                    </template>
+                    <NotificationMenu />
                 </div>
                 <div class="Navbar__menuItem">
                     <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
                 </div>
             </template>
             <div class="Navbar__menuItem">
-                <router-link :to="{name : 'MapView'}">Publicaciones</router-link>
+                <router-link :to="{name : 'MapView'}">{{$t('navigation.button.posts')}}</router-link>
             </div>
             <div class="Navbar__menuItem">
-                <router-link :to="{name : 'Contact'}">Contacto</router-link>
+                <router-link :to="{name : 'Contact'}">{{$t('navigation.button.contact')}}</router-link>
             </div>
             <div class="Navbar__menuItem" v-if="isAuthenticated">
-                <a href="" @click="doLogout">Cerrar sesión</a>
+                <a href="" @click="doLogout">{{$t('navigation.button.logout')}}</a>
             </div>
         </div>
     </nav>
 </template>
 <script>
-    import NotificationMenu from "../../notifications/NotificationMenu";
     import {mapState, mapActions} from "vuex";
     import vClickOutside from "v-click-outside";
     import Vue from "vue";
@@ -54,7 +52,7 @@
 
     export default {
         components: {
-            NotificationMenu
+            NotificationMenu: () => import(/* webpackPrefetch: true */ "../../notifications/NotificationMenu"),
         },
         computed: {
             ...mapState({

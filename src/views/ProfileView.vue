@@ -1,8 +1,8 @@
 <template>
     <div class="register container--bg-white">
         <div class="wrapper">
-            <h1>Información personal</h1>
-            <p>Nota: Es importante registrar tus datos para que las personas puedan contactarte rápidamente :)</p>
+            <h1>{{$t('profile.title')}}</h1>
+            <p>{{$t('profile.note')}}</p>
             <loading :active.sync="isLoading" :is-full-page="true" />
             <div class="card mt-4">
                 <div class="card-body p-0 d-flex justify-content-center align-items-center">
@@ -12,18 +12,18 @@
                     <div class="flex-grow-1">
                         <form class="form-inline-label" action="">
                             <div class="form-input">
-                                <label for="nombre">Nombres</label>
+                                <label for="nombre">{{$t('profile.inputs.name')}}</label>
                                 <input
-                                    name="nombre"
+                                    :name="$t('profile.inputs.name')"
                                     id="nombre"
                                     :class="{ 'invalid': !isFirstNameValid }"
                                     v-validate="'required'"
                                     v-model="user.firstName" type="text">
                             </div>
                             <div class="form-input">
-                                <label for="apellidos">Apellidos</label>
+                                <label for="apellidos">{{$t('profile.inputs.lastname')}}</label>
                                 <input
-                                    name="apellidos"
+                                    :name="$t('profile.inputs.lastname')"
                                     id="apellidos"
                                     :class="{ 'invalid': !isLastNameValid }"
                                     v-validate="'required'"
@@ -34,11 +34,11 @@
                                 <input readonly disabled id="email" name="email" :value="user.email" type="email">
                             </div>
                             <div class="form-input">
-                                <label for="telefono">Teléfono</label>
+                                <label for="telefono">{{$t('profile.inputs.phone')}}</label>
                                 <input id="telefono" v-model="user.phone" type="phone">
                             </div>
                             <div class="form-input form-input--no-margin">
-                                <label for="facebook">Facebook</label>
+                                <label for="facebook">{{$t('profile.inputs.facebook')}}</label>
                                 <input id="facebook" v-model="user.facebook" type="text">
                             </div>
                         </form>
