@@ -6,7 +6,8 @@
 
 <p align="center">
   Help lost pets come back to their owners 🐶🐕🐱
-</p>
+  <br>
+  <br>
 <img src="https://img.shields.io/github/package-json/dependency-version/CodenityOrg/helpet-FE/vue" alt="Vue Badge" title="Vue version">
 <img src="https://img.shields.io/github/package-json/dependency-version/CodenityOrg/helpet-FE/webpack" alt="Webpack Badge" title="Webpack version">
 <a href="https://sonarcloud.io/dashboard?id=CodenityOrg_helpet-FE" target="_blank"><img src="https://sonarcloud.io/api/project_badges/measure?project=CodenityOrg_helpet-FE&metric=alert_status" alt="Quality Gate Status Badge" title="Quality Gate Status"></a>
