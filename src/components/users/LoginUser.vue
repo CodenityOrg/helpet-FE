@@ -4,7 +4,7 @@
     >
         <div class="LoginUser__sectionImg">
             <div class="LoginUser__sectionImgCont">
-                <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesión">
+                <img src="../../assets/img/img-dog.webp" alt="helpet inicio de sesión">
                 <span class="LoginUser__sectionImgContSlogan">{{$t('login.sloganMessage')}}</span>
             </div>
         </div>

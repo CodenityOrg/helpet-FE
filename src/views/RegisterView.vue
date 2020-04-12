@@ -83,7 +83,7 @@
                 <b-col class="img-register" md="4">
                     <div class="net">
                         <figure class="figure">
-                            <img src="../assets/img/icon-register.png" alt="icono-register">
+                            <img src="../assets/img/icon-register.png" width="240px" height="240px" alt="icono-register">
                         </figure>
                         <div class="icons">
                             <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>

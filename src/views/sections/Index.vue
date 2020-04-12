@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="logo">
-                    <img src="../../assets/img/img-A.png" alt="logo helpet">
+                    <img src="../../assets/img/img-A.webp" width="233px" height="300px" alt=" ">
                 </div>
             </ul>
         </div>
