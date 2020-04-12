@@ -5,14 +5,26 @@
         :class="{ 'Navbar--block': !isHomePage }"
     >
         <div class="Navbar__logo">
-            <router-link :to="{ name: 'Home' }" ><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></router-link>
+            <router-link :to="{ name: 'Home' }" >
+                <img
+                    sizes="(max-width: 300px) 100vw, 300px"
+                    :srcset="`${logosSrcSet['ico-logo_ahzu9s_c_scale_sm']} 200w, ${logosSrcSet['ico-logo_ahzu9s_c_scale_m']} 300w`"
+                    src="../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp"
+                    alt="Helpet Logo">
+            </router-link>
         </div>
         <div class="Navbar__triggerButton" :class="{ 'Navbar__triggerButton--left': showMenu }">
             <div @click="toggleMenu"><font-awesome-icon icon="bars" style="cursor: pointer; margin: 15px; color: white; font-size: 20px;" /></div>
         </div>
         <div @click="close" class="Navbar__menu" :class="{ 'Navbar__menu--show': showMenu }">
             <div class="Navbar__menuLogo">
-                <router-link :to="{ name: 'Home' }" ><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></router-link>
+                <router-link :to="{ name: 'Home' }" >
+                    <img
+                    sizes="(max-width: 300px) 100vw, 300px"
+                    :srcset="`${logosSrcSet['ico-logo_ahzu9s_c_scale_sm']} 200w, ${logosSrcSet['ico-logo_ahzu9s_c_scale_m']} 300w`"
+                    src="../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp"
+                    alt="Helpet Logo">
+                </router-link>
             </div>
             <template v-if="!isAuthenticated">
                 <div class="Navbar__menuItem">
@@ -49,7 +61,7 @@
     import vClickOutside from "v-click-outside";
     import Vue from "vue";
     Vue.use(vClickOutside);
-
+    
     export default {
         components: {
             NotificationMenu: () => import(/* webpackPrefetch: true */ "../../notifications/NotificationMenu"),
@@ -67,9 +79,14 @@
             }
         },
         data() {
+            const logosSrcSet = {
+                "ico-logo_ahzu9s_c_scale_sm": require("../../../assets/img/ico-logo_ahzu9s_c_scale,w_200.webp"),
+                "ico-logo_ahzu9s_c_scale_m": require("../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp")
+            };
             return {
                 showNotifications: false,
-                showMenu: false
+                showMenu: false,
+                logosSrcSet
             }
         },
         methods: {

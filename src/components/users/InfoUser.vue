@@ -8,10 +8,7 @@
                 <font-awesome-icon icon="times" />
             </a>
             <div class="InfoUser__ContentBodyImg">
-                <img
-                    alt=""
-                    style=""
-                    :src="user.profile">
+                <img :alt="`${user.firstName} ${user.lastName}`" :src="user.profile">
             </div>
             <div class="InfoUser__ContentBodyUser">
                 <div class="InfoUser__ContentBodyUserName">
