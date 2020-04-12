@@ -104,8 +104,7 @@
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
-    import {formatDate} from "../utils";
-    import moment from "moment";
+    import moment from "moment/locale/en-ca";
 
     export default {
         name: "PostItem",

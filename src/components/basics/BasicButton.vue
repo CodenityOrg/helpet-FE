@@ -1,10 +1,11 @@
-<template>
-    <button class="ButtonBasic">
+<template functional>
+    <button
+        :class="data.staticClass"
+        class="ButtonBasic">
         <slot />
     </button>
 </template>
 <style scoped>
-
     .ButtonBasic {
         background: #009900;
         border: none;

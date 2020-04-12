@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-import moment from "moment";
+import moment from "moment/locale/en-ca";
 import { mapActions } from 'vuex';
 
 export default {
