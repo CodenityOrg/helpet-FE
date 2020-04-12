@@ -6,7 +6,8 @@ import Router from 'vue-router';
 // this generates a separate chunk (publications.[hash].js) for this route
 // which is lazy-loaded when the route is visited.
 
-const HomePage = () => import(/* webpackChunkName: "Home" */'../views/HomeView.vue');
+import HomePage from '../views/HomeView.vue';
+
 const RegisterUser = () => import(/* webpackChunkName: "Register " */'../views/RegisterView.vue');
 const Profile = () => import(/* webpackChunkName: "Publications" */'../views/ProfileView.vue');
 const MapView = () => import(/* webpackChunkName: "Publications" */ '../views/MapView');
