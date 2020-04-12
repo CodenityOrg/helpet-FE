@@ -6,14 +6,6 @@ import Router from 'vue-router';
 // this generates a separate chunk (publications.[hash].js) for this route
 // which is lazy-loaded when the route is visited.
 
-// import HomePage from '../views/HomeView.vue';
-// import RegisterUser from '../views/RegisterView.vue';
-// import Profile from '../views/ProfileView.vue';
-// import MapView from '../views/MapView';
-// import PostRegister from '../views/PostRegisterView.vue';
-// import ContactView from '../views/ContactView.vue';
-// import TermsView from '../views/TermsView.vue';
-
 const HomePage = () => import(/* webpackChunkName: "Home" */'../views/HomeView.vue');
 const RegisterUser = () => import(/* webpackChunkName: "Register " */'../views/RegisterView.vue');
 const Profile = () => import(/* webpackChunkName: "Publications" */'../views/ProfileView.vue');
