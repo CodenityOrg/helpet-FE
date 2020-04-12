@@ -10,6 +10,12 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: rgba(33, 177, 106, 1);
+    background-position: center;
+    background-size: cover;
+}
+
 button {
     cursor: pointer;
 }
