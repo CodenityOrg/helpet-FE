@@ -4,7 +4,7 @@
     >
         <div class="LoginUser__sectionImg">
             <div class="LoginUser__sectionImgCont">
-                <img src="../../assets/img/img-dog.webp" alt="helpet inicio de sesión">
+                <img :src="dogImg" alt="helpet inicio de sesión">
                 <span class="LoginUser__sectionImgContSlogan">{{$t('login.sloganMessage')}}</span>
             </div>
         </div>
@@ -59,6 +59,7 @@
     import Modal from "../common/Modal";
     import SocialButtons from "../common/SocialButtons";
     import BasicButton from "../basics/BasicButton";
+    import { isSafari } from '../utils';
 
     import {mapActions, mapState} from "vuex";
 
@@ -71,6 +72,7 @@
             SocialButtons
         },
         data() {
+            const dogImg = require(`../../assets/img/img-dog.${isSafari ? 'png' : 'webp'}`);
             return {
                 credentials: {
                     email: "",
@@ -82,7 +84,8 @@
                 },
                 googleSignInParams: {
                     client_id: '1076081297271-he3s2qr0ob61s4cpbgl0cnj2s5ajpqu7.apps.googleusercontent.com'
-                }
+                },
+                dogImg
             }
         },
         computed: {

@@ -126,6 +126,32 @@
     }
 }
 
+.no-webp .filter {
+    background-image: url("../img/bg-puppy-safari/background-puppy.jpg");
+}
+
+@media (max-width: 1380px) {
+    .no-webp .filter {
+        background-image: url("../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1380.jpg");
+        background-image: -webkit-image-set( url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1380.jpg') 1x, url('../img/bg-puppy-safari/background-puppy.jpg') 2x );
+        background-image: image-set( url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1380.jpg') 1x, url('../img/bg-puppy-safari/background-puppy.jpg') 2x );
+    }
+}
+@media (max-width: 1010px) {
+    .no-webp .filter {
+        background-image: url("../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1010.jpg");
+        background-image: -webkit-image-set( url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1010.jpg') 1x, url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1380.jpg') 2x );
+        background-image: image-set( url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1010.jpg') 1x, url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1380.jpg') 2x );
+    }
+}
+@media (max-width: 520px) {
+    .no-webp .filter {
+        background-image: url("../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_520.jpg");
+        background-image: -webkit-image-set( url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_520.jpg') 1x, url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1010.jpg') 2x );
+        background-image: image-set( url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_520.jpg') 1x, url('../img/bg-puppy-safari/background-puppy_t4g03g_c_scale,w_1010.jpg') 2x );
+    }
+}
+
 /**
  * navbar
  */

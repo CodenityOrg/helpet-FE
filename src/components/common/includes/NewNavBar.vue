@@ -8,8 +8,8 @@
             <router-link :to="{ name: 'Home' }" >
                 <img
                     sizes="(max-width: 300px) 100vw, 300px"
-                    :srcset="`${logosSrcSet['ico-logo_ahzu9s_c_scale_sm']} 200w, ${logosSrcSet['ico-logo_ahzu9s_c_scale_m']} 300w`"
-                    src="../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp"
+                    :srcset="`${logosSrcSet['ico-logo_scale_sm']} 200w, ${logosSrcSet['ico-logo_scale_m']} 300w`"
+                    :src="logoSrc"
                     alt="Helpet Logo">
             </router-link>
         </div>
@@ -21,8 +21,8 @@
                 <router-link :to="{ name: 'Home' }" >
                     <img
                     sizes="(max-width: 300px) 100vw, 300px"
-                    :srcset="`${logosSrcSet['ico-logo_ahzu9s_c_scale_sm']} 200w, ${logosSrcSet['ico-logo_ahzu9s_c_scale_m']} 300w`"
-                    src="../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp"
+                    :srcset="`${logosSrcSet['ico-logo_scale_sm']} 200w, ${logosSrcSet['ico-logo_scale_m']} 300w`"
+                    :src="logoSrc"
                     alt="Helpet Logo">
                 </router-link>
             </div>
@@ -60,6 +60,7 @@
     import {mapState, mapActions} from "vuex";
     import vClickOutside from "v-click-outside";
     import Vue from "vue";
+    import { isSafari } from '../../utils';
     Vue.use(vClickOutside);
     
     export default {
@@ -79,14 +80,23 @@
             }
         },
         data() {
-            const logosSrcSet = {
-                "ico-logo_ahzu9s_c_scale_sm": require("../../../assets/img/ico-logo_ahzu9s_c_scale,w_200.webp"),
-                "ico-logo_ahzu9s_c_scale_m": require("../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp")
+            const logosSrcSet = isSafari ?
+            {
+                "ico-logo_scale_sm": require("../../../assets/img/ico-logo_iiqlh8_c_scale,w_200.png"),
+                "ico-logo_scale_m": require("../../../assets/img/ico-logo_iiqlh8_c_scale,w_300.png")
+            } :
+            {
+                "ico-logo_scale_sm": require("../../../assets/img/ico-logo_ahzu9s_c_scale,w_200.webp"),
+                "ico-logo_scale_m": require("../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp")
             };
+            const logoSrc = isSafari ?
+                require('../../../assets/img/ico-logo_iiqlh8_c_scale,w_300.png')
+                : require('../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp');
             return {
                 showNotifications: false,
                 showMenu: false,
-                logosSrcSet
+                logosSrcSet,
+                logoSrc
             }
         },
         methods: {

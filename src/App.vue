@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" :class="{ 'no-webp': isSafari }">
 		<nav-bar
 			@onShowLogin="showLogin=true"
 		/>
@@ -24,6 +24,7 @@
 	import LoginUser from './components/users/LoginUser.vue';
 	import InfoUser from './components/users/InfoUser.vue';
 	import CookieLaw from 'vue-cookie-law';
+	import { isSafari } from './components/utils';
 
 	import {mapActions, mapState} from "vuex";
 
@@ -54,7 +55,8 @@
 				showUserModal: false,
 				showNotificationModal: false,
 				userId: undefined,
-				post: {}
+				post: {},
+				isSafari
 			};
 		},
 		computed: {
