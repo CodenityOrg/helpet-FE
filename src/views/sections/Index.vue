@@ -13,9 +13,22 @@
                     </div>
                 </div>
                 <div class="logo">
-                    <img src="../../assets/img/img-A.webp" width="233px" height="300px" alt=" ">
+                    <img :src="imageSource" width="233px" height="300px" alt=" ">
                 </div>
             </ul>
         </div>
     </section>
 </template>
+
+<script>
+    import { isSafari } from '../../components/utils';
+    const imageSource = require(`../../assets/img/img-A.${isSafari ? 'png' : 'webp'}`);
+
+    export default {
+        data() {
+            return {
+                imageSource
+            }
+        }
+    };
+</script>
