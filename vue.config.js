@@ -8,9 +8,9 @@ module.exports = {
         })
       ],
       optimization: {
+        runtimeChunk: 'single',
         splitChunks: {
-          minSize: 10000,
-          maxSize: 200000,
+          chunks: 'all'
         }
       }
     },
