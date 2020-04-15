@@ -48,13 +48,6 @@ const actions = {
         }
         return user;
     },
-    async validate({commit}, data) {
-        const { status, data: user} = await userAPI.validate(data);
-        if (status === 200) {
-            commit("VALIDATE", user);
-        }
-        return user;
-    },
     getProfile({commit}, fullData = true) {
         return userAPI.profile(fullData).then(res => res.data);
     },
