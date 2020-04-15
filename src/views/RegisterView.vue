@@ -47,7 +47,7 @@
                                     v-validate="'required|email'"
                                     v-model="user.email"
                                     :name="$t('register.placeholders.email')"
-                                    @keyup="changeValidate"
+                                    
                                     placeholder="Correo" />
                             </div>
                             <div class="form-input">
@@ -104,6 +104,8 @@
     import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
     import SocialButtons from "../components/common/SocialButtons";
+    import {debounce} from 'lodash';
+    import userAPI from '../api/user';
 
     export default {
         name: "RegisterUser",
@@ -128,10 +130,17 @@
                 validateEmail: state => state.user.validate,
             }),
         },
+        watch: {
+            'user.email': {
+                handler(value, oldValue) {
+                    this.validateDebounced();
+                },
+                deep: true,
+            }
+        },
         methods: {
             ...mapActions({
                 registerUser: "registerUser",
-                validate: "validate",
                 updateToken: "updateToken"
             }),
             async register(event) {
@@ -161,9 +170,15 @@
             expired() {
                 this.isVerified = false;
             },
-            changeValidate(){
-                this.validate({ email: this.user.email });
-            },
+            async validate(email) {
+                const { status, data: user} = await userAPI.validate(email);
+                if (status === 200) {
+                    this.$store.commit("VALIDATE", user);
+                }
+            }
+        },
+        created() {
+            this.validateDebounced = debounce(() => this.validate(this.user.email), 200);
         }
     };
 </script>
