@@ -7,15 +7,9 @@ module.exports = {
             mapboxgl: 'mapbox-gl'
         })
       ],
-      optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-          chunks: 'all'
-        }
-      }
     },
     devServer: {
       host: '0.0.0.0',
-      port: 8080, // CHANGE YOUR PORT HERE!
+      port: 8080,
     }
   }
