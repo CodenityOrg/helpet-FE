@@ -85,7 +85,7 @@
                     </BasicButton>
                     <a
                         class="PostItem__cardContactMap"
-                        :href="'https://www.google.com/maps/search/?api=1&query='+ post.latitude + ',' + post.longitude">
+                        :href="'https://www.google.com/maps/search/?api=1&query='+ post.location.coordinates[1] + ',' + post.location.coordinates[0]">
                         <BasicButton
                             style="width: 100%;"
                         >

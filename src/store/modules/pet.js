@@ -55,8 +55,8 @@ const actions = {
 const getCoordinates = (post) => {
     return {
         id: post._id,
-        latitude: post.latitude,
-        longitude: post.longitude,
+        longitude: post.location.coordinates[0],
+        latitude: post.location.coordinates[1],
         photo: post.photos.length > 0 ? post.photos[0].thumbnailPath : "https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg",
         type: 1
     }
