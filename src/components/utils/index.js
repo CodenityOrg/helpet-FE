@@ -1,5 +1,4 @@
 
-import moment from "moment";
 
 const isSafariRegexp = /^((?!chrome|android).)*safari/i;
 const getNavigatorLanguage = () => {

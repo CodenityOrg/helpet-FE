@@ -13,7 +13,6 @@
     </div>
 </template>
 <script>
-import moment from "moment/locale/en-ca";
 import { mapActions } from 'vuex';
 import { formatDate } from "../utils";
 
