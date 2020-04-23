@@ -94,7 +94,7 @@
             showDetectLocationAlert() {
                 this.$notify({
                     type: "warn",
-                    duration: 60500,
+                    duration: 4500,
                     title: this.$t("publications.mapAlert"),
                 });
             }
