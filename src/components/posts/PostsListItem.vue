@@ -104,7 +104,7 @@
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
-    import moment from "moment/locale/en-ca";
+    import { formatDate } from "../utils";
 
     export default {
         name: "PostItem",
@@ -162,8 +162,8 @@
             isDescriptionHigher() {
                 return this.descriptionEl && (this.descriptionEl.scrollHeight - 1) > 90;
             },
-            formattedDate(){
-                return moment(this.post.createdAt).format('D MMM, kk:mm');
+            formattedDate() {
+                return formatDate(this.post.createdAt);
             }
         }
     }
