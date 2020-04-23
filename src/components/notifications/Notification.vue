@@ -15,6 +15,7 @@
 <script>
 import moment from "moment/locale/en-ca";
 import { mapActions } from 'vuex';
+import { formatDate } from "../utils";
 
 export default {
     name: "Notification",
@@ -44,7 +45,7 @@ export default {
             return `${this.sender.firstName} ${this.sender.lastName}`;
         },
         formattedDate() {
-            return moment(this.notification.createdAt).format('D MMM, kk:mm');
+            return formatDate(this.notification.createdAt);
         }
     }
 }
