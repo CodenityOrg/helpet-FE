@@ -1,4 +1,5 @@
 import postAPI from "../../api/post";
+import store from 'store';
 
 const state = {
     total: 0,
@@ -6,7 +7,9 @@ const state = {
     posts: [],
     filters: {
         types: 0,
-        order: "desc"
+        order: "desc",
+        longitude: 0,
+        latitude: 0
     },
     tags: []
 }
@@ -38,6 +41,20 @@ const mutations = {
 const actions = {
     async fetchPosts({ commit, state }, { ...searchParams }) {
         const {total, posts} = await postAPI.fetchPostList(searchParams);
+        if (state.total != total) {
+            commit("SET_TOTAL_POSTS", total);
+            commit("ADD_POSTS", posts);
+        }
+    },
+    async fetchNearPosts({ commit, state }, { ...searchParams }) {
+        const {longitude = 0, latitude = 0} = store.get('location') || {};
+        const filters = {
+            ...searchParams,
+            longitude,
+            latitude
+        };
+        console.log('filters', filters);
+        const {total, posts} = await postAPI.fetchPostList(filters);
         if (state.total != total) {
             commit("SET_TOTAL_POSTS", total);
             commit("ADD_POSTS", posts);
