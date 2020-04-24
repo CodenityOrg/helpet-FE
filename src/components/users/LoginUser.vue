@@ -47,7 +47,7 @@
                     <p>{{$t('login.notAccountText')}} <router-link to="/registro"><span @click="$emit('close')">{{$t('login.createAccountText')}}</span></router-link></p>
                 </div>
                 <div class="form-submit">
-                    <BasicButton class="frm--btm login-btn" type="submit" @click.native="signUp">{{$t('login.loginButton')}}</BasicButton>
+                    <BasicButton class="frm--btm login-btn" type="submit" @click="signUp">{{$t('login.loginButton')}}</BasicButton>
                 </div>
             </form>
         </div>
@@ -197,7 +197,7 @@
             padding: 30px;
         }
     }
-    
+
     @media all and (max-width: 500px) {
         .LoginUser__sectionLogin {
             padding: 10px;

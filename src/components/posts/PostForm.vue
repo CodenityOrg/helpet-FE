@@ -109,7 +109,7 @@
             </FormErrors>
             <div class="form-submit">
                 <BasicButton
-                    @click.native="newPost"
+                    @click="newPost"
                     :disabled="!areAllInputsValid"
                     class="btn btn-regular">
                     {{$t('postRegister.acceptButton')}}
@@ -293,7 +293,7 @@
     .selectize-control.multi .selectize-input > div{
         background: green !important;
     }
-    
+
     .btn-file {
         position: relative;
         overflow: hidden;
