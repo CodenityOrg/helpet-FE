@@ -78,7 +78,7 @@
                 >
                     <BasicButton
                         class="PostItem__cardContactButton"
-                        @click.native="showUserInfo"
+                        @click="showUserInfo"
                     >
                         <font-awesome-icon icon="phone-alt" />
                         {{$t('publications.post.contactButton')}}

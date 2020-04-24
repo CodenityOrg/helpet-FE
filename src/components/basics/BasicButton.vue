@@ -1,6 +1,10 @@
+
+
+
 <template functional>
     <button
         :class="data.staticClass"
+        v-on="listeners"
         class="ButtonBasic">
         <slot />
     </button>
