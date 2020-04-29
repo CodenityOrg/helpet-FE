@@ -1,4 +1,5 @@
 import postAPI from "../../api/post";
+import store from 'store';
 
 const state = {
     total: 0,
@@ -6,7 +7,9 @@ const state = {
     posts: [],
     filters: {
         types: 0,
-        order: "desc"
+        order: "desc",
+        longitude: 0,
+        latitude: 0
     },
     tags: []
 }
@@ -43,6 +46,20 @@ const actions = {
             commit("ADD_POSTS", posts);
         }
     },
+    async fetchNearPosts({ commit, state }, { ...searchParams }) {
+        const {longitude = 0, latitude = 0} = store.get('location') || {};
+        const filters = {
+            ...searchParams,
+            longitude,
+            latitude
+        };
+        console.log('filters', filters);
+        const {total, posts} = await postAPI.fetchPostList(filters);
+        if (state.total != total) {
+            commit("SET_TOTAL_POSTS", total);
+            commit("ADD_POSTS", posts);
+        }
+    },
     createPost({ commit }, payload) {
         return postAPI.create(payload);
     },
@@ -55,8 +72,8 @@ const actions = {
 const getCoordinates = (post) => {
     return {
         id: post._id,
-        latitude: post.latitude,
-        longitude: post.longitude,
+        longitude: post.location.coordinates[0],
+        latitude: post.location.coordinates[1],
         photo: post.photos.length > 0 ? post.photos[0].thumbnailPath : "https://saveapetil.org/wp-content/themes/saveapet/images/dog-placeholder.jpg",
         type: 1
     }
