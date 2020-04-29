@@ -53,7 +53,6 @@ const actions = {
             longitude,
             latitude
         };
-        console.log('filters', filters);
         const {total, posts} = await postAPI.fetchPostList(filters);
         if (state.total != total) {
             commit("SET_TOTAL_POSTS", total);
