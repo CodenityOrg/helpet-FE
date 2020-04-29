@@ -171,7 +171,7 @@
                 this.isVerified = false;
             },
             async validate(email) {
-                const { status, data: user} = await userAPI.validate(email);
+                const { status, data: user} = await userAPI.validate({email});
                 if (status === 200) {
                     this.$store.commit("VALIDATE", user);
                 }
