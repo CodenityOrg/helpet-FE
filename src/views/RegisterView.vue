@@ -20,7 +20,7 @@
                                     :class="{ 'invalid': errors.has('Nombres') }"
                                     type="text"
                                     v-model="user.firstName"
-                                    :name="$t('register.placeholders.name')"
+                                    name="first-name"
                                     :placeholder="$t('register.placeholders.name')" />
                             </div>
                             <div class="form-input">
@@ -28,7 +28,7 @@
                                     :class="{ 'invalid': errors.has('Apellidos') }"
                                     type="text"
                                     v-model="user.lastName"
-                                    name="lastname"
+                                    name="last-name"
                                     :placeholder="$t('register.placeholders.lastName')" />
                             </div>
                             <div class="form-input">
@@ -46,16 +46,15 @@
                                     :class="{ 'invalid': errors.has('email') || !this.validateEmail.validate }"
                                     v-validate="'required|email'"
                                     v-model="user.email"
-                                    :name="$t('register.placeholders.email')"
-                                    
-                                    placeholder="Correo" />
+                                    name="mail"
+                                    :placeholder="$t('register.placeholders.email')" />
                             </div>
                             <div class="form-input">
                                 <input
                                     type="password"
                                     v-model="user.password"
-                                    :name="$t('register.placeholders.password')"
-                                    placeholder="Contraseña" />
+                                    name="mail"
+                                    :placeholder="$t('register.placeholders.password')" />
                                 <span>{{ errors.first('password') }}</span>
                             </div>
                             <div>
@@ -71,7 +70,7 @@
                                     v-model="acceptedTerms"
                                     name="terms"
                                 >
-                                    Acepto los <router-link :to="{ name: 'Terms' }">Términos de Uso y Privacidad</router-link>
+                                    {{$t('terms.beforeContent')}} <router-link :to="{ name: 'Terms' }">{{$t('terms.afterContent')}}</router-link>
                                 </b-form-checkbox>
                             </div>
                             <div class="form-submit">
