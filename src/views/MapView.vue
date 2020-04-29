@@ -17,7 +17,6 @@
         <div class="MapView__PostMap cont--map">
             <Map
                 @init="mapInitialized"
-                :location="currentLocation"
             />
         </div>
         <notifications
@@ -37,7 +36,6 @@
     import PostsListFilters from "../components/posts/PostsListFilters";
     import PostListSelected from "../components/posts/PostsListFIltersSelected";
     import BasicButton from "../components/basics/BasicButton";
-    import store from 'store';
 
     export default {
         name: "MapView",
@@ -123,10 +121,7 @@
                     }
                 })
             },
-            currentLocation() {
-                const {longitude = 0, latitude = 0} = store.get('location') || {};
-                return [longitude, latitude];
-            }
+
         }
     };
 
