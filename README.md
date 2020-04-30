@@ -32,9 +32,11 @@ Helpet born with the intention to give an easy way to identify lost pets through
 
 ```
 npm install
-npm run serve
+npm run dev
 npm run build
 ```
+
+The `npm run dev` command execute for default in port `8080`, change in `vue.config.js` file if you has this port on use.
 
 ### Lints and fixes files
 ```
