@@ -3,7 +3,7 @@
         :access-token="accessToken"
         :map-options="{
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: location,
+            center: currentLocation,
             zoom: 11,
             localIdeographFontFamily: false
         }"
@@ -25,21 +25,22 @@
 </template>
 <script>
     import Mapbox from 'mapbox-gl-vue';
+    import store from 'store';
 
     export default {
         name: "PostMap",
         components: {
             Mapbox
         },
-        props: {
-            location: {
-                type: Array,
-                default: () => [0, 0]
-            }
-        },
         data() {
             return {
                 accessToken: "pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+            }
+        },
+        computed: {
+            currentLocation() {
+                const {longitude = 0, latitude = 0} = store.get('location') || {};
+                return [longitude, latitude];
             }
         }
     }

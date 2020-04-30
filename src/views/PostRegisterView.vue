@@ -97,7 +97,7 @@
         }
     }
 
-    .mapboxgl-map, 
+    .mapboxgl-map,
     .vue-google-map {
         height: 100%;
     }
