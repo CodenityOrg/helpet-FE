@@ -53,7 +53,7 @@
                                 <input
                                     type="password"
                                     v-model="user.password"
-                                    name="mail"
+                                    name="password"
                                     :placeholder="$t('register.placeholders.password')" />
                                 <span>{{ errors.first('password') }}</span>
                             </div>
@@ -75,6 +75,7 @@
                             </div>
                             <div class="form-submit">
                                 <button v-if="isVerified && acceptedTerms && this.validateEmail.validate" class="btn btn-regular" @click="register" >Aceptar</button>
+                                <!-- <button class="btn btn-regular" :disabled=!enableDisableRegister @click="register">Aceptar</button> -->
                             </div>
                         </form>
                     </div>
@@ -112,7 +113,7 @@
             return {
                 user: {},
                 isVerified: false,
-                acceptedTerms: false
+                acceptedTerms: false,
             }
         },
         mounted() {
@@ -128,6 +129,9 @@
             ...mapState({
                 validateEmail: state => state.user.validate,
             }),
+            /*enableDisableRegister: function(){
+                return (this.isVerified && this.acceptedTerms && this.validateEmail.validate);
+            }*/
         },
         watch: {
             'user.email': {
