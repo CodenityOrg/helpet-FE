@@ -127,7 +127,7 @@
         computed: {
             ...mapState({
                 validateEmail: state => state.user.validate,
-            })
+            }),
         },
         watch: {
             'user.email': {
