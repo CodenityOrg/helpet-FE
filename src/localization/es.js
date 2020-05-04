@@ -112,6 +112,8 @@ export default {
     }
   },
   terms: {
+    beforeContent:'Acepto los',
+    afterContent:'Terminos de uso y condiciones',
     content:
       `<h1 class="text-center font-weight-bold">Política de Privacidad, Términos de Uso y Cookies</h1>
       <p>Podrás ponerte en contacto con nosotros por cualquier duda.</p>

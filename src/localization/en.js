@@ -112,6 +112,8 @@ export default {
     }
   },
   terms: {
+    beforeContent:'I accept the',
+    afterContent:'Terms and conditions',
     content:
       `<h1 class="text-center font-weight-bold">Privacy Policy, Terms of Use & Cookies</h1>
       <p>This legal document is taken as accepted if you browse our website.</p>
