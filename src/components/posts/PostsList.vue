@@ -44,7 +44,7 @@ export default {
             async handler(){
                 this.skip = 0;
                 this.isLoading = true;
-                await this.fetchPosts({
+                await this.fetchNearPosts({
                     filters: this.filters,
                     skip: this.skip,
                     limit: this.limit
@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         ...mapActions({
-            fetchPosts: "fetchPosts"
+            fetchNearPosts: "fetchNearPosts"
         }),
         showUser(user) {
             this.$emit("onShowInfoUser", user);
@@ -74,7 +74,7 @@ export default {
         },
         scrollEnd: throttle(async function () {
             this.isLoading = true;
-            await this.fetchPosts({
+            await this.fetchNearPosts({
                 filters: this.filters,
                 limit: this.limit,
                 skip: this.skip
