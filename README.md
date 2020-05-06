@@ -14,6 +14,7 @@
 <a href="https://github.com/CodenityOrg/helpet-FE/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/CodenityOrg/helpet-FE.svg" alt="Contributors Badge" title="Contributors"></a>
 <a href="https://www.twitch.tv/codenity" target="_blank"><img alt="Twitch Status" src="https://img.shields.io/twitch/status/codenity"></a>
 <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License Badge" title="License: MIT"></a>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UTS99DLZMDSDN" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" alt="Donate" title="Donate"></a>
 </p>
 
 Helpet born with the intention to give an easy way to identify lost pets through tagging and verification of characteristics, automatizating any daily check of possible found pets. So, you'll be notified when someone finds your lost pet, just only publishing once time.
