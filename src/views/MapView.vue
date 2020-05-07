@@ -17,7 +17,6 @@
         <div class="MapView__PostMap cont--map">
             <Map
                 @init="mapInitialized"
-                :location="currentLocation"
             />
         </div>
         <notifications
@@ -124,10 +123,6 @@
                     )
                 );
             },
-            currentLocation() {
-                const {longitude = 0, latitude = 0} = store.get("location") || {};
-                return [longitude, latitude];
-            }
         }
     };
 

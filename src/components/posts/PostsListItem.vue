@@ -78,14 +78,14 @@
                 >
                     <BasicButton
                         class="PostItem__cardContactButton"
-                        @click.native="showUserInfo"
+                        @click="showUserInfo"
                     >
                         <font-awesome-icon icon="phone-alt" />
                         {{$t('publications.post.contactButton')}}
                     </BasicButton>
                     <a
                         class="PostItem__cardContactMap"
-                        :href="'https://www.google.com/maps/search/?api=1&query='+ post.latitude + ',' + post.longitude">
+                        :href="'https://www.google.com/maps/search/?api=1&query='+ post.location.coordinates[1] + ',' + post.location.coordinates[0]">
                         <BasicButton
                             style="width: 100%;"
                         >
@@ -104,7 +104,7 @@
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
-    import moment from "moment/locale/en-ca";
+    import { formatDate } from "../utils";
 
     export default {
         name: "PostItem",
@@ -162,8 +162,8 @@
             isDescriptionHigher() {
                 return this.descriptionEl && (this.descriptionEl.scrollHeight - 1) > 90;
             },
-            formattedDate(){
-                return moment(this.post.createdAt).format('D MMM, kk:mm');
+            formattedDate() {
+                return formatDate(this.post.createdAt);
             }
         }
     }
