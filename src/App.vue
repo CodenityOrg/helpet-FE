@@ -19,14 +19,14 @@
 </template>
 
 <script>
+	import {mapActions, mapState} from "vuex";
+	import CookieLaw from 'vue-cookie-law';
+
 	import NavBar from './components/common/includes/NewNavBar.vue';
 	import AppFooter from './components/common/includes/AppFooter.vue';
 	import LoginUser from './components/users/LoginUser.vue';
 	import InfoUser from './components/users/InfoUser.vue';
-	import CookieLaw from 'vue-cookie-law';
 	import { isSafari } from './components/utils';
-
-	import {mapActions, mapState} from "vuex";
 
 	export default {
 		components: {

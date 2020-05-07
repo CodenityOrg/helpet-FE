@@ -21,7 +21,8 @@ export default {
     },
     notAccountText: 'No tienes una cuenta ?',
     createAccountText: 'Crea una cuenta aquí',
-    loginButton: 'Iniciar sesión'
+    loginButton: 'Iniciar sesión',
+    incorrectLogin: `Tu usuario o contraseña son incorrectos  <br> <b>   'Por favor inténtelo nuevamente'</b>`
   },
   register: {
     title: 'Registrate',
@@ -119,17 +120,17 @@ export default {
       <p>Podrás ponerte en contacto con nosotros por cualquier duda.</p>
       <p>El presente documento legal se entiende aceptado si navega por nuestro sitio web.</p>
       <h2 id="obj">Objetivo</h2>
-      <p>El objetivo de Helpet es ayudar a encontrar tantas mascotas perdidas como sea posible y reunir 
+      <p>El objetivo de Helpet es ayudar a encontrar tantas mascotas perdidas como sea posible y reunir
           mascotas encontradas con sus dueños.</p>
       <h2 id="terms">Términos y condiciones</h2>
-      <p>Helpet no interviene ni tiene posesión de las mascotas publicadas por los usuarios, por ello no 
+      <p>Helpet no interviene ni tiene posesión de las mascotas publicadas por los usuarios, por ello no
           será responsable respecto de la existencia o legitimidad de las publicaciones de los usuarios.</p>
       <p>Cada Usuario conoce y acepta ser el exclusivo responsable por las publicaciones que realiza.</p>
-      <p>Debido a que Helpet no tiene ninguna participación durante todo el tiempo en que se hace una 
+      <p>Debido a que Helpet no tiene ninguna participación durante todo el tiempo en que se hace una
           publicación, ni en el posterior acuerdo entre las partes, no será responsable por el efectivo
-              cumplimiento de las obligaciones asumidas por los Usuarios. El Usuario conoce y acepta que al 
+              cumplimiento de las obligaciones asumidas por los Usuarios. El Usuario conoce y acepta que al
               realizar acuerdos con otros Usuarios o terceros lo hace bajo su propio riesgo.</p>
-      <p>En ningún  caso Helpet será responsable por cualquier daño y/o perjuicio que haya podido sufrir 
+      <p>En ningún  caso Helpet será responsable por cualquier daño y/o perjuicio que haya podido sufrir
           el Usuario, debido a los acuerdos realizadas o no realizadas entre usuarios respecto a las mascotas
               publicados a través de Helpet.</p>
       <h2 id="priv">Sobre la política de privacidad</h2>

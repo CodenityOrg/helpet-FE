@@ -19,7 +19,8 @@ export default {
     },
     notAccountText: 'Don\'t have an account ?',
     createAccountText: 'Create account here',
-    loginButton: 'Login'
+    loginButton: 'Login',
+    incorrectLogin: `Your credentials are incorrect  <br> <b>   'Please, try again'</b>`
   },
   register: {
     title: 'Register',

@@ -1,24 +1,25 @@
 import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from "./store/index";
+import VeeValidate, { Validator } from 'vee-validate';
 import VueCookie from "vue-cookie";
 import axios from "axios";
-import VeeValidate, { Validator } from 'vee-validate';
 import BootstrapVue from "bootstrap-vue";
 import VueBus from 'vue-bus';
+import VueSocketIO from 'vue-socket.io';
+import VueGtm from 'vue-gtm';
+import VueI18n from 'vue-i18n';
+import es from "vee-validate/dist/locale/es";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import VueSocketIO from 'vue-socket.io';
-import VueGtm from 'vue-gtm';
 
-import es from "vee-validate/dist/locale/es";
+import App from './App.vue';
+import router from './router';
+import store from "./store/index";
+
 import dictionary from "./localization";
 
 import FBLoginInstall from "./installs/fb-login";
-
-import VueI18n from 'vue-i18n';
 
 Vue.use(VueI18n);
 

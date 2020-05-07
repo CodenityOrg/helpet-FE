@@ -20,8 +20,7 @@
             />
         </div>
         <notifications
-            style="margin-top: 80px;"
-            group="foo"
+            class="notification-wrapper"
             position='top center'
         />
     </div>
@@ -30,12 +29,15 @@
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import mapMixin from "./mixins/map";
+    import store from 'store';
+
     import Map from "../components/common/Map";
     import PostsList from "../components/posts/PostsList";
     import PostsListFilters from "../components/posts/PostsListFilters";
     import PostListSelected from "../components/posts/PostsListFIltersSelected";
     import BasicButton from "../components/basics/BasicButton";
+
+    import mapMixin from "./mixins/map";
 
     export default {
         name: "MapView",
@@ -90,10 +92,9 @@
             },
             showDetectLocationAlert() {
                 this.$notify({
-                    group: 'foo',
-                    type: 'warn',
+                    type: "warn",
                     duration: 4500,
-                    title: this.$t('publications.mapAlert'),
+                    title: this.$t("publications.mapAlert"),
                 });
             }
         },
@@ -106,22 +107,22 @@
                 positions: "getCurrentPositions"
             }),
             markers() {
-                return this.positions.map(position => {
-                    return {
-                        id: position.id,
-                        photo: position.photo,
-                        properties: {
-                            iconSize: [48, 48]
-                        },
-                        type: position.type,
-                        geometry: {
-                            type: "Point",
-                            coordinates: [position.longitude, position.latitude]
+                return this.positions.map(position => (
+                        {
+                            id: position.id,
+                            photo: position.photo,
+                            properties: {
+                                iconSize: [48, 48]
+                            },
+                            type: position.type,
+                            geometry: {
+                                type: "Point",
+                                coordinates: [position.longitude, position.latitude]
+                            }
                         }
-                    }
-                })
+                    )
+                );
             },
-
         }
     };
 

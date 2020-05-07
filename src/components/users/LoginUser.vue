@@ -128,10 +128,10 @@
             },
             showFailMessage() {
                 this.$notify({
-                    group: "foo",
+                    group: "top",
                     type: "error",
                     title: "INICIO DE SESIÓN",
-                    text: "Tu usuario o contraseña son incorrectos  <br> <b>   'Por favor inténtelo nuevamente'</b>",
+                    text: this.$t("login.incorrectLogin"),
                 });
             }
         }

@@ -41,3 +41,8 @@ a:hover, a:visited, a:link, a:active {
 li{
     list-style: none;
 }
+
+.notification-wrapper {
+    width: auto !important;
+    margin-top: 80px;
+}
