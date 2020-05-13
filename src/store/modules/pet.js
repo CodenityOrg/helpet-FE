@@ -54,10 +54,8 @@ const actions = {
             latitude
         };
         const {total, posts} = await postAPI.fetchNearPostList(filters);
-        if (state.total != total) {
-            commit("SET_TOTAL_POSTS", total);
-            commit("ADD_POSTS", posts);
-        }
+        commit("SET_TOTAL_POSTS", total);
+        commit("ADD_POSTS", posts);
     },
     createPost({ commit }, payload) {
         return postAPI.create(payload);
