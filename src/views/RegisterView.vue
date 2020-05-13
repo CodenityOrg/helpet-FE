@@ -46,7 +46,7 @@
                                     :class="{ 'invalid': errors.has('email') || !this.validateEmail.validate }"
                                     v-validate="'required|email'"
                                     v-model="user.email"
-                                    name="mail"
+                                    name="email"
                                     :placeholder="$t('register.placeholders.email')" />
                             </div>
                             <div class="form-input">
@@ -74,7 +74,7 @@
                                 </b-form-checkbox>
                             </div>
                             <div class="form-submit">
-                                <button v-if="isVerified && acceptedTerms && this.validateEmail.validate" class="btn btn-regular" @click="register" >Aceptar</button>
+                                <button v-if="isVerified && acceptedTerms && this.validateEmail.validate && this.user.firstName && this.user.lastName && !errors.has('email')" class="btn btn-regular" @click="register" >Aceptar</button>
                             </div>
                         </form>
                     </div>
