@@ -20,7 +20,6 @@
         }
       },
       isAtTheBottom() {
-        console.log(1)
           // Use getBoundingClientRect for get height with decimal part
           const {height} = this.$el.getBoundingClientRect();
           const {scrollHeight, scrollTop} = this.$el;
