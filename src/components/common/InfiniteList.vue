@@ -1,26 +1,28 @@
 <template>
   <div
-    ref="container"
-    @scroll="scrollHandler"
+    @scroll.passive="debouncedScrollHandler"
   >
     <slot/>
   </div>
 </template>
 
 <script>
+  import {debounce} from "lodash";
   export default {
     name: "InfiniteList",
+    created() {
+      this.debouncedScrollHandler = debounce(this.scrollHandler, 200);
+    },
     methods: {
       async scrollHandler() {
         if (this.isAtTheBottom()) {
-            this.$emit("scrollEnd");
+          this.$emit("scrollEnd");
         }
       },
       isAtTheBottom() {
-          const $container = this.$refs.container;
           // Use getBoundingClientRect for get height with decimal part
-          const {height} = $container.getBoundingClientRect();
-          const {scrollHeight, scrollTop} = $container;
+          const {height} = this.$el.getBoundingClientRect();
+          const {scrollHeight, scrollTop} = this.$el;
 
           // Using truncate function for avoid problems with extra pixels in some list elements 
           // and get a more accurate difference
