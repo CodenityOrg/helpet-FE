@@ -35,6 +35,10 @@ export default {
       email: 'Email',
       password: 'Contraseña'
     },
+    errors: {
+      beforeSubmit: 'Completa los datos antes de continuar :)',
+      phone: 'no es un telefono valido'
+    }
   },
   profile: {
     title: 'Información personal',
