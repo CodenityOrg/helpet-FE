@@ -34,7 +34,7 @@
                             <div class="form-input">
                                 <input
                                     :class="{ 'invalid': errors.has('Telefono') }"
-                                    v-validate="'numeric'"
+                                    v-validate="'phoneNumber'"
                                     type="phone"
                                     v-model="user.phone"
                                     name="phone"
@@ -99,6 +99,20 @@
 </template>
 
 <script>
+    import { Validator } from 'vee-validate';
+    import PhoneNumber from 'awesome-phonenumber';
+
+    const setValidator = message => {
+        const phoneNumber = {
+            getMessage: field => `${field} ${message}`,
+            validate (value) {
+                let phone = new PhoneNumber(value);
+                return { valid: phone.isValid() };
+            }
+        };
+        Validator.extend('phoneNumber', phoneNumber);
+    }
+
 
     import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
@@ -155,7 +169,7 @@
                     this.isLoading = false;
                     this.$router.push("/publicaciones")
                 } else {
-                    alert("Completa los datos antes de continuar :)");
+                    alert(this.$t("register.errors.beforeSubmit"));
                 }
             },
             async onSuccess() {
@@ -177,6 +191,7 @@
             }
         },
         created() {
+            setValidator(this.$t("register.errors.phone"));
             this.validateDebounced = debounce(() => this.validate(this.user.email), 200);
         }
     };

@@ -33,6 +33,10 @@ export default {
       email: 'Email',
       password: 'Password'
     },
+    errors: {
+      beforeSubmit: 'Complete your data before continue :)',
+      phone: 'is not a valid phone number'
+    }
   },
   profile: {
     title: 'Personal information',
