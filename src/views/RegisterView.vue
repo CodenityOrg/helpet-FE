@@ -74,7 +74,7 @@
                                 </b-form-checkbox>
                             </div>
                             <div class="form-submit">
-                                <button v-if="isVerified && acceptedTerms && this.validateEmail.validate && this.user.firstName && this.user.lastName && !errors.has('email')" class="btn btn-regular" @click="register" >Aceptar</button>
+                                <button v-if="isVerified && acceptedTerms && this.validateEmail.validate && this.user.firstName && this.user.lastName && this.user.password && !errors.has('email')" class="btn btn-regular" @click="register" >Aceptar</button>
                             </div>
                         </form>
                     </div>
