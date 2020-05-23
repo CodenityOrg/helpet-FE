@@ -36,8 +36,9 @@ export default {
       password: 'Contraseña'
     },
     errors: {
-      beforeSubmit: 'Completa los datos antes de continuar :)',
-      phone: 'no es un telefono valido'
+      phone: 'no es un telefono valido',
+      missingData: 'Completa los datos antes de continuar :)',
+      invalidData: 'Por favor corrija los errores antes de continuar'
     }
   },
   profile: {

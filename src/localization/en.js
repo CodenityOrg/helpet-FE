@@ -34,8 +34,9 @@ export default {
       password: 'Password'
     },
     errors: {
-      beforeSubmit: 'Complete your data before continue :)',
-      phone: 'is not a valid phone number'
+      missingData: 'Complete your data before continue :)',
+      phone: 'is not a valid phone number',
+      invalidData: 'Please fix errors before continue'
     }
   },
   profile: {
