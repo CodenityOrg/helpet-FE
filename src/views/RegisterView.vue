@@ -46,7 +46,7 @@
                                     :class="{ 'invalid': errors.has('email') || !isAvailableEmail }"
                                     v-validate="'required|email'"
                                     v-model="user.email"
-                                    name="mail"
+                                    name="email"
                                     :placeholder="$t('register.placeholders.email')" />
                             </div>
                             <div class="form-input">
