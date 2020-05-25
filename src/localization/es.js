@@ -31,7 +31,7 @@ export default {
     placeholders: {
       name: 'Nombres',
       lastName: 'Apellidos',
-      phone: 'Teléfono (Optional)',
+      phone: 'Teléfono (Prefijo + número de telefono) - Opcional',
       email: 'Email',
       password: 'Contraseña'
     },

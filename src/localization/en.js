@@ -29,7 +29,7 @@ export default {
     placeholders: {
       name: 'First Name',
       lastName: 'Last Name',
-      phone: 'Phone (Optional)',
+      phone: 'Phone (Prefix + number phone) - Optional ',
       email: 'Email',
       password: 'Password'
     },
