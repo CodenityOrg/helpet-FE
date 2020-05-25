@@ -31,13 +31,14 @@ export default {
     placeholders: {
       name: 'Nombres',
       lastName: 'Apellidos',
-      phone: 'Teléfono (Optional)',
+      phone: 'Teléfono (Prefijo + número de telefono) - Opcional',
       email: 'Email',
       password: 'Contraseña'
     },
     errors: {
-      beforeSubmit: 'Completa los datos antes de continuar :)',
-      phone: 'no es un telefono valido'
+      phone: 'no es un telefono valido',
+      missingData: 'Completa los datos antes de continuar :)',
+      invalidData: 'Por favor corrija los errores antes de continuar'
     }
   },
   profile: {
