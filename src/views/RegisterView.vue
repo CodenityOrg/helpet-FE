@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-submit">
                                 <button
-                                    v-if="isVerified && acceptedTerms && isAvailableEmail"
+                                    v-if="isVerified && acceptedTerms && isAvailableEmail && this.user.password"
                                     class="btn btn-regular"
                                     @click.prevent="register"
                                 >
