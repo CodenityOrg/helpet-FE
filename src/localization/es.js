@@ -62,7 +62,7 @@ export default {
     }
   },
   publications: {
-    newPost: 'Nueva publcación',
+    newPost: 'Nueva publicación',
     filterButton: 'Filtrar por...',
     orderButton: 'Ordenar por...',
     filters: {
