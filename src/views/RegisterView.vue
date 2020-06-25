@@ -17,24 +17,24 @@
                         <form class="form" id="register-form">
                             <div class="form-input">
                                 <input
-                                    :class="{ 'invalid': errors.has('Nombres') }"
+                                    :class="{ 'invalid': errors.has('firstName') }"
                                     type="text"
                                     v-model="user.firstName"
-                                    name="first-name"
+                                    name="firstName"
                                     :placeholder="$t('register.placeholders.name')" />
                             </div>
                             <div class="form-input">
                                 <input
-                                    :class="{ 'invalid': errors.has('Apellidos') }"
+                                    :class="{ 'invalid': errors.has('lastname') }"
                                     type="text"
                                     v-model="user.lastName"
-                                    name="last-name"
+                                    name="lastname"
                                     :placeholder="$t('register.placeholders.lastName')" />
                             </div>
                             <div class="form-input">
                                 <input
-                                    :class="{ 'invalid': errors.has('Telefono') }"
-                                    v-validate="'numeric'"
+                                    :class="{ 'invalid': errors.has('phone') }"
+                                    v-validate="'phoneNumber'"
                                     type="phone"
                                     v-model="user.phone"
                                     name="phone"
@@ -43,19 +43,19 @@
                             <div class="form-input">
                                 <input
                                     type="email"
-                                    :class="{ 'invalid': errors.has('email') || !this.validateEmail.validate }"
+                                    :class="{ 'invalid': errors.has('email') || !isAvailableEmail }"
                                     v-validate="'required|email'"
                                     v-model="user.email"
-                                    name="mail"
+                                    name="email"
                                     :placeholder="$t('register.placeholders.email')" />
                             </div>
                             <div class="form-input">
                                 <input
                                     type="password"
+                                    :class="{ 'invalid': errors.has('password')  }"
                                     v-model="user.password"
                                     name="password"
                                     :placeholder="$t('register.placeholders.password')" />
-                                <span>{{ errors.first('password') }}</span>
                             </div>
                             <div>
                                 <!-- TODO: Move API Key to .env file -->
@@ -74,7 +74,13 @@
                                 </b-form-checkbox>
                             </div>
                             <div class="form-submit">
-                                <button v-if="isVerified && acceptedTerms && this.validateEmail.validate" class="btn btn-regular" @click="register" >Aceptar</button>
+                                <button
+                                    v-if="isVerified && acceptedTerms && isAvailableEmail && this.user.password && this.user.password.trim().length >=8"
+                                    class="btn btn-regular"
+                                    @click.prevent="register"
+                                >
+                                    Aceptar
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -99,6 +105,20 @@
 </template>
 
 <script>
+    import { Validator } from 'vee-validate';
+    import PhoneNumber from 'awesome-phonenumber';
+
+    const setValidator = message => {
+        const phoneNumber = {
+            getMessage: field => `${field} ${message}`,
+            validate (value) {
+                let phone = new PhoneNumber(value);
+                return { valid: phone.isValid() };
+            }
+        };
+        Validator.extend('phoneNumber', phoneNumber);
+    }
+
 
     import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
@@ -126,7 +146,7 @@
         },
         computed: {
             ...mapState({
-                validateEmail: state => state.user.validate,
+                isAvailableEmail: state => state.user.validate.validate,
             }),
         },
         watch: {
@@ -142,11 +162,15 @@
                 registerUser: "registerUser",
                 updateToken: "updateToken"
             }),
-            async register(event) {
-                event.preventDefault();
-                event.stopPropagation();
+            async register() {
                 const isValidateAll = await this.$validator.validateAll();
-                if (this.user.firstName && this.user.lastName && isValidateAll && this.isVerified && this.validateEmail.validate) {
+                const { firstName, lastName } = this.user;
+                if (!(firstName || lastName)) {
+                    alert(this.$t("register.errors.missingData"));
+                    return;
+                }
+
+                if (isValidateAll && this.isVerified && this.isAvailableEmail) {
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);
@@ -155,7 +179,7 @@
                     this.isLoading = false;
                     this.$router.push("/publicaciones")
                 } else {
-                    alert("Completa los datos antes de continuar :)");
+                    alert(this.$t("register.errors.invalidData"))
                 }
             },
             async onSuccess() {
@@ -177,6 +201,7 @@
             }
         },
         created() {
+            setValidator(this.$t("register.errors.phone"));
             this.validateDebounced = debounce(() => this.validate(this.user.email), 200);
         }
     };

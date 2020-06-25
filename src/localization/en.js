@@ -29,10 +29,15 @@ export default {
     placeholders: {
       name: 'First Name',
       lastName: 'Last Name',
-      phone: 'Phone (Optional)',
+      phone: 'Phone (Prefix + number phone) - Optional ',
       email: 'Email',
       password: 'Password'
     },
+    errors: {
+      missingData: 'Complete your data before continue :)',
+      phone: 'is not a valid phone number',
+      invalidData: 'Please fix errors before continue'
+    }
   },
   profile: {
     title: 'Personal information',
