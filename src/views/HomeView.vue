@@ -4,9 +4,9 @@
             <full-page ref="fullpage" :options="options">
                 <IndexSection @toHelp="$refs.fullpage.api.moveTo(2)" />
                 <section id="help" class="cont--slogan section">
-                    <h2 style="color: white; text-align: center; margin-top: 100px; margin-bottom: 30px;">Descubre como ayudar a las mascotas a regresar a su hogar !</h2>
+                    <h2 style="color: white; text-align: center; margin-top: 100px; margin-bottom: 30px;">{{$t('home.howToMessage')}}</h2>
                     <div style="display: flex;">
-                        <iframe style="width: 80%; height: 400px; margin: auto; " width="560" height="315" src="https://www.youtube.com/embed/hfAK8nymLZw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe style="width: 80%; height: 400px; margin: auto; " width="560" height="315" src="https://www.youtube.com/embed/7H5ZJUjMMQY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </section>
                 <!-- <ContactSection /> -->
@@ -21,14 +21,12 @@
     import Vue from 'vue'
     import 'fullpage.js/vendors/scrolloverflow'
     import VueFullPage from 'vue-fullpage.js'
-    import ContactSection from "./sections/Contact";
     import IndexSection from "./sections/Index";
 
     Vue.use(VueFullPage);
     export default {
         name: 'HomePage',
         components: {
-            ContactSection,
             IndexSection
         },
         data() {

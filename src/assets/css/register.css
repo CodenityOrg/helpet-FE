@@ -1,23 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
+.register h1 {
+    margin:  0 0 1em 0;
 }
-a{
-    text-decoration: none;
-}
-li{
-    list-style: none;
-}
-body {
-    min-height: 100vh;
-    background: rgba(33, 177, 106, 1);
-    background-position: center;
-    background-size: cover;
-    position: relative;
-}
-
 .register h3{
     margin:  0 0 1em 0;
     font-size: 1.4em;
@@ -35,7 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    background: #20b16a;
+    background-color: #20b16a;
     height: calc(100% - 90px);
 }
 
@@ -47,18 +30,13 @@ body {
 }
 
 .register{
-    /* padding: 0 3em; */
     color: white;
     margin: 0;
     text-align: center;
-    /*display: inline-block;*/
-    /*width: 40%;*/
 }
-.redes{
+.net{
     align-items: center;
     padding: 0;
-    /*display: inline-block;*/
-    /*width: 40%;*/
 }
 
 .input--register{
@@ -72,10 +50,6 @@ body {
     border-color: #ff4b5c !important;
 }
 
-
-#inputApellido{
-    margin:  0 0.4em 0 0;
-}
 figure{
     width: 15em;
     height: 17em;
@@ -87,12 +61,15 @@ figure img{
     text-align: center;
 }
 
-.iconos{
+.icons{
     color: white;
 }
-.iconos .fa{
+.icons .fa{
     font-size:  1.5em;
     color: white;
 }
 
-
+.card-body .picture img {
+    object-fit: contain;
+    width: 100%;
+}

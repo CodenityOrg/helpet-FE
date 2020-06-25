@@ -20,7 +20,6 @@
 import { mapState, mapActions } from "vuex";
 import PostsListItem from "./PostsListItem";
 import InfiniteList from "../common/InfiniteList";
-import {throttle} from "lodash";
 
 export default {
     name: "PostsList",
@@ -44,12 +43,12 @@ export default {
             async handler(){
                 this.skip = 0;
                 this.isLoading = true;
-                await this.fetchPosts({
+                await this.fetchNearPosts({
                     filters: this.filters,
                     skip: this.skip,
                     limit: this.limit
                 });
-                //this.skip = this.skip + this.limit;
+                this.skip += this.limit;
                 this.isLoading = false;
             },
             immediate: true
@@ -64,7 +63,7 @@ export default {
     },
     methods: {
         ...mapActions({
-            fetchPosts: "fetchPosts"
+            fetchNearPosts: "fetchNearPosts"
         }),
         showUser(user) {
             this.$emit("onShowInfoUser", user);
@@ -72,16 +71,16 @@ export default {
         resetFilters() {
             this.skip = 0;
         },
-        scrollEnd: throttle(async function () {
+        async scrollEnd() {
             this.isLoading = true;
-            await this.fetchPosts({
+            await this.fetchNearPosts({
                 filters: this.filters,
                 limit: this.limit,
                 skip: this.skip
             });
-            this.skip = this.skip + this.limit;
+            this.skip += this.limit;
             this.isLoading = false;
-        }, 350)
+        }
     },
     beforeDestroy() {
         this.$store.commit("RESET_POSTS");

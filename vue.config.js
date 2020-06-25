@@ -6,10 +6,10 @@ module.exports = {
         new webpack.ProvidePlugin({
             mapboxgl: 'mapbox-gl'
         })
-      ]
+      ],
     },
     devServer: {
       host: '0.0.0.0',
-      port: 8080, // CHANGE YOUR PORT HERE!
+      port: 8080,
     }
   }

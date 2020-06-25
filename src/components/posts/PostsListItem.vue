@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="PostItem__cardContentDescription">
-                        <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> Descripcion</span>
+                        <span > <font-awesome-icon icon="comments" style="margin-right: 5px;" /> {{$t('publications.post.descriptionLabel')}}</span>
                         <div
                             ref="descriptionPost"
                             class="PostItem__cardContentDescriptionText"
@@ -54,15 +54,15 @@
                             @click="showMoreContent"
                             href="#"
                         >
-                            Show more
+                            {{$t('publications.post.showMore')}}
                         </a>
                     </div>
                     <div class="PostItem__cardContentAddress">
-                        <span><font-awesome-icon icon="map" style="margin-right: 5px;" />Ultimo lugar visto</span>
+                        <span><font-awesome-icon icon="map" style="margin-right: 5px;" />{{$t('publications.post.addressLabel')}}</span>
                         <p> {{post.address}}  </p>
                     </div>
                     <div class="PostItem__cardContentTags">
-                        <span style="font-size: 12px; color: #8e8e8e; margin-right: 5px;"><font-awesome-icon icon="tags" /> Características </span>
+                        <span style="font-size: 12px; color: #8e8e8e; margin-right: 5px;"><font-awesome-icon icon="tags" /> {{$t('publications.post.characteristic')}} </span>
                         <div class="PostItem__cardContentTagsContainer">
                             <span
                                 class="PostItem__cardContentTagsItem"
@@ -78,14 +78,14 @@
                 >
                     <BasicButton
                         class="PostItem__cardContactButton"
-                        @click.native="showUserInfo"
+                        @click="showUserInfo"
                     >
                         <font-awesome-icon icon="phone-alt" />
-                        Contactar
+                        {{$t('publications.post.contactButton')}}
                     </BasicButton>
                     <a
                         class="PostItem__cardContactMap"
-                        :href="'https://www.google.com/maps/search/?api=1&query='+ post.latitude + ',' + post.longitude">
+                        :href="'https://www.google.com/maps/search/?api=1&query='+ post.location.coordinates[1] + ',' + post.location.coordinates[0]">
                         <BasicButton
                             style="width: 100%;"
                         >
@@ -93,7 +93,6 @@
                             Ver mapa
                         </BasicButton>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -105,8 +104,7 @@
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
     import BasicButton from "../basics/BasicButton";
-    import {formatDate} from "../utils";
-    import moment from "moment";
+    import { formatDate } from "../utils";
 
     export default {
         name: "PostItem",
@@ -135,7 +133,7 @@
             }),
             async showUserInfo() {
                 if (!this.isAuthenticated) {
-                    alert("Quiere comenzar a ayudar, por favor registrate :)");
+                    alert("Quieres comenzar a ayudar, por favor regístrate :)");
                     return;
                 }
 
@@ -164,8 +162,8 @@
             isDescriptionHigher() {
                 return this.descriptionEl && (this.descriptionEl.scrollHeight - 1) > 90;
             },
-            formattedDate(){
-                return moment(this.post.createdAt).format('D MMM, kk:mm');
+            formattedDate() {
+                return formatDate(this.post.createdAt);
             }
         }
     }
@@ -206,13 +204,15 @@
                 }
             }
 
-
-
             &Content {
                 width: 330px;
                 margin: 0px;
                 position: relative;
                 padding-bottom: 35px;
+
+                h2 {
+                    word-break: break-word;
+                }
 
                 &Info{
                     display: flex;

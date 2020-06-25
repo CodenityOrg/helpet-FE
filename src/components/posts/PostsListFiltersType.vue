@@ -6,7 +6,7 @@
     >
         <span style="font-size: 16px;">
             <font-awesome-icon icon="filter" />
-            Filtrar por...
+            {{$t('publications.filterButton')}}
         </span>
     </Dropdown>
 </template>
@@ -23,11 +23,11 @@ export default {
         return {
             options: [
                 {
-                    label: "Perdido",
+                    label: this.$t('publications.filters.losts'),
                     value: 0
                 },
                 {
-                    label: "Encontrado",
+                    label: this.$t('publications.filters.found'),
                     value: 1
                 }
             ]

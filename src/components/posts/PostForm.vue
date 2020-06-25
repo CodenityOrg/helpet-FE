@@ -1,6 +1,7 @@
 <template>
     <div class="PostForm">
-        <h3 align="center">Informacion de la mascota</h3>
+        <notifications group="top" position='center top' />
+        <h3 align="center">{{$t('postRegister.title')}}</h3>
         <form class="form" id="post-form" >
             <div class="form-input">
                 <div class="grid-container">
@@ -15,7 +16,7 @@
             </div>
             <div class="form-input">
                 <span @click="openFileSelector" class="btn btn-default btn-file">
-                    Seleccionar Imagen
+                    {{$t('postRegister.selectImage')}}
                 </span>
                 <input
                     class="frm--btm"
@@ -24,21 +25,25 @@
                     max="3"
                     ref="fileSelector"
                     multiple="multiple"
-                    v-on:change="filePreview" hidden/>
+                    v-validate="`required|imageLength`"
+                    name="fotos"
+                    @change="filePreview"
+                    hidden
+                />
             </div>
             <div class="form-input">
                 <input
                     v-validate="'required'"
                     v-model="post.title"
                     type="text"
-                    :class="{ 'PostForm__input--invalid': errors.has('titulo') }"
+                    :class="{ 'PostForm__input--invalid': !isTitleValid }"
                     name="titulo"
-                    placeholder="Titulo"
+                    :placeholder="$t('postRegister.placeholders.title')"
                 />
             </div>
             <div class="form-input">
                 <textarea
-                    placeholder="Descripcion"
+                    :placeholder="$t('postRegister.placeholders.description')"
                     style="height: 100px;"
                     v-model="post.description"
                     name="descripcion"
@@ -52,14 +57,16 @@
                     v-validate="'required'"
                     v-model="post.address"
                     type="text"
-                    :class="{ 'PostForm__input--invalid': errors.has('direccion') }"
+                    :class="{ 'PostForm__input--invalid': !isAddressValid }"
                     name="direccion"
-                    placeholder="Direccion"
+                    :placeholder="$t('postRegister.placeholders.address')"
                 />
             </div>
-            <div class="form-input">
+            <div class="form-input" :class="{ 'PostForm__input--invalid': errors.has('tags') }">
                 <selectize
                     v-model="post.tags"
+                    v-validate="'required'"
+                    data-vv-name="tags"
                     :settings="settings">
                     <option
                         :key="tag._id"
@@ -73,40 +80,71 @@
                 <div style="display: flex;">
                     <div class="cleck--flex">
                         <div class="field--input" style="display: flex;">
-                            <label>Perdido</label>
+                            <label>{{$t('postRegister.options.lost')}}</label>
                             <input v-validate="'required'" style="margin: 0 15px;" v-model.number="post.type" checked="checked" name="tipo" type="radio" value=0>
                         </div>
                     </div>
                     <div class="cleck--flex">
                         <div class="field--input" style="display: flex;">
-                            <label>Encontrado</label>
+                            <label>{{$t('postRegister.options.found')}}</label>
                             <input v-validate="'required'" style="margin: 0 15px;" v-model.number="post.type" name="tipo" type="radio" value=1>
                         </div>
                     </div>
                     <span>{{ errors.first('tipo') }}</span>
                 </div>
             </div>
+            <FormErrors class="mb-4" v-show="!areAllInputsValid">
+                <ErrorMessage
+                    v-show="!isTitleValid"
+                    message="* Título requerido"/>
+                <ErrorMessage
+                    v-show="!isAddressValid"
+                    message="* Dirección requerida"/>
+                <ErrorMessage
+                    v-show="!isImagesValid"
+                    :message="errors.first('fotos')"/>
+                <ErrorMessage
+                    v-show="errors.has('tags')"
+                    :message="errors.first('tags')"/>
+            </FormErrors>
             <div class="form-submit">
                 <BasicButton
-                    @click.native="newPost"
+                    @click="newPost"
+                    :disabled="!areAllInputsValid"
                     class="btn btn-regular">
-                    Aceptar
+                    {{$t('postRegister.acceptButton')}}
                 </BasicButton>
             </div>
         </form>
     </div>
 </template>
 <script>
+    const imagesLengthValidator = {
+        getMessage(field, args) {
+            return "* Elije entre 1 y 3 fotos.";
+        },
+        validate(value, args) {
+            return value.length >= 1 && value.length <= 3;
+        }
+    };
 
     import Selectize from "vue2-selectize"
     import { mapActions, mapState } from "vuex";
+    import FormErrors from "../../components/basics/FormErrors";
+    import ErrorMessage from "../../components/basics/ErrorMessage";
 
     import BasicButton from "../basics/BasicButton";
+    import { Validator } from 'vee-validate';
+
+    Validator.extend('imageLength', imagesLengthValidator);
+
     export default {
         name: "PostForm",
         components: {
             Selectize,
-            BasicButton
+            BasicButton,
+            FormErrors,
+            ErrorMessage,
         },
         created() {
             this.getTags();
@@ -119,7 +157,19 @@
         computed: {
             ...mapState({
                 tags: state => state.pet.tags
-            })
+            }),
+            areAllInputsValid() {
+                return !this.errors.items.length;
+            },
+            isTitleValid() {
+                return !this.errors.has('titulo');
+            },
+            isAddressValid() {
+                return !this.errors.has('direccion');
+            },
+            isImagesValid() {
+                return !this.errors.has('fotos');
+            }
         },
         methods: {
             ...mapActions({
@@ -134,6 +184,7 @@
                 const photos = e.target.files;
                 for (const photo of photos) {
                     const reader = new FileReader();
+                    this.preview = [];
                     reader.addEventListener('load', () => {
                         this.preview.push(reader.result);
                     });
@@ -144,34 +195,34 @@
             async newPost(e) {
                 e.preventDefault();
                 const isValidateAll = await this.$validator.validateAll();
-                debugger
                 if (isValidateAll) {
                     this.$emit("toggleLoading");
-                    if (this.post.tags.length > 0) {
-                        if (this.marker && this.marker._lngLat) {
-                            const post = {
-                                ...this.post,
-                                photo: [...this.photos][0],
-                                latitude: this.marker._lngLat.lat,
-                                longitude: this.marker._lngLat.lng
-                            }
-                            post.tags = JSON.stringify(post.tags);
-                            const formData = new FormData();
-                            for (const prop in post) {
-                                formData.append(prop, post[prop]);
-                            }
-                            try {
-                                await this.createPost(formData);
-                            } catch (error) {
-                                console.log(error);
-                                this.$emit("toggleLoading");
-                            }
-                            this.$router.push("/publicaciones");
-                        } else {
-                            alert("Necesitas seleccionar una posicion en el mapa");
+                    if (this.marker && this.marker._lngLat) {
+                        const post = {
+                            ...this.post,
+                            photo: [...this.photos][0],
+                            latitude: this.marker._lngLat.lat,
+                            longitude: this.marker._lngLat.lng
                         }
+                        post.tags = JSON.stringify(post.tags);
+                        const formData = new FormData();
+                        for (const prop in post) {
+                            formData.append(prop, post[prop]);
+                        }
+                        try {
+                            await this.createPost(formData);
+                        } catch (error) {
+                            console.log(error);
+                            this.$emit("toggleLoading");
+                        }
+                        this.$router.push("/publicaciones");
                     } else {
-                        alert("Necesitas añadir algunas caracteristicas antes de continuar :)")
+                        this.$notify({
+                            group: "top",
+                            type: 'warn',
+                            duration: 4500,
+                            title: 'Necesitas seleccionar una posición en el mapa'
+                        });
                     }
                     this.$emit("toggleLoading");
                 }
@@ -231,12 +282,17 @@
             font-size: 14px !important;
         }
 
-        &__input--invalid {
+        &__input--invalid,
+        &__input--invalid .selectize-input {
             border-color: #ff4b5c !important;
         }
     }
 
     @import "~selectize/dist/css/selectize.default.css";
+
+    .selectize-control.multi .selectize-input > div{
+        background: green !important;
+    }
 
     .btn-file {
         position: relative;
@@ -254,7 +310,7 @@
         margin-right: auto;
         display: block;
         text-align: center;
-        background: var(--color-logo-verde);
+        background: var(--color-logo-green);
     }
     .btn-file input[type=file] {
         position: absolute;

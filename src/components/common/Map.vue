@@ -2,9 +2,10 @@
     <mapbox
         :access-token="accessToken"
         :map-options="{
-            style: 'mapbox://styles/mapbox/streets-v9',
-            center: [-70.3175874, -18.0228643],
-            zoom: 11
+            style: 'mapbox://styles/mapbox/streets-v10',
+            center: currentLocation,
+            zoom: 11,
+            localIdeographFontFamily: false
         }"
         :geolocate-control="{
             show: true,
@@ -24,6 +25,7 @@
 </template>
 <script>
     import Mapbox from 'mapbox-gl-vue';
+    import store from 'store';
 
     export default {
         name: "PostMap",
@@ -33,6 +35,12 @@
         data() {
             return {
                 accessToken: "pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+            }
+        },
+        computed: {
+            currentLocation() {
+                const {longitude = 0, latitude = 0} = store.get('location') || {};
+                return [longitude, latitude];
             }
         }
     }

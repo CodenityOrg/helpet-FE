@@ -4,16 +4,52 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-        <!-- <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
-        <link
-            type="text/css"
-            rel="stylesheet"
-            href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
-        /> -->
-        <!-- <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/bootstrap-vue.css"> -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
         <title>Helpet</title>
+        <link rel="preload" href="/open-sans-v17-latin/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/open-sans-v17-latin/open-sans-v17-latin-300.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/open-sans-v17-latin/open-sans-v17-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/open-sans-v17-latin/open-sans-v17-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+        <style>
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+                src: local('Open Sans Light'), local('OpenSans-Light'),
+                url('/open-sans-v17-latin/open-sans-v17-latin-300.woff2') format('woff2');
+            }
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-display: swap;
+                src: local('Open Sans Regular'), local('OpenSans-Regular'),
+                url('/open-sans-v17-latin/open-sans-v17-latin-regular.woff2') format('woff2');
+            }
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-display: swap;
+                src: local('Open Sans Bold'), local('OpenSans-Bold'),
+                url('/open-sans-v17-latin/open-sans-v17-latin-700.woff2') format('woff2');
+            }
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 800;
+                font-display: swap;
+                src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+                url('/open-sans-v17-latin/open-sans-v17-latin-800.woff2') format('woff2');
+            }
+        </style>
     </head>
     <body>
         <noscript>
@@ -23,21 +59,7 @@
         <div id="app"></div>
         <!-- built files will be auto injected -->
         <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                appId      : '835937416774006',
-                cookie     : true,  // enable cookies to allow the server to access the session
-                xfbml      : true,  // parse social plugins on this page
-                version    : 'v2.8' // use graph api version 2.8
-                });
-            };
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
+
         </script>
         <script src="https://apis.google.com/js/api:client.js"></script>
     </body>

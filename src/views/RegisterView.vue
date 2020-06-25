@@ -6,76 +6,91 @@
             <b-row>
                 <b-col md="8">
                     <div class="register">
-                        <h3>REGISTRATE</h3>
+                        <h3>{{$t('register.title')}}</h3>
 
                         <SocialButtons
                             @onSuccess="onSuccess"
                         >
-                            Registrate con facebook
+                            {{$t('register.fbButton')}}
                         </SocialButtons>
-                        <p style="margin: 10px;">o tambien con</p>
+                        <p style="margin: 10px;">{{$t('register.otherOptionText')}}</p>
                         <form class="form" id="register-form">
                             <div class="form-input">
                                 <input
-                                    :class="{ 'invalid': errors.has('Nombres') }"
+                                    :class="{ 'invalid': errors.has('firstName') }"
                                     type="text"
                                     v-model="user.firstName"
-                                    name="Nombres"
-                                    placeholder="Nombres" />
+                                    name="firstName"
+                                    :placeholder="$t('register.placeholders.name')" />
                             </div>
                             <div class="form-input">
                                 <input
-                                    :class="{ 'invalid': errors.has('Apellidos') }"
+                                    :class="{ 'invalid': errors.has('lastname') }"
                                     type="text"
                                     v-model="user.lastName"
-                                    name="Apellidos"
-                                    placeholder="Apellidos" />
+                                    name="lastname"
+                                    :placeholder="$t('register.placeholders.lastName')" />
                             </div>
                             <div class="form-input">
                                 <input
-                                    :class="{ 'invalid': errors.has('Telefono') }"
-                                    v-validate="'numeric'"
+                                    :class="{ 'invalid': errors.has('phone') }"
+                                    v-validate="'phoneNumber'"
                                     type="phone"
                                     v-model="user.phone"
-                                    name="Telefono"
-                                    placeholder="Telefono (Opcional)"/>
+                                    name="phone"
+                                    :placeholder="$t('register.placeholders.phone')"/>
                             </div>
                             <div class="form-input">
                                 <input
                                     type="email"
-                                    :class="{ 'invalid': errors.has('email') || !this.validateEmail.validate }"
+                                    :class="{ 'invalid': errors.has('email') || !isAvailableEmail }"
                                     v-validate="'required|email'"
                                     v-model="user.email"
                                     name="email"
-                                    @keyup="changeValidate"
-                                    placeholder="Correo" />
+                                    :placeholder="$t('register.placeholders.email')" />
                             </div>
                             <div class="form-input">
                                 <input
                                     type="password"
+                                    :class="{ 'invalid': errors.has('password')  }"
                                     v-model="user.password"
                                     name="password"
-                                    placeholder="Contraseña" />
-                                <span>{{ errors.first('password') }}</span>
+                                    :placeholder="$t('register.placeholders.password')" />
                             </div>
                             <div>
+                                <!-- TODO: Move API Key to .env file -->
                                 <vue-recaptcha
                                     @verify="verify"
                                     sitekey="6Ld2lDMUAAAAAAANVdV6YEsvi8xehx9NmXK8Ce8a">
                                 </vue-recaptcha>
                             </div>
+                            <div class="mt-2 mb-2">
+                                <b-form-checkbox
+                                    id="terms"
+                                    v-model="acceptedTerms"
+                                    name="terms"
+                                >
+                                    {{$t('terms.beforeContent')}} <router-link :to="{ name: 'Terms' }">{{$t('terms.afterContent')}}</router-link>
+                                </b-form-checkbox>
+                            </div>
                             <div class="form-submit">
-                                <button v-if="isVerified && this.validateEmail.validate" class="btn btn-regular" @click="register" >Aceptar</button>
+                                <button
+                                    v-if="isVerified && acceptedTerms && isAvailableEmail && this.user.password && this.user.password.trim().length >=8"
+                                    class="btn btn-regular"
+                                    @click.prevent="register"
+                                >
+                                    Aceptar
+                                </button>
                             </div>
                         </form>
                     </div>
                 </b-col>
                 <b-col class="img-register" md="4">
-                    <div class="redes">
+                    <div class="net">
                         <figure class="figure">
-                            <img src="../assets/img/icon-register.png" alt="icono-register">
+                            <img src="../assets/img/icon-register.png" width="240px" height="240px" alt="icono-register">
                         </figure>
-                        <div class="iconos">
+                        <div class="icons">
                             <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -90,17 +105,34 @@
 </template>
 
 <script>
+    import { Validator } from 'vee-validate';
+    import PhoneNumber from 'awesome-phonenumber';
+
+    const setValidator = message => {
+        const phoneNumber = {
+            getMessage: field => `${field} ${message}`,
+            validate (value) {
+                let phone = new PhoneNumber(value);
+                return { valid: phone.isValid() };
+            }
+        };
+        Validator.extend('phoneNumber', phoneNumber);
+    }
+
 
     import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
     import SocialButtons from "../components/common/SocialButtons";
+    import {debounce} from 'lodash';
+    import userAPI from '../api/user';
 
     export default {
         name: "RegisterUser",
         data() {
             return {
                 user: {},
-                isVerified: false
+                isVerified: false,
+                acceptedTerms: false,
             }
         },
         mounted() {
@@ -114,20 +146,31 @@
         },
         computed: {
             ...mapState({
-                validateEmail: state => state.user.validate,
+                isAvailableEmail: state => state.user.validate.validate,
             }),
+        },
+        watch: {
+            'user.email': {
+                handler(value, oldValue) {
+                    this.validateDebounced();
+                },
+                deep: true,
+            }
         },
         methods: {
             ...mapActions({
                 registerUser: "registerUser",
-                validate: "validate",
                 updateToken: "updateToken"
             }),
-            async register(event) {
-                event.preventDefault();
-                event.stopPropagation();
+            async register() {
                 const isValidateAll = await this.$validator.validateAll();
-                if (this.user.firstName && this.user.lastName && isValidateAll && this.isVerified && this.validateEmail.validate) {
+                const { firstName, lastName } = this.user;
+                if (!(firstName || lastName)) {
+                    alert(this.$t("register.errors.missingData"));
+                    return;
+                }
+
+                if (isValidateAll && this.isVerified && this.isAvailableEmail) {
                     const user = this.user;
                     this.isLoading = true;
                     await this.registerUser(user);
@@ -136,7 +179,7 @@
                     this.isLoading = false;
                     this.$router.push("/publicaciones")
                 } else {
-                    alert("Completa los datos antes de continuar :)");
+                    alert(this.$t("register.errors.invalidData"))
                 }
             },
             async onSuccess() {
@@ -150,9 +193,16 @@
             expired() {
                 this.isVerified = false;
             },
-            changeValidate(){
-                this.validate({ email: this.user.email });
-            },
+            async validate(email) {
+                const { status, data: user} = await userAPI.validate({email});
+                if (status === 200) {
+                    this.$store.commit("VALIDATE", user);
+                }
+            }
+        },
+        created() {
+            setValidator(this.$t("register.errors.phone"));
+            this.validateDebounced = debounce(() => this.validate(this.user.email), 200);
         }
     };
 </script>

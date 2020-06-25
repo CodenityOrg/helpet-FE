@@ -6,7 +6,7 @@
     >
         <span style="font-size: 16px;">
             <font-awesome-icon icon="sort" />
-            Ordenar por...
+            {{$t('publications.orderButton')}}
         </span>
     </Dropdown>
 </template>
@@ -23,11 +23,11 @@ export default {
         return {
             options: [
                 {
-                    label: "Mas recientes",
+                    label: this.$t('publications.filters.recent'),
                     value: "desc"
                 },
                 {
-                    label: "Antiguos",
+                    label: this.$t('publications.filters.old'),
                     value: "asc"
                 }
             ]

@@ -1,27 +1,52 @@
 import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from "./store/index";
+import VeeValidate, { Validator } from 'vee-validate';
 import VueCookie from "vue-cookie";
 import axios from "axios";
-import VeeValidate, { Validator } from 'vee-validate';
 import BootstrapVue from "bootstrap-vue";
 import VueBus from 'vue-bus';
+import VueSocketIO from 'vue-socket.io';
+import VueGtm from 'vue-gtm';
+import VueI18n from 'vue-i18n';
+import es from "vee-validate/dist/locale/es";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import VueSocketIO from 'vue-socket.io';
 
-import es from "vee-validate/dist/locale/es";
+import App from './App.vue';
+import router from './router';
+import store from "./store/index";
+
+import dictionary from "./localization";
+
+import FBLoginInstall from "./installs/fb-login";
+
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+	locale: navigator.language.split('-')[0],
+	fallbackLocale: "en",
+	messages: dictionary,
+});
+
+FBLoginInstall();
+
+//TODO: Move ga key to .env
+Vue.use(VueGtm, {
+	id: 'GTM-MWR6DP8',
+	debug: true,
+	loadScript: true,
+	vueRouter: router
+	//ignoredViews: ['homepage']
+});
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add([faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome]);
 
-
 Vue.use(VueBus);
 Vue.use(BootstrapVue);
 Validator.localize({ es })
-Vue.use(VeeValidate, { locale: "es" });
+Vue.use(VeeValidate, { locale: "es", dictionary });
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
 import loadingMixin from './components/common/includes/loading-mixin';
@@ -30,9 +55,11 @@ Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
+const socketHost = process.env.VUE_APP_SOCKET_HOST || 'http://localhost:3000';
+
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: 'https://helpet-dev-api.herokuapp.com',
+    connection: socketHost,
     vuex: {
         store,
         actionPrefix: 'SOCKET_',
@@ -65,6 +92,7 @@ router.beforeEach(async ({meta, path}, from, next) => {
 
 new Vue({
 	render: h => h(App),
+	i18n,
 	router,
 	store
 }).$mount('#app');

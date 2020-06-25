@@ -1,5 +1,5 @@
 <template>
-    <div class="PostView cont cont--inicio">
+    <div class="PostView cont cont--start">
         <loading :active.sync="isLoading" />
         <div class="PostView__Form">
             <PostForm
@@ -36,7 +36,8 @@
                     this.marker.remove();
                     this.marker = null;
                 }
-                this.marker = new mapboxgl.Marker(this.genEmptyMarker(), {
+                const emptyMarker = this.genEmptyMarker();
+                this.marker = new mapboxgl.Marker(emptyMarker, {
                     offset: [-24, -24]
                 })
                 .setLngLat(
@@ -61,15 +62,15 @@
     };
 </script>
 
-
 <style lang="scss">
     .PostView{
         display: flex;
         &__Form{
             padding-top: 0;
-            background-color: var(--color-gris);
+            background-color: var(--color-gray);
             width: 600px;
             height: 100%;
+            overflow-y: auto;
         }
 
         &__Map{
@@ -96,7 +97,7 @@
         }
     }
 
-    .mapboxgl-map, 
+    .mapboxgl-map,
     .vue-google-map {
         height: 100%;
     }

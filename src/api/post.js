@@ -3,8 +3,18 @@ import axios from 'axios';
 const HOST = process.env.VUE_APP_ROOT_HOST || "http://localhost:3000/api";
 
 export default {
-    fetchPostList({filters, limit = 5, skip = 0}) {
-        return axios.get(`${HOST}/posts?type=${filters.types}&limit=${limit}&skip=${skip}&order=${filters.order}`).then(res => res.data);
+    fetchPostList({filters, limit = 20, skip = 0}) {
+        return axios.get(`${HOST}/posts?
+            type=${filters.types}&limit=${limit}&skip=${skip}
+            &order=${filters.order}`)
+                .then(res => res.data);
+    },
+    fetchNearPostList({filters, limit = 20, skip = 0, latitude = 0, longitude = 0}) {
+        return axios.get(`${HOST}/posts/near?
+            type=${filters.types}&limit=${limit}&skip=${skip}
+            &longitude=${longitude}&latitude=${latitude}
+            &order=${filters.order}`)
+                .then(res => res.data);
     },
     create(payload) {
         return axios.post(`${HOST}/posts/s3`, payload, {

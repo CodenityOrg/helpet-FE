@@ -4,8 +4,8 @@
     >
         <div class="LoginUser__sectionImg">
             <div class="LoginUser__sectionImgCont">
-                <img src="../../assets/img/img-dog.png" alt="helpet inicio de sesion">
-                <span class="LoginUser__sectionImgContSlogan">Inicia sesion y ayuda a una mascota a regresar a su hogar</span>
+                <img :src="dogImg" alt="helpet inicio de sesión">
+                <span class="LoginUser__sectionImgContSlogan">{{$t('login.sloganMessage')}}</span>
             </div>
         </div>
         <div class="LoginUser__sectionLogin">
@@ -18,9 +18,9 @@
                     @onSuccess="successOauth"
                     @onFailure="failureOauth"
                 >
-                    Iniciar sesion con Facebook
+                    {{$t('login.fbLoginButton')}}
                 </SocialButtons>
-                <p class="info-message">O usa tu email | <a href="#">Olvidaste tu contraseña?</a> </p>
+                <p class="info-message">{{$t('login.emailText')}} | <a href="#">{{$t('login.forgotPasswordText')}}</a> </p>
                 <div class="form-input font-size-10px" >
                     <input
                         class="login-input"
@@ -29,7 +29,7 @@
                         v-model="credentials.email"
                         type="email"
                         name="email"
-                        placeholder="Email"
+                        :placeholder="$t('login.placeholders.email')"
                     />
                 </div>
                 <div class="form-input font-size-10px">
@@ -40,14 +40,14 @@
                         v-model="credentials.password"
                         type="password"
                         name="password"
-                        placeholder="Contraseña"
+                        :placeholder="$t('login.placeholders.password')"
                     />
                 </div>
                 <div class="info-message">
-                    <p>No tienes cuenta ? <router-link to="/registro"><span @click="$emit('close')">Crea una cuenta aqui</span></router-link></p>
+                    <p>{{$t('login.notAccountText')}} <router-link to="/registro"><span @click="$emit('close')">{{$t('login.createAccountText')}}</span></router-link></p>
                 </div>
                 <div class="form-submit">
-                    <BasicButton class="frm--btm login-btn" type="submit" @click.native="signUp">Iniciar sesion</BasicButton>
+                    <BasicButton class="frm--btm login-btn" type="submit" @click="signUp">{{$t('login.loginButton')}}</BasicButton>
                 </div>
             </form>
         </div>
@@ -59,6 +59,7 @@
     import Modal from "../common/Modal";
     import SocialButtons from "../common/SocialButtons";
     import BasicButton from "../basics/BasicButton";
+    import { isSafari } from '../utils';
 
     import {mapActions, mapState} from "vuex";
 
@@ -71,6 +72,7 @@
             SocialButtons
         },
         data() {
+            const dogImg = require(`../../assets/img/img-dog.${isSafari ? 'png' : 'webp'}`);
             return {
                 credentials: {
                     email: "",
@@ -82,7 +84,8 @@
                 },
                 googleSignInParams: {
                     client_id: '1076081297271-he3s2qr0ob61s4cpbgl0cnj2s5ajpqu7.apps.googleusercontent.com'
-                }
+                },
+                dogImg
             }
         },
         computed: {
@@ -125,10 +128,10 @@
             },
             showFailMessage() {
                 this.$notify({
-                    group: "foo",
+                    group: "top",
                     type: "error",
-                    title: "INICIO DE SESION",
-                    text: "Tu usuario o contraseña son incorrectos  <br> <b>   'Por favor intentelo nuevamente'</b>",
+                    title: "INICIO DE SESIÓN",
+                    text: this.$t("login.incorrectLogin"),
                 });
             }
         }
@@ -168,7 +171,7 @@
             background: #009900;
 
             &Cont{
-                border-right: 2px solid var(--color-logo-verde);
+                border-right: 2px solid var(--color-logo-green);
                 height: 100%;
                 padding-top: 60px;
 
@@ -192,6 +195,12 @@
         &__sectionLogin {
             width: 60%;
             padding: 30px;
+        }
+    }
+
+    @media all and (max-width: 500px) {
+        .LoginUser__sectionLogin {
+            padding: 10px;
         }
     }
 </style>

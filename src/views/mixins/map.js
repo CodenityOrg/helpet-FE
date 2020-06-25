@@ -1,20 +1,26 @@
+import store from 'store';
+import MapboxLanguage from '@mapbox/mapbox-gl-language';
 
 export default {
     methods: {
         mapInitialized(map) {
             this.map = map;
+            map.addControl(new MapboxLanguage());
             map.on("load", function () {
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(position => {
+                        store.set('location', {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        });
                         document.querySelector(".mapboxgl-ctrl-geolocate").click();
                     })
                 }
             });
-
         },
         genLayoutMarker(data) {
             const el = document.createElement("div");
-            el.className = (data.type == 1) ? "marker marker--encontrado" : "xmarker marker--perdido";
+            el.className = (data.type == 1) ? "marker marker--found" : "xmarker marker--lost";
             if (data.photo) {
                 el.style.backgroundImage = `url(${data.photo})`;
             }

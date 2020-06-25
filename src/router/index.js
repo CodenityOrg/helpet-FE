@@ -1,12 +1,19 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import HomePage from '../views/HomeView.vue';
-import RegisterUser from '../views/RegisterView.vue';
-import PostRegister from '../views/PostRegisterView.vue'
-import Profile from "../views/ProfileView";
-import MapView from '../views/MapView';
 
+// route level code-splitting
+// this generates a separate chunk (publications.[hash].js) for this route
+// which is lazy-loaded when the route is visited.
+
+import HomePage from '../views/HomeView.vue';
+
+const RegisterUser = () => import(/* webpackChunkName: "Register " */'../views/RegisterView.vue');
+const Profile = () => import(/* webpackChunkName: "Publications" */'../views/ProfileView.vue');
+const MapView = () => import(/* webpackChunkName: "Publications" */ '../views/MapView');
+const PostRegister = () => import(/* webpackChunkName: "Publications" */'../views/PostRegisterView.vue');
+const ContactView = () => import(/* webpackChunkName: "Contact" */ '../views/ContactView');
+const TermsView = () => import(/* webpackChunkName: "Contact" */ '../views/TermsView');
 
 Vue.use(Router);
 
@@ -55,6 +62,22 @@ const router = new Router({
       component: MapView,
       meta: {
         title: "Publicaciones"
+      }
+    },
+    {
+      path: '/contacto',
+      name: 'Contact',
+      component: ContactView,
+      meta: {
+        title: "Contacto"
+      }
+    },
+    {
+      path: '/terms',
+      name: 'Terms',
+      component: TermsView,
+      meta: {
+        title: "Privacidad y Términos de Uso"
       }
     },
     {

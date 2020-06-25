@@ -1,11 +1,11 @@
 <template>
-    <div class="MapView cont cont--inicio">
-        <div class="MapView__PostList cont--tarjetas">
+    <div class="MapView cont cont--start">
+        <div class="MapView__PostList cont--cards">
             <router-link v-if="isAuthenticated" :to="{name : 'RegisterPostPet'}">
                 <BasicButton
                     class="MapView__PostListCreateButton"
                 >
-                    Nueva publicacion
+                    {{$t('publications.newPost')}}
                 </BasicButton>
             </router-link>
             <PostsListFilters />
@@ -14,14 +14,13 @@
                 :filters="filters"
             />
         </div>
-        <div class="MapView__PostMap cont--mapa">
+        <div class="MapView__PostMap cont--map">
             <Map
                 @init="mapInitialized"
             />
         </div>
         <notifications
-            style="margin-top: 80px;"
-            group="foo"
+            class="notification-wrapper"
             position='top center'
         />
     </div>
@@ -30,13 +29,15 @@
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import mapMixin from "./mixins/map";
+    import store from 'store';
+
     import Map from "../components/common/Map";
     import PostsList from "../components/posts/PostsList";
     import PostsListFilters from "../components/posts/PostsListFilters";
     import PostListSelected from "../components/posts/PostsListFIltersSelected";
     import BasicButton from "../components/basics/BasicButton";
-    import {debounce} from "lodash";
+
+    import mapMixin from "./mixins/map";
 
     export default {
         name: "MapView",
@@ -91,10 +92,9 @@
             },
             showDetectLocationAlert() {
                 this.$notify({
-                    group: 'foo',
-                    type: 'warn',
+                    type: "warn",
                     duration: 4500,
-                    title: 'Estamos ubicandote, espere un momento',
+                    title: this.$t("publications.mapAlert"),
                 });
             }
         },
@@ -107,27 +107,28 @@
                 positions: "getCurrentPositions"
             }),
             markers() {
-                return this.positions.map(position => {
-                    return {
-                        id: position.id,
-                        photo: position.photo,
-                        properties: {
-                            iconSize: [48, 48]
-                        },
-                        type: position.type,
-                        geometry: {
-                            type: "Point",
-                            coordinates: [position.longitude, position.latitude]
+                return this.positions.map(position => (
+                        {
+                            id: position.id,
+                            photo: position.photo,
+                            properties: {
+                                iconSize: [48, 48]
+                            },
+                            type: position.type,
+                            geometry: {
+                                type: "Point",
+                                coordinates: [position.longitude, position.latitude]
+                            }
                         }
-                    }
-                })
-            }
+                    )
+                );
+            },
         }
     };
 
 </script>
 <style lang="scss">
-    @import "../assets/css/componentes.css";
+    @import url("https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css");
 
     .MapView {
         display: flex;
@@ -150,14 +151,6 @@
 
         &__PostMap{
             flex: 1;
-        }
-
-
-
-        @media (max-width: 650px) {
-            &__PostMap{
-                display: none;
-            }
         }
     }
 </style>

@@ -1,54 +1,71 @@
 <template>
+
     <nav class="Navbar"
         v-click-outside="close"
         :class="{ 'Navbar--block': !isHomePage }"
     >
         <div class="Navbar__logo">
-            <router-link :to="{ name: 'Home' }" ><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></router-link>
+            <router-link :to="{ name: 'Home' }" >
+                <img
+                    sizes="(max-width: 300px) 100vw, 300px"
+                    :srcset="`${logosSrcSet['ico-logo_scale_sm']} 200w, ${logosSrcSet['ico-logo_scale_m']} 300w`"
+                    :src="logoSrc"
+                    alt="Helpet Logo">
+            </router-link>
         </div>
         <div class="Navbar__triggerButton" :class="{ 'Navbar__triggerButton--left': showMenu }">
             <div @click="toggleMenu"><font-awesome-icon icon="bars" style="cursor: pointer; margin: 15px; color: white; font-size: 20px;" /></div>
         </div>
         <div @click="close" class="Navbar__menu" :class="{ 'Navbar__menu--show': showMenu }">
             <div class="Navbar__menuLogo">
-                <router-link :to="{ name: 'Home' }" ><img src="../../../assets/img/ico-logo.png" alt="logo helpet"></router-link>
+                <router-link :to="{ name: 'Home' }" >
+                    <img
+                    sizes="(max-width: 300px) 100vw, 300px"
+                    :srcset="`${logosSrcSet['ico-logo_scale_sm']} 200w, ${logosSrcSet['ico-logo_scale_m']} 300w`"
+                    :src="logoSrc"
+                    alt="Helpet Logo">
+                </router-link>
             </div>
             <template v-if="!isAuthenticated">
                 <div class="Navbar__menuItem">
                     <a href="" @click="clickLogin">
-                        Iniciar sesion
+                        {{$t('navigation.button.login')}}
                     </a>
                 </div>
                 <div class="Navbar__menuItem">
-                    <router-link :to="{name : 'RegisterUser'}">Regístrate</router-link>
+                    <router-link :to="{name : 'RegisterUser'}">{{$t('navigation.button.register')}}</router-link>
                 </div>
             </template>
             <template v-else>
                 <div class="Navbar__menuItem">
-                    <template v-if="true">
-                        <NotificationMenu />
-                    </template>
+                    <NotificationMenu />
                 </div>
                 <div class="Navbar__menuItem">
                     <router-link :to="{name : 'Profile'}"> {{fullName}} </router-link>
                 </div>
             </template>
             <div class="Navbar__menuItem">
-                <router-link :to="{name : 'MapView'}">Publicaciones</router-link>
+                <router-link :to="{name : 'MapView'}">{{$t('navigation.button.posts')}}</router-link>
+            </div>
+            <div class="Navbar__menuItem">
+                <router-link :to="{name : 'Contact'}">{{$t('navigation.button.contact')}}</router-link>
             </div>
             <div class="Navbar__menuItem" v-if="isAuthenticated">
-                <a href="" @click="doLogout">Cerrar sesión</a>
+                <a href="" @click="doLogout">{{$t('navigation.button.logout')}}</a>
             </div>
         </div>
     </nav>
 </template>
 <script>
-    import NotificationMenu from "../../notifications/NotificationMenu";
     import {mapState, mapActions} from "vuex";
-
+    import vClickOutside from "v-click-outside";
+    import Vue from "vue";
+    import { isSafari } from '../../utils';
+    Vue.use(vClickOutside);
+    
     export default {
         components: {
-            NotificationMenu
+            NotificationMenu: () => import(/* webpackPrefetch: true */ "../../notifications/NotificationMenu"),
         },
         computed: {
             ...mapState({
@@ -63,9 +80,23 @@
             }
         },
         data() {
+            const logosSrcSet = isSafari ?
+            {
+                "ico-logo_scale_sm": require("../../../assets/img/ico-logo_iiqlh8_c_scale,w_200.png"),
+                "ico-logo_scale_m": require("../../../assets/img/ico-logo_iiqlh8_c_scale,w_300.png")
+            } :
+            {
+                "ico-logo_scale_sm": require("../../../assets/img/ico-logo_ahzu9s_c_scale,w_200.webp"),
+                "ico-logo_scale_m": require("../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp")
+            };
+            const logoSrc = isSafari ?
+                require('../../../assets/img/ico-logo_iiqlh8_c_scale,w_300.png')
+                : require('../../../assets/img/ico-logo_ahzu9s_c_scale,w_300.webp');
             return {
                 showNotifications: false,
-                showMenu: false
+                showMenu: false,
+                logosSrcSet,
+                logoSrc
             }
         },
         methods: {
@@ -104,6 +135,10 @@
         }
 
         @media (max-width: 600px) {
+            & {
+                min-height: 55px;
+                padding: 0;
+            }
             &__triggerButton {
                 display: block;
             }

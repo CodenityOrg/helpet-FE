@@ -6,15 +6,15 @@
                     :src="this.sender.profile" alt="">
             </div>
             <div class="Notification__Info">
-                <span class="Notification__InfoText"> <strong>{{senderFullName}}</strong>  ha encontrado una mascota parecida a la tuya! Haz click para ver!</span>
+                <span class="Notification__InfoText"> <strong>{{senderFullName}}</strong> ha encontrado una mascota parecida a la tuya! Haz click para ver!</span>
                 <span class="Notification__InfoDate"><strong>{{formattedDate}}</strong> </span>
             </div>
         </div>
     </div>
 </template>
 <script>
-import moment from "moment";
 import { mapActions } from 'vuex';
+import { formatDate } from "../utils";
 
 export default {
     name: "Notification",
@@ -44,7 +44,7 @@ export default {
             return `${this.sender.firstName} ${this.sender.lastName}`;
         },
         formattedDate() {
-            return moment(this.notification.createdAt).format('D MMM, kk:mm');
+            return formatDate(this.notification.createdAt);
         }
     }
 }

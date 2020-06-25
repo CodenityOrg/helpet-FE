@@ -2,7 +2,7 @@
     <div>
         <loading :active.sync="isLoading" />
         <b-row>
-            <b-col md="4" class="cont cont--inicio">
+            <b-col md="4" class="cont cont--start">
                 <PostForm
                     @toggleLoading="toggleLoading"
                     :marker="marker"
@@ -51,7 +51,7 @@
             },
             genEmptyMarker(){
                 const el = document.createElement("div");
-                el.className = "marker marker--encontrado";
+                el.className = "marker marker--found";
                 el.style.width = '48px';
                 el.style.height = '48px';
                 return el;
