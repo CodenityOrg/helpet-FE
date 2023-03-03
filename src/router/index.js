@@ -9,10 +9,10 @@ import Vue from 'vue';
 
 const RegisterUser = () => import(/* webpackChunkName: "Register " */'@/views/RegisterView.vue');
 const Profile = () => import(/* webpackChunkName: "Publications" */'@/views/ProfileView.vue');
-const MapView = () => import(/* webpackChunkName: "Publications" */ '@/views/MapView');
+const MapView = () => import(/* webpackChunkName: "Publications" */ '@/views/MapView.vue');
 const PostRegister = () => import(/* webpackChunkName: "Publications" */'@/views/PostRegisterView.vue');
-const ContactView = () => import(/* webpackChunkName: "Contact" */ '@/views/ContactView');
-const TermsView = () => import(/* webpackChunkName: "Contact" */ '@/views/TermsView');
+const ContactView = () => import(/* webpackChunkName: "Contact" */ '@/views/ContactView.vue');
+const TermsView = () => import(/* webpackChunkName: "Contact" */ '@/views/TermsView.vue');
 
 Vue.use(Router);
 

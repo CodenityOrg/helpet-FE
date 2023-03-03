@@ -11,8 +11,8 @@
     </Modal>
 </template>
 <script>
-    import PostListItem from "./PostsListItem";
-    import Modal from "../common/Modal";
+    import PostListItem from "./PostsListItem.vue";
+    import Modal from "../common/Modal.vue";
     export default {
         name: "PostListItemModal",
         components: {

@@ -103,7 +103,7 @@
 
     import { Carousel, Slide } from "vue-carousel";
     import { mapActions, mapState } from "vuex";
-    import BasicButton from "../basics/BasicButton";
+    import BasicButton from "../basics/BasicButton.vue";
     import { formatDate } from "../utils";
 
     export default {

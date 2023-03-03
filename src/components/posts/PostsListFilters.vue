@@ -12,8 +12,8 @@
 
 import {mapState} from "vuex";
 
-import OrderFilter from "./PostsListFiltersOrder";
-import TypeFilter from "./PostsListFiltersType";
+import OrderFilter from "./PostsListFiltersOrder.vue";
+import TypeFilter from "./PostsListFiltersType.vue";
 
 export default {
     name: "PostsListFilters",

@@ -30,11 +30,11 @@
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
 
-    import Map from "../components/common/Map";
-    import PostsList from "../components/posts/PostsList";
-    import PostsListFilters from "../components/posts/PostsListFilters";
-    import PostListSelected from "../components/posts/PostsListFIltersSelected";
-    import BasicButton from "../components/basics/BasicButton";
+    import Map from "../components/common/Map.vue";
+    import PostsList from "../components/posts/PostsList.vue";
+    import PostsListFilters from "../components/posts/PostsListFilters.vue";
+    import PostListSelected from "../components/posts/PostsListFiltersSelected.vue";
+    import BasicButton from "../components/basics/BasicButton.vue";
 
     import mapMixin from "./mixins/map";
 

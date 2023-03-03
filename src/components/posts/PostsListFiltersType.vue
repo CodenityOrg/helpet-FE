@@ -12,7 +12,7 @@
 </template>
 <script>
 
-import Dropdown from "../common/Dropdown";
+import Dropdown from "../common/Dropdown.vue";
 import {mapState} from "vuex";
 export default {
     name: "TypeFilters",

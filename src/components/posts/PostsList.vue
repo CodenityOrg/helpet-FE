@@ -18,8 +18,8 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
-import PostsListItem from "./PostsListItem";
-import InfiniteList from "../common/InfiniteList";
+import PostsListItem from "./PostsListItem.vue";
+import InfiniteList from "../common/InfiniteList.vue";
 
 export default {
     name: "PostsList",
