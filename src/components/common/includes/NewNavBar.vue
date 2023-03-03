@@ -65,7 +65,7 @@
     
     export default {
         components: {
-            NotificationMenu: () => import(/* webpackPrefetch: true */ "@/components/notifications/NotificationMenu"),
+            NotificationMenu: () => import(/* webpackPrefetch: true */ "@/components/notifications/NotificationMenu.vue"),
         },
         computed: {
             ...mapState({

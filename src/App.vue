@@ -33,10 +33,10 @@
 			NavBar,
 			LoginUser,
 			InfoUser,
-			PostModal: () => import(/* webpackPrefetch: true */ '@/components/posts/PostModal'),
+			PostModal: () => import(/* webpackPrefetch: true */ '@/components/posts/PostModal.vue'),
 			AppFooter,
 			CookieLaw,
-			NotificationModal: () => import(/* webpackPrefetch: true */ '@/components/notifications/NotificationModal')
+			NotificationModal: () => import(/* webpackPrefetch: true */ '@/components/notifications/NotificationModal.vue')
 		},
 		name: 'app',
 		created() {

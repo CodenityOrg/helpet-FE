@@ -130,10 +130,10 @@
 
     import Selectize from "vue2-selectize"
     import { mapActions, mapState } from "vuex";
-    import FormErrors from "../../components/basics/FormErrors";
-    import ErrorMessage from "../../components/basics/ErrorMessage";
+    import FormErrors from "../../components/basics/FormErrors.vue";
+    import ErrorMessage from "../../components/basics/ErrorMessage.vue";
 
-    import BasicButton from "../basics/BasicButton";
+    import BasicButton from "../basics/BasicButton.vue";
     import { Validator } from 'vee-validate';
 
     Validator.extend('imageLength', imagesLengthValidator);
@@ -288,7 +288,7 @@
         }
     }
 
-    @import "~selectize/dist/css/selectize.default.css";
+    @import "selectize/dist/css/selectize.default.css";
 
     .selectize-control.multi .selectize-input > div{
         background: green !important;
