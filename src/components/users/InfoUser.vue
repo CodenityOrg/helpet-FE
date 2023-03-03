@@ -26,7 +26,7 @@
 </template>
 <script>
     import {mapActions} from "vuex";
-    import Modal from "../common/Modal";
+    import Modal from "@/components/common/Modal.vue";
 
     export default {
         name: "InfoUser",

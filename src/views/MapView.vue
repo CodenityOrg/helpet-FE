@@ -29,7 +29,6 @@
 <script>
     /* eslint-disable */
     import { mapGetters, mapState } from "vuex";
-    import store from 'store';
 
     import Map from "../components/common/Map";
     import PostsList from "../components/posts/PostsList";

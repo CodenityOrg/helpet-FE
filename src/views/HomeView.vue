@@ -21,7 +21,7 @@
     import Vue from 'vue'
     import 'fullpage.js/vendors/scrolloverflow'
     import VueFullPage from 'vue-fullpage.js'
-    import IndexSection from "./sections/Index";
+    import IndexSection from "@/views/sections/Index.vue";
 
     Vue.use(VueFullPage);
     export default {

@@ -1,19 +1,18 @@
-import Vue from 'vue';
+import HomePage from '../views/HomeView.vue';
 import Router from 'vue-router';
-
+import Vue from 'vue';
 
 // route level code-splitting
 // this generates a separate chunk (publications.[hash].js) for this route
 // which is lazy-loaded when the route is visited.
 
-import HomePage from '../views/HomeView.vue';
 
-const RegisterUser = () => import(/* webpackChunkName: "Register " */'../views/RegisterView.vue');
-const Profile = () => import(/* webpackChunkName: "Publications" */'../views/ProfileView.vue');
-const MapView = () => import(/* webpackChunkName: "Publications" */ '../views/MapView');
-const PostRegister = () => import(/* webpackChunkName: "Publications" */'../views/PostRegisterView.vue');
-const ContactView = () => import(/* webpackChunkName: "Contact" */ '../views/ContactView');
-const TermsView = () => import(/* webpackChunkName: "Contact" */ '../views/TermsView');
+const RegisterUser = () => import(/* webpackChunkName: "Register " */'@/views/RegisterView.vue');
+const Profile = () => import(/* webpackChunkName: "Publications" */'@/views/ProfileView.vue');
+const MapView = () => import(/* webpackChunkName: "Publications" */ '@/views/MapView');
+const PostRegister = () => import(/* webpackChunkName: "Publications" */'@/views/PostRegisterView.vue');
+const ContactView = () => import(/* webpackChunkName: "Contact" */ '@/views/ContactView');
+const TermsView = () => import(/* webpackChunkName: "Contact" */ '@/views/TermsView');
 
 Vue.use(Router);
 

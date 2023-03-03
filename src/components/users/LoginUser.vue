@@ -56,9 +56,9 @@
 
 <script>
 
-    import Modal from "../common/Modal";
-    import SocialButtons from "../common/SocialButtons";
-    import BasicButton from "../basics/BasicButton";
+    import Modal from "@/components/common/Modal.vue";
+    import SocialButtons from "@/components/common/SocialButtons.vue";
+    import BasicButton from "@/components/basics/BasicButton.vue";
     import { isSafari } from '../utils';
 
     import {mapActions, mapState} from "vuex";
@@ -72,7 +72,7 @@
             SocialButtons
         },
         data() {
-            const dogImg = require(`../../assets/img/img-dog.${isSafari ? 'png' : 'webp'}`);
+            const dogImg = require("../../assets/img/img-dog.webp");
             return {
                 credentials: {
                     email: "",

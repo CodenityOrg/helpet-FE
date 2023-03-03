@@ -2,7 +2,7 @@
 export default function () {
     window.fbAsyncInit = function() {
         FB.init({
-            appId      : process.env.VUE_APP_FB_APP_ID || '2697287223690725',
+            appId      : '2697287223690725',
             cookie     : true,  // enable cookies to allow the server to access the session
             xfbml      : true,  // parse social plugins on this page
             version    : 'v2.8' // use graph api version 2.8

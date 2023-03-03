@@ -1,25 +1,23 @@
-import Vue from 'vue';
 import VeeValidate, { Validator } from 'vee-validate';
-import VueCookie from "vue-cookie";
-import axios from "axios";
+import { faBars, faBell, faCalendarAlt, faComments, faFilter, faHome, faMap, faPhoneAlt, faSort, faTags, faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import App from '@/App.vue';
 import BootstrapVue from "bootstrap-vue";
+import FBLoginInstall from "@/installs/fb-login";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Vue from 'vue';
 import VueBus from 'vue-bus';
-import VueSocketIO from 'vue-socket.io';
+import VueCookie from "vue-cookie";
 import VueGtm from 'vue-gtm';
 import VueI18n from 'vue-i18n';
+import VueSocketIO from 'vue-socket.io';
+import axios from "axios";
+import dictionary from "@/localization";
 import es from "vee-validate/dist/locale/es";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCalendarAlt, faComments, faMap, faTags, faPhoneAlt, faFilter, faSort, faTimes, faBell, faBars, faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
-import App from './App.vue';
-import router from './router';
-import store from "./store/index";
-
-import dictionary from "./localization";
-
-import FBLoginInstall from "./installs/fb-login";
+import loadingMixin from './components/common/includes/loading-mixin';
+import router from '@/router';
+import store from "@/store/index";
 
 Vue.use(VueI18n);
 
@@ -49,13 +47,12 @@ Validator.localize({ es })
 Vue.use(VeeValidate, { locale: "es", dictionary });
 
 axios.defaults.headers.common['authorization'] = VueCookie.get("helpet_auth");
-import loadingMixin from './components/common/includes/loading-mixin';
 
 Vue.mixin(loadingMixin)
 Vue.use(VueCookie);
 Vue.config.productionTip = false;
 
-const socketHost = process.env.VUE_APP_SOCKET_HOST || 'http://localhost:3000';
+const socketHost = import.meta.env.VITE_SOCKET_HOST || 'http://localhost:3000';
 
 Vue.use(new VueSocketIO({
     debug: true,

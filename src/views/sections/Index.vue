@@ -21,8 +21,7 @@
 </template>
 
 <script>
-    import { isSafari } from '../../components/utils';
-    const imageSource = require(`../../assets/img/img-A.${isSafari ? 'png' : 'webp'}`);
+    const imageSource = require("../../assets/img/img-A.webp");
 
     export default {
         data() {
