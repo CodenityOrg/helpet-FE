@@ -56,7 +56,7 @@
                         <b-col md="6" lg="12">
                             <b-card class="rounded-lg mb-4 text-center">
                                 <h5 class="mt-4">{{$t('contact.developedBy')}}</h5>
-                                <a rel="noopener noreferrer" target="_blank" href="https://www.codenity.org/"><img class="w-100 py-3 px-4" alt="Codenity" src="../../src/assets/codenity-logo.png" /></a>
+                                <a rel="noopener noreferrer" target="_blank" href="https://github.com/CodenityOrg"><img class="w-100 py-3 px-4" alt="Codenity" src="../../src/assets/codenity-logo.png" /></a>
                             </b-card>
                         </b-col>
                         <b-col md="6" lg="12">
@@ -85,8 +85,8 @@
 
 <script>
 import { mapActions } from "vuex";
-import FormErrors from "../components/basics/FormErrors";
-import ErrorMessage from "../components/basics/ErrorMessage";
+import FormErrors from "../components/basics/FormErrors.vue";
+import ErrorMessage from "../components/basics/ErrorMessage.vue";
 import { BIconPlayFill } from 'bootstrap-vue'
 
 export default {

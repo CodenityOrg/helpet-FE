@@ -44,7 +44,7 @@
 
 <script>
     import {mapState, mapActions} from "vuex";
-    import NotificationMenu from "../../notifications/NotificationMenu";
+    import NotificationMenu from "../../notifications/NotificationMenu.vue";
 
     export default {
         name: "NavBar",

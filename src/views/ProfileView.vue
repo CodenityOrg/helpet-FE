@@ -59,8 +59,8 @@
 <script>
     import {debounce, omit} from "lodash";
     import {mapActions} from "vuex";
-    import FormErrors from "../components/basics/FormErrors";
-    import ErrorMessage from "../components/basics/ErrorMessage";
+    import FormErrors from "../components/basics/FormErrors.vue";
+    import ErrorMessage from "../components/basics/ErrorMessage.vue";
 
     export default {
         name: "UserProfile",

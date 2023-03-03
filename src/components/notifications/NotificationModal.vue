@@ -12,8 +12,8 @@
 </template>
 <script>
 import {mapState, mapActions} from "vuex";
-import NotificationList from "../notifications/NotificationsList";
-import Modal from "../common/Modal";
+import NotificationList from "../notifications/NotificationsList.vue";
+import Modal from "../common/Modal.vue";
 
 export default {
     components: {

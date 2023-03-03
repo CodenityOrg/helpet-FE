@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-import NotificationList from "./NotificationsList";
+import NotificationList from "./NotificationsList.vue";
 import {mapActions, mapState} from "vuex";
 import Push from "push.js";
 import {debounce} from "lodash";

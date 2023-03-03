@@ -122,7 +122,7 @@
 
     import { mapActions, mapState } from "vuex";
     import VueRecaptcha from 'vue-recaptcha';
-    import SocialButtons from "../components/common/SocialButtons";
+    import SocialButtons from "../components/common/SocialButtons.vue";
     import {debounce} from 'lodash';
     import userAPI from '../api/user';
 

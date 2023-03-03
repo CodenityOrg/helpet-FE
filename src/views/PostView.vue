@@ -21,7 +21,7 @@
 
 <script>
     import mapMixin from "./mixins/map";
-    import PostForm from "../components/posts/PostForm";
+    import PostForm from "../components/posts/PostForm.vue";
 
     export default {
         name: "PostView",

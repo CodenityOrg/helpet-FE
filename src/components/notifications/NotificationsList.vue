@@ -15,8 +15,8 @@
     </div>
 </template>
 <script>
-import Notification from "./Notification";
-import Modal from "../common/Modal";
+import Notification from "./Notification.vue";
+import Modal from "../common/Modal.vue";
 
 export default {
     props: ["notifications", "modal"],

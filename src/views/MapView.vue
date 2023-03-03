@@ -80,6 +80,7 @@
                 this.mbMarkers = [];
             },
             createMarkers() {
+                console.log(this.markers)
                 for (const marker of this.markers) {
                     const mbMarker = new mapboxgl.Marker(this.genLayoutMarker(marker), {
                             offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]

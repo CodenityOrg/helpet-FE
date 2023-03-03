@@ -1,5 +1,5 @@
-import store from 'store';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
+import store from 'store';
 
 export default {
     methods: {
