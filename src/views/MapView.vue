@@ -9,7 +9,6 @@
                 </BasicButton>
             </router-link>
             <PostsListFilters />
-            <PostListSelected />
             <PostsList
                 :filters="filters"
             />
@@ -33,8 +32,7 @@
     import Map from "../components/common/Map.vue";
     import PostsList from "../components/posts/PostsList.vue";
     import PostsListFilters from "../components/posts/PostsListFilters.vue";
-    import PostListSelected from "../components/posts/PostsListFiltersSelected.vue";
-    
+
     import BasicButton from "../components/basics/BasicButton.vue";
 
     import mapMixin from "./mixins/map";
@@ -46,7 +44,6 @@
             Map,
             PostsList,
             PostsListFilters,
-            PostListSelected,
             BasicButton
         },
         mounted() {
