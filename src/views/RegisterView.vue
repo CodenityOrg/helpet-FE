@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-submit">
                                 <button
-                                    v-if="isVerified && acceptedTerms && isAvailableEmail && this.user.password && this.user.password.trim().length >=8"
+                                    :disabled="!isRegisterButtonEnabled"
                                     class="btn btn-regular"
                                     @click.prevent="register"
                                 >
@@ -105,8 +105,14 @@
 </template>
 
 <script>
+    import { mapActions, mapState } from 'vuex';
     import { Validator } from 'vee-validate';
     import PhoneNumber from 'awesome-phonenumber';
+    import VueRecaptcha from 'vue-recaptcha';
+    import { debounce } from 'lodash';
+
+    import userAPI from '../api/user';
+    import SocialButtons from "../components/common/SocialButtons.vue";
 
     const setValidator = message => {
         const phoneNumber = {
@@ -118,13 +124,6 @@
         };
         Validator.extend('phoneNumber', phoneNumber);
     }
-
-
-    import { mapActions, mapState } from "vuex";
-    import VueRecaptcha from 'vue-recaptcha';
-    import SocialButtons from "../components/common/SocialButtons.vue";
-    import {debounce} from 'lodash';
-    import userAPI from '../api/user';
 
     export default {
         name: "RegisterUser",
@@ -148,10 +147,13 @@
             ...mapState({
                 isAvailableEmail: state => state.user.validate.validate,
             }),
+            isRegisterButtonEnabled() {
+                return this.isVerified && this.acceptedTerms && this.isAvailableEmail && this.user.password && this.user.password.trim().length >= 8;
+            }
         },
         watch: {
             'user.email': {
-                handler(value, oldValue) {
+                handler() {
                     this.validateDebounced();
                 },
                 deep: true,
@@ -165,19 +167,30 @@
             async register() {
                 const isValidateAll = await this.$validator.validateAll();
                 const { firstName, lastName } = this.user;
+
                 if (!(firstName || lastName)) {
                     alert(this.$t("register.errors.missingData"));
                     return;
                 }
 
                 if (isValidateAll && this.isVerified && this.isAvailableEmail) {
-                    const user = this.user;
-                    this.isLoading = true;
-                    await this.registerUser(user);
-                    const id = await this.$socket.id;
-                    await this.updateToken(id);
-                    this.isLoading = false;
-                    this.$router.push("/publicaciones")
+                    try {
+                        const user = this.user;
+                        this.isLoading = true;
+                        await this.registerUser(user);
+                        this.$router.push("/publicaciones");
+                        const id = await this.$socket.id;
+                        await this.updateToken(id);
+                    } catch (error) {
+                        this.$notify({
+                            group: "top",
+                            type: 'error',
+                            duration: 1200,
+                            title: 'Unexpect error happened, please try again in a few seconds'
+                        });
+                    } finally {
+                        this.isLoading = false;
+                    }
                 } else {
                     alert(this.$t("register.errors.invalidData"))
                 }
