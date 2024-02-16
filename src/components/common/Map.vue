@@ -27,6 +27,8 @@
     import Mapbox from 'mapbox-gl-vue';
     import store from 'store';
 
+    const MAPBOX_ACCESS_TOKEN = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
+
     export default {
         name: "PostMap",
         components: {
@@ -34,7 +36,7 @@
         },
         data() {
             return {
-                accessToken: "pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+                accessToken: MAPBOX_ACCESS_TOKEN
             }
         },
         computed: {
