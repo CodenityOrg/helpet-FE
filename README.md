@@ -43,6 +43,7 @@ npm run build
 The `npm run dev` command execute for default in port `8080`, change in `vue.config.js` file if you has this port on use.
 
 ### Lints and fixes files
+
 ```
 npm run lint
 ```
@@ -51,12 +52,9 @@ npm run lint
 
 Please make sure to read the [Issue Reporting Checklist]() before opening an issue. Issues not conforming to the guidelines may be closed immediately.
 
-
 ## 👏 Contribute
 
 Please make sure to read the [Contributing Guide]() before making a pull request.
-
-
 
 ## 🙋‍♂️ FAQ & Contact
 
@@ -105,7 +103,6 @@ You can get in touch with **Codenity** community in the following ways:
 </tr>
 </tbody>
 </table>
-
 
 ## 📄 License
 

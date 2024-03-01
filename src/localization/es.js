@@ -5,123 +5,123 @@ export default {
       <br>
       perdida o ayuda a una a encontrar su hogar
     `,
-    sloganMessage: 'Porque las mascotas son los mejores amigos',
-    startButton: 'Comienza',
-    learnButton: 'Aprende como',
-    howToMessage: 'Descubre como ayudar a las mascotas a regresar a su hogar!'
+    sloganMessage: "Porque las mascotas son los mejores amigos",
+    startButton: "Comienza",
+    learnButton: "Aprende como",
+    howToMessage: "Descubre como ayudar a las mascotas a regresar a su hogar!"
   },
   login: {
-    sloganMessage: 'Inicia sesión y ayuda a una mascota a regresar a su hogar',
-    fbLoginButton: 'Iniciar sesión con Facebook',
-    emailText: 'O usa tu email',
-    forgotPasswordText: 'Olvidaste tu contraseña?',
+    sloganMessage: "Inicia sesión y ayuda a una mascota a regresar a su hogar",
+    fbLoginButton: "Iniciar sesión con Facebook",
+    emailText: "O usa tu email",
+    forgotPasswordText: "Olvidaste tu contraseña?",
     placeholders: {
-      email: 'Email',
-      password: 'Password'
+      email: "Email",
+      password: "Password"
     },
-    notAccountText: 'No tienes una cuenta ?',
-    createAccountText: 'Crea una cuenta aquí',
-    loginButton: 'Iniciar sesión',
+    notAccountText: "No tienes una cuenta ?",
+    createAccountText: "Crea una cuenta aquí",
+    loginButton: "Iniciar sesión",
     incorrectLogin: `Tu usuario o contraseña son incorrectos  <br> <b>   'Por favor inténtelo nuevamente'</b>`
   },
   register: {
-    title: 'Registrate',
-    fbButton: 'Registrate con Facebook',
-    otherOptionText: 'o también con',
+    title: "Registrate",
+    fbButton: "Registrate con Facebook",
+    otherOptionText: "o también con",
     placeholders: {
-      name: 'Nombres',
-      lastName: 'Apellidos',
-      phone: 'Teléfono (Prefijo + número de telefono) - Opcional',
-      email: 'Email',
-      password: 'Contraseña'
+      name: "Nombres",
+      lastName: "Apellidos",
+      phone: "Teléfono (Prefijo + número de telefono) - Opcional",
+      email: "Email",
+      password: "Contraseña"
     },
     errors: {
-      phone: 'no es un telefono valido',
-      missingData: 'Completa los datos antes de continuar :)',
-      invalidData: 'Por favor corrija los errores antes de continuar'
+      phone: "no es un telefono valido",
+      missingData: "Completa los datos antes de continuar :)",
+      invalidData: "Por favor corrija los errores antes de continuar"
     }
   },
   profile: {
-    title: 'Información personal',
-    note: 'Nota: Es importante registrar tus datos para que las personas puedan contactarte rápidamente :)' ,
+    title: "Información personal",
+    note: "Nota: Es importante registrar tus datos para que las personas puedan contactarte rápidamente :)",
     inputs: {
-      name: 'Nombres',
-      lastname: 'Apellidos',
-      email: 'Email',
-      phone: 'Teléfono',
-      facebook: 'Facebook'
+      name: "Nombres",
+      lastname: "Apellidos",
+      email: "Email",
+      phone: "Teléfono",
+      facebook: "Facebook"
     }
   },
   navigation: {
     button: {
-      login: 'Iniciar sesión',
-      register: 'Registrate',
-      posts: 'Publicaciones',
-      contact: 'Contacto',
-      logout: 'Cerrar sesión'
+      login: "Iniciar sesión",
+      register: "Registrate",
+      posts: "Publicaciones",
+      contact: "Contacto",
+      logout: "Cerrar sesión"
     }
   },
   publications: {
-    newPost: 'Nueva publicación',
-    filterButton: 'Filtrar por...',
-    orderButton: 'Ordenar por...',
+    newPost: "Nueva publicación",
+    filterButton: "Filtrar por...",
+    orderButton: "Ordenar por...",
     filters: {
-      losts: 'Perdidos',
-      found: 'Encontrados',
-      recent: 'Mas recientes',
-      old: 'Antiguos'
+      losts: "Perdidos",
+      found: "Encontrados",
+      recent: "Mas recientes",
+      old: "Antiguos"
     },
     post: {
-      descriptionLabel: 'Descripción',
-      addressLabel: 'Ultimo lugar visto',
-      characteristic: 'Caracteristicas',
-      showMore: 'Mostrar mas',
-      contactButton: 'Contactar'
+      descriptionLabel: "Descripción",
+      addressLabel: "Ultimo lugar visto",
+      characteristic: "Caracteristicas",
+      showMore: "Mostrar mas",
+      contactButton: "Contactar"
     },
-    mapAlert: 'Estamos ubicándote, espere un momento'
+    mapAlert: "Estamos ubicándote, espere un momento"
   },
   contact: {
-    title: 'Enviar mensaje',
-    message: 'Podrás ponerte en contacto con nosotros por cualquier duda',
+    title: "Enviar mensaje",
+    message: "Podrás ponerte en contacto con nosotros por cualquier duda",
     placeholders: {
-      fullname: 'Nombre completo',
-      email: 'Correo',
-      message: 'Mensaje'
+      fullname: "Nombre completo",
+      email: "Correo",
+      message: "Mensaje"
     },
-    sendButton: 'Enviar',
-    developedBy: 'Desarrollado por',
+    sendButton: "Enviar",
+    developedBy: "Desarrollado por",
     errors: {
-      fullname: '* Nombre requerido',
-      message: '* Mensaje requerido',
-      email: '* Ingrese un email válido'
+      fullname: "* Nombre requerido",
+      message: "* Mensaje requerido",
+      email: "* Ingrese un email válido"
     }
   },
   postRegister: {
-    title: 'Información de la mascota',
-    selectImage: 'Seleccionar imagen',
+    title: "Información de la mascota",
+    selectImage: "Seleccionar imagen",
     placeholders: {
-      title: 'Titulo',
-      description: 'Descripción',
-      address: 'Dirección',
+      title: "Titulo",
+      description: "Descripción",
+      address: "Dirección"
     },
     options: {
-      lost: 'Perdido',
-      found: 'Encontrado'
+      lost: "Perdido",
+      found: "Encontrado"
     },
-    acceptButton: 'Aceptar'
+    acceptButton: "Aceptar"
   },
   footer: {
-    privacy: 'Privacidad y Términos de Uso',
+    privacy: "Privacidad y Términos de Uso",
     cookies: {
-      message: 'Este sitio usa cookies para analizar tráfico y mejorar tu experiencia. ',
-      infoButton: 'Más información'
+      message:
+        "Este sitio usa cookies para analizar tráfico y mejorar tu experiencia. ",
+      infoButton: "Más información"
     }
   },
   terms: {
-    beforeContent:'Acepto los',
-    afterContent:'Terminos de uso y condiciones',
-    content:
-      `<h1 class="text-center font-weight-bold">Política de Privacidad, Términos de Uso y Cookies</h1>
+    beforeContent: "Acepto los",
+    afterContent: "Terminos de uso y condiciones",
+    content: `<h1 class="text-center font-weight-bold">Política de Privacidad, Términos de Uso y Cookies</h1>
       <p>Podrás ponerte en contacto con nosotros por cualquier duda.</p>
       <p>El presente documento legal se entiende aceptado si navega por nuestro sitio web.</p>
       <h2 id="obj">Objetivo</h2>
@@ -158,4 +158,4 @@ export default {
       <p>Este sitio web no venderá, cederá ni distribuirá la información personal que es recopilada, salvo que sea requerido en un proceso de disputa como por ejemplo por un juez con un orden judicial.</p>
       <p>Helpet se reserva el derecho de cambiar los presentes términos en cualquier momento.</p>`
   }
-};
+}

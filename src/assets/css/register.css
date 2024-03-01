@@ -1,75 +1,75 @@
 .register h1 {
-    margin:  0 0 1em 0;
+  margin: 0 0 1em 0;
 }
-.register h3{
-    margin:  0 0 1em 0;
-    font-size: 1.4em;
+.register h3 {
+  margin: 0 0 1em 0;
+  font-size: 1.4em;
 }
-.register h2{
-    margin:  0 0 1em 0;
-    font-size: 1.7em;
+.register h2 {
+  margin: 0 0 1em 0;
+  font-size: 1.7em;
 }
-.register h4{
-    margin:  0 0 1em 0;
-    font-size: 1.1em;
+.register h4 {
+  margin: 0 0 1em 0;
+  font-size: 1.1em;
 }
-.cont--register{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #20b16a;
-    height: calc(100% - 90px);
+.cont--register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #20b16a;
+  height: calc(100% - 90px);
 }
 
 .cont--profile form {
-    background-color: #fff;
-    padding: 1rem;
-    width: 15em;
-    border-radius: 6px;
+  background-color: #fff;
+  padding: 1rem;
+  width: 15em;
+  border-radius: 6px;
 }
 
-.register{
-    color: white;
-    margin: 0;
-    text-align: center;
+.register {
+  color: white;
+  margin: 0;
+  text-align: center;
 }
-.net{
-    align-items: center;
-    padding: 0;
-}
-
-.input--register{
-    display: flex;
-}
-.input--register input{
-    width: 49%;
+.net {
+  align-items: center;
+  padding: 0;
 }
 
-.form-input .invalid{
-    border-color: #ff4b5c !important;
+.input--register {
+  display: flex;
+}
+.input--register input {
+  width: 49%;
 }
 
-figure{
-    width: 15em;
-    height: 17em;
-}
-figure img{
-    width: 100%;
-}
-.form-submit{
-    text-align: center;
+.form-input .invalid {
+  border-color: #ff4b5c !important;
 }
 
-.icons{
-    color: white;
+figure {
+  width: 15em;
+  height: 17em;
 }
-.icons .fa{
-    font-size:  1.5em;
-    color: white;
+figure img {
+  width: 100%;
+}
+.form-submit {
+  text-align: center;
+}
+
+.icons {
+  color: white;
+}
+.icons .fa {
+  font-size: 1.5em;
+  color: white;
 }
 
 .card-body .picture img {
-    object-fit: contain;
-    width: 100%;
+  object-fit: contain;
+  width: 100%;
 }

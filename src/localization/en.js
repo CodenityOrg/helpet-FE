@@ -3,125 +3,125 @@ export default {
     introMessage: `Find your lost <span class="slogan__title--bold">pet</span>
     <br>
     or help one to find its home`,
-    sloganMessage: 'Because our pets are the best friends',
-    startButton: 'Start',
-    learnButton: 'Learn how',
-    howToMessage: 'Discover how to help pets to find their way to home!'
+    sloganMessage: "Because our pets are the best friends",
+    startButton: "Start",
+    learnButton: "Learn how",
+    howToMessage: "Discover how to help pets to find their way to home!"
   },
   login: {
-    sloganMessage: 'Sign in and help pets to find their way to home!',
-    fbLoginButton: 'Login with Facebook',
-    emailText: 'Or use your email',
-    forgotPasswordText: 'Forgot password?',
+    sloganMessage: "Sign in and help pets to find their way to home!",
+    fbLoginButton: "Login with Facebook",
+    emailText: "Or use your email",
+    forgotPasswordText: "Forgot password?",
     placeholders: {
-      email: 'Email',
-      password: 'Password'
+      email: "Email",
+      password: "Password"
     },
-    notAccountText: 'Don\'t have an account ?',
-    createAccountText: 'Create account here',
-    loginButton: 'Login',
+    notAccountText: "Don't have an account ?",
+    createAccountText: "Create account here",
+    loginButton: "Login",
     incorrectLogin: `Your credentials are incorrect  <br> <b>   'Please, try again'</b>`
   },
   register: {
-    title: 'Register',
-    fbButton: 'Register with Facebook',
-    otherOptionText: 'also with',
+    title: "Register",
+    fbButton: "Register with Facebook",
+    otherOptionText: "also with",
     placeholders: {
-      name: 'First Name',
-      lastName: 'Last Name',
-      phone: 'Phone (Prefix + number phone) - Optional ',
-      email: 'Email',
-      password: 'Password'
+      name: "First Name",
+      lastName: "Last Name",
+      phone: "Phone (Prefix + number phone) - Optional ",
+      email: "Email",
+      password: "Password"
     },
     errors: {
-      missingData: 'Complete your data before continue :)',
-      phone: 'is not a valid phone number',
-      invalidData: 'Please fix errors before continue'
+      missingData: "Complete your data before continue :)",
+      phone: "is not a valid phone number",
+      invalidData: "Please fix errors before continue"
     }
   },
   profile: {
-    title: 'Personal information',
-    note: 'Note: It\'s important to register your data for the people reach you quickly :)',
+    title: "Personal information",
+    note: "Note: It's important to register your data for the people reach you quickly :)",
     inputs: {
-      name: 'Fist Name',
-      lastname: 'Last Name',
-      email: 'Email',
-      phone: 'Phone',
-      facebook: 'Facebook'
+      name: "Fist Name",
+      lastname: "Last Name",
+      email: "Email",
+      phone: "Phone",
+      facebook: "Facebook"
     },
-    sendButton: 'Send',
-    developBy: 'Developed by'
+    sendButton: "Send",
+    developBy: "Developed by"
   },
   navigation: {
     button: {
-      login: 'Sign in',
-      register: 'Sign up',
-      posts: 'Publications',
-      contact: 'Contact',
-      logout: 'Logout'
-    },
+      login: "Sign in",
+      register: "Sign up",
+      posts: "Publications",
+      contact: "Contact",
+      logout: "Logout"
+    }
   },
   publications: {
-    newPost: 'New post',
-    filterButton: 'Filter by...',
-    orderButton: 'Order by...',
+    newPost: "New post",
+    filterButton: "Filter by...",
+    orderButton: "Order by...",
     filters: {
-      losts: 'Losts',
-      found: 'Found',
-      recent: 'Latest',
-      old: 'Oldest'
+      losts: "Losts",
+      found: "Found",
+      recent: "Latest",
+      old: "Oldest"
     },
     post: {
-      descriptionLabel: 'Description',
-      addressLabel: 'Last place seen',
-      characteristic: 'Characteristics',
-      showMore: 'Show more',
-      contactButton: 'Contact'
+      descriptionLabel: "Description",
+      addressLabel: "Last place seen",
+      characteristic: "Characteristics",
+      showMore: "Show more",
+      contactButton: "Contact"
     },
-    mapAlert: 'We\'re locating you, wait a moment',
+    mapAlert: "We're locating you, wait a moment"
   },
   contact: {
-    title: 'Send a message',
-    message: 'Keep in touch with us for any question',
+    title: "Send a message",
+    message: "Keep in touch with us for any question",
     placeholders: {
-      fullname: 'Full Name',
-      email: 'Email',
-      message: 'Message'
+      fullname: "Full Name",
+      email: "Email",
+      message: "Message"
     },
-    sendButton: 'Send',
-    developedBy: 'Developed by',
+    sendButton: "Send",
+    developedBy: "Developed by",
     errors: {
-      fullname: '* Name is required',
-      message: '* Message is required',
-      email: '* Enter a valid email'
+      fullname: "* Name is required",
+      message: "* Message is required",
+      email: "* Enter a valid email"
     }
   },
   postRegister: {
-    title: 'Pet information',
-    selectImage: 'Select images',
+    title: "Pet information",
+    selectImage: "Select images",
     placeholders: {
-      title: 'Title',
-      description: 'Description',
-      address: 'Address',
+      title: "Title",
+      description: "Description",
+      address: "Address"
     },
     options: {
-      lost: 'Lost',
-      found: 'Found'
+      lost: "Lost",
+      found: "Found"
     },
-    acceptButton: 'Accept'
+    acceptButton: "Accept"
   },
   footer: {
-    privacy: 'Privacy and Terms of Use',
+    privacy: "Privacy and Terms of Use",
     cookies: {
-      message: 'This site uses cookies to analyze traffic and improve your experience. ',
-      infoButton: 'More info'
+      message:
+        "This site uses cookies to analyze traffic and improve your experience. ",
+      infoButton: "More info"
     }
   },
   terms: {
-    beforeContent:'I accept the',
-    afterContent:'Terms and conditions',
-    content:
-      `<h1 class="text-center font-weight-bold">Privacy Policy, Terms of Use & Cookies</h1>
+    beforeContent: "I accept the",
+    afterContent: "Terms and conditions",
+    content: `<h1 class="text-center font-weight-bold">Privacy Policy, Terms of Use & Cookies</h1>
       <p>This legal document is taken as accepted if you browse our website.</p>
       <h2 id="obj">Objective</h2>
       <p>Helpet's goal is to help find as many lost pets as possible and reunite found pets with their owners.</p>
@@ -149,5 +149,10 @@ export default {
       <p>At any time you can restrict the collection or use of personal information that is provided to our website, in which case we will suspend the service.</p>
       <p>This website will not sell, transfer or distribute the personal information that is collected, unless it is required in a dispute process such as by a judge with a court order.</p>
       <p>Helpet reserves the right to change these terms at any time.</p>`
+  },
+  errors: {
+    notSelectedPosition: "You need to select a position in the map",
+    internalServerError:
+      "Unexpected error happened, please try again in a few seconds"
   }
-};
+}

@@ -1,30 +1,27 @@
-import general from "../../api/general";
+import general from "../../api/general"
 
-const state = {
+const state = {}
 
-}
-
-const mutations = {
-
-}
+const mutations = {}
 
 const actions = {
-    async submitContactForm({commit}, form) {
-        const { status, data: { sent } } = await general.submitContactForm(form);
-        if (status !== 200) {
-            return false;
-        }
-        return sent;
+  async submitContactForm({ commit }, form) {
+    const {
+      status,
+      data: { sent }
+    } = await general.submitContactForm(form)
+    if (status !== 200) {
+      return false
     }
+    return sent
+  }
 }
 
-const getters = {
-
-}
+const getters = {}
 
 export default {
-    state,
-    actions,
-    getters,
-    mutations
+  state,
+  actions,
+  getters,
+  mutations
 }
